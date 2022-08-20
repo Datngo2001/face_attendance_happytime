@@ -1,0 +1,15 @@
+@use "../../../assets/styles/index.scss" as *;
+
+.login-form {
+    &__wrapper {
+        width: 100%;
+        height: auto;
+    }
+    &__title {
+        font-size: 20px;
+        font-weight: $fw-2;
+        padding-top: 60px;
+        padding-bottom: 48px;
+        color: $text-color-1;
+    }
+}

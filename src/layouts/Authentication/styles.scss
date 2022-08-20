@@ -1,0 +1,37 @@
+@use "../../assets/styles/index.scss" as *;
+
+.authentication__wrapper {
+    margin-left: auto;
+    margin-right: auto;
+    height: 100vh;
+    overflow-y: scroll;
+    text-align: center;
+    background-color: $color-white-1;
+
+    .brand-img {
+        width: 168px;
+        height: 40px;
+        margin-top: 20px;
+        margin-bottom: 16px;
+        object-fit: contain;
+        padding: 6px;
+    }
+
+    .authentication__slogan {
+        font-size: 25px;
+        font-weight: $fw-1;
+        color: $text-color-1;
+        margin-bottom: 24px;
+    }
+
+    .authentication__container {
+        margin: auto;
+        width: 575px;
+        min-height: 572px;
+        padding-left: 88px;
+        padding-right: 88px;
+        border-radius: $br-1;
+        background-color: $color-white-1;
+        box-shadow: $bs-1;
+    }
+}
