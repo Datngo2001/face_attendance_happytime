@@ -1,10 +1,9 @@
-import LoginForm from "../containers/Authentication/LoginForm";
-import AuthenticationLayout from "../layouts/Authentication";
+import Login from "../pages/Login";
 
 // authentication router
 export const authenticationRouters = [
     {
         path: "login",
-        Component: LoginForm,
+        Component: Login,
     },
 ];

@@ -1,0 +1,42 @@
+@use "../../assets/styles/index.scss" as *;
+
+.input-custom__wrapper {
+    height: $h-1;
+    width: 100%;
+    position: relative;
+
+    > input {
+        height: 100%;
+        width: 100%;
+        border-radius: $br-1;
+        border: 1px solid transparent;
+        color: $text-color-1;
+        background-color: $primary-bg-color;
+        transition: all 0.3s;
+        font-size: 14px;
+        padding: 8px 16px 8px 32px;
+        display: inline-flex;
+        &:focus {
+            outline: none;
+            border-color: $primary-color;
+            box-shadow: $bs-2;
+        }
+
+        &:hover {
+            border-color: $primary-color;
+        }
+    }
+
+    > svg {
+        position: absolute;
+        font-size: 18px;
+        top: 50%;
+        left: 8px;
+        transform: translateY(-50%);
+        color: $text-color-2;
+    }
+
+    ::placeholder {
+        color: $text-color-2;
+    }
+}
