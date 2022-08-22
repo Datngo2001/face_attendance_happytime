@@ -1,5 +1,23 @@
 @use "../../assets/styles/index.scss" as *;
 
 .btn-custom {
-    background-color: $primary-color-1;
-} 
+    background-color: $primary-color !important;
+    color: $color-white-1 !important;
+    font-size: 14px;
+    font-weight: $fw-1 !important;
+    width: 100%;
+    border-radius: $br-1;
+    font-family: $f-family-1 !important;
+
+    &:hover {
+        opacity: 0.8;
+        transition: all 0.4s;
+    }
+
+    &.disabled {
+        background-color: #f5f5f5 !important;
+        color: rgba(0, 0, 0, 0.25) !important;
+        border: 1px solid transparent !important;
+        border-color: #d9d9d9 !important;
+    }
+}

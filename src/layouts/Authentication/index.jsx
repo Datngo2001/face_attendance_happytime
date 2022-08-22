@@ -1,4 +1,5 @@
 import { Outlet } from "react-router-dom";
+import Footer from "../../components/Footer";
 import "./styles.scss";
 
 const AuthenticationLayout = () => {
@@ -10,7 +11,9 @@ const AuthenticationLayout = () => {
                 <div className="authentication__container">
                     <Outlet />
                 </div>
+                <div className="authentication__banner"></div>
             </div>
+            <Footer type="2" />
         </>
     );
 };

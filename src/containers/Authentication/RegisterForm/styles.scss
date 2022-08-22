@@ -1,0 +1,75 @@
+@use "../../../assets/styles/index.scss" as *;
+
+.register-form {
+    &__wrapper {
+        .input-item {
+            margin-bottom: 30px;
+        }
+
+        .policies {
+            font-size: $fs-1;
+            display: flex;
+            justify-content: left;
+            align-items: center;
+            gap: 8px;
+            color: $text-color-1;
+
+            > a {
+                color: $primary-color;
+            }
+
+            #agree {
+                accent-color: $primary-color;
+                cursor: pointer;
+
+                &:hover {
+                    border-color: $primary-color !important;
+                }
+            }
+        }
+
+        .tag-redirect {
+            display: block;
+            font-size: 14px;
+            padding-bottom: 16px;
+            color: #212f3f;
+            width: 100%;
+            text-align: right;
+            cursor: pointer;
+            text-align: center;
+
+            > a {
+                color: #ff9f0a;
+            }
+        }
+    }
+
+    &__header {
+        position: relative;
+        margin-bottom: 20px;
+        padding-top: 24px;
+        text-align: center;
+
+        .tag-redirect {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            left: 0;
+            top: 25px;
+            transform: translateY(-50%);
+            font-size: 14px;
+            margin-top: 20px;
+            color: $primary-color;
+            width: 100%;
+            cursor: pointer;
+            text-align: center;
+            gap: 4px;
+            font-weight: $fw-1;
+        }
+    }
+
+    &__title {
+        font-size: 20px;
+        color: $text-color-1;
+    }
+}

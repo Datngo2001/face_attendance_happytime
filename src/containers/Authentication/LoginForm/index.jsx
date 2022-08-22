@@ -4,6 +4,8 @@ import InputCustom from "../../../components/InputCustom";
 import LocalPhoneRoundedIcon from "@mui/icons-material/LocalPhoneRounded";
 import LockIcon from "@mui/icons-material/Lock";
 import { Link } from "react-router-dom";
+import ButtonCustom from "../../../components/ButtonCustom";
+import Footer from "../../../components/Footer";
 
 const LoginForm = () => {
     const {
@@ -35,8 +37,15 @@ const LoginForm = () => {
                 >
                     {errors?.password?.message}
                 </InputCustom>
-                <Link className="forgot-password" to="/forgot-password">Quên mật khẩu?</Link>
+                <Link className="forgot-password" to="/forgot-password">
+                    Quên mật khẩu?
+                </Link>
+                <div style={{ marginTop: "40px", marginBottom: "60px" }}>
+                    <ButtonCustom height="48px">ĐĂNG NHẬP</ButtonCustom>
+                </div>
+                <p className="tag-redirect">Bạn chưa có tài khoản? {" "}<Link to="/auth/register">Đăng ký ngay?</Link></p>
             </form>
+            <Footer type="2"/>
         </>
     );
 };

@@ -10,13 +10,28 @@
         }
 
         .forgot-password {
-            display:block;
+            display: block;
             font-size: 14px;
             margin-top: 20px;
             color: $primary-color;
             width: 100%;
             text-align: right;
             cursor: pointer;
+        }
+
+        .tag-redirect {
+            display: block;
+            font-size: 14px;
+            margin-top: 20px;
+            color: #212f3f;
+            width: 100%;
+            text-align: right;
+            cursor: pointer;
+            text-align: center;
+
+            > a {
+                color: #ff9f0a;
+            }
         }
     }
     &__title {
@@ -26,5 +41,4 @@
         padding-bottom: 48px;
         color: $text-color-1;
     }
-
 }
