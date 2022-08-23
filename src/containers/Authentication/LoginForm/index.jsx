@@ -37,7 +37,7 @@ const LoginForm = () => {
                 >
                     {errors?.password?.message}
                 </InputCustom>
-                <Link className="forgot-password" to="/forgot-password">
+                <Link className="forgot-password" to="/auth/forgot-password">
                     Quên mật khẩu?
                 </Link>
                 <div style={{ marginTop: "40px", marginBottom: "60px" }}>

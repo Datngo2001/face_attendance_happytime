@@ -1,3 +1,4 @@
+import ForgotPassword from "../pages/ForgotPassword";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 
@@ -10,5 +11,9 @@ export const authenticationRouters = [
     {
         path: "register",
         Component: Register,
+    },
+    {
+        path: "forgot-password",
+        Component: ForgotPassword,
     },
 ];

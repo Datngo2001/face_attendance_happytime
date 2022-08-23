@@ -1,7 +1,16 @@
 import "./styles.scss";
 
-const InputCustom = ({ id, icon, placeholder, width, height, register, className, type, children}) => {
-    const handleOnFocus = () => {};
+const InputCustom = ({
+    id,
+    icon,
+    placeholder,
+    width,
+    height,
+    register,
+    className,
+    type,
+    children,
+}) => {
     return (
         <>
             <div
@@ -9,7 +18,7 @@ const InputCustom = ({ id, icon, placeholder, width, height, register, className
                 style={{ width: width ? width : "", height: height ? height : "" }}
             >
                 {icon}
-                <input id={id} onFocus={handleOnFocus} placeholder={placeholder} type={type} {...register(id)} />
+                <input id={id} placeholder={placeholder} type={type} {...register(id)} />
                 <p className="error-message">{children}</p>
             </div>
         </>

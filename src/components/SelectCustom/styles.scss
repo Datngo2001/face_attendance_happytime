@@ -1,0 +1,49 @@
+@use "../../assets/styles/index.scss" as *;
+
+.select-custom {
+    &__wrapper {
+        height: $h-1;
+        width: 100%;
+        position: relative;
+
+        > select {
+            height: 100%;
+            width: 100%;
+            border-radius: $br-1;
+            border: 1px solid transparent;
+            color: $text-color-1;
+            background-color: $primary-bg-color;
+            font-family: $f-family-1;
+            transition: all 0.3s;
+            font-size: 14px;
+            padding: 8px 16px 8px 32px;
+            display: inline-flex;
+
+            &:required:invalid {
+                color: $text-color-2;
+            }
+
+            &:focus {
+                outline: none;
+                border-color: $primary-color;
+                box-shadow: $bs-2;
+            }
+
+            &:hover {
+                border-color: $primary-color;
+            }
+        }
+
+        > svg {
+            position: absolute;
+            font-size: 18px;
+            top: 50%;
+            left: 8px;
+            transform: translateY(-50%);
+            color: $text-color-2;
+        }
+    }
+
+    &__error {
+    }
+}

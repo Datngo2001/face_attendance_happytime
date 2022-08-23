@@ -7,9 +7,23 @@ import AccountCircleSharpIcon from "@mui/icons-material/AccountCircleSharp";
 import ApartmentIcon from "@mui/icons-material/Apartment";
 import EmailIcon from "@mui/icons-material/Email";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
+import BadgeIcon from "@mui/icons-material/Badge";
 import KeyIcon from "@mui/icons-material/Key";
+import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import SelectCustom from "../../../components/SelectCustom";
+
+const listPositions = [
+    {
+        id: 1,
+        name: "CEO/ Founder/ Chủ tịch",
+    },
+    {
+        id: 2,
+        name: "Giám đốc (CFO, CTO, HRM, VP)",
+    },
+];
 
 const RegisterForm = () => {
     const {
@@ -59,6 +73,16 @@ const RegisterForm = () => {
                 >
                     {errors.nameCompany?.message}
                 </InputCustom>
+                <SelectCustom
+                    id="position"
+                    className="input-item"
+                    placeholder="Chức vụ *"
+                    register={register}
+                    icon={<BadgeIcon />}
+                    options={listPositions}
+                >
+                    {errors.position?.message}
+                </SelectCustom>
                 <InputCustom
                     id="email"
                     className="input-item"
@@ -69,6 +93,16 @@ const RegisterForm = () => {
                 >
                     {errors.password?.message}
                 </InputCustom>
+                <SelectCustom
+                    id="scale"
+                    className="input-item"
+                    placeholder="Quy mô công ty *"
+                    register={register}
+                    icon={<SupervisorAccountIcon />}
+                    options={listPositions}
+                >
+                    {errors.scale?.message}
+                </SelectCustom>
                 <InputCustom
                     id="code"
                     className="input-item"
@@ -102,7 +136,9 @@ const RegisterForm = () => {
                         ĐĂNG KÝ
                     </ButtonCustom>
                 </div>
-                <p className="tag-redirect">Bạn đã có tài khoản? <Link to="../login">Đăng nhập</Link></p>
+                <p className="tag-redirect">
+                    Bạn đã có tài khoản? <Link to="../login">Đăng nhập</Link>
+                </p>
             </form>
         </>
     );
