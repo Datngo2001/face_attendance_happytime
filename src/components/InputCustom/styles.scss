@@ -40,4 +40,23 @@
     ::placeholder {
         color: $text-color-2;
     }
+
+    &.error {
+        > input {
+            border-color: $color-red-1;
+
+            &:focus {
+                border-color: $color-red-1;
+            }
+        }
+        .error-message {
+            color: $color-red-1;
+            font-size: $fs-1;
+            text-align: left;
+        }
+
+        >svg {
+            color: $color-red-1;
+        }
+    }
 }

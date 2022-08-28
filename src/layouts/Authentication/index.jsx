@@ -1,12 +1,13 @@
+import "./styles.scss";
 import { Outlet } from "react-router-dom";
 import Footer from "../../components/Footer";
-import "./styles.scss";
+import Logo from "../../assets/images/happytime-fulltext.png";
 
 const AuthenticationLayout = () => {
     return (
         <>
             <div className="authentication__wrapper">
-                <img src="https://happytime.vn/images/icons/happytime-fulltext.png" alt="" className="brand-img" />
+                <img src={Logo} alt="" className="brand-img" />
                 <h2 className="authentication__slogan">Nền tảng quản lý chấm công trực tuyến</h2>
                 <div className="authentication__container">
                     <Outlet />

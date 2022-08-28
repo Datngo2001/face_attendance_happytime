@@ -14,7 +14,7 @@ const InputCustom = ({
     return (
         <>
             <div
-                className={`input-custom__wrapper ${className ? className : ""}`}
+                className={`input-custom__wrapper ${children && "error"} ${className ? className : ""}`}
                 style={{ width: width ? width : "", height: height ? height : "" }}
             >
                 {icon}

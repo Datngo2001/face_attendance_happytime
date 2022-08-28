@@ -1,0 +1,70 @@
+import * as yup from "yup";
+
+const REGEX_PHONE_NUMBER = /(84|0[3|5|7|8|9])+([0-9]{8})\b/g;
+const REGEX_ONLY_NUMBER = /^\d+$/;
+
+export const schema = yup.object({
+    phone: yup
+        .string()
+        .required("Trường Số điện thoại không được bỏ trống")
+        .matches(REGEX_PHONE_NUMBER, "Thông tin sai định dạng"),
+    name: yup.string().required("Trường Họ và tên không được bỏ trống"),
+    nameCompany: yup.string().required("Trường Tên công ty không được bỏ trống"),
+    position: yup.string().required("Trường Chức vụ không được bỏ trống"),
+    email: yup
+        .string()
+        .email("Thông tin sai định dạng")
+        .max(100)
+        .required("Trường email không được bỏ trống"),
+    scale: yup.string().required("Trường Chức vụ không được bỏ trống"),
+    code: yup.string().required("Trường Nhập mã giới thiệu không được bỏ trống"),
+});
+
+export const listPositions = [
+    {
+        id: 0,
+        name: "CEO/ Founder/ Chủ tịch",
+    },
+    {
+        id: 1,
+        name: "Giám đốc (CFO, CTO, HRM, VP)",
+    },
+    { id: 2, name: "Quản lý" },
+    { id: 3, name: "Nhân viên" },
+    { id: 4, name: "Vị trí khác" },
+];
+
+export const listScales = [
+    {
+        id: 0,
+        name: "1 - 9 nhân viên",
+    },
+    {
+        id: 1,
+        name: "10 - 24 nhân viên",
+    },
+    {
+        id: 2,
+        name: "25 - 99 nhân viên",
+    },
+    {
+        id: 3,
+        name: "100 - 499 nhân viên",
+    },
+    {
+        id: 4,
+        name: "500 - 1000 nhân viên",
+    },
+    {
+        id: 5,
+        name: "1000+ nhân viên",
+    },
+    {
+        id: 6,
+        name: "5000+ nhân viên",
+    },
+    {
+        id: 7,
+        name: "10000+ nhân viên",
+    },
+];

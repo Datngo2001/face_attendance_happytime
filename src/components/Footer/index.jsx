@@ -10,3 +10,4 @@ const Footer = ({type}) => {
 }
 
 export default Footer;
+// 

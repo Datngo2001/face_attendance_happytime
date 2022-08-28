@@ -15,7 +15,7 @@ const SelectCustom = ({
     return (
         <>
             <div
-                className={`select-custom__wrapper ${className ? className : ""}`}
+                className={`select-custom__wrapper ${children && "error"} ${className ? className : ""}`}
                 style={{ width: width ? width : "", height: height ? height : "" }}
             >
                 {icon}

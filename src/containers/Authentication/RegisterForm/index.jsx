@@ -9,29 +9,24 @@ import EmailIcon from "@mui/icons-material/Email";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import BadgeIcon from "@mui/icons-material/Badge";
 import KeyIcon from "@mui/icons-material/Key";
-import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
+import SupervisorAccountIcon from "@mui/icons-material/SupervisorAccount";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import SelectCustom from "../../../components/SelectCustom";
-
-const listPositions = [
-    {
-        id: 1,
-        name: "CEO/ Founder/ Chủ tịch",
-    },
-    {
-        id: 2,
-        name: "Giám đốc (CFO, CTO, HRM, VP)",
-    },
-];
+import { listPositions, listScales, schema } from "./handleForm";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 const RegisterForm = () => {
     const {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm();
+    } = useForm({ resolver: yupResolver(schema) });
     const [disabled, setDisabled] = useState(true);
+
+    const onSubmit = (data) => {
+        console.log("data register:", data);
+    };
 
     return (
         <>
@@ -51,7 +46,7 @@ const RegisterForm = () => {
                     register={register}
                     icon={<LocalPhoneRoundedIcon />}
                 >
-                    {errors?.phone?.message}
+                    {errors.phone?.message}
                 </InputCustom>
                 <InputCustom
                     id="name"
@@ -91,7 +86,7 @@ const RegisterForm = () => {
                     register={register}
                     icon={<EmailIcon />}
                 >
-                    {errors.password?.message}
+                    {errors.email?.message}
                 </InputCustom>
                 <SelectCustom
                     id="scale"
@@ -99,7 +94,7 @@ const RegisterForm = () => {
                     placeholder="Quy mô công ty *"
                     register={register}
                     icon={<SupervisorAccountIcon />}
-                    options={listPositions}
+                    options={listScales}
                 >
                     {errors.scale?.message}
                 </SelectCustom>
@@ -132,7 +127,11 @@ const RegisterForm = () => {
                     của HappyTime
                 </div>
                 <div style={{ marginTop: "40px", marginBottom: "24px" }}>
-                    <ButtonCustom height="48px" disabled={disabled}>
+                    <ButtonCustom
+                        height="48px"
+                        disabled={disabled}
+                        onClick={handleSubmit(onSubmit)}
+                    >
                         ĐĂNG KÝ
                     </ButtonCustom>
                 </div>

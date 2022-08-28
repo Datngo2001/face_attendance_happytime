@@ -42,8 +42,24 @@
             transform: translateY(-50%);
             color: $text-color-2;
         }
-    }
 
-    &__error {
+        &.error {
+            > select {
+                border-color: $color-red-1;
+
+                &:focus {
+                    border-color: $color-red-1;
+                }
+            }
+            .error-message {
+                color: $color-red-1;
+                font-size: $fs-1;
+                text-align: left;
+            }
+
+            > svg {
+                color: $color-red-1;
+            }
+        }
     }
 }
