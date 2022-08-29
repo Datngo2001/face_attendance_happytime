@@ -6,13 +6,19 @@ import LockIcon from "@mui/icons-material/Lock";
 import { Link } from "react-router-dom";
 import ButtonCustom from "../../../components/ButtonCustom";
 import Footer from "../../../components/Footer";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { schema } from "./handleForm";
 
 const LoginForm = () => {
     const {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm();
+    } = useForm({ resolver: yupResolver(schema) });
+
+    const onSubmit = (data) => {
+        console.log("data", data);
+    };
     return (
         <>
             <form action="" className="login-form__wrapper">
@@ -41,11 +47,15 @@ const LoginForm = () => {
                     Quên mật khẩu?
                 </Link>
                 <div style={{ marginTop: "40px", marginBottom: "60px" }}>
-                    <ButtonCustom height="48px">ĐĂNG NHẬP</ButtonCustom>
+                    <ButtonCustom height="48px" onClick={handleSubmit(onSubmit)}>
+                        ĐĂNG NHẬP
+                    </ButtonCustom>
                 </div>
-                <p className="tag-redirect">Bạn chưa có tài khoản? {" "}<Link to="/auth/register">Đăng ký ngay?</Link></p>
+                <p className="tag-redirect">
+                    Bạn chưa có tài khoản? <Link to="/auth/register">Đăng ký ngay?</Link>
+                </p>
             </form>
-            <Footer type="2"/>
+            <Footer type="2" />
         </>
     );
 };

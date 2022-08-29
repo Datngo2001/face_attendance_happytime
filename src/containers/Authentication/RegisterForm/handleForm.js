@@ -7,6 +7,7 @@ export const schema = yup.object({
     phone: yup
         .string()
         .required("Trường Số điện thoại không được bỏ trống")
+        .matches(REGEX_ONLY_NUMBER, "Thông tin sai định dạng")
         .matches(REGEX_PHONE_NUMBER, "Thông tin sai định dạng"),
     name: yup.string().required("Trường Họ và tên không được bỏ trống"),
     nameCompany: yup.string().required("Trường Tên công ty không được bỏ trống"),

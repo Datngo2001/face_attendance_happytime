@@ -6,13 +6,19 @@ import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import { Link } from "react-router-dom";
 import Footer from "../../../components/Footer";
 import ButtonCustom from "../../../components/ButtonCustom";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { schema } from "./handleForm";
 
 const ForgotPasswordForm = () => {
     const {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm();
+    } = useForm({resolver : yupResolver(schema)});
+
+    const onSubmit = (data) => {
+        console.log("data", data);
+    };
     return (
         <>
             <form action="" className="forgot-password-form__wrapper">
@@ -31,8 +37,10 @@ const ForgotPasswordForm = () => {
                 >
                     {errors?.phone?.message}
                 </InputCustom>
-                <div style={{marginTop: "40px"}}>
-                    <ButtonCustom height="48px">GỬI MÃ XÁC NHẬN</ButtonCustom>
+                <div style={{ marginTop: "40px" }}>
+                    <ButtonCustom height="48px" onClick={handleSubmit(onSubmit)}>
+                        GỬI MÃ XÁC NHẬN
+                    </ButtonCustom>
                 </div>
             </form>
             <Footer type="2" />
