@@ -10,11 +10,12 @@ import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import BadgeIcon from "@mui/icons-material/Badge";
 import KeyIcon from "@mui/icons-material/Key";
 import SupervisorAccountIcon from "@mui/icons-material/SupervisorAccount";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import SelectCustom from "../../../components/SelectCustom";
 import { listPositions, listScales, schema } from "./handleForm";
 import { yupResolver } from "@hookform/resolvers/yup";
+
 
 const RegisterForm = () => {
     const {
@@ -24,8 +25,11 @@ const RegisterForm = () => {
     } = useForm({ resolver: yupResolver(schema) });
     const [disabled, setDisabled] = useState(true);
 
+    const navigate = useNavigate();
+
     const onSubmit = (data) => {
         console.log("data register:", data);
+        navigate("/auth/confirm-otp")
     };
 
     return (

@@ -1,0 +1,70 @@
+@use "../../../assets/styles/index.scss" as *;
+
+.confirm-otp-form {
+    &__wrapper {
+        .input-code__wrapper {
+            width: 50px;
+            height: 50px;
+            border-radius: $br-1;
+            border: 1px solid transparent;
+            background-color: $primary-bg-color;
+            outline: none;
+            text-align: center;
+
+            &:focus {
+                border-color: $primary-color;
+                box-shadow: 0 0 3px $primary-color;
+            }
+        }
+
+        .resend-code-tag {
+            color: $primary-color;
+            font-weight: 500;
+            font-size: 14px;
+            cursor: pointer;
+        }
+    }
+
+    &__header {
+        position: relative;
+        margin-bottom: 20px;
+        padding-top: 24px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+
+        .tag-redirect {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            margin-bottom: 20px;
+            color: $primary-color;
+            width: 100%;
+            cursor: pointer;
+            text-align: center;
+            gap: 4px;
+            font-weight: $fw-1;
+        }
+    }
+    &__title {
+        font-size: 20px;
+        color: $text-color-1;
+    }
+
+    &__text {
+        font-size: 14px;
+        color: $text-color-2;
+        margin-bottom: 30px;
+        text-align: left;
+        &-phone {
+            color: $primary-color;
+            font-weight: $fw-1;
+        }
+    }
+
+    &__input-code {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 40px;
+    }
+}

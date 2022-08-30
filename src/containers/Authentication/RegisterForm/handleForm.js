@@ -18,7 +18,7 @@ export const schema = yup.object({
         .max(100)
         .required("Trường email không được bỏ trống"),
     scale: yup.string().required("Trường Chức vụ không được bỏ trống"),
-    code: yup.string().required("Trường Nhập mã giới thiệu không được bỏ trống"),
+    code: yup.string().nullable(),
 });
 
 export const listPositions = [
