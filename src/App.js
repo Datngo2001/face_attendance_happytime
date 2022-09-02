@@ -1,7 +1,9 @@
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import AuthenticationLayout from "./layouts/Authentication";
-import { authenticationRouters } from "./config/routes";
+import { authenticationRouters, workspacesRouters } from "./config/routes";
+import WorkspacesLayout from "./layouts/Workspaces";
+import ChooseWorkspaces from "./pages/Workspaces/ChooseWorkspaces";
 
 function App() {
     const renderRoute = (listRoutes) => {
@@ -13,9 +15,14 @@ function App() {
         <>
             <Router>
                 <Routes>
-                    {/* layout for Login, Register, Forgot password */}
+                    {/* router for Login, Register, Forgot password */}
                     <Route path="/auth" element={<AuthenticationLayout />}>
                         {renderRoute(authenticationRouters)}
+                    </Route>
+                    {/* router for  Workspaces*/}
+                    <Route path="/workspaces" element={<WorkspacesLayout />}>
+                        <Route index element={<ChooseWorkspaces />} />
+                        {renderRoute(workspacesRouters)}
                     </Route>
                 </Routes>
             </Router>

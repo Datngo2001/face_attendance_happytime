@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import InputCustom from "../../../components/InputCustom";
 import LocalPhoneRoundedIcon from "@mui/icons-material/LocalPhoneRounded";
 import LockIcon from "@mui/icons-material/Lock";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ButtonCustom from "../../../components/ButtonCustom";
 import Footer from "../../../components/Footer";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -15,9 +15,12 @@ const LoginForm = () => {
         handleSubmit,
         formState: { errors },
     } = useForm({ resolver: yupResolver(schema) });
+    const navigate = useNavigate()
 
     const onSubmit = (data) => {
         console.log("data", data);
+
+        navigate("/workspaces")
     };
     return (
         <>

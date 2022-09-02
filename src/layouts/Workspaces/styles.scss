@@ -1,0 +1,18 @@
+@use "../../assets/styles/index.scss" as *;
+
+.workspaces-layout {
+    &__wrapper {
+        height: 90vh;
+        width: 100%;
+        background: $primary-bg-color;
+        padding: 100px 0;
+    }
+
+    &__container {
+        border-radius: $br-1;
+        background: $color-white-1 !important;
+        width: 480px;
+        margin: 0 auto;
+        height: auto;
+    }
+}

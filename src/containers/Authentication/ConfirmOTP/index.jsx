@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import "./styles.scss";
-import { tabTitle } from "../../../utils/tabTitle";
 import { InputCode } from "./components";
 import ButtonCustom from "../../../components/ButtonCustom";
+import tabTitle from "../../../utils/tabTitle";
 
 const ConfirmOtp = () => {
     tabTitle("Xác thực");

@@ -1,6 +1,6 @@
 import "./styles.scss";
-import { tabTitle } from "../../utils/tabTitle";
 import ForgotPasswordForm from "../../containers/Authentication/ForgotPasswordForm";
+import tabTitle from "../../utils/tabTitle";
 
 const ForgotPassword = () => {
     tabTitle("Quên mật khẩu");

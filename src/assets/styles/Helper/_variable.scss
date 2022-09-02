@@ -3,11 +3,13 @@
 // *variable color
 // primary color
 $primary-color: #ff9f0a;
+$primary-color-rgb: rgba(255, 159, 10, 0.1);
 $primary-bg-color: #fafafa;
 
 // color text
 $text-color-1: #212f3f;
 $text-color-2: #999999;
+$text-color-3: #777777;
 
 // color
 
@@ -18,8 +20,8 @@ $color-white-1: #ffffff;
 $color-red-1: #ff4d4f;
 
 // variable font-family
-$f-family-1: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
-    Arial, sans-serif;
+$f-family-1: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
 $f-family-2: roboto, sans-serif;
 $f-family-3: "Poppins", sans-serif;
 

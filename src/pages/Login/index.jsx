@@ -1,6 +1,6 @@
 import "./styles.scss";
-import { tabTitle } from "../../utils/tabTitle";
 import LoginForm from "../../containers/Authentication/LoginForm";
+import tabTitle from "../../utils/tabTitle";
 
 const Login = () => {
     tabTitle("Đăng nhập");
