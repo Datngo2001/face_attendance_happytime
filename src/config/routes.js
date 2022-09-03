@@ -4,6 +4,30 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import CreateWorkspaces from "../pages/Workspaces/CreateWorkspaces";
 
+// home router
+export const homeRouters = [
+    {
+        path: "tinh-nang",
+        Component: "",
+    },
+    {
+        path: "bao-gia",
+        Component: "",
+    },
+    {
+        path: "bao-gia",
+        Component: "",
+    },
+    {
+        path: "blog",
+        Component: "",
+    },
+    {
+        path: "danh-cho-nguoi-su-dung-app",
+        Component: "",
+    },
+];
+
 // authentication router
 export const authenticationRouters = [
     {
@@ -24,9 +48,10 @@ export const authenticationRouters = [
     },
 ];
 
+// workspaces router
 export const workspacesRouters = [
     {
         path: "create",
         Component: CreateWorkspaces,
-    }
+    },
 ];

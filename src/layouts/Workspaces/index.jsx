@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import Header from "../../components/Header";
+import HeaderMain from "../../components/HeaderMain";
 import tabTitle from "../../utils/tabTitle";
 import "./styles.scss";
 
@@ -7,7 +7,7 @@ const WorkspacesLayout = () => {
     tabTitle("Workspaces")
     return (
         <>
-            <Header />
+            <HeaderMain />
             <div className="workspaces-layout__wrapper">
                 <div className="workspaces-layout__container">
                     <Outlet />

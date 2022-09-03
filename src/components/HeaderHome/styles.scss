@@ -1,0 +1,64 @@
+@use "../../assets/styles/index.scss" as *;
+
+.header-home {
+    &__wrapper {
+        width: 100%;
+        background: $color-white-1;
+    }
+
+    &__container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 66px;
+        width: 70%;
+        padding: 0 16px;
+        margin: 0 auto;
+
+        .list-link {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            height: 100%;
+
+            .link-item {
+                color: $text-color-1;
+                font-size: 16px;
+                height: 40px;
+                font-family: $f-family-2;
+                padding: 12px 16px;
+                cursor: pointer;
+            }
+        }
+    }
+
+    &__logo-img {
+        height: 38px;
+    }
+
+    &__actions {
+        display: flex;
+        gap: 16px;
+        margin-left: 4px;
+
+        .btn {
+            &-login {
+                font-size: 16px;
+                text-transform: none;
+                width: auto;
+                background: $color-white-1 !important;
+                border: 1px solid $primary-color;
+                color: $primary-color !important;
+                font-family: $f-family-2 !important;
+                font-weight: $fw-1 !important;
+            }
+            &-logout {
+                font-size: 16px;
+                text-transform: none;
+                width: auto;
+                font-family: $f-family-2 !important;
+                font-weight: $fw-1 !important;
+            }
+        }
+    }
+}

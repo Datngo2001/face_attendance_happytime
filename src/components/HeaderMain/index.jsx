@@ -2,7 +2,7 @@ import "./styles.scss";
 import logo from "../../assets/images/happytime-fulltext.png";
 import ButtonCustom from "../ButtonCustom";
 
-const Header = ({ isActive }) => {
+const HeaderMain = ({ isActive }) => {
     const handleLogout = () => {};
     return (
         <>
@@ -16,4 +16,4 @@ const Header = ({ isActive }) => {
     );
 };
 
-export default Header;
+export default HeaderMain;
