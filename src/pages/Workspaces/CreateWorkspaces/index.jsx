@@ -1,9 +1,12 @@
+import CreateWorkspacesForm from "../../../containers/Workspaces/CreateWorkspacesForm";
 import "./styles.scss";
 
 const CreateWorkspaces = () => {
-    return <>
-    create workspaces
-    </>
-}
+    return (
+        <>
+            <CreateWorkspacesForm />
+        </>
+    );
+};
 
 export default CreateWorkspaces;

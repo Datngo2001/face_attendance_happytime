@@ -5,6 +5,7 @@ import { authenticationRouters, homeRouters, workspacesRouters } from "./config/
 import WorkspacesLayout from "./layouts/Workspaces";
 import ChooseWorkspaces from "./pages/Workspaces/ChooseWorkspaces";
 import HomeLayout from "./layouts/Home";
+import Home from "./pages/Home/Home";
 
 function App() {
     const renderRoute = (listRoutes) => {
@@ -18,7 +19,7 @@ function App() {
                 <Routes>
                     {/* router for home page */}
                     <Route path="/" element={<HomeLayout />}>
-                        <Route index element={<ChooseWorkspaces />} />
+                        <Route index element={<Home />} />
                         {renderRoute(homeRouters)}
                     </Route>
                     {/* router for Login, Register, Forgot password */}

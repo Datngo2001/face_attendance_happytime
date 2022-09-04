@@ -2,8 +2,13 @@ import { Divider } from "@mui/material";
 import { ButtonWorkspace } from "./components";
 import AddCircleOutlinedIcon from "@mui/icons-material/AddCircleOutlined";
 import "./styles.scss";
+import { useNavigate } from "react-router-dom";
 
 const ChooseWorkspaces = () => {
+    const navigate = useNavigate();
+    const handleOnClick = () => {
+        navigate("/workspaces/create");
+    }
     return (
         <>
             <div className="choose-workspaces__wrapper">
@@ -16,7 +21,7 @@ const ChooseWorkspaces = () => {
                 <div className="choose-workspaces__create">
                     <div>
                         <AddCircleOutlinedIcon className="icon" />
-                        <p className="text">Tạo workspace mới</p>
+                        <p className="text" onClick={handleOnClick}>Tạo workspace mới</p>
                     </div>
                 </div>
             </div>

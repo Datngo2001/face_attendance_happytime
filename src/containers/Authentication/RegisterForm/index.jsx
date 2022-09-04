@@ -121,7 +121,7 @@ const RegisterForm = () => {
                         height="16px"
                     />
                     Đồng ý với{" "}
-                    <a href="https://www.happytimeapp.vn/dieu-khoan-su-dung" target="_blank">
+                    <a href="https://www.happytimeapp.vn/dieu-khoan-su-dung" al target="_blank">
                         Điều khoản
                     </a>
                     và

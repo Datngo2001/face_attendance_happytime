@@ -1,4 +1,4 @@
-import ConfirmOtp from "../containers/Authentication/ConfirmOTP";
+import ConfirmOtp from "../containers/Authentication/ConfirmOTPForm";
 import ForgotPassword from "../pages/ForgotPassword";
 import Login from "../pages/Login";
 import Register from "../pages/Register";

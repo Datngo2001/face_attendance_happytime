@@ -15,7 +15,9 @@ const HeaderHome = () => {
         <>
             <header className="header-home__wrapper">
                 <nav className="header-home__container">
-                    <img src={logo} alt="" className="header-home__logo-img" />
+                    <Link to="/">
+                        <img src={logo} alt="" className="header-home__logo-img" />
+                    </Link>
                     <ul className="list-link">
                         <Link className="link-item" to="/">
                             Trang chủ

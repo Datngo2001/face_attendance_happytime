@@ -1,3 +1,4 @@
+import { Outlet } from "react-router-dom";
 import HeaderHome from "../../components/HeaderHome";
 import tabTitle from "../../utils/tabTitle";
 import "./styles.scss";
@@ -7,6 +8,7 @@ const HomeLayout = () => {
     return (
         <>
             <HeaderHome />
+            <Outlet />
         </>
     );
 };
