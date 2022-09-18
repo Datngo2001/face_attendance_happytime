@@ -1,9 +1,9 @@
 import "./styles.scss";
 
-export const InputCode = ({ register }) => {
+export const InputCode = ({ register, id }) => {
     return (
         <>
-            <input className="input-code__wrapper" maxlength="1" />
+        <input {...register(id)} className="input-code__wrapper" maxLength="1" />
         </>
     );
 };

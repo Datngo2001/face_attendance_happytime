@@ -1,28 +1,33 @@
 @use "../../../assets/styles/index.scss" as *;
 
-.forgot-password-form {
-    width: 100%;
-    height: 100%;
+.set-password-form {
     &__wrapper {
+    }
+
+    &__header {
+        padding-top: 24px;
         .tag-redirect {
             display: flex;
-            width: auto !important;
+            width: auto;
             align-items: center;
             font-size: 14px;
-            padding-top: 20px;
-            padding-bottom: 20px;
             color: $primary-color;
             width: 100%;
             cursor: pointer;
             text-align: center;
             gap: 4px;
-            font-weight: 500;
+            font-weight: $fw-1;
         }
     }
 
     &__title {
-        margin-bottom: 20px;
-        font-size: $fs-2;
+        padding: 60px 0 20px;
         color: $text-color-1;
+    }
+
+    &__container {
+        .input-item {
+            margin-bottom: 30px;
+        }
     }
 }

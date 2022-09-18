@@ -51,6 +51,15 @@
                     font-weight: $fw-1;
                 }
             }
+
+            &__no-avatar {
+                height: 40px;
+                width: 40px;
+                border-radius: 50%;
+                padding: 6px;
+                color: $primary-color;
+                background: $primary-color-rgb;
+            }
         }
     }
 

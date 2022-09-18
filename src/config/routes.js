@@ -1,7 +1,8 @@
 import ConfirmOtp from "../containers/Authentication/ConfirmOTPForm";
-import ForgotPassword from "../pages/ForgotPassword";
-import Login from "../pages/Login";
-import Register from "../pages/Register";
+import LoginForm from "../containers/Authentication/LoginForm";
+import ForgotPassword from "../pages/Authentication/ForgotPassword";
+import Register from "../pages/Authentication/Register";
+import SetPassword from "../pages/Authentication/SetPassword";
 import CreateWorkspaces from "../pages/Workspaces/CreateWorkspaces";
 
 // home router
@@ -32,7 +33,7 @@ export const homeRouters = [
 export const authenticationRouters = [
     {
         path: "login",
-        Component: Login,
+        Component: LoginForm,
     },
     {
         path: "register",
@@ -45,6 +46,10 @@ export const authenticationRouters = [
     {
         path: "confirm-otp",
         Component: ConfirmOtp,
+    },
+    {
+        path: "set-password",
+        Component: SetPassword,
     },
 ];
 

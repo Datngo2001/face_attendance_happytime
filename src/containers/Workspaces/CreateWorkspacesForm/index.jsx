@@ -7,6 +7,8 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Divider } from "@mui/material";
 import ButtonCustom from "../../../components/ButtonCustom";
+import InputFile from "../../../components/InputFile";
+import CameraAltIcon from "@mui/icons-material/CameraAlt";
 
 const CreateWorkspacesForm = () => {
     const {
@@ -14,6 +16,10 @@ const CreateWorkspacesForm = () => {
         handleSubmit,
         formState: { errors },
     } = useForm({ resolver: yupResolver() });
+
+    const onSubmit = (data) => {
+        console.log("data", data);
+    };
     return (
         <>
             <form className="create-workspaces-form__wrapper">
@@ -25,6 +31,7 @@ const CreateWorkspacesForm = () => {
                 <div className="create-workspaces-form__input-content">
                     <div className="input-image">
                         <ApartmentIcon />
+                        <InputFile className="input-btn" icon={<CameraAltIcon />} />
                     </div>
                     <div className="input-name">
                         <InputCustom
@@ -37,8 +44,12 @@ const CreateWorkspacesForm = () => {
                         </InputCustom>
                     </div>
                     <Divider className="divider" />
-                    <ButtonCustom width="110px" height="32px">
-                        Tạo
+                    <ButtonCustom
+                        onClick={handleSubmit(onSubmit)}
+                        width="110px"
+                        height="32px"
+                    >
+                        Tạo 
                     </ButtonCustom>
                 </div>
             </form>

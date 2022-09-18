@@ -1,17 +1,25 @@
 import "./styles.scss";
-import avatarTest from "../../../assets/images/avatar.jpg";
-import EastIcon from '@mui/icons-material/East';
+import EastIcon from "@mui/icons-material/East";
+import ApartmentIcon from "@mui/icons-material/Apartment";
 
 export const ButtonWorkspace = ({ username, role, avatar, onClick }) => {
     return (
         <>
             <div onClick={onClick} className="btn-workspace__wrapper">
-                <img src={avatarTest} alt="ảnh" className="btn-workspace__avatar" />
+                {avatar ? (
+                    <img
+                        src={avatar || <ApartmentIcon />}
+                        alt="ảnh"
+                        className="btn-workspace__avatar"
+                    />
+                ) : (
+                    <ApartmentIcon className="btn-workspace__no-avatar"/>
+                )}
                 <div className="btn-workspace__text">
                     <p className="username">{username}</p>
                     <p className="role">Admin</p>
                 </div>
-                <EastIcon className="icon"/>
+                <EastIcon className="icon" />
             </div>
         </>
     );

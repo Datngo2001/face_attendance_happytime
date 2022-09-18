@@ -16,7 +16,6 @@ import SelectCustom from "../../../components/SelectCustom";
 import { listPositions, listScales, schema } from "./handleForm";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-
 const RegisterForm = () => {
     const {
         register,
@@ -29,7 +28,7 @@ const RegisterForm = () => {
 
     const onSubmit = (data) => {
         console.log("data register:", data);
-        navigate("/auth/confirm-otp")
+        navigate("/auth/confirm-otp");
     };
 
     return (
@@ -121,11 +120,19 @@ const RegisterForm = () => {
                         height="16px"
                     />
                     Đồng ý với{" "}
-                    <a href="https://www.happytimeapp.vn/dieu-khoan-su-dung" al target="_blank">
+                    <a
+                        href="https://www.happytimeapp.vn/dieu-khoan-su-dung"
+                        alt=""
+                        target="_blank"
+                    >
                         Điều khoản
                     </a>
                     và
-                    <a href="https://www.happytimeapp.vn/chinh-sach-bao-mat" target="_blank">
+                    <a
+                        href="https://www.happytimeapp.vn/chinh-sach-bao-mat"
+                        alt=""
+                        target="_blank"
+                    >
                         Chính sách
                     </a>
                     của HappyTime

@@ -9,19 +9,19 @@
             margin-bottom: 30px;
         }
 
-        .forgot-password {
-            display: block;
-            font-size: 14px;
+        .tag-redirect {
             margin-top: 20px;
-            color: $primary-color;
-            width: 100%;
-            text-align: right;
-            cursor: pointer;
+            font-size: 14px;
+            color: $text-color-1;
+            .tag {
+                width: auto !important;
+                color: $primary-color;
+                cursor: pointer;
+            }
         }
 
-        .tag-redirect {
-            display: block;
-            font-size: 14px;
+        .tag-redirect--register {
+           
             margin-top: 20px;
             color: #212f3f;
             width: 100%;
@@ -33,7 +33,12 @@
                 color: #ff9f0a;
             }
         }
+
+        .text-right {
+            text-align: right;
+        }
     }
+
     &__title {
         font-size: 20px;
         font-weight: $fw-2;

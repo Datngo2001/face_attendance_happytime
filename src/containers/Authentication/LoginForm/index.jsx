@@ -15,12 +15,12 @@ const LoginForm = () => {
         handleSubmit,
         formState: { errors },
     } = useForm({ resolver: yupResolver(schema) });
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     const onSubmit = (data) => {
         console.log("data", data);
 
-        navigate("/workspaces")
+        navigate("/workspaces");
     };
     return (
         <>
@@ -46,17 +46,23 @@ const LoginForm = () => {
                 >
                     {errors?.password?.message}
                 </InputCustom>
-                <Link className="forgot-password" to="/auth/forgot-password">
-                    Quên mật khẩu?
-                </Link>
+                <div className="tag-redirect text-right">
+                    <Link className="tag" to="/auth/forgot-password">
+                        Quên mật khẩu?
+                    </Link>
+                </div>
                 <div style={{ marginTop: "40px", marginBottom: "60px" }}>
                     <ButtonCustom height="48px" onClick={handleSubmit(onSubmit)}>
                         ĐĂNG NHẬP
                     </ButtonCustom>
                 </div>
-                <p className="tag-redirect">
-                    Bạn chưa có tài khoản? <Link to="/auth/register">Đăng ký ngay?</Link>
-                </p>
+                <div className="tag-redirect">
+                    Bạn chưa có tài khoản?
+                    <Link className="tag" to="/auth/register">
+                        {" "}
+                        Đăng ký ngay?
+                    </Link>
+                </div>
             </form>
             <Footer type="2" />
         </>

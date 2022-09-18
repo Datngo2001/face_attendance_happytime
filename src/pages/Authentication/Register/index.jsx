@@ -1,6 +1,6 @@
 import "./styles.scss";
-import RegisterForm from "../../containers/Authentication/RegisterForm";
-import tabTitle from "../../utils/tabTitle";
+import tabTitle from "../../../utils/tabTitle";
+import RegisterForm from "../../../containers/Authentication/RegisterForm";
 
 const Register = () => {
     tabTitle("Đăng ký");
@@ -12,4 +12,4 @@ const Register = () => {
     );
 };
 
-export  default Register;
+export default Register;
