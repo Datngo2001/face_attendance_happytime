@@ -38,35 +38,54 @@
         flex-direction: column;
         align-items: center;
 
+        .input-image {
+            margin-bottom: 20px;
+        }
+
         .input {
-            &-image {
-                position: relative;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                width: 120px;
-                height: 120px;
-                background: rgba(255, 159, 10, 0.2);
-                border-radius: 50%;
-                margin-bottom: 20px;
-
-                > svg {
-                    width: 90px;
-                    height: 70px;
-                    color: $primary-color;
-                }
-
-                .input-btn {
-                    position: absolute;
-                }
-            }
-
             &-name {
                 padding-bottom: 10px;
                 width: 100%;
-
                 .name-company {
                     width: 100%;
+                    > input {
+                        text-align: center;
+                        font-size: $fs-2;
+                        font-weight: $fw-1;
+                        color: $text-color-1;
+                        background: none;
+                        &:hover {
+                            border: none;
+                            outline: none;
+                        }
+                        &:focus {
+                            outline: none;
+                            border: none;
+                            box-shadow: none;
+                        }
+
+                        &::placeholder {
+                            text-align: center;
+                            font-size: $fs-2;
+                            font-weight: $fw-1;
+                            color: $text-color-3;
+                        }
+                        &:-ms-input-placeholder {
+                            text-align: center;
+                            font-size: $fs-2;
+                            font-weight: $fw-1;
+                            color: $text-color-3;
+                        }
+                        &::-ms-input-placeholder {
+                            text-align: center;
+                            font-size: $fs-2;
+                            font-weight: $fw-1;
+                            color: $text-color-3;
+                        }
+                    }
+                    > p {
+                        text-align: center;
+                    }
                 }
             }
         }

@@ -14,7 +14,7 @@ const Home = () => {
             <section className="home-section-1__wrapper">
                 <div className="home-section-1__text">
                     <h1 className="title">
-                        Nền tảng <span>Quản lý chấm công</span> trực tuyến
+                        Nền tảng <span>Quản lý & gia tăng trải nghiệm</span> nhân sự
                     </h1>
                     <p className="description">
                         Giải pháp giúp doanh nghiệp quản lý, lưu trữ dữ liệu chấm công và

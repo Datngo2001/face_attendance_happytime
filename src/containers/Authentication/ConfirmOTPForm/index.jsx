@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import "./styles.scss";
 import { InputCode } from "./components";
@@ -10,7 +10,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 const ConfirmOtp = () => {
     tabTitle("Xác thực");
-
+    const navigate = useNavigate();
     const {
         handleSubmit,
         formState: { errors },
@@ -22,6 +22,8 @@ const ConfirmOtp = () => {
 
     const onSubmit = (data) => {
         console.log("data", data);
+
+        navigate("/auth/set-password", { replace: true });
     };
     return (
         <>
@@ -39,12 +41,12 @@ const ConfirmOtp = () => {
                     lòng nhập mã để xác thực tài khoản HappyTime
                 </p>
                 <div className="confirm-otp-form__input-code">
-                    <InputCode id="firstNum" register={register} />
-                    <InputCode id="seconldNum" register={register} />
-                    <InputCode id="thirdNum" register={register} />
-                    <InputCode id="fourthNum" register={register} />
-                    <InputCode id="fifthNum" register={register} />
-                    <InputCode id="sixthNum" register={register} />
+                    <InputCode id="1" register={register} />
+                    <InputCode id="2" register={register} />
+                    <InputCode id="3" register={register} />
+                    <InputCode id="4" register={register} />
+                    <InputCode id="5" register={register} />
+                    <InputCode id="6" register={register} />
                 </div>
                 <div style={{ marginBottom: "20px" }}>
                     <ButtonCustom onClick={handleSubmit(onSubmit)} height="48px">

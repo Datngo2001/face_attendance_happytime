@@ -1,6 +1,5 @@
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Link } from "react-router-dom";
-import ApartmentIcon from "@mui/icons-material/Apartment";
 import "./styles.scss";
 import InputCustom from "../../../components/InputCustom";
 import { useForm } from "react-hook-form";
@@ -8,14 +7,15 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Divider } from "@mui/material";
 import ButtonCustom from "../../../components/ButtonCustom";
 import InputFile from "../../../components/InputFile";
-import CameraAltIcon from "@mui/icons-material/CameraAlt";
+import { schema } from "./handleForm";
 
 const CreateWorkspacesForm = () => {
     const {
         register,
+        setValue,
         handleSubmit,
         formState: { errors },
-    } = useForm({ resolver: yupResolver() });
+    } = useForm({ resolver: yupResolver(schema) });
 
     const onSubmit = (data) => {
         console.log("data", data);
@@ -30,17 +30,22 @@ const CreateWorkspacesForm = () => {
                 <h1 className="create-workspaces-form__title">Tạo workspace mới</h1>
                 <div className="create-workspaces-form__input-content">
                     <div className="input-image">
-                        <ApartmentIcon />
-                        <InputFile className="input-btn" icon={<CameraAltIcon />} />
+                        <InputFile
+                            id="companyImg"
+                            type={1}
+                            className="input-btn"
+                            setValue={setValue}
+                            register={register}
+                        />
                     </div>
                     <div className="input-name">
                         <InputCustom
-                            id="nameCompany"
+                            id="companyName"
                             className="name-company"
                             placeholder="Tên workspace của bạn"
                             register={register}
                         >
-                            {errors.nameCompany?.message}
+                            {errors.companyName?.message}
                         </InputCustom>
                     </div>
                     <Divider className="divider" />
@@ -49,7 +54,7 @@ const CreateWorkspacesForm = () => {
                         width="110px"
                         height="32px"
                     >
-                        Tạo 
+                        Tạo
                     </ButtonCustom>
                 </div>
             </form>
