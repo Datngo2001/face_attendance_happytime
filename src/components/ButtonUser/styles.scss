@@ -1,0 +1,82 @@
+@use "../../assets/styles/index.scss" as *;
+
+.button-user {
+    &__wrapper {
+        .button-user__content {
+            display: flex;
+            width: 220px;
+            height: 38px;
+            padding: 4px 12px;
+            background-color: #f4f4f4;
+            box-sizing: initial;
+            border-radius: $br-1;
+            display: flex;
+            align-items: center;
+            .avatar {
+                height: 32px;
+                width: 32px;
+                border-radius: $br-1;
+                margin-right: 8px;
+            }
+
+            .infor {
+                display: flex;
+                flex: 1;
+                margin-right: 8px;
+                flex-direction: column;
+
+                > p {
+                    font-size: $fs-0;
+                    font-weight: $fw-1;
+                }
+                .name {
+                    color: $text-color-1;
+                }
+                .role {
+                    color: $text-color-2;
+                }
+            }
+
+            .icon {
+                height: 24px;
+                color: $text-color-3;
+                &.type-1 {
+                    height: 32px;
+                    width: 32px;
+                    border-radius: $br-100;
+                    background-color: #e5e5e5;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    border: 1px solid transparent;
+                    transition: all 0.3s;
+                    cursor: pointer;
+
+                    svg {
+                        font-size: 18px;
+                    }
+
+                    &:hover {
+                        border-color: $primary-color;
+                        background-color: $primary-color-rgb;
+                    }
+                }
+                &.type-2 {
+                }
+            }
+
+            &.type-1 {
+                cursor: default;
+            }
+
+            &.type-2 {
+                cursor: pointer;
+                transition: all 0.3s;
+
+                &:hover {
+                    background-color: $primary-color-rgb;
+                }
+            }
+        }
+    }
+}

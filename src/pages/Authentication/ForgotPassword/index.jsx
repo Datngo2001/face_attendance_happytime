@@ -1,5 +1,5 @@
 import "./styles.scss";
-import ForgotPasswordForm from "../../../containers/Authentication/ForgotPasswordForm";
+import ForgotPasswordForm from "../../../forms/Authentication/ForgotPasswordForm";
 import tabTitle from "../../../utils/tabTitle";
 
 const ForgotPassword = () => {

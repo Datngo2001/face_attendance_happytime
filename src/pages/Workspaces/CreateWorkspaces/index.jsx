@@ -1,4 +1,4 @@
-import CreateWorkspacesForm from "../../../containers/Workspaces/CreateWorkspacesForm";
+import CreateWorkspacesForm from "../../../forms/Workspaces/CreateWorkspacesForm";
 import "./styles.scss";
 
 const CreateWorkspaces = () => {

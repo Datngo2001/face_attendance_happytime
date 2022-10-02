@@ -1,5 +1,5 @@
-import ConfirmOtp from "../containers/Authentication/ConfirmOTPForm";
-import LoginForm from "../containers/Authentication/LoginForm";
+import ConfirmOtp from "../forms/Authentication/ConfirmOTPForm";
+import LoginForm from "../forms/Authentication/LoginForm";
 import ForgotPassword from "../pages/Authentication/ForgotPassword";
 import Register from "../pages/Authentication/Register";
 import SetPassword from "../pages/Authentication/SetPassword";
@@ -60,3 +60,11 @@ export const workspacesRouters = [
         Component: CreateWorkspaces,
     },
 ];
+
+// main router
+export const mainRouters = [
+    {
+        path: "/app",
+        Component: ""
+    }
+]

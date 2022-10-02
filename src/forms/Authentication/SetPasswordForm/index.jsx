@@ -50,7 +50,7 @@ const SetPasswordForm = () => {
                         icon={<LockIcon />}
                         register={register}
                     >
-                        {errors.password?.confirmPassword}
+                        {errors.confirmPassword?.message}
                     </InputCustom>
                 </div>
                 <div style={{ marginTop: "40px" }}>

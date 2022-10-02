@@ -10,12 +10,19 @@ const ChooseWorkspaces = () => {
     const handleOnClick = () => {
         navigate("/workspaces/create");
     };
+    const handleMoveOnApp = () => {
+        navigate("/app");
+    };
     return (
         <>
             <div className="choose-workspaces__wrapper">
                 <h2 className="choose-workspaces__title">Chọn workspace của bạn</h2>
                 <div className="choose-workspaces__list-workspaces">
-                    <ButtonWorkspace username="test" avatar={avatarTest} />
+                    <ButtonWorkspace
+                        onClick={handleMoveOnApp}
+                        username="test"
+                        avatar={avatarTest}
+                    />
                     <ButtonWorkspace username="test" />
                 </div>
                 <Divider className="choose-workspaces__divider" />
