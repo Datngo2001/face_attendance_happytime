@@ -17,6 +17,14 @@
                 width: 32px;
                 border-radius: $br-1;
                 margin-right: 8px;
+
+                &.none {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    color: $primary-color;
+                    background-color:$primary-color-rgb;
+                }
             }
 
             .infor {

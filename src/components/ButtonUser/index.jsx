@@ -1,19 +1,25 @@
 import "./styles.scss";
-import avatar from "../../assets/images/avatar.jpg";
 import SyncIcon from "@mui/icons-material/Sync";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import PersonIcon from "@mui/icons-material/Person";
 
-const ButtonUser = ({ type, onClick }) => {
+const ButtonUser = ({ type, onClick, avatar, name, role }) => {
     return (
         <>
             <div className="button-user__wrapper">
                 <div
                     className={`button-user__content ${type === 1 ? "type-1" : "type-2"}`}
                 >
-                    <img src={avatar} alt="" className="avatar" />
+                    {avatar ? (
+                        <img src={avatar} alt="" className="avatar" />
+                    ) : (
+                        <div className="avatar none">
+                            <PersonIcon />
+                        </div>
+                    )}
                     <div className="infor">
-                        <p className="name">Test</p>
-                        <p className="role">Admin</p>
+                        <p className="name">{name}</p>
+                        <p className="role">{type===1 ? "Workspaces" : "Admin"}</p>
                     </div>
                     {type === 1 ? (
                         <span className="icon type-1">
