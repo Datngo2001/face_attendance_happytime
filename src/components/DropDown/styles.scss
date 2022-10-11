@@ -22,11 +22,9 @@
         border-radius: $br-1;
         top: 64px;
         right: 0;
-        width: auto;
-        height: 0;
-        overflow: hidden;
         transition: all 0.3s;
         z-index: 1000;
+        display: none;
 
         &:after {
             content: "";
@@ -40,7 +38,7 @@
 
         &.show {
             animation: $anim-1;
-            overflow: inherit;
+            display: inherit;
         }
     }
 }

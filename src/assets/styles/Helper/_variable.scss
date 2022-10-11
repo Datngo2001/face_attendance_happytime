@@ -60,15 +60,15 @@ $bg-color-1: #f0fbff;
 // variable keyframes
 @keyframes showEffect {
     0% {
-        height: 0;
         opacity: 0;
+        scale: 0.7;
     }
 
     100% {
-        height: auto;
         opacity: 1;
+        scale: 1;
     }
 }
 
 // variable animation
-$anim-1: showEffect 0.3s linear forwards;
+$anim-1: showEffect 0.2s ease forwards;

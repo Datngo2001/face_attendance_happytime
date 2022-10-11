@@ -70,8 +70,8 @@
 
             &-inner {
                 &__wrapper {
-                    width: 366px;
-                    height: 212px;
+                    height: 100%;
+                    width: 100%;
                     padding: 20px 20px 10px 20px;
                     border-radius: $br-1;
                     background-color: $color-white-1;
@@ -117,7 +117,7 @@
 
             &-inner {
                 &__wrapper {
-                    width: 366px;
+                    width: 100%;
                     min-height: 100px;
                     border-radius: $br-1;
                     background-color: $color-white-1;
@@ -143,8 +143,6 @@
         .button-user-inner {
             &__wrapper {
                 padding: 4px 0;
-                width: 244px;
-                height: auto;
                 color: #555555;
 
                 .list-item {
