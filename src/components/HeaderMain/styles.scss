@@ -139,6 +139,35 @@
                 }
             }
         }
+
+        .button-user-inner {
+            &__wrapper {
+                padding: 4px 0;
+                width: 244px;
+                height: auto;
+                color: #555555;
+
+                .list-item {
+                    .item {
+                        display: flex;
+                        gap: 10px;
+                        font-size: $fs-1;
+                        list-style: none;
+                        padding: 7px 12px;
+                        cursor: pointer;
+                        transition: all 0.3s;
+
+                        &:hover {
+                            background-color: $primary-color-rgb;
+                        }
+
+                        > svg {
+                            font-size: 18px;
+                        }
+                    }
+                }
+            }
+        }
     }
     &__logo-img {
         height: 30px;

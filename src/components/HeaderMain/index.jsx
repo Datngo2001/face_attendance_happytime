@@ -4,52 +4,38 @@ import ButtonCustom from "../ButtonCustom";
 import MenuIcon from "@mui/icons-material/Menu";
 import ButtonUser from "../ButtonUser";
 import { Link } from "react-router-dom";
-import { MenuBox, NotificationBox } from "./components";
+import {
+    ButtonUserInner,
+    MenuBox,
+    MenuBoxInner,
+    NotificationBox,
+    NotificationBoxInner,
+} from "./components";
 import avatar from "../../assets/images/avatar.jpg"; //test avatar
 import DropDown from "../DropDown/index,";
 import { useState } from "react";
-import { Divider } from "@mui/material";
-
-const MenuBoxInner = () => {
-    return (
-        <>
-            <div className="menu-box-inner__wrapper">
-                <p className="title">Workspace của bạn</p>
-                <h4 className="name-workspace">Coffee store</h4>
-                <Divider />
-            </div>
-        </>
-    );
-};
-
-const NotificationBoxInner = ({ listOfNotifications }) => {
-    return (
-        <>
-            <div className="notification-box-inner__wrapper">
-                <p className="title">Thông báo</p>
-                {!listOfNotifications ? (
-                    <p className="none">Bạn chưa có thông báo nào</p>
-                ) : (
-                    listOfNotifications.map((item) => {
-                        return item;
-                    })
-                )}
-            </div>
-        </>
-    );
-};
 
 const HeaderMain = ({ isActive }) => {
-    const [isHideMenuBox, setIsHideMenuBox] = useState(false);
-    const [isHideNotifyBox, setIsHideNotifyBox] = useState(false);
+    // STATE
+    const [isShowMenuBox, setIsShowMenuBox] = useState(false);
+    const [isShowNotifyBox, setIsShowNotifyBox] = useState(false);
+    const [isShowButtonUser, setIsShowButtonUser] = useState(false);
+    // ****************************************************************
+
+    // ARROW FUNCTION
     const handleLogout = () => {};
     const handleToggleMenu = () => {};
     const handleToggleMenuBox = () => {
-        setIsHideMenuBox(!isHideMenuBox);
+        setIsShowMenuBox(!isShowMenuBox);
     };
     const handleToggleNotifyBox = () => {
-        setIsHideNotifyBox(!isHideNotifyBox);
+        setIsShowNotifyBox(!isShowNotifyBox);
     };
+    const handleToggleButtonUser = () => {
+        setIsShowButtonUser(!isShowButtonUser);
+    };
+    // ****************************************************************
+
     return (
         <>
             <header className="header-main__wrapper">
@@ -80,12 +66,18 @@ const HeaderMain = ({ isActive }) => {
                             <div>
                                 <ButtonUser type={1} name="Coffee Store" />
                                 <MenuBox onClick={handleToggleMenuBox}>
-                                    <DropDown state={isHideMenuBox}>
+                                    <DropDown
+                                        state={isShowMenuBox}
+                                        setState={setIsShowMenuBox}
+                                    >
                                         <MenuBoxInner />
                                     </DropDown>
                                 </MenuBox>
                                 <NotificationBox onClick={handleToggleNotifyBox}>
-                                    <DropDown state={isHideNotifyBox}>
+                                    <DropDown
+                                        state={isShowNotifyBox}
+                                        setState={setIsShowNotifyBox}
+                                    >
                                         <NotificationBoxInner />
                                     </DropDown>
                                 </NotificationBox>
@@ -93,7 +85,15 @@ const HeaderMain = ({ isActive }) => {
                                     type={2}
                                     name="Lê Duy Tường"
                                     avatar={avatar}
-                                />
+                                    onClick={handleToggleButtonUser}
+                                >
+                                    <DropDown
+                                        state={isShowButtonUser}
+                                        setState={setIsShowButtonUser}
+                                    >
+                                        <ButtonUserInner />
+                                    </DropDown>
+                                </ButtonUser>
                             </div>
                         </div>
                     </>

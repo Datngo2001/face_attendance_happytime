@@ -1,16 +1,32 @@
 @use "../../assets/styles/index.scss" as *;
 
 .drop-down {
+    &__container {
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        cursor: default;
+        display: none;
+        z-index: 100;
+
+        &.show {
+            display: block;
+        }
+    }
+
     &__wrapper {
         position: absolute;
         box-shadow: $bs-3;
         border-radius: $br-1;
         top: 64px;
         right: 0;
-        height: auto;
         width: auto;
+        height: 0;
+        overflow: hidden;
         transition: all 0.3s;
-        display: none;
+        z-index: 1000;
 
         &:after {
             content: "";
@@ -23,7 +39,8 @@
         }
 
         &.show {
-            display: block;
+            animation: $anim-1;
+            overflow: inherit;
         }
     }
 }
