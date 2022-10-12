@@ -58,7 +58,7 @@ $h-1: 40px;
 $bg-color-1: #f0fbff;
 
 // variable keyframes
-@keyframes showEffect {
+@keyframes showEffect-1 {
     0% {
         opacity: 0;
         scale: 0.7;
@@ -71,4 +71,4 @@ $bg-color-1: #f0fbff;
 }
 
 // variable animation
-$anim-1: showEffect 0.2s ease forwards;
+$anim-1: showEffect-1 0.2s ease forwards;

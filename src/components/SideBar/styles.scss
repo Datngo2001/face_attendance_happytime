@@ -1,10 +1,49 @@
 @use "../../assets/styles/index.scss" as *;
 
-.side-bar {
-    &__wrapper {
-        height: 100%;
-        width: 216px;
-        background-color: $color-white-1;
-        box-shadow: rgb(0 0 0 / 16%) 0px 3px 6px;
+#sidebarMain {
+    height: 100%;
+    width: 80px;
+    background-color: $color-white-1;
+    box-shadow: rgb(0 0 0 / 16%) 0px 3px 6px;
+    transition: width 0.1s linear;
+
+    &.show {
+        width: 217px;
+
+        .navigator-item {
+            &__wrapper {
+                .title {
+                    display: inherit;
+                }
+            }
+        }
+    }
+
+    .navigator-item {
+        &__wrapper {
+            height: 40px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            box-sizing: border-box;
+            padding: 0 16px 0 24px;
+            gap: 20px;
+            color: $text-color-2;
+            font-size: $fs-1;
+            transition: all 0.2s;
+
+            &:hover {
+                background-color: #eeeeee;
+                color: $primary-color;
+            }
+
+            .title {
+                display: none;
+            }
+
+            > svg {
+                font-size: 20px;
+            }
+        }
     }
 }

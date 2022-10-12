@@ -15,16 +15,23 @@ import avatar from "../../assets/images/avatar.jpg"; //test avatar
 import DropDown from "../DropDown/index,";
 import { useState } from "react";
 
-const HeaderMain = ({ isActive }) => {
+const HeaderMain = ({ isActive, state, setState }) => {
     // STATE
     const [isShowMenuBox, setIsShowMenuBox] = useState(false);
     const [isShowNotifyBox, setIsShowNotifyBox] = useState(false);
     const [isShowButtonUser, setIsShowButtonUser] = useState(false);
     // ****************************************************************
 
+    // VARIABLES
+    // *******************************
+
     // ARROW FUNCTION
     const handleLogout = () => {};
-    const handleToggleMenu = () => {};
+    const handleToggleSidebar = () => {
+        // const sidebar = document.querySelector("#sidebarMain");
+        // sidebar.classList.toggle("show");
+        setState(!state);
+    };
     const handleToggleMenuBox = () => {
         setIsShowMenuBox(!isShowMenuBox);
     };
@@ -50,7 +57,7 @@ const HeaderMain = ({ isActive }) => {
                     <>
                         <div className="header-main__left">
                             <MenuIcon
-                                onClick={handleToggleMenu}
+                                onClick={handleToggleSidebar}
                                 className="btn-toggle-menu"
                             />
                             <Link to="../">
