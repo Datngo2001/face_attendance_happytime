@@ -8,6 +8,7 @@ import ButtonCustom from "../../../components/ButtonCustom";
 import Footer from "../../../components/Footer";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "./handleForm";
+import { useEffect } from "react";
 
 const LoginForm = () => {
     const {
@@ -22,6 +23,24 @@ const LoginForm = () => {
 
         navigate("/workspaces");
     };
+
+    useEffect(() => {
+        const formLogin = document.querySelector(".login-form__wrapper");
+        formLogin.addEventListener("keypress", (e) => {
+            if (e.key === "Enter") {
+                document.querySelector(".btn-login").click();
+            }
+        });
+
+        // CLEAN FUNCTION
+        return () => {
+            formLogin.removeEventListener("keypress", (e) => {
+                if (e.key === "Enter") {
+                    document.querySelector(".btn-login").click();
+                }
+            });
+        };
+    }, []);
     return (
         <>
             <form action="" className="login-form__wrapper">
@@ -52,7 +71,11 @@ const LoginForm = () => {
                     </Link>
                 </div>
                 <div style={{ marginTop: "40px", marginBottom: "60px" }}>
-                    <ButtonCustom height="48px" onClick={handleSubmit(onSubmit)}>
+                    <ButtonCustom
+                        className="btn-login"
+                        height="48px"
+                        onClick={handleSubmit(onSubmit)}
+                    >
                         ĐĂNG NHẬP
                     </ButtonCustom>
                 </div>

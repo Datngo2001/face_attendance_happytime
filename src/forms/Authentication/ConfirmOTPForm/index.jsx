@@ -3,10 +3,10 @@ import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import "./styles.scss";
 import { InputCode } from "./components";
 import ButtonCustom from "../../../components/ButtonCustom";
-import tabTitle from "../../../utils/tabTitle";
 import { schema } from "./handleForm";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { tabTitle } from "../../../utils";
 
 const ConfirmOtp = () => {
     tabTitle("Xác thực");

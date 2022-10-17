@@ -1,0 +1,48 @@
+@use "../../assets/styles/index.scss" as *;
+
+.modal-custom {
+    &__wrapper {
+        color: $text-color-1;
+        padding: 0 !important;
+    }
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+        padding: 16px 24px 16px 24px;
+        border-bottom: 0.5px solid #e5e1e1;
+
+        > p {
+            font-size: $fs-2;
+            font-family: $f-family-1;
+        }
+
+        > svg {
+            position: absolute;
+            top: 0;
+            right: 0;
+            cursor: pointer;
+            width: 54px;
+            height: 54px;
+            box-sizing: border-box;
+            padding: 15px;
+            opacity: 0.4;
+            transition: opacity 0.1s;
+
+            &:hover {
+                opacity: 1;
+            }
+        }
+    }
+
+    &__content {
+        padding: 24px;
+        width: 520px;
+        height: auto;
+        text-align: center;
+        font-family: $f-family-1;
+        font-size: $fs-1;
+    }
+}

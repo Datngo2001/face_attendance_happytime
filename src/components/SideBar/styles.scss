@@ -6,14 +6,54 @@
     background-color: $color-white-1;
     box-shadow: rgb(0 0 0 / 16%) 0px 3px 6px;
     transition: width 0.1s linear;
+    display: flex;
+    flex-direction: column;
+
+    .navigator-item {
+        &__wrapper {
+            .title {
+                opacity: 0.3;
+            }
+        }
+    }
 
     &.show {
         width: 217px;
+        opacity: 1;
 
         .navigator-item {
             &__wrapper {
                 .title {
                     display: inherit;
+                    opacity: 1;
+                }
+            }
+        }
+
+        .sidebar-main {
+            &__actions {
+                .btn-logout {
+                    height: 56px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: left;
+                    padding: 0 20px;
+                    font-weight: $fw-1;
+                    border-top: 1px solid #eeeeee;
+                    border-bottom: 1px solid #eeeeee;
+                    cursor: pointer;
+                    gap: 16px;
+
+                    &:hover {
+                        background-color: #eeeeee;
+                    }
+                    .title {
+                        display: inherit;
+                    }
+                }
+
+                .identifier-code {
+                    display: flex;
                 }
             }
         }
@@ -44,6 +84,87 @@
             > svg {
                 font-size: 20px;
             }
+        }
+    }
+
+    .sidebar-main {
+        &__actions {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            font-size: $fs-1;
+            color: $text-color-3;
+
+            .btn-logout {
+                height: 80px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: #eeeeee;
+                }
+
+                .title {
+                    display: none;
+                }
+
+                > svg {
+                    font-size: 16px;
+                    opacity: 1 !important;
+                }
+            }
+
+            .identifier-code {
+                height: 70px;
+                padding: 10px 20px;
+                box-sizing: border-box;
+                flex-direction: column;
+                gap: 10px;
+                display: none;
+
+                .title {
+                }
+
+                > div {
+                    display: flex;
+                    justify-content: space-between;
+                    cursor: pointer;
+
+                    .code {
+                        color: $text-color-1;
+                        font-weight: $fw-1;
+                    }
+
+                    > svg {
+                        font-size: 16px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.confirm-logout__wrapper {
+    .title {
+        margin-bottom: 24px;
+    }
+
+    .actions {
+        display: flex;
+        justify-content: center;
+        gap: 4px;
+
+        .btn-cancel {
+            padding: 4px 15px;
+            background-color: #eeeeee !important;
+            color: $text-color-3 !important;
+        }
+
+        .btn-confirm {
+            padding: 4px 15px;
         }
     }
 }

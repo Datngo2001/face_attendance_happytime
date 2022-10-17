@@ -2,6 +2,7 @@ import "./styles.scss";
 import SyncIcon from "@mui/icons-material/Sync";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import PersonIcon from "@mui/icons-material/Person";
+import { Link } from "react-router-dom";
 
 const ButtonUser = ({ type, onClick, avatar, name, role, children }) => {
     return (
@@ -22,9 +23,11 @@ const ButtonUser = ({ type, onClick, avatar, name, role, children }) => {
                         <p className="role">{type === 1 ? "Workspaces" : "Admin"}</p>
                     </div>
                     {type === 1 ? (
-                        <span className="icon type-1">
-                            <SyncIcon />
-                        </span>
+                        <Link to="/workspaces">
+                            <span className="icon type-1">
+                                <SyncIcon />
+                            </span>
+                        </Link>
                     ) : (
                         <span className="icon type-2">
                             <ExpandMoreIcon />

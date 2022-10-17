@@ -1,6 +1,6 @@
 import "./styles.scss";
-import LoginForm from "../../containers/Authentication/LoginForm";
-import tabTitle from "../../utils/tabTitle";
+import LoginForm from "../../../forms/Authentication/LoginForm";
+import { tabTitle } from "../../../utils";
 
 const Login = () => {
     tabTitle("Đăng nhập");
@@ -12,4 +12,4 @@ const Login = () => {
     );
 };
 
-export  default Login;
+export default Login;

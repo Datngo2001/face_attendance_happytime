@@ -60,7 +60,12 @@ const HeaderMain = ({ isActive, state, setState }) => {
                                 onClick={handleToggleSidebar}
                                 className="btn-toggle-menu"
                             />
-                            <Link to="../">
+                            <Link
+                                style={{
+                                    marginLeft: "24px",
+                                }}
+                                to="../"
+                            >
                                 <img
                                     src={logo}
                                     alt="logo"

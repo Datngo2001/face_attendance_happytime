@@ -11,25 +11,52 @@ import BadgeIcon from "@mui/icons-material/Badge";
 import KeyIcon from "@mui/icons-material/Key";
 import SupervisorAccountIcon from "@mui/icons-material/SupervisorAccount";
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SelectCustom from "../../../components/SelectCustom";
 import { listPositions, listScales, schema } from "./handleForm";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 const RegisterForm = () => {
+    // VARIABLES
+    const navigate = useNavigate();
+
+    // ************************************************************
+
+    // STATE
     const {
         register,
         handleSubmit,
         formState: { errors },
     } = useForm({ resolver: yupResolver(schema) });
     const [disabled, setDisabled] = useState(true);
+    // ************************************************************
 
-    const navigate = useNavigate();
+    // EFFECT
+    useEffect(() => {
+        const formRegister = document.querySelector(".register-form__wrapper");
+        formRegister.addEventListener("keypress", (e) => {
+            if (e.key === "Enter") {
+                document.querySelector(".btn-register").click();
+            }
+        });
 
+        // CLEAN FUNCTION
+        return () => {
+            formRegister.removeEventListener("keypress", (e) => {
+                if (e.key === "Enter") {
+                    document.querySelector(".btn-register").click();
+                }
+            });
+        };
+    }, []);
+    // **************************************************************
+
+    // ARROW FUNCTION
     const onSubmit = (data) => {
         console.log("data register:", data);
         navigate("/auth/confirm-otp");
     };
+    // **************************************************************
 
     return (
         <>
@@ -124,6 +151,7 @@ const RegisterForm = () => {
                         href="https://www.happytimeapp.vn/dieu-khoan-su-dung"
                         alt=""
                         target="_blank"
+                        rel="noreferrer"
                     >
                         Điều khoản
                     </a>
@@ -132,6 +160,7 @@ const RegisterForm = () => {
                         href="https://www.happytimeapp.vn/chinh-sach-bao-mat"
                         alt=""
                         target="_blank"
+                        rel="noreferrer"
                     >
                         Chính sách
                     </a>
@@ -139,6 +168,7 @@ const RegisterForm = () => {
                 </div>
                 <div style={{ marginTop: "40px", marginBottom: "24px" }}>
                     <ButtonCustom
+                        className="btn-register"
                         height="48px"
                         disabled={disabled}
                         onClick={handleSubmit(onSubmit)}

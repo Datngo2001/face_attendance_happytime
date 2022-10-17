@@ -1,6 +1,6 @@
 import "./styles.scss";
-import tabTitle from "../../../utils/tabTitle";
 import RegisterForm from "../../../forms/Authentication/RegisterForm";
+import { tabTitle } from "../../../utils";
 
 const Register = () => {
     tabTitle("Đăng ký");
