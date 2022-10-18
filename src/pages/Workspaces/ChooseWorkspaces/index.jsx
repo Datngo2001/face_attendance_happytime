@@ -11,7 +11,7 @@ const ChooseWorkspaces = () => {
         navigate("/workspaces/create");
     };
     const handleMoveOnApp = () => {
-        navigate("/app");
+        navigate("/app/employees/list/index");
     };
     return (
         <>

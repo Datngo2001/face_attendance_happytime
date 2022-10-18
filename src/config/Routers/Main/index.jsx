@@ -1,20 +1,12 @@
 import EmployeesLayout from "../../../layouts/Main/employees";
 import RequestsLayout from "../../../layouts/Main/requests";
+import empoyeesRouters from "./employees/router";
 
 const mainRouters = [
     {
         path: "employees",
         component: <EmployeesLayout />,
-        listChildrenRoutes: [
-            {
-                path: "",
-                component: "",
-            },
-            {
-                path: "",
-                component: "",
-            },
-        ],
+        listChildrenRoutes: empoyeesRouters,
     },
     {
         path: "requests",

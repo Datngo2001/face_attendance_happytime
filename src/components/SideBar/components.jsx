@@ -3,7 +3,10 @@ import { Link } from "react-router-dom";
 import ButtonCustom from "../ButtonCustom";
 import "./styles.scss";
 
-export const NavigatorItem = ({ linkTo, icon, title, state }) => {
+export const NavigatorItem = ({ linkTo, icon, title, state, url, pathActive }) => {
+    // VARIABLES
+    // ******************************
+
     return (
         <>
             {state ? (
@@ -14,7 +17,12 @@ export const NavigatorItem = ({ linkTo, icon, title, state }) => {
                     arrow
                     disableHoverListener
                 >
-                    <Link to={linkTo} className="navigator-item__wrapper">
+                    <Link
+                        to={linkTo}
+                        className={`navigator-item__wrapper ${
+                            url.includes(pathActive) ? "active" : ""
+                        }`}
+                    >
                         {icon} <span className="title">{title}</span>
                     </Link>
                 </Tooltip>
@@ -25,7 +33,12 @@ export const NavigatorItem = ({ linkTo, icon, title, state }) => {
                     placement="right"
                     arrow
                 >
-                    <Link to={linkTo} className="navigator-item__wrapper">
+                    <Link
+                        to={linkTo}
+                        className={`navigator-item__wrapper ${
+                            url.includes(linkTo) ? "active" : ""
+                        }`}
+                    >
                         {icon} <span className="title">{title}</span>
                     </Link>
                 </Tooltip>

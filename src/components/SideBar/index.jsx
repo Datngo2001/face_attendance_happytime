@@ -5,8 +5,13 @@ import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 import "./styles.scss";
 import ModalCustom from "../ModalCustom";
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 
 const Sidebar = ({ state }) => {
+    // VARIABLES
+    const location = useLocation();
+    // ******************************
+
     // STATE
     const [openModal, setOpenModal] = useState(false);
     // ********************************
@@ -31,6 +36,8 @@ const Sidebar = ({ state }) => {
                                 title={navigatorItem.title}
                                 icon={navigatorItem.icon}
                                 state={state}
+                                pathActive={navigatorItem.pathActive}
+                                url={location.pathname}
                             />
                         );
                     })}

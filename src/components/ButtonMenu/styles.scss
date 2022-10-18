@@ -1,0 +1,40 @@
+@use "../../assets/styles/index.scss" as *;
+
+.button-menu {
+    &__wrapper {
+        height: 90px;
+        width: 90px;
+        border-radius: $br-1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 8px;
+        font-size: 12px;
+        border-left: 3px solid transparent;
+        color: $text-color-3;
+        background-color: $color-white-1;
+
+        &.active {
+            border-left: 3px solid $primary-color;
+            color: $primary-color;
+
+            .icon {
+                > svg {
+                    opacity: 1;
+                }
+            }
+        }
+
+        .icon {
+            > svg {
+                font-size: 36px;
+                opacity: 0.8;
+            }
+        }
+
+        .title {
+            text-align: center;
+        }
+    }
+}

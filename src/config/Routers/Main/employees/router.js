@@ -1,6 +1,12 @@
 const empoyeesRouters = [
     {
-        path: "/empoyess",
-        Component: ""
-    }
-]
+        path: "list/index",
+        component: "",
+    },
+    {
+        path: "leave-management",
+        component: "",
+    },
+];
+
+export default empoyeesRouters;

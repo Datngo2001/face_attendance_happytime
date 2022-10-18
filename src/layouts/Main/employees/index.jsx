@@ -1,4 +1,7 @@
 import { Outlet } from "react-router-dom";
+import ButtonMenu from "../../../components/ButtonMenu";
+import ArticleOutlinedIcon from "@mui/icons-material/ArticleOutlined";
+import AssignmentOutlinedIcon from '@mui/icons-material/AssignmentOutlined';
 import "./styles.scss";
 
 const EmployeesLayout = () => {
@@ -8,8 +11,21 @@ const EmployeesLayout = () => {
     return (
         <>
             <div className="employees-layout__wrapper">
-                employees-layout
-                <Outlet/>
+                <div className="employees-layout__list-btn-menu">
+                    <ButtonMenu
+                        path="list/index"
+                        title="Danh sách nhân viên"
+                        icon={<ArticleOutlinedIcon />}
+                    />
+                    <ButtonMenu
+                        path="leave-management"
+                        title="Quản lý phép"
+                        icon={<AssignmentOutlinedIcon />}
+                    />
+                </div>
+                <div className="employees-layout__content">
+                    <Outlet />
+                </div>
             </div>
         </>
     );

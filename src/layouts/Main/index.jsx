@@ -16,9 +16,24 @@ const MainLayout = () => {
                     state={isCollapsed}
                     setState={setIsCollapsed}
                 />
-                <div className="main-layout__content">
-                    <SideBar state={isCollapsed} />
-                    <Outlet />
+                <div className="main-layout__container">
+                    <div className="main-layout__sidebar">
+                        <SideBar state={isCollapsed} />
+                    </div>
+                    <div className="main-layout__content">
+                        <Outlet />
+                        <p
+                            style={{
+                                fontSize: "13px",
+                                opacity: 0.5,
+                                position: "fixed",
+                                bottom: "8px",
+                                right: "14px",
+                            }}
+                        >
+                            Clone bởi Sinh viên Đại học Sư phạm kĩ thuật TP.Hồ Chí Minh
+                        </p>
+                    </div>
                 </div>
             </div>
         </>

@@ -9,55 +9,66 @@ import EventNoteRoundedIcon from "@mui/icons-material/EventNoteRounded";
 import LocalActivityRoundedIcon from "@mui/icons-material/LocalActivityRounded";
 import InfoRoundedIcon from "@mui/icons-material/InfoRounded";
 
+
 export const listNavigatorOptions = [
     {
         icon: <ListRoundedIcon />,
-        linkTo: "",
-        title: "Bảng công"
+        linkTo: "attendances/summary",
+        title: "Bảng công",
+        pathActive: "attendances",
     },
     {
         icon: <DescriptionRoundedIcon />,
-        linkTo: "",
-        title: "Đơn từ"
+        linkTo: "requests",
+        title: "Đơn từ",
+        pathActive: "requests",
     },
     {
         icon: <GroupRoundedIcon />,
-        linkTo: "",
-        title: "Quản lý nhân sự"
+        linkTo: "employees/list/index",
+        title: "Quản lý nhân sự",
+        pathActive: "employees",
     },
     {
         icon: <ApartmentRoundedIcon />,
-        linkTo: "",
-        title: "Cài đặt doanh nghiệp"
+        linkTo: "company/info",
+        title: "Cài đặt doanh nghiệp",
+        pathActive: "company",
     },
     {
         icon: <DateRangeRoundedIcon />,
-        linkTo: "",
-        title: "Cài đặt lịch"
+        linkTo: "schedule/shifts/list",
+        title: "Cài đặt lịch",
+        pathActive: "schedule",
     },
     {
         icon: <FingerprintRoundedIcon />,
-        linkTo: "",
-        title: "Cài đặt chấm công"
+        linkTo: "attendance-settings/methods",
+        title: "Cài đặt chấm công",
+        pathActive: "attendance-settings",
     },
     {
         icon: <NewspaperRoundedIcon />,
-        linkTo: "",
-        title: "Tin tức"
+        linkTo: "news/categories",
+        title: "Tin tức",
+        pathActive: "news",
     },
     {
         icon: <EventNoteRoundedIcon />,
-        linkTo: "",
-        title: "Popup"
+        linkTo: "popup/event",
+        title: "Popup",
+        pathActive: "popup",
     },
     {
         icon: <LocalActivityRoundedIcon />,
-        linkTo: "",
-        title: "Sự kiện"
+        linkTo: "event/personal",
+        title: "Sự kiện",
+        pathActive: "event",
     },
     {
         icon: <InfoRoundedIcon />,
-        linkTo: "",
-        title: "Quản lý khác"
+        linkTo: "others/integration",
+        title: "Quản lý khác",
+        pathActive: "others",
     },
 ];
