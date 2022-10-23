@@ -1,48 +1,79 @@
+import Box from "@mui/material/Box";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
 import "./styles.scss";
+import { useState } from "react";
 
-const SelectCustom = ({
+export const SelectCustom = ({
     id,
     icon,
-    placeholder,
     width,
     height,
     register,
     className,
-    type,
-    children,
+    message,
+    placeholder,
     options,
+    setValue,
 }) => {
+    
+    // VARIABLES
+    // ******************************
+
+    // STATE
+    const [isSelectedPlaceholder, SetIsSelectedPlaceholder] = useState(true);
+    // ******************************
+
+    // EFFECT
+    // ******************************
+
+    // ARROW FUNCTION
+    const handleOnFocus = (e) => {
+        const selectElement = document.querySelector(`#${id}.MuiSelect-select`);
+        if (selectElement.innerHTML !== placeholder) {
+            document
+                .querySelector(`#${id}.select-custom__wrapper`)
+                .classList.remove("selected-placeholder");
+            SetIsSelectedPlaceholder(false);
+        }
+    };
+    // ******************************
     return (
         <>
-            <div
-                className={`select-custom__wrapper ${children && "error"} ${className ? className : ""}`}
-                style={{ width: width ? width : "", height: height ? height : "" }}
+            <Box
+                id={id}
+                className={`select-custom__wrapper ${
+                    isSelectedPlaceholder ? "selected-placeholder" : ""
+                } ${message[id] ? "error" : ""} ${className ? className : ""}`}
+                sx={{ height: height, width: width }}
             >
-                {icon}
-                <select
-                    required
-                    id={id}
-                    className={children && "select-custom__error"}
-                    placeholder={placeholder}
-                    type={type}
-                    {...register(id)}
-                >
-                    <option value="" hidden>
-                        {placeholder}
-                    </option>
-                    {options &&
-                        options.map((option) => {
-                            return (
-                                <option value={option.id} key={option.id}>
-                                    {option.name}
-                                </option>
-                            );
-                        })}
-                </select>
-                <p className="error-message">{children}</p>
-            </div>
+                <FormControl fullWidth>
+                    {icon}
+                    <Select
+                        id={id}
+                        {...register(id)}
+                        onFocus={handleOnFocus}
+                        defaultValue={"null"}
+                        style={{ height: height, width: width }}
+                        inputProps={{ "aria-label": "Without label" }}
+                        className="select-test"
+                    >
+                        <MenuItem value={"null"} disabled>
+                            {placeholder}
+                        </MenuItem>
+                        {options &&
+                            options.map((option) => {
+                                return (
+                                    <MenuItem value={option.id} key={option.id}>
+                                        {option.name}
+                                    </MenuItem>
+                                );
+                            })}
+                    </Select>
+                    <p className="error-message">{message[id]?.message}</p>
+                </FormControl>
+            </Box>
         </>
     );
 };
-
-export default SelectCustom;

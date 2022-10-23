@@ -1,54 +1,62 @@
 @use "../../assets/styles/index.scss" as *;
 
-.select-custom {
-    &__wrapper {
-        height: $h-1;
-        width: 100%;
+.select-custom__wrapper {
+    height: $h-1;
+    width: 100%;
+    .MuiFormControl-root {
         position: relative;
-
-        > select {
-            height: 100%;
-            width: 100%;
+        .MuiInputBase-root {
             border-radius: $br-1;
-            border: 1px solid transparent;
-            color: $text-color-1;
+            height: $h-1;
             background-color: $primary-bg-color;
-            font-family: $f-family-1;
-            transition: all 0.3s;
-            font-size: 14px;
-            padding: 8px 16px 8px 32px;
-            display: inline-flex;
 
-            &:required:invalid {
-                color: $text-color-2;
+            .MuiSelect-select {
+                padding: 8px 16px 8px 32px;
+                text-align: left;
+                color: $text-color-1;
+                font-size: $fs-1;
+                font-family: $f-family-1;
             }
 
-            &:focus {
+            .MuiOutlinedInput-notchedOutline {
+                border: 1px solid transparent;
                 outline: none;
-                border-color: $primary-color;
-                box-shadow: $bs-2;
+                transition: all 0.3s;
             }
 
             &:hover {
-                border-color: $primary-color;
+                .MuiOutlinedInput-notchedOutline {
+                    border-color: $primary-color;
+                }
             }
         }
-
         > svg {
             position: absolute;
             font-size: 18px;
-            top: 50%;
+            top: 20px;
             left: 8px;
             transform: translateY(-50%);
             color: $text-color-2;
+            z-index: 1;
         }
+    }
 
-        &.error {
-            > select {
-                border-color: $color-red-1;
+    &.selected-placeholder {
+        .MuiFormControl-root {
+            .MuiInputBase-root {
+                .MuiSelect-select {
+                    color: $text-color-2;
+                }
+            }
+        }
+    }
 
+    &.error {
+        .MuiFormControl-root {
+            .MuiOutlinedInput-notchedOutline {
+                border-color: $color-red-1 !important;
                 &:focus {
-                    border-color: $color-red-1;
+                    border-color: $color-red-1 !important;
                 }
             }
             .error-message {
@@ -61,5 +69,12 @@
                 color: $color-red-1;
             }
         }
+    }
+}
+
+.MuiList-root {
+    .MuiButtonBase-root.MuiMenuItem-root {
+        color: $text-color-1;
+        font-size: $fs-1;
     }
 }

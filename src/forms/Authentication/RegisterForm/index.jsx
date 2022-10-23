@@ -7,14 +7,14 @@ import AccountCircleSharpIcon from "@mui/icons-material/AccountCircleSharp";
 import ApartmentIcon from "@mui/icons-material/Apartment";
 import EmailIcon from "@mui/icons-material/Email";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
-import BadgeIcon from "@mui/icons-material/Badge";
+import HailIcon from "@mui/icons-material/Hail";
 import KeyIcon from "@mui/icons-material/Key";
 import SupervisorAccountIcon from "@mui/icons-material/SupervisorAccount";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import SelectCustom from "../../../components/SelectCustom";
 import { listPositions, listScales, schema } from "./handleForm";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { SelectCustom } from "../../../components/SelectCustom";
 
 const RegisterForm = () => {
     // VARIABLES
@@ -75,9 +75,8 @@ const RegisterForm = () => {
                     placeholder="Nhập số điện thoại *"
                     register={register}
                     icon={<LocalPhoneRoundedIcon />}
-                >
-                    {errors.phone?.message}
-                </InputCustom>
+                    message={errors}
+                />
                 <InputCustom
                     id="name"
                     className="input-item"
@@ -85,9 +84,8 @@ const RegisterForm = () => {
                     placeholder="Nhập họ và tên *"
                     register={register}
                     icon={<AccountCircleSharpIcon />}
-                >
-                    {errors.name?.message}
-                </InputCustom>
+                    message={errors}
+                />
                 <InputCustom
                     id="nameCompany"
                     className="input-item"
@@ -95,19 +93,17 @@ const RegisterForm = () => {
                     placeholder="Nhập tên công ty *"
                     register={register}
                     icon={<ApartmentIcon />}
-                >
-                    {errors.nameCompany?.message}
-                </InputCustom>
+                    message={errors}
+                />
                 <SelectCustom
                     id="position"
                     className="input-item"
                     placeholder="Chức vụ *"
                     register={register}
-                    icon={<BadgeIcon />}
+                    icon={<HailIcon />}
                     options={listPositions}
-                >
-                    {errors.position?.message}
-                </SelectCustom>
+                    message={errors}
+                />
                 <InputCustom
                     id="email"
                     className="input-item"
@@ -115,9 +111,8 @@ const RegisterForm = () => {
                     placeholder="Nhập email *"
                     register={register}
                     icon={<EmailIcon />}
-                >
-                    {errors.email?.message}
-                </InputCustom>
+                    message={errors}
+                />
                 <SelectCustom
                     id="scale"
                     className="input-item"
@@ -125,9 +120,8 @@ const RegisterForm = () => {
                     register={register}
                     icon={<SupervisorAccountIcon />}
                     options={listScales}
-                >
-                    {errors.scale?.message}
-                </SelectCustom>
+                    message={errors}
+                />
                 <InputCustom
                     id="code"
                     className="input-item"
@@ -135,9 +129,8 @@ const RegisterForm = () => {
                     placeholder="Nhập mã giới thiệu"
                     register={register}
                     icon={<KeyIcon />}
-                >
-                    {errors?.code?.message}
-                </InputCustom>
+                    message={errors}
+                />
                 <div className="policies">
                     <input
                         onClick={() => setDisabled(!disabled)}

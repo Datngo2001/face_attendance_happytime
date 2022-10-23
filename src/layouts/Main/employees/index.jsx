@@ -1,10 +1,15 @@
 import { Outlet } from "react-router-dom";
 import ButtonMenu from "../../../components/ButtonMenu";
 import ArticleOutlinedIcon from "@mui/icons-material/ArticleOutlined";
-import AssignmentOutlinedIcon from '@mui/icons-material/AssignmentOutlined';
+import AssignmentOutlinedIcon from "@mui/icons-material/AssignmentOutlined";
 import "./styles.scss";
+import { tabTitle } from "../../../utils";
 
 const EmployeesLayout = () => {
+    // GLOBAL FUNCTION
+    tabTitle("Quản lý nhân sự")
+    // ******************************
+
     // STATE
     // ******************************
 

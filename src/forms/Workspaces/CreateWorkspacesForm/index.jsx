@@ -44,9 +44,8 @@ const CreateWorkspacesForm = () => {
                             className="name-company"
                             placeholder="Tên workspace của bạn"
                             register={register}
-                        >
-                            {errors.companyName?.message}
-                        </InputCustom>
+                            message={errors}
+                        />
                     </div>
                     <Divider className="divider" />
                     <ButtonCustom

@@ -2,7 +2,7 @@
 
 .employees-layout {
     &__wrapper {
-        height: 100%;
+        height: auto;
         width: 100%;
         display: flex;
         gap: 10px;
@@ -17,5 +17,7 @@
 
     &__content {
         flex: 1;
+        background-color: $color-white-1;
+        border-radius: $br-1;
     }
 }

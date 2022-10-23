@@ -12,7 +12,7 @@ const ButtonCustom = ({
 }) => {
     return (
         <>
-            <Button
+            <button
                 onClick={onClick}
                 disabled={disabled || false}
                 className={`btn-custom ${disabled ? "disabled" : ""} ${
@@ -22,7 +22,7 @@ const ButtonCustom = ({
             >
                 {icon}
                 {children}
-            </Button>
+            </button>
         </>
     );
 };

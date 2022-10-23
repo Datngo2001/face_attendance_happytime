@@ -1,7 +1,11 @@
 import { Outlet } from "react-router-dom";
+import { tabTitle } from "../../../utils";
 import "./styles.scss";
 
 const RequestsLayout = () => {
+    // GLOBAL FUNCTION
+    tabTitle("Đơn từ")
+    // ******************************
     // STATE
     // ******************************
 

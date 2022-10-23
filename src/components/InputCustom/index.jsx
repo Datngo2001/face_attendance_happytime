@@ -9,19 +9,19 @@ const InputCustom = ({
     register,
     className,
     type,
-    children,
+    message,
 }) => {
     return (
         <>
             <div
-                className={`input-custom__wrapper ${children && "error"} ${
+                className={`input-custom__wrapper ${message[id] && "error"} ${
                     className ? className : ""
                 }`}
                 style={{ width: width ? width : "", height: height ? height : "" }}
             >
                 {icon}
                 <input id={id} placeholder={placeholder} type={type} {...register(id)} />
-                <p className="error-message">{children}</p>
+                <p className="error-message">{message[id]?.message}</p>
             </div>
         </>
     );

@@ -11,6 +11,7 @@
         align-items: center;
         justify-content: space-between;
         box-shadow: rgba(0, 0, 0, 0.05) 0px 3px 6px;
+        z-index: 10;
 
         .btn-logout {
             height: 22px !important;
@@ -144,6 +145,8 @@
             &__wrapper {
                 padding: 4px 0;
                 color: #555555;
+                background-color: $color-white-1;
+                border-radius: $br-1;
 
                 .list-item {
                     .item {

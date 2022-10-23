@@ -34,9 +34,8 @@ const ForgotPasswordForm = () => {
                     placeholder="Nhập số điện thoại *"
                     register={register}
                     icon={<LocalPhoneRoundedIcon />}
-                >
-                    {errors?.phone?.message}
-                </InputCustom>
+                    message={errors}
+                />
                 <div style={{ marginTop: "40px" }}>
                     <ButtonCustom height="48px" onClick={handleSubmit(onSubmit)}>
                         GỬI MÃ XÁC NHẬN

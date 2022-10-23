@@ -22,7 +22,7 @@ const Home = () => {
                     </p>
                 </div>
                 <ButtonCustom className="btn-experience" onClick={handleOnClick}>
-                    trải nghiệm miễn phí ngay
+                    TRẢI NGHIỆM MIỄN PHÍ NGAY
                 </ButtonCustom>
                 <p>
                     Nếu bạn đã có tài khoản?

@@ -8,6 +8,7 @@ const MainLayout = () => {
     // STATE
     const [isCollapsed, setIsCollapsed] = useState(true);
     // *******************************
+
     return (
         <>
             <div className="main-layout__wrapper">

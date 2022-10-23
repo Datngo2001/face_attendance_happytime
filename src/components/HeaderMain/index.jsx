@@ -12,7 +12,7 @@ import {
     NotificationBoxInner,
 } from "./components";
 import avatar from "../../assets/images/avatar.jpg"; //test avatar
-import DropDown from "../DropDown/index,";
+import DropDown from "../DropDown";
 import { useState } from "react";
 
 const HeaderMain = ({ isActive, state, setState }) => {
@@ -28,8 +28,6 @@ const HeaderMain = ({ isActive, state, setState }) => {
     // ARROW FUNCTION
     const handleLogout = () => {};
     const handleToggleSidebar = () => {
-        // const sidebar = document.querySelector("#sidebarMain");
-        // sidebar.classList.toggle("show");
         setState(!state);
     };
     const handleToggleMenuBox = () => {
@@ -64,7 +62,7 @@ const HeaderMain = ({ isActive, state, setState }) => {
                                 style={{
                                     marginLeft: "24px",
                                 }}
-                                to="../"
+                                to="/app/employees/list/index"
                             >
                                 <img
                                     src={logo}
@@ -78,23 +76,27 @@ const HeaderMain = ({ isActive, state, setState }) => {
                             <div>
                                 <ButtonUser type={1} name="Coffee Store" />
                                 <MenuBox onClick={handleToggleMenuBox}>
-                                    <DropDown
-                                        state={isShowMenuBox}
-                                        setState={setIsShowMenuBox}
-                                        height="212px"
-                                        width="366px"
-                                    >
-                                        <MenuBoxInner />
-                                    </DropDown>
+                                    {isShowMenuBox && (
+                                        <DropDown
+                                            state={isShowMenuBox}
+                                            setState={setIsShowMenuBox}
+                                            height="212px"
+                                            width="366px"
+                                        >
+                                            <MenuBoxInner />
+                                        </DropDown>
+                                    )}
                                 </MenuBox>
                                 <NotificationBox onClick={handleToggleNotifyBox}>
-                                    <DropDown
-                                        state={isShowNotifyBox}
-                                        setState={setIsShowNotifyBox}
-                                        width="366px"
-                                    >
-                                        <NotificationBoxInner />
-                                    </DropDown>
+                                    {isShowNotifyBox && (
+                                        <DropDown
+                                            state={isShowNotifyBox}
+                                            setState={setIsShowNotifyBox}
+                                            width="366px"
+                                        >
+                                            <NotificationBoxInner />
+                                        </DropDown>
+                                    )}
                                 </NotificationBox>
                                 <ButtonUser
                                     type={2}
@@ -102,14 +104,16 @@ const HeaderMain = ({ isActive, state, setState }) => {
                                     avatar={avatar}
                                     onClick={handleToggleButtonUser}
                                 >
-                                    <DropDown
-                                        state={isShowButtonUser}
-                                        setState={setIsShowButtonUser}
-                                        height="auto"
-                                        width="244px"
-                                    >
-                                        <ButtonUserInner />
-                                    </DropDown>
+                                    {isShowButtonUser && (
+                                        <DropDown
+                                            state={isShowButtonUser}
+                                            setState={setIsShowButtonUser}
+                                            height="auto"
+                                            width="244px"
+                                        >
+                                            <ButtonUserInner />
+                                        </DropDown>
+                                    )}
                                 </ButtonUser>
                             </div>
                         </div>

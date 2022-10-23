@@ -39,9 +39,8 @@ const SetPasswordForm = () => {
                         type="password"
                         icon={<LockIcon />}
                         register={register}
-                    >
-                        {errors.password?.message}
-                    </InputCustom>
+                        message={errors}
+                    />
                     <InputCustom
                         id="confirmPassword"
                         className="input-item"
@@ -49,9 +48,8 @@ const SetPasswordForm = () => {
                         type="password"
                         icon={<LockIcon />}
                         register={register}
-                    >
-                        {errors.confirmPassword?.message}
-                    </InputCustom>
+                        message={errors}
+                    />
                 </div>
                 <div style={{ marginTop: "40px" }}>
                     <ButtonCustom onClick={handleSubmit(onSubmit)} height="48px">

@@ -3,6 +3,10 @@ import * as yup from "yup";
 const REGEX_PHONE_NUMBER = /(84|0[3|5|7|8|9])+([0-9]{8})\b/g;
 const REGEX_ONLY_NUMBER = /^\d+$/;
 
+const checkSelectNull = (value) => {
+    return value === "null" ? false : true;
+};
+
 export const schema = yup.object({
     phone: yup
         .string()
@@ -11,13 +15,21 @@ export const schema = yup.object({
         .matches(REGEX_PHONE_NUMBER, "Thông tin sai định dạng"),
     name: yup.string().required("Trường Họ và tên không được bỏ trống"),
     nameCompany: yup.string().required("Trường Tên công ty không được bỏ trống"),
-    position: yup.string().required("Trường Chức vụ không được bỏ trống"),
+    position: yup
+        .string()
+        .test("Check Select", "Trường Chức vụ không được bỏ trống", (value) => {
+            return checkSelectNull(value);
+        }),
     email: yup
         .string()
         .email("Thông tin sai định dạng")
         .max(100)
         .required("Trường email không được bỏ trống"),
-    scale: yup.string().required("Trường Chức vụ không được bỏ trống"),
+    scale: yup
+        .string()
+        .test("Check Select", "Trường Quy mô công ty không được bỏ trống", (value) => {
+            return checkSelectNull(value);
+        }),
     code: yup.string().nullable(),
 });
 

@@ -1,7 +1,9 @@
+import { Index } from "../../../../pages/Main/Employees";
+
 const empoyeesRouters = [
     {
         path: "list/index",
-        component: "",
+        component: <Index/>,
     },
     {
         path: "leave-management",

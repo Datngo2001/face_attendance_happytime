@@ -52,9 +52,8 @@ const LoginForm = () => {
                     placeholder="Nhập số điện thoại *"
                     register={register}
                     icon={<LocalPhoneRoundedIcon />}
-                >
-                    {errors?.phone?.message}
-                </InputCustom>
+                    message={errors}
+                />
                 <InputCustom
                     id="password"
                     className="input-password"
@@ -62,9 +61,8 @@ const LoginForm = () => {
                     placeholder="Nhập mật khẩu *"
                     register={register}
                     icon={<LockIcon />}
-                >
-                    {errors?.password?.message}
-                </InputCustom>
+                    message={errors}
+                />
                 <div className="tag-redirect text-right">
                     <Link className="tag" to="/auth/forgot-password">
                         Quên mật khẩu?

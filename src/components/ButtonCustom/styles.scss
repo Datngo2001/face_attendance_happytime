@@ -1,13 +1,21 @@
 @use "../../assets/styles/index.scss" as *;
 
 .btn-custom {
-    background-color: $primary-color !important;
-    color: $color-white-1 !important;
+    background-color: $primary-color;
+    color: $color-white-1;
+    border: none;
+    outline: none;
+    padding: 6px 12px;
     font-size: 14px;
-    font-weight: $fw-1 !important;
+    font-weight: $fw-1;
     width: 100%;
     border-radius: $br-1;
-    font-family: $f-family-1 !important;
+    font-family: $f-family-1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    gap: 4px;
 
     &:hover {
         opacity: 0.8;
@@ -19,5 +27,9 @@
         color: rgba(0, 0, 0, 0.25) !important;
         border: 1px solid transparent !important;
         border-color: #d9d9d9 !important;
+    }
+
+    svg {
+        font-size: 18px;
     }
 }
