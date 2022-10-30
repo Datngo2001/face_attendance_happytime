@@ -5,6 +5,7 @@ import DriveFileRenameOutlineRoundedIcon from "@mui/icons-material/DriveFileRena
 import ApartmentRoundedIcon from "@mui/icons-material/ApartmentRounded";
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 import { Divider } from "@mui/material";
+import { Link } from "react-router-dom";
 
 export const MenuBox = ({ children, onClick }) => {
     return (
@@ -74,18 +75,18 @@ export const ButtonUserInner = () => {
         <>
             <div className="button-user-inner__wrapper">
                 <ul className="list-item">
-                    <li className="item">
+                    <Link className="item" to="">
                         <DriveFileRenameOutlineRoundedIcon />
                         Cập nhật thông tin cá nhân
-                    </li>
-                    <li className="item">
+                    </Link>
+                    <Link className="item" to="">
                         <ApartmentRoundedIcon />
                         Cài đặt workspace
-                    </li>
-                    <li className="item">
+                    </Link>
+                    <Link className="item" to="">
                         <LogoutRoundedIcon />
                         Đăng xuất
-                    </li>
+                    </Link>
                 </ul>
             </div>
         </>

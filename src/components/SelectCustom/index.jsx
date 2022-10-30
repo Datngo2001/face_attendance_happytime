@@ -3,7 +3,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import "./styles.scss";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const SelectCustom = ({
     id,
@@ -12,12 +12,12 @@ export const SelectCustom = ({
     height,
     register,
     className,
-    message,
+    message = undefined,
     placeholder,
+    defaultValue,
     options,
     setValue,
 }) => {
-    
     // VARIABLES
     // ******************************
 
@@ -26,9 +26,15 @@ export const SelectCustom = ({
     // ******************************
 
     // EFFECT
+    useEffect(() => {
+        !icon &&
+            document
+                .querySelector(`#${id} .MuiSelect-select`)
+                .classList.add("none-icon");
+    }, []);
     // ******************************
 
-    // ARROW FUNCTION
+    // ARROW FUNCTIONS
     const handleOnFocus = (e) => {
         const selectElement = document.querySelector(`#${id}.MuiSelect-select`);
         if (selectElement.innerHTML !== placeholder) {
@@ -39,13 +45,19 @@ export const SelectCustom = ({
         }
     };
     // ******************************
+
+    // CATCH ERRORS
+    options || console.warn("Missing options!");
+    id || console.warn("Missing id");
+    // ******************************
+
     return (
         <>
             <Box
                 id={id}
                 className={`select-custom__wrapper ${
-                    isSelectedPlaceholder ? "selected-placeholder" : ""
-                } ${message[id] ? "error" : ""} ${className ? className : ""}`}
+                    isSelectedPlaceholder && !defaultValue ? "selected-placeholder" : ""
+                } ${message && message[id] ? "error" : ""} ${className ? className : ""}`}
                 sx={{ height: height, width: width }}
             >
                 <FormControl fullWidth>
@@ -54,14 +66,16 @@ export const SelectCustom = ({
                         id={id}
                         {...register(id)}
                         onFocus={handleOnFocus}
-                        defaultValue={"null"}
+                        defaultValue={defaultValue || "null"}
                         style={{ height: height, width: width }}
                         inputProps={{ "aria-label": "Without label" }}
-                        className="select-test"
+                        className="select-item"
                     >
-                        <MenuItem value={"null"} disabled>
-                            {placeholder}
-                        </MenuItem>
+                        {!defaultValue && (
+                            <MenuItem value={"null"} disabled>
+                                {placeholder}
+                            </MenuItem>
+                        )}
                         {options &&
                             options.map((option) => {
                                 return (
@@ -71,7 +85,9 @@ export const SelectCustom = ({
                                 );
                             })}
                     </Select>
-                    <p className="error-message">{message[id]?.message}</p>
+                    {!(message === undefined) && (
+                        <p className="error-message">{message[id]?.message}</p>
+                    )}
                 </FormControl>
             </Box>
         </>

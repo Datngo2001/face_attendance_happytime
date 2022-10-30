@@ -1,8 +1,18 @@
 @use "../../assets/styles/index.scss" as *;
 
 .drop-down {
+
     &__container {
         position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 9999;
+    }
+
+    &__cover {
+        position: absolute;
         top: 0;
         right: 0;
         left: 0;
@@ -19,10 +29,9 @@
 
     &__wrapper {
         position: absolute;
+        z-index: 1000;
         box-shadow: $bs-3;
         border-radius: $br-1;
-        top: 64px;
-        right: 0;
         transition: all 0.3s;
         display: none;
 

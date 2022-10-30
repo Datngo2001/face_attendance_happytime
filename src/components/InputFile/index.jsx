@@ -6,9 +6,16 @@ import ButtonCustom from "../ButtonCustom";
 import { useState } from "react";
 
 const InputFile = ({ id, className, type, format, register, setValue, title }) => {
-    const accept = ".png, .jpg, .jpeg, .gif, .bmp";
+    // STATE
     const [imgSrc, setImgSrc] = useState("");
     const [fileName, setFileName] = useState("");
+    // ******************************
+
+    // VARIABLES
+    const accept = ".png, .jpg, .jpeg, .gif, .bmp";
+    // ******************************
+
+    // ARROW FUNCTION
     const handlePreviewFile = (e) => {
         if (e.target.files && e.target.files[0]) {
             let imgFile = e.target.files[0];
@@ -21,6 +28,8 @@ const InputFile = ({ id, className, type, format, register, setValue, title }) =
             setFileName(imgFile.name);
         }
     };
+    // ****************************
+
     return (
         <>
             <div className={`input-file__wrapper ${className ? className : ""}`}>
@@ -41,7 +50,7 @@ const InputFile = ({ id, className, type, format, register, setValue, title }) =
                     </label>
                 ) : (
                     <label htmlFor={id} className="btn">
-                        {/* <ButtonCustom>{title}</ButtonCustom> */}
+                        <ButtonCustom>{title}</ButtonCustom>
                     </label>
                 )}
                 <input

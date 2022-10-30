@@ -28,6 +28,12 @@
         }
     }
 
+    &.none-icon {
+        > input {
+            padding: 8px 16px 8px 16px;
+        }
+    }
+
     > svg {
         position: absolute;
         font-size: 18px;
@@ -55,7 +61,7 @@
             text-align: left;
         }
 
-        >svg {
+        > svg {
             color: $color-red-1;
         }
     }

@@ -16,36 +16,35 @@ const DropDown = ({
     // ********************************
     // STATE
     // ********************************
-
-    // HOOK
+    // HOOK EFFECT
     // ****************************************************************
 
     // ARROW FUNCTION
-    const handleOnClick = (e) => {
+    const handleOnClick = () => {
         setState(false);
     };
     // ****************************************************************
 
-    console.log("re-render");
     return (
         <>
-            <div
-                className={`drop-down__container ${state && "show"}`}
-                onClick={handleOnClick}
-            ></div>
-            <div
-                style={{
-                    height: height,
-                    width: width,
-                    top: top,
-                    left: left,
-                    right: right,
-                    bottom: bottom,
-                }}
-                className={`drop-down__wrapper ${state && "show"}`}
-                onClick={handleOnClick}
-            >
-                {children}
+            <div className="drop-down__container">
+                <div
+                    className={`drop-down__cover ${state && "show"}`}
+                    onClick={handleOnClick}
+                ></div>
+                <div
+                    style={{
+                        height: height,
+                        width: width,
+                        top: top,
+                        left: left,
+                        right: right,
+                        bottom: bottom,
+                    }}
+                    className={`drop-down__wrapper ${state && "show"}`}
+                >
+                    {children}
+                </div>
             </div>
         </>
     );

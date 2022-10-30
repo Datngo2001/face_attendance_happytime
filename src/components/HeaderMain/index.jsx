@@ -82,6 +82,8 @@ const HeaderMain = ({ isActive, state, setState }) => {
                                             setState={setIsShowMenuBox}
                                             height="212px"
                                             width="366px"
+                                            top="74px"
+                                            right="355px"
                                         >
                                             <MenuBoxInner />
                                         </DropDown>
@@ -93,6 +95,8 @@ const HeaderMain = ({ isActive, state, setState }) => {
                                             state={isShowNotifyBox}
                                             setState={setIsShowNotifyBox}
                                             width="366px"
+                                            top="74px"
+                                            right="290px"
                                         >
                                             <NotificationBoxInner />
                                         </DropDown>
@@ -110,6 +114,8 @@ const HeaderMain = ({ isActive, state, setState }) => {
                                             setState={setIsShowButtonUser}
                                             height="auto"
                                             width="244px"
+                                            top="74px"
+                                            right="30px"
                                         >
                                             <ButtonUserInner />
                                         </DropDown>

@@ -1,4 +1,3 @@
-import { Button } from "@mui/material";
 import "./styles.scss";
 
 const ButtonCustom = ({
