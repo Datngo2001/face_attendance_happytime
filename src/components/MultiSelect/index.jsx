@@ -41,7 +41,7 @@ export default function MultiSelect({
 
     const handleOnClick = (event) => {
         const value = event.target.getAttribute("data-value");
-
+        console.log("checkExisting", checkExisting(finalValue, value));
         if (checkExisting(finalValue, value)) {
             setFinalValue(
                 finalValue.filter((element) => {
@@ -76,7 +76,6 @@ export default function MultiSelect({
         return tempArray;
     };
     // ******************************
-
     return (
         <Box
             id={id}

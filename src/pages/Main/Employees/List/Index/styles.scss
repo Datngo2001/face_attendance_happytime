@@ -4,86 +4,19 @@
     &__wrapper {
         height: 100%;
         width: 100%;
-        padding: 20px 30px 0px 30px;
     }
 
-    &__control-panel {
-        width: 100%;
+    &__table {
+        margin-top: 20px;
 
-        .index__header {
-            display: flex;
-            justify-content: space-between;
+        .quantity-employees {
+            font-size: $fs-1;
+            color: $text-color-1;
+            margin-bottom: 15px;
+            margin-left: 30px;
 
-            > .title {
-                font-size: $fs-3;
-                color: $text-color-1;
-                text-transform: uppercase;
+            .quantity {
                 font-weight: $fw-1;
-                padding-bottom: 24px;
-            }
-
-            .actions {
-                display: flex;
-                gap: 10px;
-
-                .button {
-                    position: relative;
-                    color: $primary-color !important;
-                    background-color: $primary-color-rgb !important;
-                    border: 1px solid transparent;
-                    z-index: 1;
-
-                    &:hover {
-                        border: 1px solid $primary-color;
-                    }
-
-                    &.btn-add {
-                        opacity: 1;
-
-                        .inner-button-add__wrapper {
-                            width: 100%;
-                            height: auto;
-                            padding: 4px 0;
-                            .item {
-                                height: 22px;
-                                width: 130px;
-                                padding: 5px 12px;
-                                color: $text-color-5;
-                                box-sizing: content-box;
-                                transition: opacity 0.3s;
-
-                                &:hover {
-                                    opacity: 0.7;
-                                }
-
-                                > .title {
-                                    display: flex;
-                                    gap: 4px;
-                                    align-items: center;
-                                    font-weight: normal;
-                                    font-size: $fs-1;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        .index__actions {
-            width: 100%;
-            height: auto;
-            display: flex;
-            flex-flow: row wrap;
-            row-gap: 20px;
-            column-gap: 10px;
-
-            .input-item {
-                flex-basis: 21%;
-
-                &.flex-basic-25 {
-                    flex-basis: 25%;
-                }
             }
         }
     }

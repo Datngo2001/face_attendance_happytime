@@ -17,6 +17,7 @@
         font-size: 14px;
         padding: 8px 16px 8px 32px;
         display: inline-flex;
+        text-overflow: ellipsis;
         &:focus {
             outline: none;
             border-color: $primary-color;
@@ -31,6 +32,21 @@
     &.none-icon {
         > input {
             padding: 8px 16px 8px 16px;
+        }
+    }
+
+    &.icon-right {
+        > input {
+            padding: 8px 32px 8px 16px;
+        }
+
+        > svg {
+            position: absolute;
+            font-size: 18px;
+            top: 50%;
+            left: 246px;
+            transform: translateY(-50%);
+            color: $text-color-2;
         }
     }
 

@@ -4,10 +4,10 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import PersonIcon from "@mui/icons-material/Person";
 import { Link } from "react-router-dom";
 
-const ButtonUser = ({ type, onClick, avatar, name, role, children }) => {
+const ButtonUser = ({ type, avatar, name }) => {
     return (
         <>
-            <div className="button-user__wrapper" onClick={onClick}>
+            <div className="button-user__wrapper">
                 <div
                     className={`button-user__content ${type === 1 ? "type-1" : "type-2"}`}
                 >
@@ -34,7 +34,6 @@ const ButtonUser = ({ type, onClick, avatar, name, role, children }) => {
                         </span>
                     )}
                 </div>
-                {children}
             </div>
         </>
     );

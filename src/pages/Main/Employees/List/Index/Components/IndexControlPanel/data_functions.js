@@ -8,9 +8,9 @@ export const listStatusEmployees = [
     { id: 0, name: "Tất cả" },
     { id: 1, name: "Sắp đi làm" },
     { id: 2, name: "Đang làm việc" },
-    { id: 0, name: "Đã nghỉ việc" },
-    { id: 0, name: "Nghỉ không lương dài hạn" },
-    { id: 0, name: "Nghỉ thai sản" },
+    { id: 3, name: "Đã nghỉ việc" },
+    { id: 4, name: "Nghỉ không lương dài hạn" },
+    { id: 5, name: "Nghỉ thai sản" },
 ];
 
 export const listTypeEmployees = [
@@ -19,7 +19,7 @@ export const listTypeEmployees = [
     { id: 2, name: "Thử việc" },
     { id: 3, name: "Thực tập" },
     { id: 4, name: "Cộng tác viên" },
-    { id: 0, name: "Học việc" },
+    { id: 5, name: "Học việc" },
 ];
 
 export const listStatusUsingHappyTime = [
@@ -61,3 +61,23 @@ export const listEmptyFields = [
     { id: 24, name: "Loại hình nhân sự" },
     { id: 25, name: "" },
 ];
+
+export const checkDuplicateElement = (arr) => {
+    let tempArr = [];
+    let temp;
+    let count = 0;
+    if (arr && arr.length > 0) {
+        for (let i = 0; i < arr.length; i++) {
+            count = 0;
+            for (let j = i + 1; j < arr.length; j++) {
+                if (parseInt(arr[i]) === parseInt(arr[j])) count++;
+            }
+            count > 0 && (temp = parseInt(arr[i]));
+        }
+        tempArr = arr.filter((e) => {
+            return temp !== parseInt(e);
+        });
+    }
+
+    return tempArr;
+};

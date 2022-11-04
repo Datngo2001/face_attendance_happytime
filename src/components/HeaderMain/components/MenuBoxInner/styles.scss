@@ -1,0 +1,31 @@
+@use "../../../../assets/styles/index.scss" as *;
+
+.header-main {
+    &__wrapper {
+    }
+}
+.menu-box {
+    &-inner {
+        &__wrapper {
+            height: 174px;
+            width: 326px;
+            padding: 20px 20px 10px 20px;
+            border-radius: $br-1;
+            background-color: $color-white-1;
+            box-sizing: content-box;
+
+            .title {
+                font-size: $fs-1;
+                color: $text-color-2;
+                font-weight: $fw-normal;
+                margin-bottom: 6px;
+            }
+            .name-workspace {
+                font-size: $fs-3;
+                color: #333333;
+                font-weight: $fw-normal;
+                margin-bottom: 16px;
+            }
+        }
+    }
+}

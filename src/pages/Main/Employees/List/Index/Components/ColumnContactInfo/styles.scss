@@ -1,0 +1,38 @@
+@use "../../../../../../../assets/styles/index.scss" as *;
+
+.column-contact-Inf {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    .email {
+        display: flex;
+    }
+
+    .phone {
+        display: flex;
+    }
+
+    .icon {
+        width: 22px;
+        height: 22px;
+        background-color: $primary-color-rgb;
+        border-radius: $br-100;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 14px;
+
+        > svg {
+            font-size: 14px;
+            color: $primary-color;
+        }
+    }
+    .text {
+        font-size: $fs-1;
+        font-family: $f-family-1;
+        color: $text-color-3;
+        max-width: 214px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}

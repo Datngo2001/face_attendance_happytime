@@ -4,6 +4,7 @@ import ButtonCustom from "../ButtonCustom";
 import MenuIcon from "@mui/icons-material/Menu";
 import ButtonUser from "../ButtonUser";
 import { Link } from "react-router-dom";
+import avatar from "../../assets/images/avatar.jpg"; //test avatar
 import {
     ButtonUserInner,
     MenuBox,
@@ -11,15 +12,10 @@ import {
     NotificationBox,
     NotificationBoxInner,
 } from "./components";
-import avatar from "../../assets/images/avatar.jpg"; //test avatar
-import DropDown from "../DropDown";
-import { useState } from "react";
+import DropMenu from "../DropMenu";
 
 const HeaderMain = ({ isActive, state, setState }) => {
     // STATE
-    const [isShowMenuBox, setIsShowMenuBox] = useState(false);
-    const [isShowNotifyBox, setIsShowNotifyBox] = useState(false);
-    const [isShowButtonUser, setIsShowButtonUser] = useState(false);
     // ****************************************************************
 
     // VARIABLES
@@ -29,15 +25,6 @@ const HeaderMain = ({ isActive, state, setState }) => {
     const handleLogout = () => {};
     const handleToggleSidebar = () => {
         setState(!state);
-    };
-    const handleToggleMenuBox = () => {
-        setIsShowMenuBox(!isShowMenuBox);
-    };
-    const handleToggleNotifyBox = () => {
-        setIsShowNotifyBox(!isShowNotifyBox);
-    };
-    const handleToggleButtonUser = () => {
-        setIsShowButtonUser(!isShowButtonUser);
     };
     // ****************************************************************
 
@@ -75,52 +62,29 @@ const HeaderMain = ({ isActive, state, setState }) => {
                             <h2 className="title">Quản lý nhân sự</h2>
                             <div>
                                 <ButtonUser type={1} name="Coffee Store" />
-                                <MenuBox onClick={handleToggleMenuBox}>
-                                    {isShowMenuBox && (
-                                        <DropDown
-                                            state={isShowMenuBox}
-                                            setState={setIsShowMenuBox}
-                                            height="212px"
-                                            width="366px"
-                                            top="74px"
-                                            right="355px"
-                                        >
-                                            <MenuBoxInner />
-                                        </DropDown>
-                                    )}
-                                </MenuBox>
-                                <NotificationBox onClick={handleToggleNotifyBox}>
-                                    {isShowNotifyBox && (
-                                        <DropDown
-                                            state={isShowNotifyBox}
-                                            setState={setIsShowNotifyBox}
-                                            width="366px"
-                                            top="74px"
-                                            right="290px"
-                                        >
-                                            <NotificationBoxInner />
-                                        </DropDown>
-                                    )}
-                                </NotificationBox>
-                                <ButtonUser
-                                    type={2}
-                                    name="Lê Duy Tường"
-                                    avatar={avatar}
-                                    onClick={handleToggleButtonUser}
+                                <DropMenu parent={<MenuBox />} mt="12px" ml="-4px">
+                                    <MenuBoxInner />
+                                </DropMenu>
+                                <DropMenu
+                                    parent={<NotificationBox />}
+                                    mt="12px"
+                                    ml="-4px"
                                 >
-                                    {isShowButtonUser && (
-                                        <DropDown
-                                            state={isShowButtonUser}
-                                            setState={setIsShowButtonUser}
-                                            height="auto"
-                                            width="244px"
-                                            top="74px"
-                                            right="30px"
-                                        >
-                                            <ButtonUserInner />
-                                        </DropDown>
-                                    )}
-                                </ButtonUser>
+                                    <NotificationBoxInner />
+                                </DropMenu>
+                                <DropMenu
+                                    parent={
+                                        <ButtonUser
+                                            type={2}
+                                            name="Lê Duy Tường"
+                                            avatar={avatar}
+                                        />
+                                    }
+                                    mt="12px"
+                                    ml="-2px"
+                                >
+                                    <ButtonUserInner />
+                                </DropMenu>
                             </div>
                         </div>
                     </>

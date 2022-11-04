@@ -1,0 +1,33 @@
+@use "../../../../assets/styles/index.scss" as *;
+
+.button-user-inner {
+    &__wrapper {
+        padding: 4px 0;
+        color: #555555;
+        background-color: $color-white-1;
+        border-radius: $br-1;
+
+        .list-item {
+            .item {
+                box-sizing: content-box;
+                width: 206px;
+                padding: 7px 18px;
+                display: flex;
+                gap: 10px;
+                font-size: $fs-1;
+                list-style: none;
+                cursor: pointer;
+                transition: all 0.3s;
+                color: $text-color-5;
+
+                &:hover {
+                    background-color: $primary-color-rgb;
+                }
+
+                > svg {
+                    font-size: 18px;
+                }
+            }
+        }
+    }
+}

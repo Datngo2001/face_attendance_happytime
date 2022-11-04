@@ -1,0 +1,29 @@
+@use "../../../../assets/styles/index.scss" as *;
+
+.header-main {
+    &__wrapper {
+        .notification-box {
+            &__wrapper {
+                position: relative;
+                height: 48px;
+                width: 48px;
+                background-color: #f4f4f4;
+                border-radius: $br-1;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.3s;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: $primary-color-rgb;
+                }
+                > svg {
+                    color: $text-color-3;
+                    font-size: 26px;
+                    opacity: 0.7;
+                }
+            }
+        }
+    }
+}

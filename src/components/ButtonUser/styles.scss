@@ -3,7 +3,7 @@
 .button-user {
     &__wrapper {
         position: relative;
-        
+
         .button-user__content {
             display: flex;
             width: 220px;
@@ -38,6 +38,7 @@
                 > p {
                     font-size: $fs-0;
                     font-weight: $fw-1;
+                    text-align: left;
                 }
                 .name {
                     color: $text-color-1;
