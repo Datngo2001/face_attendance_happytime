@@ -14,16 +14,20 @@ import MultiSelect from "../../../../../../../components/MultiSelect";
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import ButtonCustom from "../../../../../../../components/ButtonCustom";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
+import HandymanRoundedIcon from "@mui/icons-material/HandymanRounded";
 import DriveFileMoveRoundedIcon from "@mui/icons-material/DriveFileMoveRounded";
 import { InnerButtonAdd } from "../../Components/InnerButtonAdd";
 import { Tooltip } from "@mui/material";
 import { SelectCustom } from "../../../../../../../components/SelectCustom";
 import InputCustom from "../../../../../../../components/InputCustom";
 import DropMenu from "../../../../../../../components/DropMenu";
+import { InnerButtonManipulation } from "./components";
+import { useSelector } from "react-redux";
 
 export const IndexControlPanel = () => {
     // STATE
     const { register, handleSubmit, watch } = useForm({});
+    const { listIdInvitation } = useSelector((state) => state.employees);
     // ******************************
 
     // HOOK EFFECT
@@ -35,7 +39,11 @@ export const IndexControlPanel = () => {
 
     // ARROW FUNCTION
     const handleExport = () => {};
+    const handleSendInvitation = () => {
+        console.log("List id", listIdInvitation);
+    };
     // ******************************
+
     return (
         <>
             <div className="index__control-panel">
@@ -136,6 +144,23 @@ export const IndexControlPanel = () => {
                         placeholder="Các trường bị thiếu"
                         options={listEmptyFields}
                     />
+                    {listIdInvitation.length > 0 && (
+                        <DropMenu
+                            parent={
+                                <ButtonCustom
+                                    className="button-manipulation"
+                                    width="110px"
+                                    height="39px"
+                                    icon={<HandymanRoundedIcon />}
+                                >
+                                    Thao tác
+                                </ButtonCustom>
+                            }
+                            mt="10px"
+                        >
+                            <InnerButtonManipulation onClick={handleSendInvitation} />
+                        </DropMenu>
+                    )}
                 </form>
             </div>
         </>

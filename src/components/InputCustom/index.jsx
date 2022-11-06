@@ -3,7 +3,7 @@ import "./styles.scss";
 const InputCustom = ({
     id,
     iconRight,
-    icon,
+    iconLeft,
     placeholder,
     width,
     height,
@@ -17,12 +17,12 @@ const InputCustom = ({
             <div
                 className={`input-custom__wrapper ${
                     message && message[id] ? "error" : ""
-                } ${className ? className : ""} ${!icon && "none-icon"} ${
-                    iconRight && "icon-right"
-                }`}
+                } ${className ? className : ""} ${
+                    !iconLeft && !iconRight && "none-icon"
+                } ${iconRight && "icon-right"} ${iconLeft && "icon-left"}`}
                 style={{ width: width ? width : "", height: height ? height : "" }}
             >
-                {icon}
+                {iconLeft}
                 <input id={id} placeholder={placeholder} type={type} {...register(id)} />
                 {iconRight}
                 {!(message === undefined) && (

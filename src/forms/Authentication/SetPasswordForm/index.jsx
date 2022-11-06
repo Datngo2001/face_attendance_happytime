@@ -37,7 +37,7 @@ const SetPasswordForm = () => {
                         className="input-item"
                         placeholder="Nhập mật khẩu"
                         type="password"
-                        icon={<LockIcon />}
+                        iconLeft={<LockIcon />}
                         register={register}
                         message={errors}
                     />
@@ -46,7 +46,7 @@ const SetPasswordForm = () => {
                         className="input-item"
                         placeholder="Xác nhận mật khẩu"
                         type="password"
-                        icon={<LockIcon />}
+                        iconLeft={<LockIcon />}
                         register={register}
                         message={errors}
                     />

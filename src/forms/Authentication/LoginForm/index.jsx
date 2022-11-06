@@ -51,7 +51,7 @@ const LoginForm = () => {
                     type="tel"
                     placeholder="Nhập số điện thoại *"
                     register={register}
-                    icon={<LocalPhoneRoundedIcon />}
+                    iconLeft={<LocalPhoneRoundedIcon />}
                     message={errors}
                 />
                 <InputCustom
@@ -60,7 +60,7 @@ const LoginForm = () => {
                     type="password"
                     placeholder="Nhập mật khẩu *"
                     register={register}
-                    icon={<LockIcon />}
+                    iconLeft={<LockIcon />}
                     message={errors}
                 />
                 <div className="tag-redirect text-right">

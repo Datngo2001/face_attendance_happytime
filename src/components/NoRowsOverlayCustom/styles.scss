@@ -1,0 +1,19 @@
+@use "../../assets/styles/index.scss" as *;
+
+.no-rows-overlay-custom {
+    &__wrapper {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .img {
+        }
+        .des {
+            font-size: 14px;
+            font-family: $f-family-1;
+            color: #00000040;
+        }
+    }
+}

@@ -31,9 +31,9 @@ const ForgotPasswordForm = () => {
                     id="phone"
                     className="input-phone"
                     type="tel"
-                    placeholder="Nhập số điện thoại *"
+                    placeholder="Nhập số điện thoại"
                     register={register}
-                    icon={<LocalPhoneRoundedIcon />}
+                    iconLeft={<LocalPhoneRoundedIcon />}
                     message={errors}
                 />
                 <div style={{ marginTop: "40px" }}>

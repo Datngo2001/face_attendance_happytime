@@ -26,7 +26,6 @@
                     color: $primary-color !important;
                     background-color: $primary-color-rgb !important;
                     border: 1px solid transparent;
-                    z-index: 1;
 
                     &:hover {
                         border: 1px solid $primary-color;
@@ -48,12 +47,49 @@
             column-gap: 10px;
 
             .input-item {
-                flex-basis: 21%;
+                flex-basis: 20%;
 
                 &.flex-basic-25 {
                     flex-basis: 25%;
                 }
             }
+
+            .button-manipulation {
+                color: $primary-color !important;
+                background-color: $primary-color-rgb !important;
+                border: 1px solid transparent;
+                margin-left: 4px;
+
+                &:hover {
+                    border: 1px solid $primary-color;
+                }
+            }
+        }
+    }
+}
+
+// InnerButtonManipulation
+.inner-button-manipulation {
+    &__wrapper {
+        display: flex;
+        align-items: center;
+        padding: 7px 12px;
+        color: $text-color-5;
+        gap: 4px;
+        cursor: pointer;
+        transition: opacity 0.3s;
+
+        &:hover {
+            opacity: 0.8;
+        }
+
+        .icon {
+            > svg {
+                font-size: 17px;
+            }
+        }
+        .text {
+            font-size: $fs-1;
         }
     }
 }

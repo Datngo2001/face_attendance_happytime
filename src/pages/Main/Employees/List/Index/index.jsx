@@ -17,10 +17,7 @@ const Index = () => {
         <>
             <div className="index__wrapper">
                 <IndexControlPanel />
-                <div className="index__table">
-                    <p className="quantity-employees">
-                        Có <span className="quantity">1</span> nhân viên trong danh sách
-                    </p>
+                <div className="index__table">                    
                     <TableDataEmployees />
                 </div>
             </div>

@@ -1,0 +1,14 @@
+@use "../../assets/styles/index.scss" as *;
+
+.loading-custom {
+    &__wrapper {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .gif {
+            width: 70px;
+        }
+    }
+}

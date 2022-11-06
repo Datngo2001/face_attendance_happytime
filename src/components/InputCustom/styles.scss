@@ -44,19 +44,22 @@
             position: absolute;
             font-size: 18px;
             top: 50%;
-            left: 246px;
+            right: 8px;
             transform: translateY(-50%);
             color: $text-color-2;
         }
     }
 
-    > svg {
-        position: absolute;
-        font-size: 18px;
-        top: 50%;
-        left: 8px;
-        transform: translateY(-50%);
-        color: $text-color-2;
+    &.icon-left {
+
+        > svg {
+            position: absolute;
+            font-size: 18px;
+            top: 50%;
+            left: 8px;
+            transform: translateY(-50%);
+            color: $text-color-2;
+        }
     }
 
     ::placeholder {

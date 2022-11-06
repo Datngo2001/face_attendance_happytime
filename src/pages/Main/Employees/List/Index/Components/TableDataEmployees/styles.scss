@@ -6,12 +6,16 @@
     .MuiDataGrid-main {
         .MuiDataGrid-columnHeaders {
             border-radius: 0;
+            border-top: $bt-1;
+
             .MuiDataGrid-columnHeadersInner {
                 border-top: $bt-1;
+                border-right: $bt-1;
                 background-color: $primary-bg-color;
                 color: $text-color-1;
                 font-size: $fs-1;
                 font-family: $f-family-1;
+                padding-right: 33px;
 
                 .MuiDataGrid-columnHeader {
                     border-top: $bt-1 !important;
@@ -24,6 +28,7 @@
                     &.MuiDataGrid-columnHeaderCheckbox {
                         width: 33px !important;
                         min-width: unset !important;
+                        border-left: 0;
                     }
 
                     &TitleContainerContent {
@@ -60,6 +65,7 @@
         }
 
         .MuiDataGrid-virtualScroller {
+            
             .MuiDataGrid-virtualScrollerContent {
                 .MuiDataGrid-virtualScrollerRenderZone {
                     .MuiDataGrid-row {
@@ -114,6 +120,7 @@
 
     .MuiDataGrid-footerContainer {
         justify-content: right;
+        padding: 16px 24px;
         .MuiDataGrid-selectedRowCount {
             display: none !important;
         }
@@ -137,7 +144,6 @@
         font-weight: 400;
     }
 }
-
 
 // StatusUsingHappyTime Component
 .status-using-time__wrapper {

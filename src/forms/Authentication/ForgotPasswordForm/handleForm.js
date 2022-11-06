@@ -6,7 +6,7 @@ const REGEX_ONLY_NUMBER = /^\d+$/;
 export const schema = yup.object({
     phone: yup
         .string()
-        .required("Trường Nhập số điện thoại không được bỏ trống")
+        .required("Trường Số điện thoại không được bỏ trống")
         .matches(REGEX_ONLY_NUMBER, "Thông tin sai định dạng")
         .matches(REGEX_PHONE_NUMBER, "Thông tin sai định dạng"),
 });

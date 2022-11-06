@@ -74,7 +74,7 @@ const RegisterForm = () => {
                     type="tel"
                     placeholder="Nhập số điện thoại *"
                     register={register}
-                    icon={<LocalPhoneRoundedIcon />}
+                    iconLeft={<LocalPhoneRoundedIcon />}
                     message={errors}
                 />
                 <InputCustom
@@ -83,7 +83,7 @@ const RegisterForm = () => {
                     type="text"
                     placeholder="Nhập họ và tên *"
                     register={register}
-                    icon={<AccountCircleSharpIcon />}
+                    iconLeft={<AccountCircleSharpIcon />}
                     message={errors}
                 />
                 <InputCustom
@@ -92,7 +92,7 @@ const RegisterForm = () => {
                     type="text"
                     placeholder="Nhập tên công ty *"
                     register={register}
-                    icon={<ApartmentIcon />}
+                    iconLeft={<ApartmentIcon />}
                     message={errors}
                 />
                 <SelectCustom
@@ -111,7 +111,7 @@ const RegisterForm = () => {
                     type="email"
                     placeholder="Nhập email *"
                     register={register}
-                    icon={<EmailIcon />}
+                    iconLeft={<EmailIcon />}
                     message={errors}
                 />
                 <SelectCustom
@@ -130,7 +130,7 @@ const RegisterForm = () => {
                     type="text"
                     placeholder="Nhập mã giới thiệu"
                     register={register}
-                    icon={<KeyIcon />}
+                    iconLeft={<KeyIcon />}
                     message={errors}
                 />
                 <div className="policies">
