@@ -1,4 +1,3 @@
-import { Box } from "@mui/system";
 import "./styles.scss";
 import imgNoRows from "../../assets/images/NoRows.png";
 

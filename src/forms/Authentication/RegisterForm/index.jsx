@@ -14,7 +14,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { listPositions, listScales, schema } from "./handleForm";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { SelectCustom } from "../../../components/SelectCustom";
+import { focusToElement } from "../../../utils";
+import SelectCustom from "../../../components/SelectCustom";
 
 const RegisterForm = () => {
     // VARIABLES
@@ -39,6 +40,8 @@ const RegisterForm = () => {
                 document.querySelector(".btn-register").click();
             }
         });
+
+        focusToElement("phone");
 
         // CLEAN FUNCTION
         return () => {

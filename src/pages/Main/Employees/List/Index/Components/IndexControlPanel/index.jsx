@@ -18,11 +18,12 @@ import HandymanRoundedIcon from "@mui/icons-material/HandymanRounded";
 import DriveFileMoveRoundedIcon from "@mui/icons-material/DriveFileMoveRounded";
 import { InnerButtonAdd } from "../../Components/InnerButtonAdd";
 import { Tooltip } from "@mui/material";
-import { SelectCustom } from "../../../../../../../components/SelectCustom";
 import InputCustom from "../../../../../../../components/InputCustom";
 import DropMenu from "../../../../../../../components/DropMenu";
 import { InnerButtonManipulation } from "./components";
 import { useSelector } from "react-redux";
+import SelectCustom from "../../../../../../../components/SelectCustom";
+import { toastify } from "../../../../../../../utils";
 
 export const IndexControlPanel = () => {
     // STATE
@@ -41,9 +42,10 @@ export const IndexControlPanel = () => {
     const handleExport = () => {};
     const handleSendInvitation = () => {
         console.log("List id", listIdInvitation);
+        toastify({mess: "Gửi lời mời thành công", type: "success"})
     };
     // ******************************
-
+    
     return (
         <>
             <div className="index__control-panel">

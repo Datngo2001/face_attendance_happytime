@@ -1,0 +1,23 @@
+@use "../../assets/styles/index.scss" as *;
+
+.button-side-left-layout {
+    &__wrapper {
+        height: auto;
+        width: 100%;
+        display: flex;
+        gap: 10px;
+
+        .outlet-layout__content {
+            flex: 1;
+            background-color: $color-white-1;
+            border-radius: $br-1;
+        }
+    }
+
+    &__list-btn-menu {
+        display: flex;
+        flex-direction: column;
+        width: auto;
+        gap: 10px;
+    }
+}

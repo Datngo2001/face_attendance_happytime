@@ -2,22 +2,5 @@
 
 .employees-layout {
     &__wrapper {
-        height: auto;
-        width: 100%;
-        display: flex;
-        gap: 10px;
-    }
-
-    &__list-btn-menu {
-        display: flex;
-        flex-direction: column;
-        width: auto;
-        gap: 10px;
-    }
-
-    &__content {
-        flex: 1;
-        background-color: $color-white-1;
-        border-radius: $br-1;
     }
 }

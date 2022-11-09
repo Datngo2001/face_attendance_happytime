@@ -9,8 +9,10 @@ import Footer from "../../../components/Footer";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "./handleForm";
 import { useEffect } from "react";
+import { focusToElement } from "../../../utils";
 
 const LoginForm = () => {
+    // STATE
     const {
         register,
         handleSubmit,
@@ -23,7 +25,12 @@ const LoginForm = () => {
 
         navigate("/workspaces");
     };
+    // ******************************
 
+    // HOOK REF
+    // ****************************
+
+    // HOOK EFFECT
     useEffect(() => {
         const formLogin = document.querySelector(".login-form__wrapper");
         formLogin.addEventListener("keypress", (e) => {
@@ -31,6 +38,8 @@ const LoginForm = () => {
                 document.querySelector(".btn-login").click();
             }
         });
+        
+        focusToElement("phone");
 
         // CLEAN FUNCTION
         return () => {
@@ -41,6 +50,8 @@ const LoginForm = () => {
             });
         };
     }, []);
+    // ****************************
+
     return (
         <>
             <form action="" className="login-form__wrapper">

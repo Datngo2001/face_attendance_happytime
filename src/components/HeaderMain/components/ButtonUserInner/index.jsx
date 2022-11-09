@@ -9,11 +9,11 @@ const ButtonUserInner = () => {
         <>
             <div className="button-user-inner__wrapper">
                 <ul className="list-item">
-                    <Link className="item" to="">
+                    <Link className="item" to="/app/profile/infor">
                         <DriveFileRenameOutlineRoundedIcon />
                         Cập nhật thông tin cá nhân
                     </Link>
-                    <Link className="item" to="">
+                    <Link className="item" to="/app/workspace-settings">
                         <ApartmentRoundedIcon />
                         Cài đặt workspace
                     </Link>

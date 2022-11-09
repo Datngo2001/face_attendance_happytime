@@ -13,6 +13,7 @@ const Index = () => {
 
     // ARROW FUNCTION
     // ******************************
+
     return (
         <>
             <div className="index__wrapper">

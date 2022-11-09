@@ -7,8 +7,11 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import "./styles.scss";
 import ButtonCustom from "../../../components/ButtonCustom";
 import LockIcon from "@mui/icons-material/Lock";
+import { useEffect } from "react";
+import { focusToElement } from "../../../utils";
 
 const SetPasswordForm = () => {
+    // STATE
     const {
         register,
         handleSubmit,
@@ -16,10 +19,19 @@ const SetPasswordForm = () => {
     } = useForm({
         resolver: yupResolver(schema),
     });
+    // ******************************
 
+    // HOOK EFFECT
+    useEffect(() => {
+        focusToElement("password");
+    }, []);
+    // ****************************
+
+    // ARROW FUNCTIONS
     const onSubmit = (data) => {
         console.log("data", data);
     };
+    // ****************************
 
     return (
         <>

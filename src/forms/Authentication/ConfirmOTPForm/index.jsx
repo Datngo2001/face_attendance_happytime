@@ -6,10 +6,12 @@ import ButtonCustom from "../../../components/ButtonCustom";
 import { schema } from "./handleForm";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { tabTitle } from "../../../utils";
+import { focusToElement, tabTitle } from "../../../utils";
+import { useEffect } from "react";
 
 const ConfirmOtp = () => {
     tabTitle("Xác thực");
+    // STATE
     const navigate = useNavigate();
     const {
         handleSubmit,
@@ -19,12 +21,22 @@ const ConfirmOtp = () => {
         mode: "onChange",
         resolver: yupResolver(schema),
     });
+    // ******************************
 
+    // HOOK EFFECT
+    useEffect(() => {
+        focusToElement("1");
+    }, []);
+    // ****************************
+
+    // ARROW FUNCTIONS
     const onSubmit = (data) => {
         console.log("data", data);
 
         navigate("/auth/set-password", { replace: true });
     };
+    // ****************************
+
     return (
         <>
             <form action="" className="confirm-otp-form__wrapper">

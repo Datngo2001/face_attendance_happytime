@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import "./styles.scss";
 
-const ButtonMenu = ({ title, icon, path }) => {
+const ButtonSideLeft = ({ title, icon, path }) => {
     // VARIABLES
     const location = useLocation();
     // ******************************
@@ -17,7 +17,7 @@ const ButtonMenu = ({ title, icon, path }) => {
         <>
             <Link
                 to={path}
-                className={`button-menu__wrapper ${
+                className={`button-side-left__wrapper ${
                     location.pathname.includes(path) ? "active" : ""
                 }`}
             >
@@ -28,4 +28,4 @@ const ButtonMenu = ({ title, icon, path }) => {
     );
 };
 
-export default ButtonMenu;
+export default ButtonSideLeft;

@@ -3,9 +3,9 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import "./styles.scss";
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 
-export const SelectCustom = ({
+const SelectCustom = ({
     id,
     icon,
     width,
@@ -93,3 +93,5 @@ export const SelectCustom = ({
         </>
     );
 };
+
+export default memo(SelectCustom);

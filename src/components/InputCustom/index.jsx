@@ -1,3 +1,4 @@
+import { memo } from "react";
 import "./styles.scss";
 
 const InputCustom = ({
@@ -33,4 +34,4 @@ const InputCustom = ({
     );
 };
 
-export default InputCustom;
+export default memo(InputCustom);

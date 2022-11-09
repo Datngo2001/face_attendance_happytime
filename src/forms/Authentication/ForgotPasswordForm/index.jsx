@@ -8,17 +8,30 @@ import Footer from "../../../components/Footer";
 import ButtonCustom from "../../../components/ButtonCustom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "./handleForm";
+import { useEffect } from "react";
+import { focusToElement } from "../../../utils";
 
 const ForgotPasswordForm = () => {
+    // STATE
     const {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm({resolver : yupResolver(schema)});
+    } = useForm({ resolver: yupResolver(schema) });
+    // ******************************
 
+    // HOOK EFFECT
+    useEffect(() => {
+        focusToElement("phone");
+    }, []);
+    // ****************************
+
+    // ARROW FUNCTIONS
     const onSubmit = (data) => {
         console.log("data", data);
     };
+    // ****************************
+
     return (
         <>
             <form action="" className="forgot-password-form__wrapper">
