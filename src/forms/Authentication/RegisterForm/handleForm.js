@@ -1,7 +1,5 @@
 import * as yup from "yup";
-
-const REGEX_PHONE_NUMBER = /(84|0[3|5|7|8|9])+([0-9]{8})\b/g;
-const REGEX_ONLY_NUMBER = /^\d+$/;
+import { REGEX_ONLY_NUMBER, REGEX_PHONE_NUMBER } from "../../regexConst";
 
 const checkSelectNull = (value) => {
     return value === "null" ? false : true;
@@ -24,7 +22,7 @@ export const schema = yup.object({
         .string()
         .email("Thông tin sai định dạng")
         .max(100)
-        .required("Trường email không được bỏ trống"),
+        .required("Trường Email không được bỏ trống"),
     scale: yup
         .string()
         .test("Check Select", "Trường Quy mô công ty không được bỏ trống", (value) => {

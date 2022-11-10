@@ -6,11 +6,10 @@ import ButtonCustom from "../../../components/ButtonCustom";
 import { schema } from "./handleForm";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { focusToElement, tabTitle } from "../../../utils";
+import { focusToElement } from "../../../utils";
 import { useEffect } from "react";
 
-const ConfirmOtp = () => {
-    tabTitle("Xác thực");
+const ConfirmOTPForm = () => {
     // STATE
     const navigate = useNavigate();
     const {
@@ -76,4 +75,4 @@ const ConfirmOtp = () => {
     );
 };
 
-export default ConfirmOtp;
+export default ConfirmOTPForm;

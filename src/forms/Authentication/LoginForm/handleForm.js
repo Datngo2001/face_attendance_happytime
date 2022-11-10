@@ -1,7 +1,5 @@
 import * as yup from "yup";
-
-const REGEX_PHONE_NUMBER = /(84|0[3|5|7|8|9])+([0-9]{8})\b/g;
-const REGEX_ONLY_NUMBER = /^\d+$/;
+import { REGEX_ONLY_NUMBER, REGEX_PHONE_NUMBER } from "../../regexConst";
 
 export const schema = yup.object({
     phone: yup

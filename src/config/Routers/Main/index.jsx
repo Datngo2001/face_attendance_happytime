@@ -23,8 +23,8 @@ const mainRouters = [
     {
         path: "profile",
         component: <ProfileLayout />,
-        listChildrenRoutes: profileRouters
-    }
+        listChildrenRoutes: profileRouters,
+    },
 ];
 
 export default mainRouters;

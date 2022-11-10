@@ -1,12 +1,26 @@
-import { Outlet } from "react-router-dom";
+import { useEffect } from "react";
+import { tabTitle, titleHeaderMain } from "../../../utils";
+import ContentLayout from "../../ContentLayout";
+import { dataListButtonSlideLeft } from "./dataListButtonSideLeft";
 import "./styles.scss";
 
 const ProfileLayout = () => {
+    // GLOBAL FUNCTION
+    tabTitle("Quản lý tài khoản");
+    // *****************************
+
+    // HOOK EFFECT
+    useEffect(() => {
+        titleHeaderMain("Quản lý tài khoản");
+    }, []);
+    // ******************************
+
+    // STATE
+    // ******************************
+    
     return (
         <>
-            <div className="profile-layout__wrapper">
-                <Outlet />
-            </div>
+            <ContentLayout listDataButton={dataListButtonSlideLeft} />
         </>
     );
 };

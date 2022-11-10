@@ -1,4 +1,3 @@
-import { memo } from "react";
 import "./styles.scss";
 
 const InputCustom = ({
@@ -11,7 +10,7 @@ const InputCustom = ({
     register,
     className,
     type,
-    message = undefined,
+    message,
 }) => {
     return (
         <>
@@ -26,12 +25,10 @@ const InputCustom = ({
                 {iconLeft}
                 <input id={id} placeholder={placeholder} type={type} {...register(id)} />
                 {iconRight}
-                {!(message === undefined) && (
-                    <p className="error-message">{message[id]?.message}</p>
-                )}
+                {message && <p className="error-message">{message[id]?.message}</p>}
             </div>
         </>
     );
 };
 
-export default memo(InputCustom);
+export default InputCustom;

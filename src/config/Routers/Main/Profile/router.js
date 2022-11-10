@@ -2,7 +2,7 @@ import { ChangePassword, Info } from "../../../../pages/Main/Profile";
 
 const profileRouters = [
     {
-        path: "infor",
+        path: "info",
         component: <Info />,
     },
     {

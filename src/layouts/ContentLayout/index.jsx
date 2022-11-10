@@ -2,11 +2,11 @@ import "./styles.scss";
 import { Outlet } from "react-router-dom";
 import ButtonSideLeft from "../../components/ButtonSideLeft";
 
-const ButtonSideLeftLayout = ({ listDataButton = [] }) => {
+const ContentLayout = ({ listDataButton = [] }) => {
     return (
         <>
-            <div className="button-side-left-layout__wrapper">
-                <div className="button-side-left-layout__list-btn-menu">
+            <div className="content-layout__wrapper">
+                <div className="content-layout__list-btn-menu">
                     {listDataButton.map((data) => (
                         <ButtonSideLeft
                             key={data.path}
@@ -16,11 +16,11 @@ const ButtonSideLeftLayout = ({ listDataButton = [] }) => {
                         />
                     ))}
                 </div>
-                <div className="outlet-layout__content">
+                <div className="content-layout__outlet">
                     <Outlet />
                 </div>
             </div>
         </>
     );
 };
-export default ButtonSideLeftLayout;
+export default ContentLayout;

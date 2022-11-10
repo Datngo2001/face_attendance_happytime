@@ -9,7 +9,7 @@ const ButtonUserInner = () => {
         <>
             <div className="button-user-inner__wrapper">
                 <ul className="list-item">
-                    <Link className="item" to="/app/profile/infor">
+                    <Link className="item" to="/app/profile/info">
                         <DriveFileRenameOutlineRoundedIcon />
                         Cập nhật thông tin cá nhân
                     </Link>

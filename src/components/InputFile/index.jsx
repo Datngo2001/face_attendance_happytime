@@ -2,10 +2,18 @@ import "./styles.scss";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import ApartmentIcon from "@mui/icons-material/Apartment";
 import PersonIcon from "@mui/icons-material/Person";
-import ButtonCustom from "../ButtonCustom";
 import { useState } from "react";
 
-const InputFile = ({ id, className, type, format, register, setValue, title }) => {
+const InputFile = ({
+    id,
+    className,
+    type,
+    format,
+    register,
+    setValue,
+    title,
+    sizePreImg,
+}) => {
     // STATE
     const [imgSrc, setImgSrc] = useState("");
     const [fileName, setFileName] = useState("");
@@ -33,13 +41,26 @@ const InputFile = ({ id, className, type, format, register, setValue, title }) =
     return (
         <>
             <div className={`input-file__wrapper ${className ? className : ""}`}>
-                <div className="input-file__image">
+                <div
+                    className="input-file__image"
+                    style={{
+                        minHeight: sizePreImg,
+                        width: sizePreImg,
+                        height: sizePreImg,
+                    }}
+                >
                     {type === 1 ? (
                         imgSrc ? (
-                            <img src={imgSrc} alt="" className="avatarImg" />
+                            <img
+                                src={imgSrc}
+                                alt=""
+                                className="input-file__image-preview"
+                            />
                         ) : (
                             <ApartmentIcon />
                         )
+                    ) : imgSrc ? (
+                        <img src={imgSrc} alt="" className="input-file__image-preview" />
                     ) : (
                         <PersonIcon />
                     )}
@@ -50,7 +71,7 @@ const InputFile = ({ id, className, type, format, register, setValue, title }) =
                     </label>
                 ) : (
                     <label htmlFor={id} className="btn">
-                        <ButtonCustom>{title}</ButtonCustom>
+                        {title}
                     </label>
                 )}
                 <input

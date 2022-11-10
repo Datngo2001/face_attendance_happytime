@@ -54,7 +54,7 @@ const LoginForm = () => {
 
     return (
         <>
-            <form action="" className="login-form__wrapper">
+            <div action="" className="login-form__wrapper">
                 <h2 className="login-form__title">Đăng nhập</h2>
                 <InputCustom
                     id="phone"
@@ -95,7 +95,7 @@ const LoginForm = () => {
                         Đăng ký ngay?
                     </Link>
                 </div>
-            </form>
+            </div>
             <Footer type="2" />
         </>
     );

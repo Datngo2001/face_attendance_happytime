@@ -1,13 +1,15 @@
-import ConfirmOtp from "../../../forms/Authentication/ConfirmOTPForm";
-import LoginForm from "../../../forms/Authentication/LoginForm";
-import ForgotPassword from "../../../pages/Authentication/ForgotPassword";
-import Register from "../../../pages/Authentication/Register";
-import SetPassword from "../../../pages/Authentication/SetPassword";
+import {
+    ConfirmOTP,
+    ForgotPassword,
+    Login,
+    Register,
+    SetPassword,
+} from "../../../pages/Authentication";
 
 const authenticationRouters = [
     {
         path: "login",
-        component: <LoginForm />,
+        component: <Login />,
     },
     {
         path: "register",
@@ -19,7 +21,7 @@ const authenticationRouters = [
     },
     {
         path: "confirm-otp",
-        component: <ConfirmOtp />,
+        component: <ConfirmOTP />,
     },
     {
         path: "set-password",

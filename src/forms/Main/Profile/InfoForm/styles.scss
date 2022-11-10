@@ -1,0 +1,71 @@
+@use "../../../../assets/styles/index.scss" as *;
+
+.info-form {
+    &__wrapper {
+        padding: 15px 30px;
+    }
+
+    &__title {
+        font-size: $fs-2;
+        font-weight: $fw-1;
+        text-transform: uppercase;
+        margin-bottom: 15px;
+    }
+
+    &__body {
+        display: flex;
+        padding-bottom: 15px;
+
+        .avatar {
+            width: 240px;
+            display: flex;
+            justify-content: left;
+
+            .avatar-input {
+                width: 140px;
+            }
+        }
+
+        .info {
+            flex: 1;
+            padding: 0 25px;
+
+            .field-control {
+                margin-bottom: 20px;
+
+                .label {
+                    font-size: $fs-1;
+                    color: $text-color-3;
+                    margin-bottom: 14px;
+
+                    .requirement {
+                        color: red;
+                    }
+                }
+                .number-phone {
+                    color: $text-color-1;
+                    font-weight: $fw-1;
+                    font-size: $fs-1;
+                    display: flex;
+                    align-items: center;
+                    gap: 4px;
+
+                    .icon {
+                        > svg {
+                            cursor: pointer;
+                            color: $primary-color;
+                            font-size: 16px;
+                            height: 16px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &__action {
+        padding: 15px 15px 0 15px;
+        display: flex;
+        justify-content: right;
+    }
+}

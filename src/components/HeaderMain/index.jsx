@@ -59,7 +59,9 @@ const HeaderMain = ({ isActive, state, setState }) => {
                             </Link>
                         </div>
                         <div className="header-main__right">
-                            <h2 className="title">Quản lý nhân sự</h2>
+                            <h2 id="titleHeaderMain" className="title">
+                                Chưa có tiêu đề
+                            </h2>
                             <div>
                                 <ButtonUser type={1} name="Coffee Store" />
                                 <DropMenu parent={<MenuBox />} mt="12px" ml="-4px">

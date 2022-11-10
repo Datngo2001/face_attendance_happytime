@@ -1,7 +1,8 @@
 import "./styles.scss";
-import { tabTitle } from "../../../utils";
-import ButtonSideLeftLayout from "../../ButtonSideLeftLayout";
+import { tabTitle, titleHeaderMain } from "../../../utils";
 import { dataListButtonSlideLeft } from "./dataListButtonSideLeft";
+import ContentLayout from "../../ContentLayout";
+import { useEffect } from "react";
 
 const EmployeesLayout = () => {
     // GLOBAL FUNCTION
@@ -11,9 +12,15 @@ const EmployeesLayout = () => {
     // STATE
     // ******************************
 
+    // HOOK EFFECT
+    useEffect(() => {
+        titleHeaderMain("Quản lý nhân sự");
+    }, []);
+    // ******************************
+
     return (
         <>
-            <ButtonSideLeftLayout listDataButton={dataListButtonSlideLeft} />
+            <ContentLayout listDataButton={dataListButtonSlideLeft} />
         </>
     );
 };

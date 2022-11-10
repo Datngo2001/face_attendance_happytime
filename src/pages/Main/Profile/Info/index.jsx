@@ -1,9 +1,13 @@
+import { InfoForm } from "../../../../forms/Main/Profile";
 import "./styles.scss";
 
 const Info = () => {
+
     return (
         <>
-            <div className="info__wrapper">Info</div>
+            <div className="info__wrapper">
+                <InfoForm />
+            </div>
         </>
     );
 };
