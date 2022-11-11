@@ -1,6 +1,7 @@
 import { Divider, Tooltip } from "@mui/material";
 import ErrorOutlineOutlinedIcon from "@mui/icons-material/ErrorOutlineOutlined";
 import "./styles.scss";
+import "../index.scss";
 import ButtonCustom from "../../../../components/ButtonCustom";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
@@ -31,8 +32,8 @@ const InfoForm = () => {
 
     return (
         <>
-            <div className="info-form__wrapper">
-                <p className="info-form__title">Thông tin cá nhân</p>
+            <div className="info-form__wrapper profile-forms__wrapper">
+                <p className="profile-forms__title">Thông tin cá nhân</p>
                 <div className="info-form__body">
                     <div className="avatar">
                         <InputFile
@@ -64,9 +65,11 @@ const InfoForm = () => {
                             </p>
                         </div>
                         <div className="field-control">
-                            <p className="label">
-                                Họ và tên <span className="requirement">*</span>
-                            </p>
+                            <div className="label">
+                                <label htmlFor="name">
+                                    Họ và tên <span className="requirement">*</span>
+                                </label>
+                            </div>
                             <InputCustom
                                 id="name"
                                 width="300px"
@@ -77,9 +80,11 @@ const InfoForm = () => {
                             />
                         </div>
                         <div className="field-control">
-                            <p className="label">
-                                Email <span className="requirement">*</span>
-                            </p>
+                            <div className="label">
+                                <label htmlFor="email">
+                                    Email <span className="requirement">*</span>
+                                </label>
+                            </div>
                             <InputCustom
                                 id="email"
                                 width="300px"
@@ -90,16 +95,16 @@ const InfoForm = () => {
                         </div>
                     </div>
                 </div>
-                <Divider />
-                <div className="info-form__action">
-                    <ButtonCustom
-                        height="32px"
-                        width="57px"
-                        onClick={handleSubmit(handleOnSubmit)}
-                    >
-                        Lưu
-                    </ButtonCustom>
-                </div>
+            </div>
+            <Divider />
+            <div className="profile-forms__action">
+                <ButtonCustom
+                    height="32px"
+                    width="57px"
+                    onClick={handleSubmit(handleOnSubmit)}
+                >
+                    Lưu
+                </ButtonCustom>
             </div>
         </>
     );

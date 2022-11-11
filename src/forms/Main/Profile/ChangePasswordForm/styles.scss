@@ -1,0 +1,39 @@
+@use "../../../../assets/styles/index.scss" as *;
+
+.change-password-form {
+    &__wrapper {
+    }
+
+    &__body {
+        .field-control {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+
+            > .label {
+                margin-bottom: 0;
+                width: 243px;
+            }
+        }
+
+        .checbox-control {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+
+            .label {
+                color: $text-color-1;
+                margin-bottom: 0;
+            }
+
+            #logoutFromAllOfDevices_checkbox {
+                height: 15px;
+                width: 15px;
+
+                &:checked {
+                    accent-color: $primary-color;
+                }
+            }
+        }
+    }
+}

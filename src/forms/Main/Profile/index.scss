@@ -1,0 +1,30 @@
+@use "../../../assets/styles/index.scss" as *;
+
+.profile-forms {
+    &__wrapper {
+        padding: 15px 30px;
+
+        .label {
+            font-size: $fs-1;
+            color: $text-color-3;
+            margin-bottom: 14px;
+            
+            .requirement {
+                color: red;
+            }
+        }
+    }
+
+    &__title {
+        font-size: $fs-2;
+        font-weight: $fw-1;
+        text-transform: uppercase;
+        margin-bottom: 15px;
+    }
+
+    &__action {
+        padding: 25px 30px 15px;
+        display: flex;
+        justify-content: right;
+    }
+}
