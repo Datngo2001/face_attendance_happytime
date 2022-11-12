@@ -1,0 +1,72 @@
+@use "../../../assets/styles/index.scss" as *;
+
+.workspace-settings-form {
+    &__wrapper {
+        width: 500px;
+        height: auto;
+        margin: 16px auto 0px;
+        padding: 20px 32px 32px 32px;
+        background-color: $color-white-1;
+        border-radius: $br-1;
+    }
+
+    &__title {
+        color: $text-color-1;
+        font-size: $fs-3;
+        text-transform: uppercase;
+        font-weight: $fw-1;
+        margin-bottom: 20px;
+    }
+
+    &__body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .workspace-img {
+            margin-bottom: 20px;
+        }
+
+        .field-control {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 20px;
+
+            .label {
+                color: $text-color-3;
+                font-size: $fs-1;
+
+                .requirement {
+                    color: red;
+                }
+            }
+
+            .switch-control {
+                width: 272px;
+                display: flex;
+                align-items: center;
+                justify-content: left;
+                gap: 10px;
+
+                .status-des {
+                    font-size: $fs-1;
+
+                    &.actived {
+                        color: $primary-color;
+                    }
+
+                    &.disabled {
+                    }
+                }
+            }
+        }
+    }
+
+    &__action {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+        margin-top: 20px;
+    }
+}

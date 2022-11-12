@@ -17,7 +17,7 @@ const style = {
     p: 4,
 };
 
-export default function ModalCustom({ title, children, open, setOpen, handleClose }) {
+const ModalCustom = ({ title, children, open, setOpen, handleClose }) => {
     // STATE
     // *******************************
 
@@ -51,4 +51,6 @@ export default function ModalCustom({ title, children, open, setOpen, handleClos
             </Modal>
         </div>
     );
-}
+};
+
+export default ModalCustom;

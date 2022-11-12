@@ -3,6 +3,7 @@ import { Divider } from "@mui/material";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import ButtonCustom from "../../../../components/ButtonCustom";
+import CheckboxCustom from "../../../../components/CheckboxCustom";
 import InputCustom from "../../../../components/InputCustom";
 import { schema } from "./handleForm";
 import "./styles.scss";
@@ -78,13 +79,9 @@ const ChangePasswordForm = () => {
                         />
                     </div>
                     <div className="checbox-control">
-                        <input
-                            id="logoutFromAllOfDevices_checkbox"
-                            type="checkbox"
-                            {...register("logoutFromAllOfDevices_checkbox")}
-                        />
+                        <CheckboxCustom id="logoutFromAllOfDevices" register={register} />
                         <div className="label">
-                            <label htmlFor="logoutFromAllOfDevices_checkbox">
+                            <label htmlFor="logoutFromAllOfDevices">
                                 Đăng xuất khỏi tất cả các thiết bị
                             </label>
                         </div>

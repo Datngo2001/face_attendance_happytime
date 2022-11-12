@@ -25,15 +25,6 @@
                 color: $text-color-1;
                 margin-bottom: 0;
             }
-
-            #logoutFromAllOfDevices_checkbox {
-                height: 15px;
-                width: 15px;
-
-                &:checked {
-                    accent-color: $primary-color;
-                }
-            }
         }
     }
 }

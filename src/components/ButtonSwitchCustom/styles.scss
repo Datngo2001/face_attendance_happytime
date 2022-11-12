@@ -1,0 +1,58 @@
+@use "../../assets/styles/index.scss" as *;
+
+.button-switch-custom {
+    &__wrapper {
+        &.MuiSwitch-root {
+            width: 28px;
+            height: 16px;
+            padding: 0;
+
+            .MuiSwitch-edgeStart {
+                background-color: red;
+            }
+            .MuiButtonBase-root {
+                top: -8px;
+                left: -7px;
+
+                &.Mui-checked {
+                    left: -15px;
+
+                    .MuiSwitch-thumb {
+                        background-color: $color-white-1;
+                    }
+
+                    & + .MuiSwitch-track {
+                        opacity: 1;
+                        background-color: $primary-color;
+                        background-image: unset;
+                    }
+                }
+
+                &:hover {
+                    background-color: unset;
+                }
+
+                .PrivateSwitchBase-input {
+                }
+
+                .MuiSwitch-thumb {
+                    height: 12px !important;
+                    width: 12px !important;
+                }
+                .MuiTouchRipple-root {
+                }
+            }
+            .MuiSwitch-track {
+                height: 16px;
+                width: 28px;
+                background-image: linear-gradient(
+                        90deg,
+                        rgba(0, 0, 0, 0.25),
+                        rgba(0, 0, 0, 0.25)
+                    ),
+                    linear-gradient(90deg, #fff, #fff);
+                opacity: 1;
+            }
+        }
+    }
+}

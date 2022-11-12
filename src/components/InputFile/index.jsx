@@ -49,18 +49,10 @@ const InputFile = ({
                         height: sizePreImg,
                     }}
                 >
-                    {type === 1 ? (
-                        imgSrc ? (
-                            <img
-                                src={imgSrc}
-                                alt=""
-                                className="input-file__image-preview"
-                            />
-                        ) : (
-                            <ApartmentIcon />
-                        )
-                    ) : imgSrc ? (
+                    {imgSrc ? (
                         <img src={imgSrc} alt="" className="input-file__image-preview" />
+                    ) : type === 1 ? (
+                        <ApartmentIcon />
                     ) : (
                         <PersonIcon />
                     )}
