@@ -43,6 +43,7 @@
             }
 
             .switch-control {
+                height: 15px;
                 width: 272px;
                 display: flex;
                 align-items: center;
@@ -57,6 +58,7 @@
                     }
 
                     &.disabled {
+                        color: $text-color-3;
                     }
                 }
             }
@@ -68,5 +70,14 @@
         justify-content: center;
         margin-bottom: 20px;
         margin-top: 20px;
+    }
+}
+
+// Style for components
+.active-status-content {
+    &__wrapper {
+        .content {
+            text-align: justify;
+        }
     }
 }

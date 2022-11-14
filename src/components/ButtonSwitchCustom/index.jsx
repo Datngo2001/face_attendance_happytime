@@ -1,9 +1,9 @@
 import { Switch } from "@mui/material";
 import "./styles.scss";
 
-const ButtonSwitchCustom = ({ id, checked, setChecked }) => {
+const ButtonSwitchCustom = ({ id, checked }) => {
     const handleOnChange = (e) => {
-        setChecked(e.target.checked);
+        // setChecked(e.target.checked);
     };
 
     return (

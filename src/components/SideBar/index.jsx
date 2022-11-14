@@ -1,10 +1,9 @@
-import { ConfirmLogout, NavigatorItem } from "./components";
+import { LogoutModalContent, NavigatorItem } from "./components";
 import { listNavigatorOptions } from "./data";
 import ContentCopyRoundedIcon from "@mui/icons-material/ContentCopyRounded";
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 import "./styles.scss";
 import ModalCustom from "../ModalCustom";
-import { useState } from "react";
 import { useLocation } from "react-router-dom";
 
 const Sidebar = ({ state }) => {
@@ -13,15 +12,11 @@ const Sidebar = ({ state }) => {
     // ******************************
 
     // STATE
-    const [openModal, setOpenModal] = useState(false);
     // ********************************
 
     // ARROW FUNCTION
-    const handleShowModal = () => {
-        setOpenModal(true);
-    };
-    const handleCloseModal = () => {
-        setOpenModal(false);
+    const handleLogout = () => {
+        console.log("logout");
     };
     // ********************************
     return (
@@ -43,7 +38,7 @@ const Sidebar = ({ state }) => {
                     })}
                 </div>
                 <div className="sidebar-main__actions">
-                    <span className="btn-logout" onClick={handleShowModal}>
+                    <span id="btnLogout" className="btn-logout">
                         <LogoutRoundedIcon /> <span className="title">Đăng xuất</span>
                     </span>
                     <div className="identifier-code">
@@ -55,14 +50,13 @@ const Sidebar = ({ state }) => {
                     </div>
                 </div>
             </div>
-            {/* HANDLE MODAL */}
+            {/* MODAL */}
             <ModalCustom
-                title="Đăng xuất"
-                open={openModal}
-                setOpen={setOpenModal}
-                handleClose={handleCloseModal}
+                idTarget="btnLogout"
+                titleHeader="Đăng xuất"
+                callback={handleLogout}
             >
-                <ConfirmLogout setOpen={setOpenModal} handleClose={handleCloseModal} />
+                <LogoutModalContent />
             </ModalCustom>
         </>
     );

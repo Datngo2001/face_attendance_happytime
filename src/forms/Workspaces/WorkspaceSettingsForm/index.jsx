@@ -6,6 +6,7 @@ import ButtonSwitchCustom from "../../../components/ButtonSwitchCustom";
 import InputCustom from "../../../components/InputCustom";
 import InputFile from "../../../components/InputFile";
 import ModalCustom from "../../../components/ModalCustom";
+import { ActivedStatusContent, DisabledStatusContent } from "./components";
 import { schema } from "./handleForm";
 import "./styles.scss";
 
@@ -21,7 +22,6 @@ const WorkspaceSettingsForm = () => {
 
     // HOOK STATE
     const [activeStatus, setActiveStatus] = useState(true);
-    const [openModal, setOpenModal] = useState(false);
     // ****************************
 
     // HOOK EFFECT (CALL API)
@@ -38,6 +38,12 @@ const WorkspaceSettingsForm = () => {
     const handleOnSubmit = (data) => {
         console.log("data", data);
         console.log("activeStatus", activeStatus);
+    };
+    const handleActStatus = () => {
+        setActiveStatus(true);
+    };
+    const handleDisableStatus = () => {
+        setActiveStatus(false);
     };
     // ****************************
 
@@ -70,10 +76,21 @@ const WorkspaceSettingsForm = () => {
                             )}
 
                             <ModalCustom
-                                title="Bạn có chắc?"
-                                open={!activeStatus}
-                                setOpen={setActiveStatus}
-                            ></ModalCustom>
+                                idTarget="activeStatus"
+                                titleHeader="Bạn có chắc?"
+                                btnJustifyContent="right"
+                                titleBtnAccept="Đồng ý"
+                                divider={true}
+                                callback={
+                                    activeStatus ? handleDisableStatus : handleActStatus
+                                }
+                            >
+                                {activeStatus ? (
+                                    <DisabledStatusContent />
+                                ) : (
+                                    <ActivedStatusContent />
+                                )}
+                            </ModalCustom>
                         </div>
                     </div>
                     <div className="field-control">

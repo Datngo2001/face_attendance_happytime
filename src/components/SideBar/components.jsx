@@ -47,29 +47,11 @@ export const NavigatorItem = ({ linkTo, icon, title, state, url, pathActive }) =
     );
 };
 
-export const ConfirmLogout = ({ handleClose, handleLogout }) => {
+export const LogoutModalContent = () => {
     return (
         <>
-            <div className="confirm-logout__wrapper">
+            <div className="logout-modal-content__wrapper">
                 <p className="title">Bạn có chắc chắn muốn đăng xuất khỏi hệ thống?</p>
-                <div className="actions">
-                    <ButtonCustom
-                        className="btn-cancel"
-                        onClick={handleClose}
-                        width="auto"
-                        height="32px"
-                    >
-                        HỦY BỎ
-                    </ButtonCustom>
-                    <ButtonCustom
-                        className="btn-confirm"
-                        onClick={handleLogout}
-                        width="auto"
-                        height="32px"
-                    >
-                        XÁC NHẬN
-                    </ButtonCustom>
-                </div>
             </div>
         </>
     );

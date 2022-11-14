@@ -3,6 +3,10 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
+import { useState } from "react";
+import { useEffect } from "react";
+import ButtonCustom from "../ButtonCustom";
+import { Divider } from "@mui/material";
 
 const style = {
     position: "absolute",
@@ -17,16 +21,48 @@ const style = {
     p: 4,
 };
 
-const ModalCustom = ({ title, children, open, setOpen, handleClose }) => {
+const ModalCustom = ({
+    titleHeader,
+    titleBtnCancel,
+    titleBtnAccept,
+    btnJustifyContent,
+    children,
+    callback,
+    type = 1,
+    idTarget,
+    divider = false,
+}) => {
     // STATE
+    const [open, setOpen] = useState(false);
     // *******************************
 
     // ARROW FUCTION
+    const handleClose = () => {
+        setOpen(false);
+    };
 
+    const handleOpen = () => {
+        setOpen(true);
+    };
+
+    const handleOnClick = () => {
+        handleClose();
+        callback();
+    };
     // *******************************
 
+    // HOOK EFFECT
+    useEffect(() => {
+        // ADD EVENT
+        document.getElementById(idTarget).addEventListener("click", handleOpen);
+
+        // CLEAN FUNCTION
+        return () => {};
+        // document.getElementById(idTarget).removeEventListener("click", handleOpen);
+    }, []);
+    // ******************************
+
     // CONSOLE WARNING
-    open || setOpen || console.warn("Missing state");
     // *******************************
 
     return (
@@ -40,12 +76,31 @@ const ModalCustom = ({ title, children, open, setOpen, handleClose }) => {
                 <Box className="modal-custom__wrapper" sx={style}>
                     <div className="modal-custom__header">
                         <Typography id="modal-modal-title" variant="h6" component="p">
-                            {title || "Missing title"}
+                            {titleHeader || "Missing title"}
                         </Typography>
                         <CloseRoundedIcon onClick={handleClose} />
                     </div>
                     <div className="modal-custom__content">
                         {children || "Missing chidren"}
+                    </div>
+                    <div
+                        className={`modal-custom__actions ${divider && "divider-top"}`}
+                        style={{ justifyContent: btnJustifyContent || "center" }}
+                    >
+                        <ButtonCustom
+                            className="btn-cancel"
+                            width="auto"
+                            onClick={handleClose}
+                        >
+                            {titleBtnCancel || "Hủy bỏ"}
+                        </ButtonCustom>
+                        <ButtonCustom
+                            className="btn-accept"
+                            width="auto"
+                            onClick={handleOnClick}
+                        >
+                            {titleBtnAccept || "Xác nhận"}
+                        </ButtonCustom>
                     </div>
                 </Box>
             </Modal>

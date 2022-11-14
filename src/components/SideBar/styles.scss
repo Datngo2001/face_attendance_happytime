@@ -152,24 +152,7 @@
     }
 }
 
-.confirm-logout__wrapper {
+.logout-modal-content__wrapper {
     .title {
-        margin-bottom: 24px;
-    }
-
-    .actions {
-        display: flex;
-        justify-content: center;
-        gap: 4px;
-
-        .btn-cancel {
-            padding: 4px 15px;
-            background-color: #eeeeee !important;
-            color: $text-color-3 !important;
-        }
-
-        .btn-confirm {
-            padding: 4px 15px;
-        }
     }
 }
