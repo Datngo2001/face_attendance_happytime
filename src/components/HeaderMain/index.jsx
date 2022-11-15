@@ -13,16 +13,21 @@ import {
     NotificationBoxInner,
 } from "./components";
 import DropMenu from "../DropMenu";
+import ModalCustom from "../ModalCustom";
+import { useState } from "react";
 
 const HeaderMain = ({ isActive, state, setState }) => {
     // STATE
+    const [open, setOpen] = useState(false);
     // ****************************************************************
 
     // VARIABLES
     // *******************************
 
     // ARROW FUNCTION
-    const handleLogout = () => {};
+    const handleLogout = () => {
+        console.log("logout");
+    };
     const handleToggleSidebar = () => {
         setState(!state);
     };
@@ -85,8 +90,18 @@ const HeaderMain = ({ isActive, state, setState }) => {
                                     mt="12px"
                                     ml="-2px"
                                 >
-                                    <ButtonUserInner />
+                                    <ButtonUserInner setOpen={setOpen} />
                                 </DropMenu>
+                                <ModalCustom
+                                    idTarget="btnLogout_inHeader"
+                                    titleHeader="Đăng xuất"
+                                    titleBtnAccept="Đồng ý"
+                                    state={open}
+                                    setState={setOpen}
+                                    callback={handleLogout}
+                                >
+                                    Bạn có chắc chắn muốn đăng xuất khỏi hệ thống?
+                                </ModalCustom>
                             </div>
                         </div>
                     </>

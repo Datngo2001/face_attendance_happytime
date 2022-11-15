@@ -1,0 +1,54 @@
+@use "../../../../../assets/styles/index.scss" as *;
+
+.view {
+    &__wrapper {
+        height: auto;
+        width: 100%;
+        padding: 16px 28px;
+        font-size: $fs-1;
+
+        .title {
+            color: $text-color-1;
+            font-weight: $fw-1;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 20px;
+
+            > svg {
+                font-size: 18px;
+                color: $primary-color;
+            }
+        }
+
+        .content {
+            display: flex;
+
+            .col {
+                height: 200px;
+                width: 50%;
+                min-width: 200px;
+            }
+        }
+    }
+
+    &__navigator {
+        color: $primary-color;
+        font-size: $fs-1;
+        font-weight: $fw-1;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 12px;
+        transition: opacity 0.3s;
+        width: fit-content;
+
+        > svg {
+            font-size: 18px;
+        }
+
+        &:hover {
+            opacity: 0.7;
+        }
+    }
+}

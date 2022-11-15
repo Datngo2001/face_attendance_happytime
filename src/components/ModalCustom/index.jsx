@@ -6,7 +6,6 @@ import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import { useState } from "react";
 import { useEffect } from "react";
 import ButtonCustom from "../ButtonCustom";
-import { Divider } from "@mui/material";
 
 const style = {
     position: "absolute",
@@ -28,9 +27,10 @@ const ModalCustom = ({
     btnJustifyContent,
     children,
     callback,
-    type = 1,
     idTarget,
     divider = false,
+    state,
+    setState,
 }) => {
     // STATE
     const [open, setOpen] = useState(false);
@@ -38,13 +38,11 @@ const ModalCustom = ({
 
     // ARROW FUCTION
     const handleClose = () => {
-        setOpen(false);
+        setState ? setState(false) : setOpen(false);
     };
-
     const handleOpen = () => {
-        setOpen(true);
+        setState ? setState(true) : setOpen(true);
     };
-
     const handleOnClick = () => {
         handleClose();
         callback();
@@ -54,8 +52,8 @@ const ModalCustom = ({
     // HOOK EFFECT
     useEffect(() => {
         // ADD EVENT
-        document.getElementById(idTarget).addEventListener("click", handleOpen);
-
+        document.getElementById(idTarget) &&
+            document.getElementById(idTarget).addEventListener("click", handleOpen);
         // CLEAN FUNCTION
         return () => {};
         // document.getElementById(idTarget).removeEventListener("click", handleOpen);
@@ -68,7 +66,7 @@ const ModalCustom = ({
     return (
         <div>
             <Modal
-                open={open}
+                open={state || open}
                 onClose={handleClose}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"

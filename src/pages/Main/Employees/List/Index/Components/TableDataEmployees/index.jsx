@@ -6,7 +6,10 @@ import { columns, CustomNoRowsOverlay, Pagination } from "./components";
 import { useNavigate } from "react-router-dom";
 import LoadingCustom from "../../../../../../../components/LoadingCustom";
 import { useDispatch } from "react-redux";
-import { updateIdListInvitation } from "../../../../../../../store/slices/Main/Employees/employeesSlice";
+import {
+    updateIdListInvitation,
+    updateIdOfSelectedStaff,
+} from "../../../../../../../store/slices/Main/Employees/employeesSlice";
 
 // ARROW FUNCTIONS
 
@@ -28,7 +31,8 @@ export default function TableDataEmployees() {
     // ARROW FUNCTIONS
     const hanldeOnRowClick = (rowData) => {
         console.log("Row Data", rowData.row);
-        navigate("view");
+        dispatch(updateIdOfSelectedStaff(rowData.row.id));
+        navigate("../list/view");
     };
 
     const handleOnSelectionModelChange = (idRows) => {

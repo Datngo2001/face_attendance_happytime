@@ -1,19 +1,22 @@
 // const baseUrl = process.env.REACT_APP_BASE_URL
-
 import { createSlice } from "@reduxjs/toolkit";
+import {
+    reducersUpdateIdListInvitation,
+    reducersUpdateIdOfSelectedStaff,
+} from "./actions/reducers";
 
 const employeesSlice = createSlice({
     name: "employeesSlice",
     initialState: {
         listIdInvitation: [],
+        idOfSelectedStaff: "",
     },
     reducers: {
-        updateIdListInvitation: (state, action) => {
-            state.listIdInvitation = action.payload;
-        },
+        updateIdListInvitation: reducersUpdateIdListInvitation,
+        updateIdOfSelectedStaff: reducersUpdateIdOfSelectedStaff,
     },
     extraReducers: {},
 });
 
-export const { updateIdListInvitation } = employeesSlice.actions;
+export const { updateIdListInvitation, updateIdOfSelectedStaff } = employeesSlice.actions;
 export default employeesSlice;

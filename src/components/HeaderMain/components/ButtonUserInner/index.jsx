@@ -4,7 +4,10 @@ import ApartmentRoundedIcon from "@mui/icons-material/ApartmentRounded";
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 import { Link } from "react-router-dom";
 
-const ButtonUserInner = () => {
+const ButtonUserInner = ({setOpen}) => {
+    // STATE
+    // ******************************
+
     return (
         <>
             <div className="button-user-inner__wrapper">
@@ -17,10 +20,14 @@ const ButtonUserInner = () => {
                         <ApartmentRoundedIcon />
                         Cài đặt workspace
                     </Link>
-                    <Link className="item" to="">
+                    <div
+                        id="btnLogout_inHeader"
+                        onClick={() => setOpen(true)}
+                        className="item"
+                    >
                         <LogoutRoundedIcon />
                         Đăng xuất
-                    </Link>
+                    </div>
                 </ul>
             </div>
         </>
