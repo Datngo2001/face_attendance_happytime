@@ -1,0 +1,12 @@
+@use "../../../../../../../assets/styles/index.scss" as *;
+
+.view {
+    &__wrapper {
+    }
+
+    &-permission {
+        &__wrapper {
+            margin-top: 16px;
+        }
+    }
+}
