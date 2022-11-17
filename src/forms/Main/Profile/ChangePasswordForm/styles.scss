@@ -6,14 +6,7 @@
 
     &__body {
         .field-control {
-            display: flex;
-            align-items: center;
             margin-bottom: 20px;
-
-            > .label {
-                margin-bottom: 0;
-                width: 243px;
-            }
         }
 
         .checbox-control {
@@ -24,6 +17,7 @@
             .label {
                 color: $text-color-1;
                 margin-bottom: 0;
+                font-size: $fs-1;
             }
         }
     }

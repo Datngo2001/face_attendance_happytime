@@ -54,6 +54,7 @@ const WorkspaceSettingsForm = () => {
                 <div className="workspace-settings-form__body">
                     <InputFile
                         id="workspaceImg"
+                        sizePreImg="120px"
                         className="workspace-img"
                         register={register}
                         setValue={setValue}
@@ -94,11 +95,12 @@ const WorkspaceSettingsForm = () => {
                         </div>
                     </div>
                     <div className="field-control">
-                        <label htmlFor="workspaceName" className="label">
-                            Tên workspace <span className="requirement">*</span>
-                        </label>
                         <InputCustom
                             id="workspaceName"
+                            label="Tên workspace"
+                            labelWidth="164px"
+                            required={true}
+                            direction="row"
                             width="272px"
                             placeholder="Nhập tên workspace"
                             register={register}

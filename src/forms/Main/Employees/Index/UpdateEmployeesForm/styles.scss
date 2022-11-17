@@ -2,5 +2,38 @@
 
 .update-employees-form {
     &__wrapper {
+        height: auto;
+        width: 100%;
+    }
+
+    &__container {
+        display: flex;
+        gap: 100px;
+
+        .col {
+            height: auto;
+            width: 33.33%;
+
+            .input-item {
+                margin-bottom: 20px;
+            }
+        }
+    }
+
+    &__actions {
+        display: flex;
+        justify-content: right;
+        gap: 8px;
+        padding-top: 16px;
+
+        .btn {
+            text-transform: unset;
+            padding: 0 16px;
+
+            &--cancel {
+                background-color: #eeeeee;
+                color: $text-color-3;
+            }
+        }
     }
 }

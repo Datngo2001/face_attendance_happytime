@@ -33,13 +33,11 @@ const ChangePasswordForm = () => {
                 <p className="profile-forms__title">Thay đổi mật khẩu</p>
                 <div className="change-password-form__body">
                     <div className="field-control">
-                        <div className="label">
-                            <label htmlFor="oldPassword">
-                                Mật khẩu hiện tại <span className="requirement">*</span>
-                            </label>
-                        </div>
                         <InputCustom
                             id="oldPassword"
+                            label="Mật khẩu hiện tại"
+                            required={true}
+                            direction="row"
                             type="password"
                             width="300px"
                             register={register}
@@ -48,13 +46,11 @@ const ChangePasswordForm = () => {
                         />
                     </div>
                     <div className="field-control">
-                        <div className="label">
-                            <label htmlFor="newPassword">
-                                Mật khẩu mới <span className="requirement">*</span>
-                            </label>
-                        </div>
                         <InputCustom
                             id="newPassword"
+                            label="Mật khẩu mới"
+                            required={true}
+                            direction="row"
                             type="password"
                             width="300px"
                             register={register}
@@ -63,14 +59,11 @@ const ChangePasswordForm = () => {
                         />
                     </div>
                     <div className="field-control">
-                        <div className="label">
-                            <label htmlFor="confirmNewPassword">
-                                Xác nhận lại mật khẩu mới{" "}
-                                <span className="requirement">*</span>
-                            </label>
-                        </div>
                         <InputCustom
                             id="confirmNewPassword"
+                            label="Xác nhận lại mật khẩu mới"
+                            required={true}
+                            direction="row"
                             type="password"
                             width="300px"
                             register={register}

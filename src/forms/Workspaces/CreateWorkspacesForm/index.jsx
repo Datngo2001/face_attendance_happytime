@@ -32,6 +32,7 @@ const CreateWorkspacesForm = () => {
                     <div className="input-image">
                         <InputFile
                             id="companyImg"
+                            sizePreImg="100px"
                             type={1}
                             className="input-btn"
                             setValue={setValue}

@@ -65,13 +65,10 @@ const InfoForm = () => {
                             </p>
                         </div>
                         <div className="field-control">
-                            <div className="label">
-                                <label htmlFor="name">
-                                    Họ và tên <span className="requirement">*</span>
-                                </label>
-                            </div>
                             <InputCustom
                                 id="name"
+                                label="Họ và tên"
+                                required={true}
                                 width="300px"
                                 type="text"
                                 register={register}
@@ -80,13 +77,10 @@ const InfoForm = () => {
                             />
                         </div>
                         <div className="field-control">
-                            <div className="label">
-                                <label htmlFor="email">
-                                    Email <span className="requirement">*</span>
-                                </label>
-                            </div>
                             <InputCustom
                                 id="email"
+                                label="Email"
+                                required={true}
                                 width="300px"
                                 register={register}
                                 placeholder="Nhập email"
