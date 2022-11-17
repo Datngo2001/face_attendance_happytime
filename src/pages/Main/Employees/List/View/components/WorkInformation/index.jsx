@@ -30,10 +30,10 @@ const WorkInformation = ({
     return (
         <>
             <div className="view-work-information__wrapper">
-                <p className="title">
+                <div className="title">
                     <BusinessCenterRoundedIcon />
                     Thông tin công việc
-                </p>
+                </div>
                 <div className="content divider-bottom">
                     <div className="col">
                         <div className="col__label">

@@ -11,7 +11,7 @@
 
     .navigator-item {
         &__wrapper {
-            .title {
+            > .title {
                 opacity: 0.3;
             }
 
@@ -82,7 +82,7 @@
                 color: $primary-color;
             }
 
-            .title {
+            > .title {
                 display: none;
             }
 

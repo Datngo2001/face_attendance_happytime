@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import "./styles.scss";
+import "../index.scss";
 import { detailInfor } from "./dataTest";
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 import {
@@ -40,7 +41,7 @@ const View = () => {
         // FAKE LOADING API
         setTimeout(() => {
             setLoading(false);
-        }, 1500);
+        }, 1000);
         // ****************************
     }, []);
     // *****************************
@@ -52,30 +53,33 @@ const View = () => {
 
     return (
         <>
-            {loading ? (
-                <LoadingCustom />
-            ) : (
-                <div className="view__wrapper">
-                    <Link className="view__navigator" to="../list/index">
-                        <ArrowBackRoundedIcon />
-                        Quay lại
-                    </Link>
-                    <Header avatar={avatar} name={name} id={id} />
-                    <WorkInformation
-                        jobPosition={jobPosition}
-                        department={department}
-                        statusEmployee={statusEmployee}
-                    />
-                    <Profile
-                        phoneNumber={phoneNumber}
-                        email={email}
-                        emailCompany={emailCompany}
-                    />
-                    <BankInformation />
-                    <Permission />
-                    <Note />
-                </div>
-            )}
+            <div className="view__wrapper">
+                <Link className="content-navigator" to="../list/index">
+                    <ArrowBackRoundedIcon />
+                    Quay lại
+                </Link>
+                <h3 className="content-title">Chi tiết nhân viên</h3>
+                {loading ? (
+                    <LoadingCustom />
+                ) : (
+                    <>
+                        <Header avatar={avatar} name={name} id={id} />
+                        <WorkInformation
+                            jobPosition={jobPosition}
+                            department={department}
+                            statusEmployee={statusEmployee}
+                        />
+                        <Profile
+                            phoneNumber={phoneNumber}
+                            email={email}
+                            emailCompany={emailCompany}
+                        />
+                        <BankInformation />
+                        <Permission />
+                        <Note />
+                    </>
+                )}
+            </div>
         </>
     );
 };

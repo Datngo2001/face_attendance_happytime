@@ -1,12 +1,22 @@
 import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
 import ButtonCustom from "../../../../../../../components/ButtonCustom";
+import EditRoundedIcon from "@mui/icons-material/EditRounded";
 import "./styles.scss";
+import { useNavigate } from "react-router-dom";
 
 const Header = ({ avatar, name, id }) => {
+    // HOOK ROUTER
+    const navigate = useNavigate()
+    // ****************************
+
+    // ARROW FUNCTIONS
+    const handleOnClick = () => {
+        navigate("../list/update")
+    }
+    // ****************************
     return (
         <>
             <div className="view-header__wrapper divider-bottom">
-                <h3 className="view-header__wrapper-title">Chi tiết nhân viên</h3>
                 <div className="view-header__wrapper-body">
                     <div className="avatar">
                         {avatar ? (
@@ -22,7 +32,13 @@ const Header = ({ avatar, name, id }) => {
                         <p className="id">Mã nhân viên: {id}</p>
                     </div>
                     <div className="action">
-                        <ButtonCustom className="btn-update" width="128px" height="40px">
+                        <ButtonCustom
+                            className="btn-update"
+                            icon={<EditRoundedIcon />}
+                            onClick={handleOnClick}
+                            width="128px"
+                            height="40px"
+                        >
                             Chỉnh sửa
                         </ButtonCustom>
                     </div>
