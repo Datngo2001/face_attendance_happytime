@@ -4,6 +4,7 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import "./styles.scss";
 import { memo, useEffect, useState } from "react";
+import { InputLabel } from "@mui/material";
 
 const SelectCustom = ({
     id,
@@ -17,20 +18,21 @@ const SelectCustom = ({
     defaultValue,
     options,
     setValue,
+    label,
+    required = false,
 }) => {
     // VARIABLES
     // ******************************
 
     // STATE
     const [isSelectedPlaceholder, SetIsSelectedPlaceholder] = useState(true);
+    const [open, setOpen] = useState(false);
     // ******************************
 
     // EFFECT
     useEffect(() => {
         !icon &&
-            document
-                .querySelector(`#${id} .MuiSelect-select`)
-                .classList.add("none-icon");
+            document.querySelector(`#${id} .MuiSelect-select`).classList.add("none-icon");
     }, []);
     // ******************************
 
@@ -43,6 +45,14 @@ const SelectCustom = ({
                 .classList.remove("selected-placeholder");
             SetIsSelectedPlaceholder(false);
         }
+    };
+
+    const handleOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
     };
     // ******************************
 
@@ -60,10 +70,21 @@ const SelectCustom = ({
                 } ${message && message[id] ? "error" : ""} ${className ? className : ""}`}
                 sx={{ height: height, width: width }}
             >
+                <div
+                    className={`select-custom__label ${required && "required"}`}
+                    onClick={handleOpen}
+                >
+                    {label}
+                    <span> *</span>
+                </div>
                 <FormControl fullWidth>
                     {icon}
                     <Select
                         id={id}
+                        labelId="labell"
+                        open={open}
+                        onClose={handleClose}
+                        onOpen={handleOpen}
                         {...register(id)}
                         onFocus={handleOnFocus}
                         defaultValue={defaultValue || "null"}

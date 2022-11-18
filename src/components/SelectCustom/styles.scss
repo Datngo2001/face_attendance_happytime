@@ -1,79 +1,113 @@
 @use "../../assets/styles/index.scss" as *;
 
-.select-custom__wrapper {
-    height: $h-1;
-    width: 100%;
-    .MuiFormControl-root {
-        position: relative;
-        .MuiInputBase-root {
-            border-radius: $br-1;
-            height: $h-1;
-            background-color: $primary-bg-color;
+.select-custom {
+    &__wrapper {
+        width: 100%;
+        height: auto;
 
-            .MuiSelect-select {
-                padding: 8px 16px 8px 32px;
-                text-align: left;
-                text-overflow: ellipsis;
-                width: 190px;
-                color: $text-color-1;
-                font-size: $fs-1;
-                font-family: $f-family-1;
-                flex: 1;
-
-                &.none-icon {
-                    padding: 8px 16px 8px 16px;
-                }
-            }
-
-            .MuiOutlinedInput-notchedOutline {
-                border: 1px solid transparent;
-                outline: none;
-                transition: all 0.3s;
-            }
-
-            &:hover {
-                .MuiOutlinedInput-notchedOutline {
-                    border-color: $primary-color;
-                }
-            }
-        }
-        > svg {
-            position: absolute;
-            font-size: 18px;
-            top: 20px;
-            left: 8px;
-            transform: translateY(-50%);
-            color: $text-color-2;
-            z-index: 1;
-        }
-    }
-
-    &.selected-placeholder {
         .MuiFormControl-root {
+            position: relative;
+
             .MuiInputBase-root {
+                border-radius: $br-1;
+                height: $h-1;
+                background-color: $primary-bg-color;
+
                 .MuiSelect-select {
-                    color: $text-color-2;
+                    height: 100%;
+                    box-sizing: border-box;
+                    padding: 8px 16px 8px 32px;
+                    text-align: left;
+                    text-overflow: ellipsis;
+                    width: 190px;
+                    color: $text-color-1;
+                    font-size: $fs-1;
+                    font-family: $f-family-1;
+                    flex: 1;
+
+                    &.none-icon {
+                        padding: 8px 16px 8px 16px;
+                    }
+                }
+
+                .MuiOutlinedInput-notchedOutline {
+                    border: 1px solid transparent;
+                    outline: none;
+                    transition: all 0.3s;
+                }
+
+                &:hover {
+                    .MuiOutlinedInput-notchedOutline {
+                        border-color: $primary-color;
+                    }
+                }
+            }
+            > svg {
+                position: absolute;
+                font-size: 18px;
+                top: 20px;
+                left: 8px;
+                transform: translateY(-50%);
+                color: $text-color-2;
+                z-index: 1;
+            }
+        }
+
+        &.selected-placeholder {
+            .MuiFormControl-root {
+                .MuiInputBase-root {
+                    .MuiSelect-select {
+                        color: $text-color-2;
+                    }
+                }
+            }
+        }
+
+        &.error {
+            .MuiFormControl-root {
+                .MuiOutlinedInput-notchedOutline {
+                    border-color: $color-red-1 !important;
+                    &:focus {
+                        border-color: $color-red-1 !important;
+                    }
+                }
+                .error-message {
+                    color: $color-red-1;
+                    font-size: $fs-1;
+                    text-align: left;
+                }
+
+                > svg {
+                    color: $color-red-1;
                 }
             }
         }
     }
 
-    &.error {
-        .MuiFormControl-root {
-            .MuiOutlinedInput-notchedOutline {
-                border-color: $color-red-1 !important;
-                &:focus {
-                    border-color: $color-red-1 !important;
+    &__label {
+        width: fit-content;
+        padding-bottom: 10px;
+        color: $text-color-3;
+        cursor: default;
+
+        &:hover {
+            + .MuiFormControl-root {
+                .MuiInputBase-root {
+                    .MuiOutlinedInput-notchedOutline {
+                        border-color: $primary-color;
+                    }
                 }
             }
-            .error-message {
-                color: $color-red-1;
-                font-size: $fs-1;
-                text-align: left;
-            }
+        }
 
-            > svg {
-                color: $color-red-1;
+        > span {
+            color: red;
+            display: none;
+        }
+
+        &.required {
+            > span {
+                display: contents;
             }
         }
     }

@@ -1,17 +1,19 @@
 import AccountBoxRoundedIcon from "@mui/icons-material/AccountBoxRounded";
 import InputCustom from "../../../../../../../components/InputCustom";
 import InputFile from "../../../../../../../components/InputFile";
+import SelectCustom from "../../../../../../../components/SelectCustom";
+import { educationList, genderList, marriedStatusList } from "./data";
 import "./styles.scss";
 
 const Profile = ({ register, setValue, errors }) => {
     return (
         <>
-            <div className="update-employees-form-profile__wrapper">
+            <div className="employees-form--profile__wrapper">
                 <div className="title">
                     <AccountBoxRoundedIcon />
                     Thông tin cá nhân
                 </div>
-                <div className="update-employees-form__container">
+                <div className="employees-form__container">
                     <div className="col">
                         <InputFile
                             id="avatar"
@@ -40,6 +42,15 @@ const Profile = ({ register, setValue, errors }) => {
                             register={register}
                             placeholder="Địa chỉ tạm trú"
                             message={errors}
+                        />
+                        <SelectCustom
+                            id="education"
+                            width="100%"
+                            className="input-item"
+                            label="Học vấn"
+                            register={register}
+                            options={educationList}
+                            placeholder="Học vấn"
                         />
                     </div>
                     <div className="col">
@@ -99,8 +110,26 @@ const Profile = ({ register, setValue, errors }) => {
                             placeholder="Trường học"
                             message={errors}
                         />
+                        <SelectCustom
+                            id="marriedStatus"
+                            width="100%"
+                            className="input-item"
+                            label="Tình trạng hôn nhân"
+                            register={register}
+                            options={marriedStatusList}
+                            placeholder="Tình trạng hôn nhân"
+                        />
                     </div>
                     <div className="col">
+                        <SelectCustom
+                            id="gender"
+                            width="100%"
+                            className="input-item"
+                            label="Giới tính"
+                            register={register}
+                            options={genderList}
+                            placeholder="Giới tính"
+                        />
                         <InputCustom
                             id="personalEmail"
                             width="100%"

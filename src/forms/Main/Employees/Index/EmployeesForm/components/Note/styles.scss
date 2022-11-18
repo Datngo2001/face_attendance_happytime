@@ -1,0 +1,37 @@
+@use "../../../../../../../assets/styles/index.scss" as *;
+
+.employees-form--note {
+    &__wrapper {
+        padding-top: 16px;
+        margin-bottom: 20px;
+
+        .input-control {
+            > textarea {
+                height: 92px;
+                width: 100%;
+                border-radius: $br-1;
+                border: 1px solid transparent;
+                background-color: $primary-bg-color;
+                outline: none;
+                font-size: $fs-1;
+                color: $text-color-1;
+                transition: all 0.3s;
+                font-family: $f-family-1;
+                padding: 8px 16px;
+
+                &:hover {
+                    border-color: $primary-color;
+                }
+
+                &:focus {
+                    box-shadow: 0 0 0 2px rgb(255 159 10 / 20%);
+                }
+            }
+        }
+
+        .note-length {
+            text-align: right;
+            color: $text-color-3;
+        }
+    }
+}

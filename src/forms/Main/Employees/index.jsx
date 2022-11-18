@@ -1,3 +1,3 @@
-import UpdateEmployeesForm from "./Index/UpdateEmployeesForm";
+import EmployeesForm from "./Index/EmployeesForm";
 
-export { UpdateEmployeesForm };
+export { EmployeesForm };

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { UpdateEmployeesForm } from "../../../../../forms/Main/Employees";
+import { EmployeesForm } from "../../../../../forms/Main/Employees";
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 import "./styles.scss";
 import LoadingCustom from "../../../../../components/LoadingCustom";
@@ -28,7 +28,7 @@ const Update = () => {
                     Quay lại
                 </Link>
                 <h3 className="content-title">Chỉnh sửa thông tin nhân viên</h3>
-                {loading ? <LoadingCustom /> : <UpdateEmployeesForm />}
+                {loading ? <LoadingCustom /> : <EmployeesForm />}
             </div>
         </>
     );
