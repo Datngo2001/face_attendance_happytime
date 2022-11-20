@@ -1,10 +1,12 @@
 import BusinessCenterRoundedIcon from "@mui/icons-material/BusinessCenterRounded";
+import CheckboxCustom from "../../../../../../../components/CheckboxCustom";
 import InputCustom from "../../../../../../../components/InputCustom";
+import InputDate from "../../../../../../../components/InputDate";
 import SelectCustom from "../../../../../../../components/SelectCustom";
 import { employeeStatusList, jobPositionList, typeEmployeeList } from "./data";
 import "./styles.scss";
 
-const WorkInformation = ({ register, setValue, errors }) => {
+const WorkInformation = ({ register, setValue, trigger, errors }) => {
     return (
         <>
             <div className="employees-form--work-information__wrapper divider-top">
@@ -22,6 +24,22 @@ const WorkInformation = ({ register, setValue, errors }) => {
                             register={register}
                             placeholder="Mã nhân viên"
                             message={errors}
+                        />
+                        <InputDate
+                            id="startWorkingDate"
+                            className="input-item"
+                            label="Ngày bắt đầu đi làm"
+                            required={true}
+                            placeholder="Ngày bắt đầu đi làm"
+                            setValue={setValue}
+                            message={errors}
+                            trigger={trigger}
+                        />
+                        <CheckboxCustom
+                            id="doNotRequireTimekeeping"
+                            className="input-item checkbox"
+                            register={register}
+                            label="Không yêu cầu chấm công"
                         />
                     </div>
                     <div className="col">
@@ -56,7 +74,7 @@ const WorkInformation = ({ register, setValue, errors }) => {
                             label="Chi nhánh làm việc"
                             register={register}
                             placeholder="Chi nhánh làm việc"
-                            // options={employeeStatusList}
+                            options={employeeStatusList}
                             message={errors}
                         />
                         <SelectCustom

@@ -19,6 +19,7 @@ const EmployeesForm = ({ method }) => {
         register,
         handleSubmit,
         setValue,
+        trigger,
         formState: { errors },
     } = useForm({ resolver: yupResolver(schema), mode: "onChange" });
     // ****************************
@@ -43,7 +44,12 @@ const EmployeesForm = ({ method }) => {
     return (
         <>
             <div className="employees-form__wrapper">
-                <Profile register={register} setValue={setValue} errors={errors} />
+                <Profile
+                    register={register}
+                    setValue={setValue}
+                    errors={errors}
+                    trigger={trigger}
+                />
                 <BankInformation
                     register={register}
                     setValue={setValue}
@@ -52,6 +58,7 @@ const EmployeesForm = ({ method }) => {
                 <WorkInformation
                     register={register}
                     setValue={setValue}
+                    trigger={trigger}
                     errors={errors}
                 />
                 <AnnualLeave register={register} setValue={setValue} errors={errors} />

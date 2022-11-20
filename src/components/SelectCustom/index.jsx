@@ -70,13 +70,15 @@ const SelectCustom = ({
                 } ${message && message[id] ? "error" : ""} ${className ? className : ""}`}
                 sx={{ height: height, width: width }}
             >
-                <div
-                    className={`select-custom__label ${required && "required"}`}
-                    onClick={handleOpen}
-                >
-                    {label}
-                    <span> *</span>
-                </div>
+                {label && (
+                    <div
+                        className={`select-custom__label ${required && "required"}`}
+                        onClick={handleOpen}
+                    >
+                        {label}
+                        <span> *</span>
+                    </div>
+                )}
                 <FormControl fullWidth>
                     {icon}
                     <Select

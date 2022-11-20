@@ -1,11 +1,12 @@
 import AccountBoxRoundedIcon from "@mui/icons-material/AccountBoxRounded";
 import InputCustom from "../../../../../../../components/InputCustom";
+import InputDate from "../../../../../../../components/InputDate";
 import InputFile from "../../../../../../../components/InputFile";
 import SelectCustom from "../../../../../../../components/SelectCustom";
 import { educationList, genderList, marriedStatusList } from "./data";
 import "./styles.scss";
 
-const Profile = ({ register, setValue, errors }) => {
+const Profile = ({ register, setValue, errors, trigger }) => {
     return (
         <>
             <div className="employees-form--profile__wrapper">
@@ -51,6 +52,16 @@ const Profile = ({ register, setValue, errors }) => {
                             register={register}
                             options={educationList}
                             placeholder="Học vấn"
+                        />
+                        <InputDate
+                            id="graduationDate"
+                            className="input-item"
+                            label="Ngày tốt nghiệp"
+                            required={true}
+                            placeholder="Ngày tốt nghiệp"
+                            setValue={setValue}
+                            message={errors}
+                            trigger={trigger}
                         />
                     </div>
                     <div className="col">
@@ -130,6 +141,15 @@ const Profile = ({ register, setValue, errors }) => {
                             options={genderList}
                             placeholder="Giới tính"
                         />
+                        <InputDate
+                            id="birthDate"
+                            className="input-item"
+                            label="Ngày sinh"
+                            placeholder="Ngày sinh"
+                            register={register}
+                            setValue={setValue}
+                            errors={errors}
+                        />
                         <InputCustom
                             id="personalEmail"
                             width="100%"
@@ -139,6 +159,15 @@ const Profile = ({ register, setValue, errors }) => {
                             register={register}
                             placeholder="Email cá nhân"
                             message={errors}
+                        />
+                        <InputDate
+                            id="supplyDate"
+                            className="input-item"
+                            label="Ngày cấp"
+                            placeholder="Ngày cấp"
+                            register={register}
+                            setValue={setValue}
+                            errors={errors}
                         />
                         <InputCustom
                             id="personalTaxCode"

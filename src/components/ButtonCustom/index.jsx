@@ -2,6 +2,7 @@ import "./styles.scss";
 
 const ButtonCustom = ({
     icon,
+    type = 1,
     height,
     width,
     onClick,
@@ -16,7 +17,7 @@ const ButtonCustom = ({
                 disabled={disabled || false}
                 className={`btn-custom ${disabled ? "disabled" : ""} ${
                     className ? className : ""
-                }`}
+                } ${type !== 1 ? "type-2" : "type-1"}`}
                 style={{ height: height ? height : "", width: width ? width : "" }}
             >
                 {icon}

@@ -18,22 +18,25 @@ const InputCustom = ({
 }) => {
     return (
         <>
-            <div className={`input-custom__wrapper direction-${direction}`}>
+            <div
+                className={`input-custom__wrapper direction-${direction}
+            ${className ? className : ""}`}
+            >
+                {label && (
+                    <div
+                        className={`label ${required && "required"}`}
+                        style={{ width: labelWidth }}
+                    >
+                        <label htmlFor={id}>
+                            {label}
+                            <span> *</span>
+                        </label>
+                    </div>
+                )}
                 <div
-                    className={`label ${required && "required"}`}
-                    style={{ width: labelWidth }}
-                >
-                    <label htmlFor={id}>
-                        {label}
-                        <span> *</span>
-                    </label>
-                </div>
-                <div
-                    className={`container ${message && message[id] ? "error" : ""} ${
-                        className ? className : ""
-                    } ${!iconLeft && !iconRight && "none-icon"} ${
-                        iconRight && "icon-right"
-                    } ${iconLeft && "icon-left"}`}
+                    className={`container ${message && message[id] ? "error" : ""}  ${
+                        !iconLeft && !iconRight && "none-icon"
+                    } ${iconRight && "icon-right"} ${iconLeft && "icon-left"}`}
                     style={{ width: width ? width : "", height: height ? height : "" }}
                 >
                     {iconLeft}

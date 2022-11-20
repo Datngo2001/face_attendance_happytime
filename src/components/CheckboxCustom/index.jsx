@@ -1,15 +1,20 @@
 import "./styles.scss";
 
-const CheckboxCustom = ({ id, register, width, height }) => {
+const CheckboxCustom = ({ id, className, label, register, width, height }) => {
     return (
         <>
-            <input
-                id={id}
-                className="checkbox-custom__wrapper"
-                style={{ width: width, height: height }}
-                type="checkbox"
-                {...register(id)}
-            />
+            <div className={`checkbox-custom__wrapper ${className ? className : ""}`}>
+                <input
+                    id={id}
+                    className="checkbox"
+                    style={{ width: width, height: height }}
+                    type="checkbox"
+                    {...register(id)}
+                />
+                <div className="label">
+                    <label htmlFor={id}>{label}</label>
+                </div>
+            </div>
         </>
     );
 };

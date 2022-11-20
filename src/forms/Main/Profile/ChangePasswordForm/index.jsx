@@ -72,12 +72,11 @@ const ChangePasswordForm = () => {
                         />
                     </div>
                     <div className="checbox-control">
-                        <CheckboxCustom id="logoutFromAllOfDevices" register={register} />
-                        <div className="label">
-                            <label htmlFor="logoutFromAllOfDevices">
-                                Đăng xuất khỏi tất cả các thiết bị
-                            </label>
-                        </div>
+                        <CheckboxCustom
+                            id="logoutFromAllOfDevices"
+                            label="Đăng xuất khỏi tất cả các thiết bị"
+                            register={register}
+                        />
                     </div>
                 </div>
             </div>
