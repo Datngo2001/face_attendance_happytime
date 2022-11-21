@@ -1,0 +1,9 @@
+@use "../../../../assets/styles/index.scss" as *;
+
+.company--info {
+    &__wrapper {
+        width: 100%;
+        height: auto;
+        padding: 20px 30px;
+    }
+}

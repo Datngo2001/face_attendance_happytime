@@ -27,7 +27,6 @@ const View = () => {
         avatar,
         name,
         jobPosition,
-        typeEmployee,
         department,
         statusEmployee,
         phoneNumber,

@@ -90,7 +90,6 @@ const SelectCustom = ({
                         {...register(id)}
                         onFocus={handleOnFocus}
                         defaultValue={defaultValue || "null"}
-                        style={{ height: height, width: width }}
                         inputProps={{ "aria-label": "Without label" }}
                         className="select-item"
                     >

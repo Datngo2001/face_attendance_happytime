@@ -1,6 +1,5 @@
 import StickyNote2RoundedIcon from "@mui/icons-material/StickyNote2Rounded";
 import { useState } from "react";
-import InputCustom from "../../../../../../../components/InputCustom";
 import "./styles.scss";
 
 const Note = ({ register, setValue, errors }) => {

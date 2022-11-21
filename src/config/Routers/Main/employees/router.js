@@ -1,4 +1,4 @@
-import { Index, Update, View } from "../../../../pages/Main/Employees";
+import { Index, LeaveManagement, Update, View } from "../../../../pages/Main/Employees";
 
 const empoyeesRouters = [
     {
@@ -15,7 +15,7 @@ const empoyeesRouters = [
     },
     {
         path: "leave-management",
-        component: "",
+        component: <LeaveManagement />,
     },
 ];
 

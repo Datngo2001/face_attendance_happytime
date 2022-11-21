@@ -21,6 +21,7 @@ const InputCustom = ({
             <div
                 className={`input-custom__wrapper direction-${direction}
             ${className ? className : ""}`}
+                style={{ width: width ? width : "", height: height ? height : "" }}
             >
                 {label && (
                     <div
@@ -37,7 +38,6 @@ const InputCustom = ({
                     className={`container ${message && message[id] ? "error" : ""}  ${
                         !iconLeft && !iconRight && "none-icon"
                     } ${iconRight && "icon-right"} ${iconLeft && "icon-left"}`}
-                    style={{ width: width ? width : "", height: height ? height : "" }}
                 >
                     {iconLeft}
                     <input

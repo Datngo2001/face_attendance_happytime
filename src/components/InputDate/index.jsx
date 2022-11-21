@@ -1,7 +1,6 @@
 import { DatePicker } from "antd";
 import locale from "antd/es/date-picker/locale/vi_VN";
-import { useEffect, useState } from "react";
-import { useWatch } from "react-hook-form";
+import { useEffect } from "react";
 import "./styles.scss";
 
 const InputDate = ({

@@ -54,9 +54,9 @@ const ModalCustom = ({
         // ADD EVENT
         document.getElementById(idTarget) &&
             document.getElementById(idTarget).addEventListener("click", handleOpen);
+            
         // CLEAN FUNCTION
         return () => {};
-        // document.getElementById(idTarget).removeEventListener("click", handleOpen);
     }, []);
     // ******************************
 

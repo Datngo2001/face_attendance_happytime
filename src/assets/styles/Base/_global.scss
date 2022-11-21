@@ -1,3 +1,5 @@
+@use "../Helper/variable" as *;
+
 * {
     margin: 0px;
     padding: 0px;
@@ -12,6 +14,17 @@ li {
     list-style: none;
 }
 
+::-moz-selection {
+    /* Code for Firefox */
+    color: $color-white-1;
+    background-color: $primary-color;
+}
+
+::selection {
+    color: $color-white-1;
+    background-color: $primary-color;
+}
+
 .wrapper {
     height: fit-content;
     width: fit-content;
@@ -23,4 +36,12 @@ li {
 
 .divider-bottom {
     border-bottom: 0.5px solid #e5e1e1;
+}
+
+.title--class-global {
+    font-size: $fs-3;
+    color: $text-color-1;
+    text-transform: uppercase;
+    font-weight: $fw-1;
+    padding-bottom: 24px;
 }

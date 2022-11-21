@@ -9,14 +9,6 @@
             display: flex;
             justify-content: space-between;
 
-            > .title {
-                font-size: $fs-3;
-                color: $text-color-1;
-                text-transform: uppercase;
-                font-weight: $fw-1;
-                padding-bottom: 24px;
-            }
-
             .actions {
                 display: flex;
                 gap: 10px;
