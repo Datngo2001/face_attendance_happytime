@@ -8,7 +8,7 @@ const ControlPanel = ({ register }) => {
     return (
         <>
             <div className="leave-management--control-panel__wrapper">
-                <div className="title">Quản lý phép</div>
+                <div className="content-title">Quản lý phép</div>
                 <div className="control-panel">
                     <InputCustom
                         id="searchData"

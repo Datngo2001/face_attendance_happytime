@@ -1,6 +1,5 @@
 import { Tooltip } from "@mui/material";
 import { Link } from "react-router-dom";
-import ButtonCustom from "../ButtonCustom";
 import "./styles.scss";
 
 export const NavigatorItem = ({ linkTo, icon, title, state, url, pathActive }) => {

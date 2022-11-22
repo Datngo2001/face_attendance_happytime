@@ -4,7 +4,7 @@ const Structure = () => {
     return (
         <>
             <div className="company--structure__wrapper">
-                <div className="title">Cơ cấu tổ chức</div>
+                <div className="content-title">Cơ cấu tổ chức</div>
             </div>
         </>
     );

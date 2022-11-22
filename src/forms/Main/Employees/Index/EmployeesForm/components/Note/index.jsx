@@ -13,7 +13,7 @@ const Note = ({ register, setValue, errors }) => {
         return textarea.value.length;
     };
 
-    const handleOnChange = (e) => {
+    const handleOnChange = () => {
         setLength(getLengthTextarea);
     };
     // ****************************

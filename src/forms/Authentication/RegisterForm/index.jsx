@@ -101,7 +101,7 @@ const RegisterForm = () => {
                 <SelectCustom
                     id="position"
                     className="input-item"
-                    type={1}
+                    width="100%"
                     placeholder="Chức vụ *"
                     register={register}
                     icon={<HailIcon />}
@@ -120,7 +120,7 @@ const RegisterForm = () => {
                 <SelectCustom
                     id="scale"
                     className="input-item"
-                    type={1}
+                    width="100%"
                     placeholder="Quy mô công ty *"
                     register={register}
                     icon={<SupervisorAccountIcon />}

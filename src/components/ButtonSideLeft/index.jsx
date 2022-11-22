@@ -1,5 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import "./styles.scss";
+import "./responsive.scss";
 
 const ButtonSideLeft = ({ title, icon, path }) => {
     // VARIABLES

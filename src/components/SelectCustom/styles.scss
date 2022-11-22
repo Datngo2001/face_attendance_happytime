@@ -7,11 +7,13 @@
 
         .MuiFormControl-root {
             position: relative;
+            height: $h-1;
+            width: 100%;
 
             .MuiInputBase-root {
                 border-radius: $br-1;
                 width: 100%;
-                height: $h-1;
+                height: 100%;
                 background-color: $primary-bg-color;
 
                 .MuiSelect-select {
@@ -82,6 +84,9 @@
                     color: $color-red-1;
                 }
             }
+        }
+
+        &.MuiBox-root {
         }
     }
 

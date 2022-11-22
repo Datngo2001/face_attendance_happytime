@@ -42,15 +42,15 @@ export const IndexControlPanel = () => {
     const handleExport = () => {};
     const handleSendInvitation = () => {
         console.log("List id", listIdInvitation);
-        toastify({mess: "Gửi lời mời thành công", type: "success"})
+        toastify({ mess: "Gửi lời mời thành công", type: "success" });
     };
     // ******************************
-    
+
     return (
         <>
             <div className="index__control-panel">
                 <div className="index__header">
-                    <h2 className="title">Danh sách nhân viên</h2>
+                    <h2 className="content-title">Danh sách nhân viên</h2>
                     <div className="actions">
                         <DropMenu
                             parent={
@@ -153,6 +153,7 @@ export const IndexControlPanel = () => {
                                     className="button-manipulation"
                                     width="110px"
                                     height="39px"
+                                    type={2}
                                     icon={<HandymanRoundedIcon />}
                                 >
                                     Thao tác

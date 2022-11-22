@@ -3,8 +3,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import "./styles.scss";
-import { memo, useEffect, useState } from "react";
-import { InputLabel } from "@mui/material";
+import { useEffect, useState } from "react";
 
 const SelectCustom = ({
     id,
@@ -83,7 +82,7 @@ const SelectCustom = ({
                     {icon}
                     <Select
                         id={id}
-                        labelId="labell"
+                        labelId="label"
                         open={open}
                         onClose={handleClose}
                         onOpen={handleOpen}
@@ -116,4 +115,4 @@ const SelectCustom = ({
     );
 };
 
-export default memo(SelectCustom);
+export default SelectCustom;

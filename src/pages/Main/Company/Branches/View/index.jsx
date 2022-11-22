@@ -4,7 +4,7 @@ const View = () => {
     return (
         <>
             <div className="company--branches-view__wrapper">
-                <div className="title">Hệ thống chi nhánh</div>
+                <div className="content-title">Hệ thống chi nhánh</div>
             </div>
         </>
     );

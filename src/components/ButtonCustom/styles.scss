@@ -36,6 +36,11 @@
         color: $primary-color;
     }
 
+    &.type-3 {
+        color: $text-color-3;
+        background-color: #eeeeee;
+    }
+
     svg {
         font-size: 18px;
     }

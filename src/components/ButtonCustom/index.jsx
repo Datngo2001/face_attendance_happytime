@@ -17,7 +17,9 @@ const ButtonCustom = ({
                 disabled={disabled || false}
                 className={`btn-custom ${disabled ? "disabled" : ""} ${
                     className ? className : ""
-                } ${type !== 1 ? "type-2" : "type-1"}`}
+                } ${type === 1 ? "type-1" : ""} ${type === 2 ? "type-2" : ""} ${
+                    type === 3 ? "type-3" : ""
+                }`}
                 style={{ height: height ? height : "", width: width ? width : "" }}
             >
                 {icon}

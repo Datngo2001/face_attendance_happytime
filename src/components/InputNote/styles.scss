@@ -1,0 +1,61 @@
+@use "../../assets/styles/index.scss" as *;
+
+.input-note {
+    &__wrapper {
+        width: fit-content;
+        height: fit-content;
+    }
+
+    &__label {
+        padding-bottom: 10px;
+    }
+
+    &__container {
+        > textarea {
+            height: 100%;
+            width: 100%;
+            border-radius: $br-1;
+            border: 1px solid transparent;
+            background-color: $primary-bg-color;
+            outline: none;
+            font-size: $fs-1;
+            color: $text-color-1;
+            transition: all 0.3s;
+            font-family: $f-family-1;
+            padding: 8px 16px;
+
+            &:hover {
+                border-color: $primary-color;
+            }
+
+            &:focus {
+                border-color: $primary-color;
+                box-shadow: 0 0 0 2px rgb(255 159 10 / 20%);
+            }
+        }
+
+        &.error {
+            > input {
+                border-color: $color-red-1;
+
+                &:focus {
+                    border-color: $color-red-1;
+                }
+            }
+            .error-message {
+                color: $color-red-1;
+                font-size: $fs-1;
+                text-align: left;
+            }
+
+            > svg {
+                color: $color-red-1;
+            }
+        }
+    }
+
+    &__length {
+        text-align: right;
+        color: $text-color-2;
+    }
+}
