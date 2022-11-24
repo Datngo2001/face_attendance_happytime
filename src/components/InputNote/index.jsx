@@ -32,9 +32,11 @@ const InputNote = ({
     return (
         <>
             <div className="input-note__wrapper">
-                <div className="input-note__label">
-                    <label htmlFor={id}>{label}</label>
-                </div>
+                {label && (
+                    <div className="input-note__label">
+                        <label htmlFor={id}>{label}</label>
+                    </div>
+                )}
                 <div
                     className={`input-note__container ${
                         message && message[id] ? "error" : ""

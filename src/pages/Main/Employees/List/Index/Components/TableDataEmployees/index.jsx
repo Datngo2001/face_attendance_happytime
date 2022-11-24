@@ -17,7 +17,7 @@ import {
 
 // VARIABLES
 
-// ************************************************************************************************
+// ********************************************************
 
 export default function TableDataEmployees() {
     // STATE
@@ -32,10 +32,12 @@ export default function TableDataEmployees() {
     const hanldeOnRowClick = (rowData) => {
         console.log("Row Data", rowData.row);
         dispatch(updateIdOfSelectedStaff(rowData.row.id));
+        dispatch(updateIdListInvitation([]));
         navigate("../list/view");
     };
 
     const handleOnSelectionModelChange = (idRows) => {
+        console.log("idRows", idRows);
         dispatch(updateIdListInvitation(idRows));
     };
     // ****************************************************
@@ -57,6 +59,7 @@ export default function TableDataEmployees() {
                         columns={columns}
                         rowsPerPageOptions={[5]}
                         checkboxSelection
+                        disableSelectionOnClick
                         onSelectionModelChange={handleOnSelectionModelChange}
                         components={{
                             Pagination: Pagination,

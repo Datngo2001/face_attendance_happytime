@@ -24,6 +24,7 @@
         width: 100%;
         display: flex;
         padding-top: 24px;
+        padding-bottom: 15px;
         font-size: $fs-1;
         color: $text-color-3;
 
@@ -32,7 +33,7 @@
             height: 200px;
             display: flex;
             flex-direction: column;
-            align-items: start;
+            align-items: fstart;
 
             .avatar-header {
                 margin-bottom: 12px;
@@ -43,7 +44,7 @@
             width: 40%;
             display: flex;
             flex-direction: column;
-            align-items: start;
+            align-items: flex-start;
 
             .input-custom {
                 margin-bottom: 20px;

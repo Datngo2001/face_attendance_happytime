@@ -34,7 +34,7 @@ export const IndexControlPanel = () => {
     // HOOK EFFECT
     useEffect(() => {
         console.log(watch());
-        console.log(checkDuplicateElement(watch().emptyFields));
+        console.log("emptyFields", checkDuplicateElement(watch().emptyFields));
     }, [watch()]);
     // ******************************
 

@@ -1,4 +1,4 @@
-import Table from "./Table";
+import TableLeaveManagement from "./TableLeaveManagement"
 import ControlPanel from "./ControlPanel";
 
-export { Table, ControlPanel };
+export { TableLeaveManagement, ControlPanel };

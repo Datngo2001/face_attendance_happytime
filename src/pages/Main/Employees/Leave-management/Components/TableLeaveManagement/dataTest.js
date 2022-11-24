@@ -1,0 +1,42 @@
+export const listEmployees = [
+    {
+        key: 0,
+        id: "0",
+        img: "",
+        name: "Lê Duy Tường",
+        role: "Quản lý",
+        department: "Coffee Store",
+    },
+    {
+        key: 1,
+        id: "0",
+        img: "",
+        name: "Lê Duy Tường",
+        role: "Quản lý",
+        department: "Coffee Store",
+    },
+    {
+        key: 2,
+        id: "0",
+        img: "",
+        name: "Lê Duy Tường",
+        role: "Quản lý",
+        department: "Coffee Store",
+    },
+    {
+        key: 3,
+        id: "0",
+        img: "",
+        name: "Lê Duy Tường",
+        role: "Quản lý",
+        department: "Coffee Store",
+    },
+    {
+        key: 4,
+        id: "0",
+        img: "",
+        name: "Lê Duy Tường",
+        role: "Quản lý",
+        department: "Coffee Store",
+    },
+];

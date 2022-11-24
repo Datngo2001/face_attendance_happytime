@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { ControlPanel, Table } from "./Components";
+import { ControlPanel, TableLeaveManagement } from "./Components";
 import "./styles.scss";
 
 const LeaveManagement = () => {
@@ -15,7 +15,7 @@ const LeaveManagement = () => {
         <>
             <div className="leave-management__wrapper">
                 <ControlPanel register={register} />
-                <Table />
+                <TableLeaveManagement />
             </div>
         </>
     );

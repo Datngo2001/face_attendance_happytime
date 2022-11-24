@@ -1,4 +1,10 @@
-import { Index, LeaveManagement, Update, View } from "../../../../pages/Main/Employees";
+import {
+    Create,
+    Index,
+    LeaveManagement,
+    Update,
+    View,
+} from "../../../../pages/Main/Employees";
 
 const empoyeesRouters = [
     {
@@ -8,6 +14,10 @@ const empoyeesRouters = [
     {
         path: "list/view",
         component: <View />,
+    },
+    {
+        path: "list/create",
+        component: <Create />,
     },
     {
         path: "list/update",
