@@ -17,7 +17,6 @@ const ChangeInfoForm = () => {
         register,
         handleSubmit,
         setValue,
-        trigger,
         formState: { errors },
     } = useForm({
         resolver: yupResolver(schema),

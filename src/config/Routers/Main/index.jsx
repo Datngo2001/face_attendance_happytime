@@ -1,14 +1,21 @@
+import AttendancesLayout from "../../../layouts/Main/attendances";
 import CompanyLayout from "../../../layouts/Main/company";
 import EmployeesLayout from "../../../layouts/Main/employees";
 import ProfileLayout from "../../../layouts/Main/profile";
 import RequestsLayout from "../../../layouts/Main/requests";
 import WorkspaceSettingsLayout from "../../../layouts/Main/workspace-settings";
+import attendancesRouters from "./attendances/router";
 import companyRouters from "./company/router";
 import empoyeesRouters from "./employees/router";
 import profileRouters from "./profile/router";
 import workspaceSettingsRouters from "./workspace-settings/router";
 
 const mainRouters = [
+    {
+        path: "attendances",
+        component: <AttendancesLayout />,
+        listChildrenRoutes: attendancesRouters,
+    },
     {
         path: "requests",
         component: <RequestsLayout />,

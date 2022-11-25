@@ -12,7 +12,7 @@ import {
     MainLayout,
     WorkspacesLayout,
 } from "./layouts";
-import { ToastContainer } from "react-toastify";
+import { Toaster } from "react-hot-toast";
 
 function App() {
     // ARROW FUNCTION
@@ -34,7 +34,7 @@ function App() {
 
     return (
         <>
-            <ToastContainer />
+            <Toaster position="top-center" />
             <Router>
                 <Routes>
                     {/* HOME */}

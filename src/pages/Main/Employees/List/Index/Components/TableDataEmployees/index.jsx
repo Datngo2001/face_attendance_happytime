@@ -2,7 +2,7 @@ import Box from "@mui/material/Box";
 import { DataGrid } from "@mui/x-data-grid";
 import { listEmployees } from "./dataTest";
 import "./styles.scss";
-import { columns, CustomNoRowsOverlay, Pagination } from "./components";
+import { columns, CustomNoRowsOverlay } from "./components";
 import { useNavigate } from "react-router-dom";
 import LoadingCustom from "../../../../../../../components/LoadingCustom";
 import { useDispatch } from "react-redux";
@@ -10,6 +10,8 @@ import {
     updateIdListInvitation,
     updateIdOfSelectedStaff,
 } from "../../../../../../../store/slices/Main/Employees/employeesSlice";
+import { useState } from "react";
+import PaginationCustom from "../../../../../../../components/PaginationCustom";
 
 // ARROW FUNCTIONS
 
@@ -22,6 +24,7 @@ import {
 export default function TableDataEmployees() {
     // STATE
     const dispatch = useDispatch();
+    const [page, setPage] = useState(1);
     // ****************************************************
 
     // HOCK
@@ -48,24 +51,40 @@ export default function TableDataEmployees() {
                 Có <span className="quantity">{listEmployees.length || 0}</span> nhân viên
                 trong danh sách
             </p>
-            <Box sx={{ height: 400, width: "100%" }}>
+            <Box sx={{ height: 350, width: "100%" }}>
                 {listEmployees.length > 0 ? (
-                    <DataGrid
-                        onRowClick={hanldeOnRowClick}
-                        disableColumnMenu
-                        headerHeight={100}
-                        rowHeight={100}
-                        rows={listEmployees}
-                        columns={columns}
-                        rowsPerPageOptions={[5]}
-                        checkboxSelection
-                        disableSelectionOnClick
-                        onSelectionModelChange={handleOnSelectionModelChange}
-                        components={{
-                            Pagination: Pagination,
-                            NoRowsOverlay: CustomNoRowsOverlay,
-                        }}
-                    />
+                    <>
+                        <DataGrid
+                            onRowClick={hanldeOnRowClick}
+                            disableColumnMenu
+                            headerHeight={100}
+                            rowHeight={100}
+                            rows={listEmployees}
+                            columns={columns}
+                            rowsPerPageOptions={[5]}
+                            checkboxSelection
+                            disableSelectionOnClick
+                            hideFooter={true}
+                            onSelectionModelChange={handleOnSelectionModelChange}
+                            components={{
+                                Pagination: false,
+                                NoRowsOverlay: CustomNoRowsOverlay,
+                            }}
+                        />
+                        <div
+                            style={{
+                                display: "flex",
+                                justifyContent: "right",
+                                padding: "16px 24px",
+                            }}
+                        >
+                            <PaginationCustom
+                                page={page}
+                                setPage={setPage}
+                                totalPages={10}
+                            />
+                        </div>
+                    </>
                 ) : (
                     <DataGrid
                         onRowClick={hanldeOnRowClick}
@@ -78,7 +97,6 @@ export default function TableDataEmployees() {
                         rowsPerPageOptions={[5]}
                         checkboxSelection
                         components={{
-                            Pagination: Pagination,
                             NoRowsOverlay: CustomNoRowsOverlay,
                             LoadingOverlay: LoadingCustom,
                         }}

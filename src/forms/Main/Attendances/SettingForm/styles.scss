@@ -1,0 +1,35 @@
+@use "../../../../assets/styles/index.scss" as *;
+
+.attendances--setting-form {
+    &__wrapper {
+        width: 100%;
+        height: auto;
+        font-size: $fs-1;
+        color: $text-color-1;
+
+        > .description {
+            margin-bottom: 24px;
+        }
+    }
+
+    &__container {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+
+        .radio-control {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+
+            .label {
+                font-weight: $fw-1;
+            }
+        }
+    }
+
+    &__actions {
+        display: flex;
+        justify-content: right;
+    }
+}

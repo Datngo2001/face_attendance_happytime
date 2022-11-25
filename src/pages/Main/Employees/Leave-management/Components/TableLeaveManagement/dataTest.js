@@ -6,6 +6,23 @@ export const listEmployees = [
         name: "Lê Duy Tường",
         role: "Quản lý",
         department: "Coffee Store",
+        totalLeave: {
+            total: 0,
+            used: 0,
+            expire: 0,
+            rest: 0,
+        },
+        theLeaveThisYear: {
+            total: 0,
+            used: 0,
+            rest: 0,
+        },
+        theLeaveLastYear: {
+            total: 0,
+            used: 0,
+            expire: 0,
+            rest: 0,
+        },
     },
     {
         key: 1,
@@ -14,6 +31,23 @@ export const listEmployees = [
         name: "Lê Duy Tường",
         role: "Quản lý",
         department: "Coffee Store",
+        totalLeave: {
+            total: 0,
+            used: 0,
+            expire: 0,
+            rest: 0,
+        },
+        theLeaveThisYear: {
+            total: 0,
+            used: 0,
+            rest: 0,
+        },
+        theLeaveLastYear: {
+            total: 0,
+            used: 0,
+            expire: 0,
+            rest: 0,
+        },
     },
     {
         key: 2,
@@ -22,7 +56,25 @@ export const listEmployees = [
         name: "Lê Duy Tường",
         role: "Quản lý",
         department: "Coffee Store",
+        totalLeave: {
+            total: 0,
+            used: 0,
+            expire: 0,
+            rest: 0,
+        },
+        theLeaveThisYear: {
+            total: 0,
+            used: 0,
+            rest: 0,
+        },
+        theLeaveLastYear: {
+            total: 0,
+            used: 0,
+            expire: 0,
+            rest: 0,
+        },
     },
+
     {
         key: 3,
         id: "0",
@@ -30,6 +82,23 @@ export const listEmployees = [
         name: "Lê Duy Tường",
         role: "Quản lý",
         department: "Coffee Store",
+        totalLeave: {
+            total: 0,
+            used: 0,
+            expire: 0,
+            rest: 0,
+        },
+        theLeaveThisYear: {
+            total: 0,
+            used: 0,
+            rest: 0,
+        },
+        theLeaveLastYear: {
+            total: 0,
+            used: 0,
+            expire: 0,
+            rest: 0,
+        },
     },
     {
         key: 4,
@@ -38,5 +107,22 @@ export const listEmployees = [
         name: "Lê Duy Tường",
         role: "Quản lý",
         department: "Coffee Store",
+        totalLeave: {
+            total: 0,
+            used: 0,
+            expire: 0,
+            rest: 0,
+        },
+        theLeaveThisYear: {
+            total: 0,
+            used: 0,
+            rest: 0,
+        },
+        theLeaveLastYear: {
+            total: 0,
+            used: 0,
+            expire: 0,
+            rest: 0,
+        },
     },
 ];

@@ -2,6 +2,7 @@
 
 .pagination-custom {
     &__wrapper {
+        width: fit-content;
         .MuiPagination-root {
             .MuiPagination-ul {
                 li {

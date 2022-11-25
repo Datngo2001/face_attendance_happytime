@@ -1,7 +1,5 @@
-import { useState } from "react";
 import DropMenu from "../../../../../../../components/DropMenu";
 import NoRowsOverlayCustom from "../../../../../../../components/NoRowsOverlayCustom";
-import PaginationCustom from "../../../../../../../components/PaginationCustom";
 import { ColumnContactInfo } from "../ColumnContactInfo";
 import { ColumnName } from "../ColumnName";
 import { ColumnOthers } from "../ColumnOthers";
@@ -60,20 +58,6 @@ export const StatusUsingHappyTime = ({ status }) => {
 
 export const CustomNoRowsOverlay = () => {
     return <NoRowsOverlayCustom />;
-};
-
-export const Pagination = () => {
-    // STATE
-    const [page, setPage] = useState(0);
-    // ******************************
-
-    return (
-        <PaginationCustom
-            totalPages={10}
-            page={page + 1}
-            onChange={(event, value) => setPage(value - 1)}
-        />
-    );
 };
 
 export const columns = [

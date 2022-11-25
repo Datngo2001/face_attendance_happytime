@@ -1,0 +1,9 @@
+@use "../../../../assets/styles/index.scss" as *;
+
+.attendances--setting {
+    &__wrapper {
+        width: 100%;
+        height: 100%;
+        padding: 20px 30px;
+    }
+}

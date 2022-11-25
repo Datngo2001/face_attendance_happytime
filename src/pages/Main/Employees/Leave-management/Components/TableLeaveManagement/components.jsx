@@ -1,23 +1,40 @@
-import { useState } from "react";
 import NoRowsOverlayCustom from "../../../../../../components/NoRowsOverlayCustom";
-import PaginationCustom from "../../../../../../components/PaginationCustom";
 import { ColumnName } from "../ColumnName";
 
 export const CustomNoRowsOverlay = () => {
     return <NoRowsOverlayCustom />;
 };
-
-export const Pagination = () => {
-    // STATE
-    const [page, setPage] = useState(0);
-    // ******************************
-
+const TotalLeaveDaysRow = ({ data }) => {
     return (
-        <PaginationCustom
-            totalPages={10}
-            page={page + 1}
-            onChange={(event, value) => setPage(value - 1)}
-        />
+        <>
+            <div className="row__wrapper total-leave-days">{data}</div>
+        </>
+    );
+};
+
+const LeaveDaysThisYearRow = ({ data }) => {
+    return (
+        <>
+            <div className="row__wrapper leave-days-this-year">{data}</div>
+        </>
+    );
+};
+
+const LeaveDaysLastYearRow = ({ data }) => {
+    return (
+        <>
+            <div className="row__wrapper leave-days-last-year">{data}</div>
+        </>
+    );
+};
+
+const RowDepartment = ({ data }) => {
+    return (
+        <>
+            <div className="row-department__wrapper">
+                <p className="text">{data}</p>
+            </div>
+        </>
     );
 };
 
@@ -35,39 +52,124 @@ export const columns = [
         title: "Nhân viên",
         width: 338,
         fixed: "left",
+        render: (text, rowData) => (
+            <ColumnName img="" role={rowData.role} name={rowData.name} />
+        ),
     },
     {
         key: "department",
         dataIndex: "department",
         title: "Phòng ban",
         width: 280,
+        render: (text, rowData) => <RowDepartment data={rowData.department} />,
     },
     {
-        key: "test2",
-        dataIndex: "department",
+        key: "totalLeave",
         title: "Tổng phép",
         width: 405,
+        children: [
+            {
+                title: "Tổng",
+                dataIndex: "totalLeave",
+                width: 100,
+                render: (text, rowData) => (
+                    <TotalLeaveDaysRow data={rowData.totalLeave.total} />
+                ),
+            },
+            {
+                title: "Đã dùng",
+                dataIndex: "totalLeave",
+                width: 100,
+                render: (text, rowData) => (
+                    <TotalLeaveDaysRow data={rowData.totalLeave.used} />
+                ),
+            },
+            {
+                title: "Hết hạn",
+                dataIndex: "totalLeave",
+                width: 100,
+                render: (text, rowData) => (
+                    <TotalLeaveDaysRow data={rowData.totalLeave.expire} />
+                ),
+            },
+            {
+                title: "Còn lại",
+                dataIndex: "totalLeave",
+                width: 100,
+                render: (text, rowData) => (
+                    <TotalLeaveDaysRow data={rowData.totalLeave.rest} />
+                ),
+            },
+        ],
     },
     {
-        key: "test3",
-        dataIndex: "department",
+        key: "theLeaveThisYear",
         title: "Phép năm nay",
         width: 305,
+        children: [
+            {
+                title: "Tổng",
+                dataIndex: "theLeaveThisYear",
+                width: 100,
+                render: (text, rowData) => (
+                    <LeaveDaysThisYearRow data={rowData.theLeaveThisYear.total} />
+                ),
+            },
+            {
+                title: "Đã dùng",
+                dataIndex: "theLeaveThisYear",
+                width: 100,
+                render: (text, rowData) => (
+                    <LeaveDaysThisYearRow data={rowData.theLeaveThisYear.used} />
+                ),
+            },
+            {
+                title: "Còn lại",
+                dataIndex: "theLeaveThisYear",
+                width: 100,
+                render: (text, rowData) => (
+                    <LeaveDaysThisYearRow data={rowData.theLeaveThisYear.rest} />
+                ),
+            },
+        ],
     },
     {
-        key: "test4",
-        dataIndex: "department",
+        key: "theLeaveLastYear",
         title: "Phép năm trước",
         width: 405,
+        children: [
+            {
+                title: "Tổng",
+                dataIndex: "theLeaveLastYear",
+                width: 100,
+                render: (text, rowData) => (
+                    <LeaveDaysLastYearRow data={rowData.theLeaveLastYear.total} />
+                ),
+            },
+            {
+                title: "Đã dùng",
+                dataIndex: "theLeaveLastYear",
+                width: 100,
+                render: (text, rowData) => (
+                    <LeaveDaysLastYearRow data={rowData.theLeaveLastYear.used} />
+                ),
+            },
+            {
+                title: "Hết hạn",
+                dataIndex: "theLeaveLastYear",
+                width: 100,
+                render: (text, rowData) => (
+                    <LeaveDaysLastYearRow data={rowData.theLeaveLastYear.expire} />
+                ),
+            },
+            {
+                title: "Còn lại",
+                dataIndex: "theLeaveLastYear",
+                width: 100,
+                render: (text, rowData) => (
+                    <LeaveDaysLastYearRow data={rowData.theLeaveLastYear.rest} />
+                ),
+            },
+        ],
     },
-    // {
-    //     field: "fullName",
-    //     headerName: "Nhân viên",
-    //     // description: "",
-    //     sortable: false,
-    //     width: 336,
-    //     renderCell: (params) => {
-    //         return <ColumnName img="" role={params.row.role} name={params.row.name} />;
-    //     },
-    // },
 ];

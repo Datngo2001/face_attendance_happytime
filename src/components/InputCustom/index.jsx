@@ -13,14 +13,12 @@ const InputCustom = ({
     message,
     label,
     required = false,
-    direction,
     labelWidth,
 }) => {
     return (
         <>
             <div
-                className={`input-custom__wrapper direction-${direction}
-            ${className ? className : ""}`}
+                className={`input-custom__wrapper ${className ? className : ""}`}
                 style={{ width: width ? width : "", height: height ? height : "" }}
             >
                 {label && (

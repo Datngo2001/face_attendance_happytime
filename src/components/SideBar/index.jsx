@@ -42,7 +42,7 @@ const Sidebar = ({ state }) => {
                         <LogoutRoundedIcon /> <span className="title">Đăng xuất</span>
                     </span>
                     <div className="identifier-code">
-                        <p className="title">Mã định danh workspace</p>
+                        <p className="title">Mã định danh doanh nghiệp</p>
                         <div>
                             <p className="code">16609880218015</p>
                             <ContentCopyRoundedIcon />
