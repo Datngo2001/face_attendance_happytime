@@ -4,7 +4,7 @@ import ContentCopyRoundedIcon from "@mui/icons-material/ContentCopyRounded";
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 import "./styles.scss";
 import ModalCustom from "../ModalCustom";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Sidebar = ({ state }) => {
     // VARIABLES
@@ -14,9 +14,14 @@ const Sidebar = ({ state }) => {
     // STATE
     // ********************************
 
+    // HOOK ROUTER DOM
+    const navigate = useNavigate();
+    // ****************************
+
     // ARROW FUNCTION
-    const handleLogout = () => {
-        console.log("logout");
+    const handleLogOut = () => {
+        sessionStorage.clear();
+        navigate("/");
     };
     // ********************************
     return (
@@ -54,7 +59,7 @@ const Sidebar = ({ state }) => {
             <ModalCustom
                 idTarget="btnLogout"
                 titleHeader="Đăng xuất"
-                callback={handleLogout}
+                callback={handleLogOut}
             >
                 <LogoutModalContent />
             </ModalCustom>

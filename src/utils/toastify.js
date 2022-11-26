@@ -1,6 +1,6 @@
 import { toast } from "react-hot-toast";
 
-const toastify = ({ mess, type = "default", duration = 3000 }) => {
+const toastify = ({ mess, type = "default", duration = 20000 }) => {
     // type: default, info, success, error, warning
     switch (type) {
         case "success":

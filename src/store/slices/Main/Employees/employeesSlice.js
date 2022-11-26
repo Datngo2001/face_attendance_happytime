@@ -6,7 +6,7 @@ import {
 } from "./actions/reducers";
 
 const employeesSlice = createSlice({
-    name: "employeesSlice",
+    name: "employees",
     initialState: {
         listIdInvitation: [],
         idOfSelectedStaff: "",

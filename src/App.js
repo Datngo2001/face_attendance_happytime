@@ -13,6 +13,7 @@ import {
     WorkspacesLayout,
 } from "./layouts";
 import { Toaster } from "react-hot-toast";
+import { Redirect } from "./utils";
 
 function App() {
     // ARROW FUNCTION
@@ -36,24 +37,29 @@ function App() {
         <>
             <Toaster position="top-center" />
             <Router>
-                <Routes>
-                    {/* HOME */}
-                    <Route path="/" element={<HomeLayout />}>
-                        {renderRoute(homeRouters)}
-                    </Route>
-                    {/* AUTHENTICATION */}
-                    <Route path="/auth" element={<AuthenticationLayout />}>
-                        {renderRoute(authenticationRouters)}
-                    </Route>
-                    {/* WORKSPACES */}
-                    <Route path="/workspaces" element={<WorkspacesLayout />}>
-                        {renderRoute(workspacesRouters)}
-                    </Route>
-                    {/* MAIN */}
-                    <Route path="/app" element={<MainLayout />}>
-                        {renderRouterMain(mainRouters)}
-                    </Route>
-                </Routes>
+                <Redirect>
+                    <Routes>
+                        {/* HOME */}
+                        <Route path="/" element={<HomeLayout />}>
+                            {renderRoute(homeRouters)}
+                        </Route>
+                        {/* AUTHENTICATION */}
+                        <Route path="/auth" element={<AuthenticationLayout />}>
+                            {renderRoute(authenticationRouters)}
+                        </Route>
+                        {/* WORKSPACES */}
+                        <Route path="/workspaces" element={<WorkspacesLayout />}>
+                            {renderRoute(workspacesRouters)}
+                        </Route>
+                        {/* MAIN */}
+                        <Route path="/app" element={<MainLayout />}>
+                            {renderRouterMain(mainRouters)}
+                        </Route>
+                        <Route path="*">
+                            
+                        </Route>
+                    </Routes>
+                </Redirect>
             </Router>
         </>
     );

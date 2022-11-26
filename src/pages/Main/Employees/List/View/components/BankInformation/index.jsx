@@ -1,7 +1,7 @@
 import "./styles.scss";
 import AccountBalanceRoundedIcon from "@mui/icons-material/AccountBalanceRounded";
 
-const BankInformation = ({}) => {
+const BankInformation = () => {
     return (
         <>
             <div className="view-bank-information__wrapper">

@@ -10,6 +10,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "./handleForm";
 import { useEffect } from "react";
 import { focusToElement } from "../../../utils";
+import { useDispatch, useSelector } from "react-redux";
+import * as loginActions from "../../../store/slices/Authentication/Login/loginActions";
 
 const LoginForm = () => {
     // STATE
@@ -20,10 +22,18 @@ const LoginForm = () => {
     } = useForm({ resolver: yupResolver(schema) });
     const navigate = useNavigate();
 
+    // HOOK REDUX TOOLKIT
+    const dispatch = useDispatch();
+    const { status } = useSelector((state) => state.auth);
+    // ****************************
+
     const onSubmit = (data) => {
         console.log("data", data);
-
-        navigate("/workspaces");
+        const dataSubmit = {
+            phone_number: data.phone,
+            password: data.password,
+        };
+        dispatch(loginActions.extraReducersLogin(dataSubmit));
     };
     // ******************************
 
@@ -38,7 +48,7 @@ const LoginForm = () => {
                 document.querySelector(".btn-login").click();
             }
         });
-        
+
         focusToElement("phone");
 
         // CLEAN FUNCTION
@@ -50,6 +60,11 @@ const LoginForm = () => {
             });
         };
     }, []);
+
+    useEffect(() => {
+        if (status || sessionStorage.getItem("isLoggedIn"))
+            navigate("/app/employees/list/index", true);
+    }, [status]);
     // ****************************
 
     return (

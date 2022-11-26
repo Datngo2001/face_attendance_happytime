@@ -4,7 +4,7 @@ import ApartmentRoundedIcon from "@mui/icons-material/ApartmentRounded";
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 import { Link } from "react-router-dom";
 
-const ButtonUserInner = ({setOpen}) => {
+const ButtonUserInner = ({ setOpen }) => {
     // STATE
     // ******************************
 

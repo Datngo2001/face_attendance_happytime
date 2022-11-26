@@ -3,7 +3,7 @@ import logo from "../../assets/images/happytime-fulltext.png";
 import ButtonCustom from "../ButtonCustom";
 import MenuIcon from "@mui/icons-material/Menu";
 import ButtonUser from "../ButtonUser";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import avatar from "../../assets/images/avatar.jpg"; //test avatar
 import {
     ButtonUserInner,
@@ -24,10 +24,16 @@ const HeaderMain = ({ isActive, state, setState }) => {
     // VARIABLES
     // *******************************
 
+    // HOOK ROUTER DOM
+    const navigate = useNavigate();
+    // ****************************
+
     // ARROW FUNCTION
-    const handleLogout = () => {
-        console.log("logout");
+    const handleLogOut = () => {
+        sessionStorage.clear();
+        navigate("/");
     };
+    // ****************************
     const handleToggleSidebar = () => {
         setState(!state);
     };
@@ -39,7 +45,7 @@ const HeaderMain = ({ isActive, state, setState }) => {
                 {!isActive ? (
                     <>
                         <img src={logo} alt="logo" className="header-main__logo-img" />
-                        <ButtonCustom className="btn-logout" onClick={handleLogout}>
+                        <ButtonCustom className="btn-logout" onClick={handleLogOut}>
                             Đăng xuất
                         </ButtonCustom>
                     </>
@@ -98,7 +104,7 @@ const HeaderMain = ({ isActive, state, setState }) => {
                                     titleBtnAccept="Đồng ý"
                                     state={open}
                                     setState={setOpen}
-                                    callback={handleLogout}
+                                    callback={handleLogOut}
                                 >
                                     Bạn có chắc chắn muốn đăng xuất khỏi hệ thống?
                                 </ModalCustom>
