@@ -9,6 +9,12 @@ const MainLayout = () => {
     const [isCollapsed, setIsCollapsed] = useState(true);
     // *******************************
 
+    // HOOK ROUTER DOM
+    // ****************************
+
+    // HOOK EFFECT
+    // ******************************
+
     return (
         <>
             <div className="main-layout__wrapper">

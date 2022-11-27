@@ -12,6 +12,7 @@ import { useEffect } from "react";
 import { focusToElement } from "../../../utils";
 import { useDispatch, useSelector } from "react-redux";
 import * as loginActions from "../../../store/slices/Authentication/Login/loginActions";
+import { updateStatusState } from "../../../store/slices/Authentication/authSlice";
 
 const LoginForm = () => {
     // STATE
@@ -28,7 +29,6 @@ const LoginForm = () => {
     // ****************************
 
     const onSubmit = (data) => {
-        console.log("data", data);
         const dataSubmit = {
             phone_number: data.phone,
             password: data.password,
@@ -62,8 +62,12 @@ const LoginForm = () => {
     }, []);
 
     useEffect(() => {
-        if (status || sessionStorage.getItem("isLoggedIn"))
-            navigate("/app/employees/list/index", true);
+        if (status) navigate("/app/employees/list/index");
+
+        // Clean function
+        return () => {
+            dispatch(updateStatusState(false));
+        };
     }, [status]);
     // ****************************
 

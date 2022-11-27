@@ -6,11 +6,12 @@ const authSlice = createSlice({
     initialState: {
         status: false,
     },
+    reducers: {
+        updateStatusState: loginACtions.reducersUpdateStatusState,
+    },
     extraReducers: (builder) => {
         builder
-            .addCase(loginACtions.extraReducersLogin.pending, (state, payload) => {
-                console.log("penddingggg");
-            })
+            .addCase(loginACtions.extraReducersLogin.pending, (state, payload) => {})
             .addCase(loginACtions.extraReducersLogin.fulfilled, (state, { payload }) => {
                 if (payload.message === "success") {
                     state.status = true;
@@ -21,4 +22,5 @@ const authSlice = createSlice({
     },
 });
 
+export const { updateStatusState } = authSlice.actions;
 export default authSlice;

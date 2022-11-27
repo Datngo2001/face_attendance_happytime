@@ -17,7 +17,7 @@ export const extraReducersLogin = createAsyncThunk("login", async (data) => {
     toast.promise(promise, {
         loading: "Đang đăng nhập...",
         success: (data) => {
-            if (data.message === "failed") {
+            if (data.message !== "success") {
                 throw data;
             }
             return "Đăng nhập thành công";

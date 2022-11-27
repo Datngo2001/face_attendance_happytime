@@ -1,9 +1,10 @@
 import "./App.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import {
     authenticationRouters,
     homeRouters,
     mainRouters,
+    NoMatchRouter,
     workspacesRouters,
 } from "./config/Routers";
 import {
@@ -13,7 +14,7 @@ import {
     WorkspacesLayout,
 } from "./layouts";
 import { Toaster } from "react-hot-toast";
-import { Redirect } from "./utils";
+import * as auth from "./auth";
 
 function App() {
     // ARROW FUNCTION
@@ -37,7 +38,7 @@ function App() {
         <>
             <Toaster position="top-center" />
             <Router>
-                <Redirect>
+                <auth.AuthRouter>
                     <Routes>
                         {/* HOME */}
                         <Route path="/" element={<HomeLayout />}>
@@ -52,14 +53,21 @@ function App() {
                             {renderRoute(workspacesRouters)}
                         </Route>
                         {/* MAIN */}
-                        <Route path="/app" element={<MainLayout />}>
+                        <Route
+                            path="/app"
+                            element={
+                                auth.authAccount() ? (
+                                    <MainLayout />
+                                ) : (
+                                    <Navigate to="../auth/login" />
+                                )
+                            }
+                        >
                             {renderRouterMain(mainRouters)}
                         </Route>
-                        <Route path="*">
-                            
-                        </Route>
+                        <Route path="*" element={<NoMatchRouter />} />
                     </Routes>
-                </Redirect>
+                </auth.AuthRouter>
             </Router>
         </>
     );

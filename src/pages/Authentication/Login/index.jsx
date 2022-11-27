@@ -4,7 +4,6 @@ import { tabTitle } from "../../../utils";
 
 const Login = () => {
     tabTitle("Đăng nhập");
-
     return (
         <>
             <LoginForm />

@@ -52,30 +52,34 @@ export default function TableDataEmployees() {
                 trong danh sách
             </p>
             <Box sx={{ height: 350, width: "100%" }}>
-                {listEmployees.length > 0 ? (
-                    <>
-                        <DataGrid
-                            onRowClick={hanldeOnRowClick}
-                            disableColumnMenu
-                            headerHeight={100}
-                            rowHeight={100}
-                            rows={listEmployees}
-                            columns={columns}
-                            rowsPerPageOptions={[5]}
-                            checkboxSelection
-                            disableSelectionOnClick
-                            hideFooter={true}
-                            onSelectionModelChange={handleOnSelectionModelChange}
-                            components={{
-                                Pagination: false,
-                                NoRowsOverlay: CustomNoRowsOverlay,
-                            }}
-                        />
+                <>
+                    <DataGrid
+                        onRowClick={hanldeOnRowClick}
+                        disableColumnMenu
+                        headerHeight={100}
+                        rowHeight={100}
+                        rows={listEmployees || []}
+                        columns={columns}
+                        rowsPerPageOptions={[5]}
+                        checkboxSelection
+                        disableSelectionOnClick
+                        hideFooter={true}
+                        loading={false}
+                        onSelectionModelChange={handleOnSelectionModelChange}
+                        components={{
+                            Pagination: false,
+                            NoRowsOverlay: CustomNoRowsOverlay,
+                            LoadingOverlay: LoadingCustom,
+                        }}
+                    />
+                    {listEmployees.length > 0 && (
                         <div
                             style={{
                                 display: "flex",
                                 justifyContent: "right",
                                 padding: "16px 24px",
+                                backgroundColor: "#ffffff",
+                                borderTop: "1px solid #eeeeee",
                             }}
                         >
                             <PaginationCustom
@@ -84,24 +88,8 @@ export default function TableDataEmployees() {
                                 totalPages={10}
                             />
                         </div>
-                    </>
-                ) : (
-                    <DataGrid
-                        onRowClick={hanldeOnRowClick}
-                        disableColumnMenu
-                        headerHeight={100}
-                        rowHeight={100}
-                        rows={[]}
-                        loading
-                        columns={columns}
-                        rowsPerPageOptions={[5]}
-                        checkboxSelection
-                        components={{
-                            NoRowsOverlay: CustomNoRowsOverlay,
-                            LoadingOverlay: LoadingCustom,
-                        }}
-                    />
-                )}
+                    )}
+                </>
             </Box>
         </>
     );
