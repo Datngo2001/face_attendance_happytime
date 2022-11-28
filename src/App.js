@@ -53,16 +53,7 @@ function App() {
                             {renderRoute(workspacesRouters)}
                         </Route>
                         {/* MAIN */}
-                        <Route
-                            path="/app"
-                            element={
-                                auth.authAccount() ? (
-                                    <MainLayout />
-                                ) : (
-                                    <Navigate to="../auth/login" />
-                                )
-                            }
-                        >
+                        <Route path="/app" element={<MainLayout />}>
                             {renderRouterMain(mainRouters)}
                         </Route>
                         <Route path="*" element={<NoMatchRouter />} />

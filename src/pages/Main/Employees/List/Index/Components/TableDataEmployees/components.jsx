@@ -1,3 +1,4 @@
+import { Tooltip } from "@mui/material";
 import DropMenu from "../../../../../../../components/DropMenu";
 import NoRowsOverlayCustom from "../../../../../../../components/NoRowsOverlayCustom";
 import { ColumnContactInfo } from "../ColumnContactInfo";
@@ -61,7 +62,19 @@ export const CustomNoRowsOverlay = () => {
 };
 
 export const columns = [
-    { field: "id", headerName: "Mã nhân viên", width: 110, sortable: false },
+    {
+        field: "_id",
+        headerName: "Mã nhân viên",
+        width: 110,
+        sortable: false,
+        // renderCell: (params) => {
+        //     return (
+        //         <Tooltip title={params.row._id}>
+        //             {params.row._id}
+        //         </Tooltip>
+        //     );
+        // },
+    },
     {
         field: "fullName",
         headerName: "Tên nhân viên",
@@ -69,11 +82,17 @@ export const columns = [
         sortable: false,
         width: 250,
         renderCell: (params) => {
-            return <ColumnName img="" role={params.row.role} name={params.row.name} />;
+            return (
+                <ColumnName
+                    img={params.row.avatar}
+                    role={params.row.role}
+                    name={params.row.name}
+                />
+            );
         },
     },
     {
-        field: "department",
+        field: "username",
         headerName: "Phòng ban",
         sortable: false,
         width: 200,
@@ -88,8 +107,8 @@ export const columns = [
         renderCell: (params) => {
             return (
                 <ColumnContactInfo
-                    email={params.row.contactInf.email}
-                    phone={params.row.contactInf.phone}
+                    email={params.row.personal_mail}
+                    phone={params.row.phone_number}
                 />
             );
         },
@@ -101,7 +120,7 @@ export const columns = [
         // flex: 1,
         sortable: false,
         renderCell: (params) => {
-            return <StatusEmployee status={params.row.statusEmployee} />;
+            return <StatusEmployee status={params.row.agent_status} />;
         },
     },
     {
@@ -110,7 +129,7 @@ export const columns = [
         width: 200,
         sortable: false,
         renderCell: (params) => {
-            return <StatusUsingHappyTime status={params.row.statusEmployee} />;
+            return <StatusUsingHappyTime status={params.row.is_used_happy_time} />;
         },
     },
     {

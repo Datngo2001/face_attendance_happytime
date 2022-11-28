@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import { schema } from "./handleForm";
 import InputCustom from "../../../components/InputCustom";
@@ -9,6 +9,9 @@ import ButtonCustom from "../../../components/ButtonCustom";
 import LockIcon from "@mui/icons-material/Lock";
 import { useEffect } from "react";
 import { focusToElement } from "../../../utils";
+import { useDispatch, useSelector } from "react-redux";
+import { updateStatusState } from "../../../store/slices/Authentication/authSlice";
+import * as registerActions from "../../../store/slices/Authentication/Register/registerActions";
 
 const SetPasswordForm = () => {
     // STATE
@@ -17,22 +20,52 @@ const SetPasswordForm = () => {
         handleSubmit,
         formState: { errors },
     } = useForm({
+        mode: "onChange",
         resolver: yupResolver(schema),
     });
     // ******************************
+
+    // HOOK REACT TOOLKIT
+    const { status } = useSelector((state) => state.auth);
+    const dispatch = useDispatch();
+    // ****************************
+
+    // HOOK ROUTER DOM
+    const navigate = useNavigate();
+    // ****************************
 
     // HOOK EFFECT
     useEffect(() => {
         focusToElement("password");
     }, []);
+
+    useEffect(() => {
+        if (status) {
+            navigate("../login", { replace: true });
+        }
+        // Clean function
+        return () => dispatch(updateStatusState(false));
+    }, [status]);
     // ****************************
 
     // ARROW FUNCTIONS
     const onSubmit = (data) => {
-        console.log("data", data);
+        const dataRegister = JSON.parse(sessionStorage.getItem("dataRegister"));
+        const dataSubmit = {
+            name: dataRegister?.name,
+            phone_number: dataRegister?.phone,
+            company_name: dataRegister?.nameCompany,
+            job_position: dataRegister?.position,
+            email: dataRegister?.email,
+            scale: parseInt(dataRegister?.scale),
+            code: dataRegister?.code,
+            password: data.password,
+        };
+
+        console.log("dataSubmit", dataSubmit);
+        dispatch(registerActions.extraReducersRegister(dataSubmit));
     };
     // ****************************
-
     return (
         <>
             <form className="set-password-form__wrapper">

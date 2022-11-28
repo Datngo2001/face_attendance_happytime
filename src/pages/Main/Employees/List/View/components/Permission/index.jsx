@@ -1,7 +1,7 @@
 import "./styles.scss";
 import SettingsRoundedIcon from "@mui/icons-material/SettingsRounded";
 
-const Permission = () => {
+const Permission = ({role}) => {
     return (
         <>
             <div className="view-permission__wrapper">
@@ -15,7 +15,7 @@ const Permission = () => {
                             <p className="label">Quyền thao tác</p>
                         </div>
                         <div className="col__data">
-                            <p className="data">Admin</p>
+                            <p className="data">{role}</p>
                         </div>
                     </div>
                 </div>

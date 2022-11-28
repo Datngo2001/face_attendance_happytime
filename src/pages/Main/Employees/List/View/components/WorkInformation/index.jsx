@@ -8,6 +8,7 @@ const WorkInformation = ({
     typeEmployee,
     manageDirectly,
     statusEmployee,
+    statusUsingHappyTime,
 }) => {
     // HOOK EFFECT
     // ****************************
@@ -71,7 +72,7 @@ const WorkInformation = ({
                             <p className={`data ${!typeEmployee && "not-yet-update"}`}>
                                 {typeEmployee || "Chưa cập nhật"}
                             </p>
-                            <p className={`data ${!typeEmployee && "not-yet-update"}`}>
+                            <p className={`data ${!statusUsingHappyTime && "not-yet-update"}`}>
                                 {typeEmployee || "Chưa cập nhật"}
                             </p>
                             <p className={`data ${!typeEmployee && "not-yet-update"}`}>

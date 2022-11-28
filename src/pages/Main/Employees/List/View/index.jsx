@@ -1,8 +1,7 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import "./styles.scss";
 import "../index.scss";
-import { detailInfor } from "./dataTest";
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 import {
     BankInformation,
@@ -12,43 +11,35 @@ import {
     Profile,
     WorkInformation,
 } from "./components";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import LoadingCustom from "../../../../../components/LoadingCustom";
+import { extraReducersGetInfoEmployeeById } from "../../../../../store/slices/Main/Employees/actions/extraReducers";
 
 const View = () => {
-    // STATE
-    const { idOfSelectedStaff } = useSelector((state) => state.employees);
-    const [loading, setLoading] = useState(true);
+    // HOOK REACT TOOLKIT
+    const { loading, infoOfEmployee } = useSelector((state) => state.employees);
+    const dispatch = useDispatch();
     // *****************************
 
     // VARIABLES
-    const {
-        id,
-        avatar,
-        name,
-        jobPosition,
-        department,
-        statusEmployee,
-        phoneNumber,
-        email,
-        emailCompany,
-    } = detailInfor;
     // ******************************
 
     // HOOK EFFECT
     useEffect(() => {
-        // FAKE LOADING API
-        setTimeout(() => {
-            setLoading(false);
-        }, 1000);
-        // ****************************
+        dispatch(
+            extraReducersGetInfoEmployeeById({
+                id: sessionStorage.getItem("idSelectedEmployee"),
+            })
+        );
+
+        // Clean function
     }, []);
     // *****************************
 
     // ARROW FUNCTIONS
     // *****************************
 
-    console.log("id row:", idOfSelectedStaff);
+    console.log("infoOfEmployee", infoOfEmployee);
 
     return (
         <>
@@ -62,19 +53,24 @@ const View = () => {
                     <LoadingCustom />
                 ) : (
                     <>
-                        <Header avatar={avatar} name={name} id={id} />
+                        <Header
+                            avatar={infoOfEmployee.avatar}
+                            name={infoOfEmployee.name}
+                            id={infoOfEmployee._id}
+                        />
                         <WorkInformation
-                            jobPosition={jobPosition}
-                            department={department}
-                            statusEmployee={statusEmployee}
+                            jobPosition={infoOfEmployee.agent_position}
+                            department={infoOfEmployee.agent_position}
+                            statusEmployee={infoOfEmployee.agent_status}
+                            statusUsingHappyTime={infoOfEmployee.is_used_happy_time}
                         />
                         <Profile
-                            phoneNumber={phoneNumber}
-                            email={email}
-                            emailCompany={emailCompany}
+                            phoneNumber={infoOfEmployee.phone_number}
+                            email={infoOfEmployee.personal_mail}
+                            emailCompany={infoOfEmployee.company_mail}
                         />
                         <BankInformation />
-                        <Permission />
+                        <Permission role={infoOfEmployee.role}/>
                         <Note />
                     </>
                 )}

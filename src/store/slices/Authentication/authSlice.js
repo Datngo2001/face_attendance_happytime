@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import * as loginACtions from "./Login/loginActions";
+import * as registerActions from "./Register/registerActions";
 
 const authSlice = createSlice({
     name: "auth",
@@ -19,6 +20,15 @@ const authSlice = createSlice({
                     sessionStorage.setItem("isLoggedIn", true);
                 }
             });
+        builder.addCase(
+            registerActions.extraReducersRegister.fulfilled,
+            (state, { payload }) => {
+                if (payload.message === "success") {
+                    state.status = true;
+                    sessionStorage.removeItem("dataRegister");
+                }
+            }
+        );
     },
 });
 

@@ -63,7 +63,6 @@ const LoginForm = () => {
 
     useEffect(() => {
         if (status) navigate("/app/employees/list/index");
-
         // Clean function
         return () => {
             dispatch(updateStatusState(false));

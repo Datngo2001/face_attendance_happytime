@@ -57,7 +57,8 @@ const RegisterForm = () => {
     // ARROW FUNCTION
     const onSubmit = (data) => {
         console.log("data register:", data);
-        navigate("/auth/confirm-otp");
+        sessionStorage.setItem("dataRegister", JSON.stringify(data));
+        navigate("/auth/set-password");
     };
     // **************************************************************
 
