@@ -11,11 +11,7 @@ const Note = ({ note }) => {
                 </div>
                 <div className="content">
                     <p className="note">
-                        Chào mừng bạn đến với Ghi chú dính! Chúng tôi vẫn là cách tốt nhất
-                        để viết ghi chú nhanh trên màn hình nền Windows của bạn, nhưng giờ
-                        đây bạn cũng có thể mang theo các ghi chú dính, cho phép bạn chụp,
-                        tìm và sử dụng ghi chú trên các ứng dụng và thiết bị yêu thích của
-                        mình.
+                        {note}
                     </p>
                 </div>
             </div>

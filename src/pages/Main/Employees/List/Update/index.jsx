@@ -2,22 +2,12 @@ import { Link } from "react-router-dom";
 import { EmployeesForm } from "../../../../../forms/Main/Employees";
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 import "./styles.scss";
-import LoadingCustom from "../../../../../components/LoadingCustom";
-import { useEffect, useState } from "react";
 
 const Update = () => {
     // STATE
-    const [loading, setLoading] = useState(true);
     // ******************************
 
     // HOOK EFFECT
-    useEffect(() => {
-        // FAKE LOADING API
-        setTimeout(() => {
-            setLoading(false);
-        }, 1000);
-        // ****************************
-    }, []);
     // *****************************
 
     return (
@@ -28,7 +18,7 @@ const Update = () => {
                     Quay lại
                 </Link>
                 <h3 className="content-title">Chỉnh sửa thông tin nhân viên</h3>
-                {loading ? <LoadingCustom /> : <EmployeesForm />}
+                <EmployeesForm method={"update"} />
             </div>
         </>
     );

@@ -6,6 +6,8 @@ const authSlice = createSlice({
     name: "auth",
     initialState: {
         status: false,
+        loading: false,
+        validate: false,
     },
     reducers: {
         updateStatusState: loginACtions.reducersUpdateStatusState,
@@ -29,6 +31,22 @@ const authSlice = createSlice({
                 }
             }
         );
+        // builder
+        //     .addCase(
+        //         registerActions.extraReducersCheckExists.pending,
+        //         (state, payload) => {
+        //             state.loading = true;
+        //         }
+        //     )
+        //     .addCase(
+        //         registerActions.extraReducersCheckExists.fulfilled,
+        //         (state, { payload }) => {
+        //             state.loading = false;
+        //             if (payload.payload === true) {
+        //                 state.validate = true;
+        //             }
+        //         }
+        //     );
     },
 });
 

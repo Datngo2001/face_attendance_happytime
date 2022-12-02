@@ -22,3 +22,15 @@ export const extraReducersRegister = createAsyncThunk("register", async (data) =
 
     return promise;
 });
+
+export const extraReducersCheckExists = createAsyncThunk("checkExists", async (data) => {
+    return api
+        .post("/auth/validate", data)
+        .then((response) => {
+            return {
+                payload: response.payload,
+                message: response.message,
+            };
+        })
+        .catch((error) => error);
+});

@@ -20,7 +20,7 @@ const LoginForm = () => {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm({ resolver: yupResolver(schema) });
+    } = useForm({ resolver: yupResolver(schema), mode: "onChange" });
     const navigate = useNavigate();
 
     // HOOK REDUX TOOLKIT

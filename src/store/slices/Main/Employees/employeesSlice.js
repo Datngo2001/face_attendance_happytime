@@ -3,16 +3,19 @@ import { createSlice } from "@reduxjs/toolkit";
 import {
     extraReducersGetInfoEmployeeById,
     extraReducersGetListEmployees,
+    extraReducersUpdateInfoEmployee,
 } from "./actions/extraReducers";
 import {
     reducersUpdateIdListInvitation,
     reducersUpdateIdOfSelectedStaff,
+    reducersUpdateStatusState,
 } from "./actions/reducers";
 
 const employeesSlice = createSlice({
     name: "employees",
     initialState: {
-        loading: true,
+        status: "fail",
+        loading: false,
         listIdInvitation: [],
         listOfEmployees: [],
         infoOfEmployee: {},
@@ -22,6 +25,7 @@ const employeesSlice = createSlice({
     reducers: {
         updateIdListInvitation: reducersUpdateIdListInvitation,
         updateIdOfSelectedStaff: reducersUpdateIdOfSelectedStaff,
+        updateStatusState: reducersUpdateStatusState,
     },
     extraReducers: (builder) => {
         builder
@@ -29,8 +33,8 @@ const employeesSlice = createSlice({
                 state.loading = true;
             })
             .addCase(extraReducersGetListEmployees.fulfilled, (state, { payload }) => {
+                state.loading = false;
                 if (payload.message === "success") {
-                    state.loading = false;
                     state.totalPages = payload.payload.total_pages;
                     state.totalEmployees = payload.payload.total_items;
                     state.listOfEmployees = payload.payload.items;
@@ -41,13 +45,21 @@ const employeesSlice = createSlice({
                 state.loading = true;
             })
             .addCase(extraReducersGetInfoEmployeeById.fulfilled, (state, { payload }) => {
+                state.loading = false;
                 if (payload.message === "success") {
-                    state.loading = false;
                     state.infoOfEmployee = payload.payload;
+                }
+            });
+        builder
+            .addCase(extraReducersUpdateInfoEmployee.pending, (state) => {})
+            .addCase(extraReducersUpdateInfoEmployee.fulfilled, (state, { payload }) => {
+                if (payload.message === "success") {
+                    state.status = "success";
                 }
             });
     },
 });
 
-export const { updateIdListInvitation, updateIdOfSelectedStaff } = employeesSlice.actions;
+export const { updateIdListInvitation, updateIdOfSelectedStaff, updateStatusState } =
+    employeesSlice.actions;
 export default employeesSlice;

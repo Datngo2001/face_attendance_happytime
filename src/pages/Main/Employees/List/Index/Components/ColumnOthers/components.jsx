@@ -7,13 +7,13 @@ export const InnerButtonOthers = () => {
     return (
         <>
             <div className="inner-button-others__wrapper">
-                <Link to={""} className="inner-button-others__item">
+                <Link to="../list/view" className="inner-button-others__item">
                     <span className="icon">
                         <ErrorOutlineRoundedIcon />
                     </span>
                     <p className="title">Xem chi tiết nhân viên</p>
                 </Link>
-                <Link to={""} className="inner-button-others__item">
+                <Link to="../list/update" className="inner-button-others__item">
                     <span className="icon">
                         <BorderColorRoundedIcon />
                     </span>

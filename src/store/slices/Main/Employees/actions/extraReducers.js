@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { api } from "../../../../../config/api";
+import { toastPromise } from "../../../../../utils/toastPromise";
 
 export const extraReducersGetListEmployees = createAsyncThunk(
     "getListEmployees",
@@ -28,5 +29,27 @@ export const extraReducersGetInfoEmployeeById = createAsyncThunk(
                 };
             })
             .catch((error) => error);
+    }
+);
+
+export const extraReducersUpdateInfoEmployee = createAsyncThunk(
+    "updateInfoEmployee",
+    async ({ id, dataUpdate }) => {
+        const promise = api
+            .put(`/api/agent/update/${id}`, dataUpdate)
+            .then((response) => {
+                return {
+                    payload: response.payload,
+                    message: response.message,
+                };
+            })
+            .catch((error) => error);
+
+        toastPromise(promise, {
+            titleLoading: "Đang chỉnh sửa",
+            titleSuccess: "Chỉnh sửa thành công",
+            titleError: "Chỉnh sửa thất bại",
+        });
+        return promise;
     }
 );

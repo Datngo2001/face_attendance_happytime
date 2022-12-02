@@ -1,9 +1,9 @@
 import SettingsRoundedIcon from "@mui/icons-material/SettingsRounded";
 import SelectCustom from "../../../../../../../components/SelectCustom";
-import { permissionList } from "./data";
+import { listRoles } from "../../../../../../../utils/ListData";
 import "./styles.scss";
 
-const Permission = ({ register, setValue, errors }) => {
+const Permission = ({ register, setValue, errors, manipulationRight }) => {
     return (
         <>
             <div className="employees-form--permission__wrapper divider-top">
@@ -19,10 +19,12 @@ const Permission = ({ register, setValue, errors }) => {
                             required={true}
                             className="input-item"
                             label="Quyền thao tác"
-                            options={permissionList}
+                            options={listRoles}
                             register={register}
                             placeholder="Quyền thao tác"
                             message={errors}
+                            defaultValue={manipulationRight}
+                            setValue={setValue}
                         />
                     </div>
                     <div className="col"></div>

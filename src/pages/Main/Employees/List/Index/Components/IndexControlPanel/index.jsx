@@ -1,16 +1,6 @@
 import "./styles.scss";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import {
-    checkDuplicateElement,
-    listEmptyFields,
-    listRoles,
-    listStatusActive,
-    listStatusEmployees,
-    listStatusUsingHappyTime,
-    listTypeEmployees,
-} from "./data_functions";
-import MultiSelect from "../../../../../../../components/MultiSelect";
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import ButtonCustom from "../../../../../../../components/ButtonCustom";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
@@ -24,6 +14,7 @@ import { InnerButtonManipulation } from "./components";
 import { useSelector } from "react-redux";
 import SelectCustom from "../../../../../../../components/SelectCustom";
 import { toastify } from "../../../../../../../utils";
+import { listRoles, listStatusActive, listStatusEmployees, listStatusUsingHappyTime, listTypeEmployees } from "../../../../../../../utils/ListData";
 
 export const IndexControlPanel = () => {
     // STATE
@@ -34,7 +25,6 @@ export const IndexControlPanel = () => {
     // HOOK EFFECT
     useEffect(() => {
         console.log(watch());
-        console.log("emptyFields", checkDuplicateElement(watch().emptyFields));
     }, [watch()]);
     // ******************************
 
@@ -138,13 +128,6 @@ export const IndexControlPanel = () => {
                         register={register}
                         placeholder="Trạng thái sử dụng HappyTime"
                         options={listStatusUsingHappyTime}
-                    />
-                    <MultiSelect
-                        id="emptyFields"
-                        className="input-item"
-                        register={register}
-                        placeholder="Các trường bị thiếu"
-                        options={listEmptyFields}
                     />
                     {listIdInvitation.length > 0 && (
                         <DropMenu

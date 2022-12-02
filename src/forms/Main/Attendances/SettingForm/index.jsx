@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import ButtonCustom from "../../../../components/ButtonCustom";
 import "./styles.scss";
@@ -5,6 +6,12 @@ import "./styles.scss";
 const SettingForm = () => {
     // REACT HOOK FORM
     const { register, handleSubmit } = useForm({});
+    // ****************************
+
+    // HOOK EFFECT
+    useEffect(() => {
+        document.getElementById("theLastDayOfMonth").checked = true;
+    }, []);
     // ****************************
 
     // ARROW FUNCTIONS
@@ -20,23 +27,31 @@ const SettingForm = () => {
                 <div className="attendances--setting-form__container">
                     <div className="radio-control">
                         <input
-                            id="closingTimekeepingDate"
+                            id="theLastDayOfMonth"
                             {...register("closingTimekeepingDate")}
                             name="closingTimekeepingDate"
                             type="radio"
-                            value="1"
+                            value={1}
                         />
-                        <div className="label">Ngày cuối cùng của tháng</div>
+                        <div className="label">
+                            <label htmlFor="theLastDayOfMonth">
+                                Ngày cuối cùng của tháng
+                            </label>
+                        </div>
                     </div>
                     <div className="radio-control">
                         <input
-                            id="closingTimekeepingDate"
+                            id="chooseBySelf"
                             {...register("closingTimekeepingDate")}
                             name="closingTimekeepingDate"
                             type="radio"
-                            value="2"
+                            value={2}
                         />
-                        <div className="label">Ngày cuối cùng của tháng</div>
+                        <div className="label">
+                            <label htmlFor="chooseBySelf">
+                                Người dùng tự chọn ngày cố định mỗi tháng
+                            </label>
+                        </div>
                     </div>
                 </div>
                 <div className="attendances--setting-form__actions">

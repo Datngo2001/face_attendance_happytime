@@ -14,6 +14,10 @@ import {
 import { useEffect } from "react";
 import LoadingCustom from "../../../../../components/LoadingCustom";
 import { extraReducersGetInfoEmployeeById } from "../../../../../store/slices/Main/Employees/actions/extraReducers";
+import {
+    convertRoleIdToTitle,
+    convertTimestampToString,
+} from "../../../../../utils/convertFunctions";
 
 const View = () => {
     // HOOK REACT TOOLKIT
@@ -39,8 +43,6 @@ const View = () => {
     // ARROW FUNCTIONS
     // *****************************
 
-    console.log("infoOfEmployee", infoOfEmployee);
-
     return (
         <>
             <div className="view__wrapper">
@@ -56,7 +58,7 @@ const View = () => {
                         <Header
                             avatar={infoOfEmployee.avatar}
                             name={infoOfEmployee.name}
-                            id={infoOfEmployee._id}
+                            id={infoOfEmployee.agent_code}
                         />
                         <WorkInformation
                             jobPosition={infoOfEmployee.agent_position}
@@ -68,10 +70,41 @@ const View = () => {
                             phoneNumber={infoOfEmployee.phone_number}
                             email={infoOfEmployee.personal_mail}
                             emailCompany={infoOfEmployee.company_mail}
+                            gender={infoOfEmployee.gender}
+                            birthDate={convertTimestampToString(
+                                infoOfEmployee.date_of_birth
+                            )}
+                            temporaryAddress={infoOfEmployee.staying_address}
+                            marriedStatus={infoOfEmployee.married_status}
+                            personalTaxCode={infoOfEmployee.personal_tax_id}
+                            citizenId={infoOfEmployee.identify_id}
+                            issuedPlace={infoOfEmployee.issued_by}
+                            permanentAddress={infoOfEmployee.residence_address}
+                            supplyDate={convertTimestampToString(
+                                infoOfEmployee.issued_date
+                            )}
+                            education={infoOfEmployee.education_type}
+                            school={infoOfEmployee.school}
+                            major={infoOfEmployee.major}
+                            graduationDate={convertTimestampToString(
+                                infoOfEmployee.graduation_date
+                            )}
                         />
-                        <BankInformation />
-                        <Permission role={infoOfEmployee.role}/>
-                        <Note />
+                        <BankInformation
+                            bankAccountNumber={infoOfEmployee.bank_account_number}
+                            bankName={infoOfEmployee.bank}
+                            bankBranch={infoOfEmployee.bank_branch}
+                        />
+                        <Permission role={convertRoleIdToTitle(infoOfEmployee.role)} />
+                        <Note
+                            note={
+                                infoOfEmployee.note || (
+                                    <span style={{ color: "#cccccc", fontWeight: "500" }}>
+                                        Chưa cập nhật
+                                    </span>
+                                )
+                            }
+                        />
                     </>
                 )}
             </div>

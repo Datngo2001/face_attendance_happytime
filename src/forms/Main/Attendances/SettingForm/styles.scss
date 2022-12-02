@@ -24,6 +24,24 @@
 
             .label {
                 font-weight: $fw-1;
+                > label {
+                    cursor: pointer;
+                }
+            }
+
+            input[type="radio"] {
+                border: 2px solid white;
+                box-shadow: 0 0 0 1px $primary-color;
+                appearance: none;
+                border-radius: 50%;
+                width: 12px;
+                height: 12px;
+                background-color: #fff;
+                transition: all ease-in 0.2s;
+
+                &:checked {
+                    background-color: $primary-color;
+                }
             }
         }
     }

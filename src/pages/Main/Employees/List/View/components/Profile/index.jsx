@@ -1,7 +1,24 @@
 import "./styles.scss";
 import AccountBoxRoundedIcon from "@mui/icons-material/AccountBoxRounded";
 
-const Profile = ({ phoneNumber, email, emailCompany }) => {
+const Profile = ({
+    phoneNumber,
+    email,
+    emailCompany,
+    gender,
+    birthDate,
+    temporaryAddress,
+    permanentAddress,
+    marriedStatus,
+    personalTaxCode,
+    citizenId,
+    issuedPlace,
+    supplyDate,
+    education,
+    school,
+    major,
+    graduationDate,
+}) => {
     return (
         <>
             <div className="view-profile__wrapper">
@@ -21,13 +38,13 @@ const Profile = ({ phoneNumber, email, emailCompany }) => {
                             <p className="label">Tình trạng hôn nhân</p>
                         </div>
                         <div className="col__data">
-                            <p className="data"></p>
-                            <p className="data"></p>
+                            <p className="data">{gender}</p>
+                            <p className="data">{birthDate}</p>
                             <p className="data">{phoneNumber}</p>
                             <p className="data">{email}</p>
                             <p className="data">{emailCompany}</p>
-                            <p className="data"></p>
-                            <p className="data"></p>
+                            <p className="data">{temporaryAddress}</p>
+                            <p className="data">{marriedStatus}</p>
                         </div>
                     </div>
                     <div className="col">
@@ -43,15 +60,15 @@ const Profile = ({ phoneNumber, email, emailCompany }) => {
                             <p className="label">Năm tốt nghiệp</p>
                         </div>
                         <div className="col__data">
-                            <p className="data"></p>
-                            <p className="data"></p>
-                            <p className="data"></p>
-                            <p className="data"></p>
-                            <p className="data"></p>
-                            <p className="data"></p>
-                            <p className="data"></p>
-                            <p className="data"></p>
-                            <p className="data"></p>
+                            <p className="data">{personalTaxCode}</p>
+                            <p className="data">{citizenId}</p>
+                            <p className="data">{issuedPlace}</p>
+                            <p className="data">{supplyDate}</p>
+                            <p className="data">{permanentAddress}</p>
+                            <p className="data">{education}</p>
+                            <p className="data">{school}</p>
+                            <p className="data">{major}</p>
+                            <p className="data">{graduationDate}</p>
                         </div>
                     </div>
                 </div>

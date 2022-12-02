@@ -13,11 +13,9 @@ import { extraReducersGetListEmployees } from "../../../../../../../store/slices
 import { useNavigate } from "react-router-dom";
 
 // ARROW FUNCTIONS
-
 // ******************************
 
 // VARIABLES
-
 // ********************************************************
 
 export default function TableDataEmployees() {
@@ -50,7 +48,7 @@ export default function TableDataEmployees() {
     // ARROW FUNCTIONS
     const hanldeOnRowClick = (rowData) => {
         console.log("Row Data", rowData.row);
-        sessionStorage.setItem("idSelectedEmployee", rowData.row._id);
+        sessionStorage.setItem("idSelectedEmployee", rowData.row.id);
         dispatch(updateIdListInvitation([]));
         navigate("../list/view");
     };
@@ -75,7 +73,6 @@ export default function TableDataEmployees() {
                         headerHeight={100}
                         rowHeight={100}
                         rows={listOfEmployees}
-                        getRowId={(row) => row._id}
                         columns={columns}
                         rowsPerPageOptions={[5]}
                         checkboxSelection

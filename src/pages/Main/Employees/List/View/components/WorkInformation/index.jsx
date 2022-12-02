@@ -40,7 +40,7 @@ const WorkInformation = ({
                         <div className="col__label">
                             <p className="label">Vị trí công việc</p>
                             <p className="label">Phòng ban</p>
-                            <p className="label">Quản lý trực tiếp</p>
+                            {/* <p className="label">Quản lý trực tiếp</p> */}
                             <p className="h-52">Loại hình nhân sự</p>
                             <p className="h-52">Trạng thái nhân sự</p>
                             <p className="label">Chi nhánh làm việc</p>
@@ -50,9 +50,9 @@ const WorkInformation = ({
                         <div className="col__data">
                             <p className="data">{jobPosition}</p>
                             <p className="data">{department}</p>
-                            <p className={`data ${!manageDirectly && "not-yet-update"}`}>
+                            {/* <p className={`data ${!manageDirectly && "not-yet-update"}`}>
                                 {manageDirectly || "Chưa cập nhật"}
-                            </p>
+                            </p> */}
                             <div className="h-52">
                                 <p className={`${!typeEmployee && "not-yet-update"}`}>
                                     {typeEmployee || "Chưa cập nhật"}

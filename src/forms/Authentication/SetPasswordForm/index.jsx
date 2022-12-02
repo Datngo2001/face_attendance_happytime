@@ -55,6 +55,7 @@ const SetPasswordForm = () => {
             name: dataRegister?.name,
             phone_number: dataRegister?.phone,
             company_name: dataRegister?.nameCompany,
+            company_shorthand: dataRegister?.nameCompanyShortHand,
             job_position: dataRegister?.position,
             email: dataRegister?.email,
             scale: parseInt(dataRegister?.scale),

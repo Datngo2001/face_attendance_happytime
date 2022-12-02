@@ -48,6 +48,14 @@
             &:hover {
                 border-color: $primary-color;
             }
+
+            &[disabled] {
+                opacity: 0.8;
+                cursor: not-allowed;
+                &:hover {
+                    border-color: transparent;
+                }
+            }
         }
 
         &.none-icon {

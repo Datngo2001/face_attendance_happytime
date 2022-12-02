@@ -5,13 +5,12 @@ export const api = axios.create({
     timeout: 10000,
 });
 
-api.defaults.headers.common["Authorization"] = sessionStorage.getItem("token")
-    ? "Bearer " + sessionStorage.getItem("token")
-    : "";
-
 api.interceptors.request.use(
     (config) => {
         // Do something before request is sent
+        config.headers.Authorization = sessionStorage.getItem("token")
+            ? "Bearer " + sessionStorage.getItem("token")
+            : "";
         return config;
     },
     (error) => {
@@ -26,7 +25,9 @@ api.interceptors.response.use(
         return response;
     },
     (error) => {
-        if (error && error.response) throw error.response;
+        if (error && error.response) {
+            throw error.response;
+        }
         throw error;
     }
 );

@@ -1,10 +1,10 @@
-import { Tooltip } from "@mui/material";
 import DropMenu from "../../../../../../../components/DropMenu";
 import NoRowsOverlayCustom from "../../../../../../../components/NoRowsOverlayCustom";
 import { ColumnContactInfo } from "../ColumnContactInfo";
 import { ColumnName } from "../ColumnName";
 import { ColumnOthers } from "../ColumnOthers";
 import { InnerButtonOthers } from "../ColumnOthers/components";
+import ColumnRole from "../ColumnRole";
 import "./styles.scss";
 
 export const StatusEmployee = ({ status }) => {
@@ -63,7 +63,7 @@ export const CustomNoRowsOverlay = () => {
 
 export const columns = [
     {
-        field: "_id",
+        field: "agent_code",
         headerName: "Mã nhân viên",
         width: 110,
         sortable: false,
@@ -120,7 +120,7 @@ export const columns = [
         // flex: 1,
         sortable: false,
         renderCell: (params) => {
-            return <StatusEmployee status={params.row.agent_status} />;
+            return <StatusEmployee status={params.row.username} />;
         },
     },
     {
@@ -130,6 +130,17 @@ export const columns = [
         sortable: false,
         renderCell: (params) => {
             return <StatusUsingHappyTime status={params.row.is_used_happy_time} />;
+        },
+    },
+    {
+        field: "role",
+        headerName: "Vai trò",
+        width: 200,
+        sortable: false,
+        headerAlign: "center",
+        align: "center",
+        renderCell: (params) => {
+            return <ColumnRole role={params.row.role} />;
         },
     },
     {

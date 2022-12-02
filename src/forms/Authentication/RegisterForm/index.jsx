@@ -12,10 +12,14 @@ import KeyIcon from "@mui/icons-material/Key";
 import SupervisorAccountIcon from "@mui/icons-material/SupervisorAccount";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { listPositions, listScales, schema } from "./handleForm";
+import { schema } from "./handleForm";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { focusToElement } from "../../../utils";
 import SelectCustom from "../../../components/SelectCustom";
+import { useSelector } from "react-redux";
+import { api } from "../../../config/api";
+import FormatShapesRoundedIcon from "@mui/icons-material/FormatShapesRounded";
+import { listPositions, listScales } from "../../../utils/ListData";
 
 const RegisterForm = () => {
     // VARIABLES
@@ -27,10 +31,15 @@ const RegisterForm = () => {
     const {
         register,
         handleSubmit,
+        setError,
         formState: { errors },
-    } = useForm({ resolver: yupResolver(schema) });
+    } = useForm({ resolver: yupResolver(schema), mode: "onChange" });
     const [disabled, setDisabled] = useState(true);
     // ************************************************************
+
+    // HOOK REACT TOOLKIT
+    const { loading } = useSelector((state) => state.auth);
+    // ****************************
 
     // EFFECT
     useEffect(() => {
@@ -55,13 +64,55 @@ const RegisterForm = () => {
     // **************************************************************
 
     // ARROW FUNCTION
-    const onSubmit = (data) => {
+    const onSubmit = async (data) => {
         console.log("data register:", data);
+
         sessionStorage.setItem("dataRegister", JSON.stringify(data));
-        navigate("/auth/set-password");
+        const isExistPhone = await api
+            .post("/auth/validate", {
+                phone_number: data.phone,
+            })
+            .then((response) => {
+                return {
+                    payload: response.payload,
+                    message: response.message,
+                };
+            })
+            .catch((error) => error);
+
+        const isExistEmail = await api
+            .post("/auth/validate", {
+                email: data.email,
+            })
+            .then((response) => {
+                return {
+                    payload: response.payload,
+                    message: response.message,
+                };
+            })
+            .catch((error) => error);
+
+        if (isExistPhone.payload) {
+            setError("phone", {
+                type: "custom",
+                message: "Số điện thoại đã được sử dụng",
+            });
+        }
+        if (isExistEmail.payload) {
+            setError("email", {
+                type: "custom",
+                message: "Email đã được sử dụng",
+            });
+        }
+
+        if (!isExistPhone.payload && !isExistEmail.payload) {
+            navigate("/auth/set-password");
+        }
+        console.log("isExistPhone", isExistPhone);
     };
     // **************************************************************
 
+    console.log("loading", loading);
     return (
         <>
             <form action="" className="register-form__wrapper">
@@ -97,6 +148,15 @@ const RegisterForm = () => {
                     placeholder="Nhập tên công ty *"
                     register={register}
                     iconLeft={<ApartmentIcon />}
+                    message={errors}
+                />
+                <InputCustom
+                    id="nameCompanyShortHand"
+                    className="input-item"
+                    type="text"
+                    placeholder="Nhập tên viết tắt của công ty *"
+                    register={register}
+                    iconLeft={<FormatShapesRoundedIcon />}
                     message={errors}
                 />
                 <SelectCustom

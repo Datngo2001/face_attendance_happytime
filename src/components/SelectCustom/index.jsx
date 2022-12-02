@@ -26,6 +26,7 @@ const SelectCustom = ({
     // STATE
     const [isSelectedPlaceholder, SetIsSelectedPlaceholder] = useState(true);
     const [open, setOpen] = useState(false);
+    // const [idItem, setIdItem] = useState("")
     // ******************************
 
     // EFFECT
@@ -33,6 +34,10 @@ const SelectCustom = ({
         !icon &&
             document.querySelector(`#${id} .MuiSelect-select`).classList.add("none-icon");
     }, []);
+
+    useEffect(() => {
+        setValue && setValue(id, defaultValue)
+    }, [defaultValue]);
     // ******************************
 
     // ARROW FUNCTIONS
@@ -59,7 +64,6 @@ const SelectCustom = ({
     options || console.warn("Missing options!");
     id || console.warn("Missing id");
     // ******************************
-
     return (
         <>
             <Box
@@ -87,8 +91,8 @@ const SelectCustom = ({
                         onClose={handleClose}
                         onOpen={handleOpen}
                         {...register(id)}
-                        onFocus={handleOnFocus}
                         defaultValue={defaultValue || "null"}
+                        onFocus={handleOnFocus}
                         inputProps={{ "aria-label": "Without label" }}
                         className="select-item"
                     >

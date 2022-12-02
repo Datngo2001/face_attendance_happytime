@@ -1,12 +1,27 @@
 import AccountBoxRoundedIcon from "@mui/icons-material/AccountBoxRounded";
+import { useSelector } from "react-redux";
 import InputCustom from "../../../../../../../components/InputCustom";
 import InputDate from "../../../../../../../components/InputDate";
 import InputFile from "../../../../../../../components/InputFile";
 import SelectCustom from "../../../../../../../components/SelectCustom";
-import { educationList, genderList, marriedStatusList } from "./data";
+import {
+    educationList,
+    genderList,
+    marriedStatusList,
+} from "../../../../../../../utils/ListData";
 import "./styles.scss";
 
-const Profile = ({ register, setValue, errors, trigger }) => {
+const Profile = ({
+    register,
+    setValue,
+    errors,
+    trigger,
+    graduationDate,
+    gender,
+    marriedStatus,
+    supplyDate,
+    birthDate,
+}) => {
     return (
         <>
             <div className="employees-form--profile__wrapper">
@@ -52,14 +67,15 @@ const Profile = ({ register, setValue, errors, trigger }) => {
                             register={register}
                             options={educationList}
                             placeholder="Học vấn"
+                            setValue={setValue}
                         />
                         <InputDate
                             id="graduationDate"
                             className="input-item"
                             label="Ngày tốt nghiệp"
-                            required={true}
                             placeholder="Ngày tốt nghiệp"
                             setValue={setValue}
+                            defaultValue={graduationDate}
                             message={errors}
                             trigger={trigger}
                         />
@@ -129,6 +145,8 @@ const Profile = ({ register, setValue, errors, trigger }) => {
                             register={register}
                             options={marriedStatusList}
                             placeholder="Tình trạng hôn nhân"
+                            defaultValue={marriedStatus}
+                            setValue={setValue}
                         />
                     </div>
                     <div className="col">
@@ -140,6 +158,8 @@ const Profile = ({ register, setValue, errors, trigger }) => {
                             register={register}
                             options={genderList}
                             placeholder="Giới tính"
+                            defaultValue={gender}
+                            setValue={setValue}
                         />
                         <InputDate
                             id="birthDate"
@@ -148,6 +168,7 @@ const Profile = ({ register, setValue, errors, trigger }) => {
                             placeholder="Ngày sinh"
                             register={register}
                             setValue={setValue}
+                            defaultValue={birthDate}
                             errors={errors}
                         />
                         <InputCustom
@@ -167,6 +188,7 @@ const Profile = ({ register, setValue, errors, trigger }) => {
                             placeholder="Ngày cấp"
                             register={register}
                             setValue={setValue}
+                            defaultValue={supplyDate}
                             errors={errors}
                         />
                         <InputCustom

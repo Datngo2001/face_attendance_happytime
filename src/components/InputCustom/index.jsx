@@ -14,6 +14,8 @@ const InputCustom = ({
     label,
     required = false,
     labelWidth,
+    handleOnClick,
+    disabled = false,
 }) => {
     return (
         <>
@@ -39,10 +41,12 @@ const InputCustom = ({
                 >
                     {iconLeft}
                     <input
+                        disabled={disabled}
                         id={id}
                         placeholder={placeholder}
                         type={type}
                         {...register(id)}
+                        onClick={handleOnClick}
                     />
                     {iconRight}
                     {message && <p className="error-message">{message[id]?.message}</p>}

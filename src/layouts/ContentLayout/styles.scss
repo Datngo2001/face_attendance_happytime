@@ -4,6 +4,8 @@
     &__wrapper {
         height: auto;
         width: 100%;
+        min-width: 1000px;
+        margin-bottom: 30px;
         display: flex;
         gap: 16px;
     }

@@ -1,9 +1,10 @@
 import "./styles.scss";
-import ManageAccountsRoundedIcon from "@mui/icons-material/ManageAccountsRounded";
 import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
-import { Tooltip } from "@mui/material";
 
 export const ColumnName = ({ img, name, role }) => {
+    // ARROW FUNCTIONS
+    // ****************************
+
     return (
         <>
             <div className="column-name">
@@ -16,13 +17,13 @@ export const ColumnName = ({ img, name, role }) => {
                 )}
                 <div className="name-role">
                     <p className="name">{name}</p>
-                    <p className="role">{role}</p>
+                    {/* <p className="role">{convertRoleIdToTitle(role)}</p> */}
                 </div>
-                <Tooltip arrow placement="top" title={role}>
+                {/* <Tooltip arrow placement="top" title={convertRoleIdToTitle(role)}>
                     <span className="icon">
                         <ManageAccountsRoundedIcon />
                     </span>
-                </Tooltip>
+                </Tooltip> */}
             </div>
         </>
     );

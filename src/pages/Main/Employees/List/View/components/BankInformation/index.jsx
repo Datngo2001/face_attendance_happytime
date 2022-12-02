@@ -1,7 +1,7 @@
 import "./styles.scss";
 import AccountBalanceRoundedIcon from "@mui/icons-material/AccountBalanceRounded";
 
-const BankInformation = () => {
+const BankInformation = ({ bankAccountNumber, bankName, bankBranch }) => {
     return (
         <>
             <div className="view-bank-information__wrapper">
@@ -14,8 +14,15 @@ const BankInformation = () => {
                         <div className="col__label">
                             <p className="label">Số tài khoản ngân hàng</p>
                         </div>
-                        <div className="col__data"></div>
-                        <div className="col__data"></div>
+                        <div className="col__data">
+                            <p
+                                className={`data ${
+                                    !bankAccountNumber && "not-yet-update"
+                                }`}
+                            >
+                                {bankAccountNumber || "Chưa cập nhật"}
+                            </p>
+                        </div>
                     </div>
                     <div className="col">
                         <div className="col__label">
@@ -23,8 +30,12 @@ const BankInformation = () => {
                             <p className="label">Chi nhánh</p>
                         </div>
                         <div className="col__data">
-                            <p className="data"></p>
-                            <p className="data"></p>
+                            <p className={`data ${!bankName && "not-yet-update"}`}>
+                                {bankName || "Chưa cập nhật"}
+                            </p>
+                            <p className={`data ${!bankBranch && "not-yet-update"}`}>
+                                {bankBranch || "Chưa cập nhật"}
+                            </p>
                         </div>
                     </div>
                 </div>

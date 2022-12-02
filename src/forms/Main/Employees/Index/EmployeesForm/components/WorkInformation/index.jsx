@@ -3,10 +3,14 @@ import CheckboxCustom from "../../../../../../../components/CheckboxCustom";
 import InputCustom from "../../../../../../../components/InputCustom";
 import InputDate from "../../../../../../../components/InputDate";
 import SelectCustom from "../../../../../../../components/SelectCustom";
-import { employeeStatusList, jobPositionList, typeEmployeeList } from "./data";
+import {
+    jobPositionList,
+    listStatusEmployees,
+    listTypeEmployees,
+} from "../../../../../../../utils/ListData";
 import "./styles.scss";
 
-const WorkInformation = ({ register, setValue, trigger, errors }) => {
+const WorkInformation = ({ register, setValue, trigger, errors, startWorkingDate }) => {
     return (
         <>
             <div className="employees-form--work-information__wrapper divider-top">
@@ -18,6 +22,7 @@ const WorkInformation = ({ register, setValue, trigger, errors }) => {
                     <div className="col">
                         <InputCustom
                             id="staffId"
+                            disabled={true}
                             width="100%"
                             className="input-item"
                             label="Mã nhân viên"
@@ -34,6 +39,7 @@ const WorkInformation = ({ register, setValue, trigger, errors }) => {
                             setValue={setValue}
                             message={errors}
                             trigger={trigger}
+                            defaultValue={startWorkingDate}
                         />
                         <CheckboxCustom
                             id="doNotRequireTimekeeping"
@@ -44,13 +50,13 @@ const WorkInformation = ({ register, setValue, trigger, errors }) => {
                     </div>
                     <div className="col">
                         <SelectCustom
-                            id="jobPosition"
+                            id="department"
                             width="100%"
                             className="input-item"
                             required={true}
-                            label="Vị trí công việc"
+                            label="Phòng ban"
                             register={register}
-                            placeholder="Vị trí công việc"
+                            placeholder="Phòng ban"
                             options={jobPositionList}
                             message={errors}
                         />
@@ -62,7 +68,7 @@ const WorkInformation = ({ register, setValue, trigger, errors }) => {
                             label="Trạng thái nhân sự"
                             register={register}
                             placeholder="Trạng thái nhân sự"
-                            options={employeeStatusList}
+                            options={listStatusEmployees}
                             message={errors}
                         />
                     </div>
@@ -74,7 +80,7 @@ const WorkInformation = ({ register, setValue, trigger, errors }) => {
                             label="Chi nhánh làm việc"
                             register={register}
                             placeholder="Chi nhánh làm việc"
-                            options={employeeStatusList}
+                            options={listStatusEmployees}
                             message={errors}
                         />
                         <SelectCustom
@@ -84,7 +90,7 @@ const WorkInformation = ({ register, setValue, trigger, errors }) => {
                             label="Loại hình nhân sự"
                             register={register}
                             placeholder="Loại hình nhân sự"
-                            options={typeEmployeeList}
+                            options={listTypeEmployees}
                             message={errors}
                         />
                     </div>
