@@ -6,22 +6,15 @@ const WorkInformation = ({
     jobPosition,
     department,
     typeEmployee,
-    manageDirectly,
+    // manageDirectly,
+    startWorkingDate,
     statusEmployee,
     statusUsingHappyTime,
+    isRequiredTimekeeping,
+    workBranch,
 }) => {
     // HOOK EFFECT
     // ****************************
-
-    // ARROW FUNCTIONS
-    const convertStatusEmployee = (status) => {
-        switch (status) {
-            case 1:
-                return <p className="status-employee--working">Đang làm việc</p>;
-            default:
-                return <p className="not-yet-update">Chưa cập nhật</p>;
-        }
-    };
 
     const handleViewHistory = () => {
         alert("Lịch sử chuyển đổi");
@@ -63,20 +56,30 @@ const WorkInformation = ({
                                 </span>
                             </div>
                             <div className="h-52">
-                                {convertStatusEmployee(statusEmployee)}
+                                <p className={`${!statusEmployee && "not-yet-update"}`}>
+                                    {statusEmployee || "Chưa cập nhật"}
+                                </p>
                                 <span className="btn" onClick={handleViewHistory}>
                                     <HistoryRoundedIcon />
                                     Lịch sử chuyển đổi
                                 </span>
                             </div>
-                            <p className={`data ${!typeEmployee && "not-yet-update"}`}>
-                                {typeEmployee || "Chưa cập nhật"}
+                            <p className={`data ${!workBranch && "not-yet-update"}`}>
+                                {workBranch || "Chưa cập nhật"}
                             </p>
-                            <p className={`data ${!statusUsingHappyTime && "not-yet-update"}`}>
-                                {typeEmployee || "Chưa cập nhật"}
+                            <p
+                                className={`data ${
+                                    !statusUsingHappyTime && "not-yet-update"
+                                }`}
+                            >
+                                {statusUsingHappyTime || "Chưa cập nhật"}
                             </p>
-                            <p className={`data ${!typeEmployee && "not-yet-update"}`}>
-                                {typeEmployee || "Chưa cập nhật"}
+                            <p
+                                className={`data ${
+                                    !isRequiredTimekeeping && "not-yet-update"
+                                }`}
+                            >
+                                {isRequiredTimekeeping || "Chưa cập nhật"}
                             </p>
                         </div>
                     </div>
@@ -91,7 +94,7 @@ const WorkInformation = ({
                             <p className="label">Số phép năm trước</p>
                         </div>
                         <div className="col__data">
-                            <p className="data"></p>
+                            <p className="data">{startWorkingDate}</p>
                             <p className="data"></p>
                             <p className="data"></p>
                             <p className="data"></p>

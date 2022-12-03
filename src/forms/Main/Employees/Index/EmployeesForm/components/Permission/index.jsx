@@ -3,7 +3,7 @@ import SelectCustom from "../../../../../../../components/SelectCustom";
 import { listRoles } from "../../../../../../../utils/ListData";
 import "./styles.scss";
 
-const Permission = ({ register, setValue, errors, manipulationRight }) => {
+const Permission = ({ register, setValue, errors, manipulationRight, method }) => {
     return (
         <>
             <div className="employees-form--permission__wrapper divider-top">
@@ -17,6 +17,7 @@ const Permission = ({ register, setValue, errors, manipulationRight }) => {
                             id="manipulationRight"
                             width="100%"
                             required={true}
+                            disabled={true}
                             className="input-item"
                             label="Quyền thao tác"
                             options={listRoles}

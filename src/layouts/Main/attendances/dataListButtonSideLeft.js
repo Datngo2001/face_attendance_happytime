@@ -1,7 +1,7 @@
 import ContentPasteRoundedIcon from '@mui/icons-material/ContentPasteRounded';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 
-export const dataListButtonSlideLeft = [
+export const dataListButtonSideLeft = [
     {
         path: "summary",
         title: "Bảng công",

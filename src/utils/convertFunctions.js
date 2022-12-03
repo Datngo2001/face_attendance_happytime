@@ -17,13 +17,9 @@ export const convertStringToTimestamp = (string) => {
     return null;
 };
 
-export const convertRoleIdToTitle = (role) => {
-    switch (role) {
-        case 1:
-            return "Admin";
-        case 2:
-            return "User";
-        default:
-            return "Chưa cập nhật";
-    }
+export const convertIdToName = ({ id, list = [] }) => {
+    const item = list.find((e) => {
+        return parseInt(e.id) === parseInt(id);
+    });
+    return item?.name || "Chưa cập nhật";
 };

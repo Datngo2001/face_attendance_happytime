@@ -19,6 +19,7 @@ const SelectCustom = ({
     setValue,
     label,
     required = false,
+    disabled = false,
 }) => {
     // VARIABLES
     // ******************************
@@ -36,7 +37,7 @@ const SelectCustom = ({
     }, []);
 
     useEffect(() => {
-        setValue && setValue(id, defaultValue)
+        setValue && setValue(id, defaultValue);
     }, [defaultValue]);
     // ******************************
 
@@ -88,6 +89,7 @@ const SelectCustom = ({
                         id={id}
                         labelId="label"
                         open={open}
+                        disabled={disabled}
                         onClose={handleClose}
                         onOpen={handleOpen}
                         {...register(id)}

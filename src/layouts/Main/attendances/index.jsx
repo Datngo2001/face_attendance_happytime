@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { tabTitle, titleHeaderMain } from "../../../utils";
 import ContentLayout from "../../ContentLayout";
-import { dataListButtonSlideLeft } from "./dataListButtonSideLeft";
+import { dataListButtonSideLeft } from "./dataListButtonSideLeft";
 import "./styles.scss";
 
 const AttendancesLayout = () => {
@@ -19,7 +19,7 @@ const AttendancesLayout = () => {
     // ******************************
     return (
         <>
-            <ContentLayout listDataButton={dataListButtonSlideLeft} />
+            <ContentLayout listDataButton={dataListButtonSideLeft} />
         </>
     );
 };

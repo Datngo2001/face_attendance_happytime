@@ -1,5 +1,7 @@
 import DropMenu from "../../../../../../../components/DropMenu";
 import NoRowsOverlayCustom from "../../../../../../../components/NoRowsOverlayCustom";
+import { convertIdToName } from "../../../../../../../utils/convertFunctions";
+import { listRoles } from "../../../../../../../utils/ListData";
 import { ColumnContactInfo } from "../ColumnContactInfo";
 import { ColumnName } from "../ColumnName";
 import { ColumnOthers } from "../ColumnOthers";
@@ -82,13 +84,7 @@ export const columns = [
         sortable: false,
         width: 250,
         renderCell: (params) => {
-            return (
-                <ColumnName
-                    img={params.row.avatar}
-                    role={params.row.role}
-                    name={params.row.name}
-                />
-            );
+            return <ColumnName img={params.row.avatar} name={params.row.name} />;
         },
     },
     {
@@ -140,7 +136,14 @@ export const columns = [
         headerAlign: "center",
         align: "center",
         renderCell: (params) => {
-            return <ColumnRole role={params.row.role} />;
+            return (
+                <ColumnRole
+                    role={convertIdToName({
+                        id: params.row.role,
+                        list: listRoles,
+                    })}
+                />
+            );
         },
     },
     {

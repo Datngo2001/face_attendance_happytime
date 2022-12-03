@@ -46,9 +46,31 @@ export const extraReducersUpdateInfoEmployee = createAsyncThunk(
             .catch((error) => error);
 
         toastPromise(promise, {
-            titleLoading: "Đang chỉnh sửa",
+            titleLoading: "Đang thực hiện",
             titleSuccess: "Chỉnh sửa thành công",
             titleError: "Chỉnh sửa thất bại",
+        });
+        return promise;
+    }
+);
+
+export const extraReducersCreateInfoEmployee = createAsyncThunk(
+    "createEmployee",
+    async ({dataCreate }) => {
+        const promise = api
+            .post(`/api/agent/create`, dataCreate)
+            .then((response) => {
+                return {
+                    payload: response.payload,
+                    message: response.message,
+                };
+            })
+            .catch((error) => error);
+
+        toastPromise(promise, {
+            titleLoading: "Đang thực hiện",
+            titleSuccess: "Tạo mới thành công",
+            titleError: "Tạo mới thất bại",
         });
         return promise;
     }

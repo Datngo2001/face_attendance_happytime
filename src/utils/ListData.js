@@ -82,30 +82,30 @@ export const listStatusUsingHappyTime = [
     { id: 2, name: "Chưa sử dụng" },
 ];
 
-export const educationList = [
+export const listEducation = [
     {
-        id: 0,
+        id: 1,
         name: "THPT",
     },
     {
-        id: 1,
+        id: 2,
         name: "Trung cấp",
     },
     {
-        id: 2,
+        id: 3,
         name: "Trung cấp nghề",
     },
     {
-        id: 3,
+        id: 4,
         name: "Cao đẳng",
     },
     {
-        id: 4,
+        id: 5,
         name: "Đại học",
     },
 ];
 
-export const genderList = [
+export const listGender = [
     {
         id: 1,
         name: "Nam",
@@ -116,7 +116,7 @@ export const genderList = [
     },
 ];
 
-export const marriedStatusList = [
+export const listMarriedStatus = [
     {
         id: 1,
         name: "Độc thân",

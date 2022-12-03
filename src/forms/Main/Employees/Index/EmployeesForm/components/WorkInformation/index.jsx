@@ -10,7 +10,15 @@ import {
 } from "../../../../../../../utils/ListData";
 import "./styles.scss";
 
-const WorkInformation = ({ register, setValue, trigger, errors, startWorkingDate }) => {
+const WorkInformation = ({
+    method,
+    register,
+    setValue,
+    trigger,
+    errors,
+    startWorkingDate,
+    typeEmployee,
+}) => {
     return (
         <>
             <div className="employees-form--work-information__wrapper divider-top">
@@ -20,27 +28,42 @@ const WorkInformation = ({ register, setValue, trigger, errors, startWorkingDate
                 </div>
                 <div className="employees-form__container">
                     <div className="col">
-                        <InputCustom
-                            id="staffId"
-                            disabled={true}
-                            width="100%"
-                            className="input-item"
-                            label="Mã nhân viên"
-                            register={register}
-                            placeholder="Mã nhân viên"
-                            message={errors}
-                        />
-                        <InputDate
-                            id="startWorkingDate"
-                            className="input-item"
-                            label="Ngày bắt đầu đi làm"
-                            required={true}
-                            placeholder="Ngày bắt đầu đi làm"
-                            setValue={setValue}
-                            message={errors}
-                            trigger={trigger}
-                            defaultValue={startWorkingDate}
-                        />
+                        {method === "update" && (
+                            <InputCustom
+                                id="staffId"
+                                disabled={true}
+                                width="100%"
+                                className="input-item"
+                                label="Mã nhân viên"
+                                register={register}
+                                placeholder="Mã nhân viên"
+                                message={errors}
+                            />
+                        )}
+                        {method === "update" ? (
+                            <InputDate
+                                id="startWorkingDate"
+                                className="input-item"
+                                label="Ngày bắt đầu đi làm"
+                                required={true}
+                                placeholder="Ngày bắt đầu đi làm"
+                                setValue={setValue}
+                                message={errors}
+                                trigger={trigger}
+                                defaultValue={startWorkingDate}
+                            />
+                        ) : (
+                            <InputDate
+                                id="startWorkingDate"
+                                className="input-item"
+                                label="Ngày bắt đầu đi làm"
+                                required={true}
+                                placeholder="Ngày bắt đầu đi làm"
+                                setValue={setValue}
+                                message={errors}
+                                trigger={trigger}
+                            />
+                        )}
                         <CheckboxCustom
                             id="doNotRequireTimekeeping"
                             className="input-item checkbox"
@@ -83,16 +106,33 @@ const WorkInformation = ({ register, setValue, trigger, errors, startWorkingDate
                             options={listStatusEmployees}
                             message={errors}
                         />
-                        <SelectCustom
-                            id="typeEmployee"
-                            width="100%"
-                            className="input-item"
-                            label="Loại hình nhân sự"
-                            register={register}
-                            placeholder="Loại hình nhân sự"
-                            options={listTypeEmployees}
-                            message={errors}
-                        />
+                        {typeEmployee ? (
+                            <SelectCustom
+                                id="typeEmployee"
+                                width="100%"
+                                className="input-item"
+                                label="Loại hình nhân sự"
+                                required={true}
+                                register={register}
+                                placeholder="Loại hình nhân sự"
+                                options={listTypeEmployees}
+                                message={errors}
+                                setValue={setValue}
+                                defaultValue={typeEmployee}
+                            />
+                        ) : (
+                            <SelectCustom
+                                id="typeEmployee"
+                                width="100%"
+                                className="input-item"
+                                label="Loại hình nhân sự"
+                                required={true}
+                                register={register}
+                                placeholder="Loại hình nhân sự"
+                                options={listTypeEmployees}
+                                message={errors}
+                            />
+                        )}
                     </div>
                 </div>
             </div>

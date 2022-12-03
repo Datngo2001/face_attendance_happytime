@@ -1,9 +1,6 @@
 import * as yup from "yup";
+import { checkSelectNull } from "../../functionValidate";
 import { REGEX_ONLY_NUMBER, REGEX_PHONE_NUMBER } from "../../regexConst";
-
-const checkSelectNull = (value) => {
-    return value === "null" ? false : true;
-};
 
 export const schema = yup.object({
     phone: yup

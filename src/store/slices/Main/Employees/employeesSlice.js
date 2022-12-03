@@ -1,6 +1,7 @@
 // const baseUrl = process.env.REACT_APP_BASE_URL
 import { createSlice } from "@reduxjs/toolkit";
 import {
+    extraReducersCreateInfoEmployee,
     extraReducersGetInfoEmployeeById,
     extraReducersGetListEmployees,
     extraReducersUpdateInfoEmployee,
@@ -51,12 +52,16 @@ const employeesSlice = createSlice({
                 }
             });
         builder
-            .addCase(extraReducersUpdateInfoEmployee.pending, (state) => {})
             .addCase(extraReducersUpdateInfoEmployee.fulfilled, (state, { payload }) => {
                 if (payload.message === "success") {
                     state.status = "success";
                 }
             });
+        builder.addCase(extraReducersCreateInfoEmployee.fulfilled, (state, { payload }) => {
+            if(payload.message === "success") {
+                state.status = "success";
+            }
+        })
     },
 });
 

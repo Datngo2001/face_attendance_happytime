@@ -1,13 +1,12 @@
 import AccountBoxRoundedIcon from "@mui/icons-material/AccountBoxRounded";
-import { useSelector } from "react-redux";
 import InputCustom from "../../../../../../../components/InputCustom";
 import InputDate from "../../../../../../../components/InputDate";
 import InputFile from "../../../../../../../components/InputFile";
 import SelectCustom from "../../../../../../../components/SelectCustom";
 import {
-    educationList,
-    genderList,
-    marriedStatusList,
+    listEducation,
+    listGender,
+    listMarriedStatus,
 } from "../../../../../../../utils/ListData";
 import "./styles.scss";
 
@@ -21,6 +20,7 @@ const Profile = ({
     marriedStatus,
     supplyDate,
     birthDate,
+    education,
 }) => {
     return (
         <>
@@ -65,8 +65,9 @@ const Profile = ({
                             className="input-item"
                             label="Học vấn"
                             register={register}
-                            options={educationList}
+                            options={listEducation}
                             placeholder="Học vấn"
+                            defaultValue={education}
                             setValue={setValue}
                         />
                         <InputDate
@@ -96,6 +97,7 @@ const Profile = ({
                             width="100%"
                             className="input-item"
                             label="Số điện thoại"
+                            required={true}
                             register={register}
                             placeholder="Số điện thoại"
                             message={errors}
@@ -143,7 +145,7 @@ const Profile = ({
                             className="input-item"
                             label="Tình trạng hôn nhân"
                             register={register}
-                            options={marriedStatusList}
+                            options={listMarriedStatus}
                             placeholder="Tình trạng hôn nhân"
                             defaultValue={marriedStatus}
                             setValue={setValue}
@@ -156,7 +158,7 @@ const Profile = ({
                             className="input-item"
                             label="Giới tính"
                             register={register}
-                            options={genderList}
+                            options={listGender}
                             placeholder="Giới tính"
                             defaultValue={gender}
                             setValue={setValue}
@@ -177,6 +179,7 @@ const Profile = ({
                             type="email"
                             className="input-item"
                             label="Email cá nhân"
+                            required={true}
                             register={register}
                             placeholder="Email cá nhân"
                             message={errors}
@@ -190,6 +193,7 @@ const Profile = ({
                             setValue={setValue}
                             defaultValue={supplyDate}
                             errors={errors}
+                            trigger={trigger}
                         />
                         <InputCustom
                             id="personalTaxCode"

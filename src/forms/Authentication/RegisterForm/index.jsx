@@ -17,9 +17,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { focusToElement } from "../../../utils";
 import SelectCustom from "../../../components/SelectCustom";
 import { useSelector } from "react-redux";
-import { api } from "../../../config/api";
 import FormatShapesRoundedIcon from "@mui/icons-material/FormatShapesRounded";
 import { listPositions, listScales } from "../../../utils/ListData";
+import * as auth from "../../../auth/index";
 
 const RegisterForm = () => {
     // VARIABLES
@@ -68,29 +68,13 @@ const RegisterForm = () => {
         console.log("data register:", data);
 
         sessionStorage.setItem("dataRegister", JSON.stringify(data));
-        const isExistPhone = await api
-            .post("/auth/validate", {
-                phone_number: data.phone,
-            })
-            .then((response) => {
-                return {
-                    payload: response.payload,
-                    message: response.message,
-                };
-            })
-            .catch((error) => error);
+        const isExistPhone = await auth.checkExist({
+            phone: data.phone,
+        });
 
-        const isExistEmail = await api
-            .post("/auth/validate", {
-                email: data.email,
-            })
-            .then((response) => {
-                return {
-                    payload: response.payload,
-                    message: response.message,
-                };
-            })
-            .catch((error) => error);
+        const isExistEmail = await auth.checkExist({
+            email: data.email,
+        });
 
         if (isExistPhone.payload) {
             setError("phone", {

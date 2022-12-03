@@ -15,9 +15,10 @@ import { useEffect } from "react";
 import LoadingCustom from "../../../../../components/LoadingCustom";
 import { extraReducersGetInfoEmployeeById } from "../../../../../store/slices/Main/Employees/actions/extraReducers";
 import {
-    convertRoleIdToTitle,
+    convertIdToName,
     convertTimestampToString,
 } from "../../../../../utils/convertFunctions";
+import { listEducation, listGender, listRoles, listTypeEmployees } from "../../../../../utils/ListData";
 
 const View = () => {
     // HOOK REACT TOOLKIT
@@ -65,12 +66,22 @@ const View = () => {
                             department={infoOfEmployee.agent_position}
                             statusEmployee={infoOfEmployee.agent_status}
                             statusUsingHappyTime={infoOfEmployee.is_used_happy_time}
+                            startWorkingDate={convertTimestampToString(
+                                infoOfEmployee.start_working_date
+                            )}
+                            typeEmployee={convertIdToName({
+                                id: infoOfEmployee.agent_type,
+                                list: listTypeEmployees,
+                            })}
                         />
                         <Profile
                             phoneNumber={infoOfEmployee.phone_number}
                             email={infoOfEmployee.personal_mail}
                             emailCompany={infoOfEmployee.company_mail}
-                            gender={infoOfEmployee.gender}
+                            gender={convertIdToName({
+                                id: infoOfEmployee.gender,
+                                list: listGender,
+                            })}
                             birthDate={convertTimestampToString(
                                 infoOfEmployee.date_of_birth
                             )}
@@ -83,8 +94,11 @@ const View = () => {
                             supplyDate={convertTimestampToString(
                                 infoOfEmployee.issued_date
                             )}
-                            education={infoOfEmployee.education_type}
-                            school={infoOfEmployee.school}
+                            education={convertIdToName({
+                                id: infoOfEmployee.education_type,
+                                list: listEducation,
+                            })}
+                            school={infoOfEmployee.school_name}
                             major={infoOfEmployee.major}
                             graduationDate={convertTimestampToString(
                                 infoOfEmployee.graduation_date
@@ -95,7 +109,12 @@ const View = () => {
                             bankName={infoOfEmployee.bank}
                             bankBranch={infoOfEmployee.bank_branch}
                         />
-                        <Permission role={convertRoleIdToTitle(infoOfEmployee.role)} />
+                        <Permission
+                            role={convertIdToName({
+                                id: infoOfEmployee.role,
+                                list: listRoles,
+                            })}
+                        />
                         <Note
                             note={
                                 infoOfEmployee.note || (
