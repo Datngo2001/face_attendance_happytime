@@ -4,9 +4,7 @@ import "./styles.scss";
 import { columns, CustomNoRowsOverlay } from "./components";
 import LoadingCustom from "../../../../../../../components/LoadingCustom";
 import { useDispatch, useSelector } from "react-redux";
-import {
-    updateIdListInvitation,
-} from "../../../../../../../store/slices/Main/Employees/employeesSlice";
+import { updateIdListInvitation } from "../../../../../../../store/slices/Main/Employees/employeesSlice";
 import { useEffect, useState } from "react";
 import PaginationCustom from "../../../../../../../components/PaginationCustom";
 import { extraReducersGetListEmployees } from "../../../../../../../store/slices/Main/Employees/actions/extraReducers";
@@ -48,7 +46,7 @@ export default function TableDataEmployees() {
     // ARROW FUNCTIONS
     const hanldeOnRowClick = (rowData) => {
         console.log("Row Data", rowData.row);
-        sessionStorage.setItem("idSelectedEmployee", rowData.row.id);
+        sessionStorage.setItem("idSelectedEmployee", rowData.row._id);
         dispatch(updateIdListInvitation([]));
         navigate("../list/view");
     };
@@ -74,6 +72,7 @@ export default function TableDataEmployees() {
                         rowHeight={100}
                         rows={listOfEmployees}
                         columns={columns}
+                        getRowId={(row) => row._id}
                         rowsPerPageOptions={[5]}
                         checkboxSelection
                         disableSelectionOnClick
