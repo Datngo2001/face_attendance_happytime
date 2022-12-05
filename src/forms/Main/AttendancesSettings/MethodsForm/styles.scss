@@ -1,0 +1,42 @@
+@use "../../../../assets/styles/index.scss" as *;
+
+.attendances-setting--methods-form {
+    &__wrapper {
+        width: 100%;
+        height: auto;
+        font-size: $fs-1;
+
+        .timekeeping-title {
+            color: $text-color-1;
+            font-weight: $fw-1;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            > svg {
+                font-size: 16px;
+                color: $text-color-2;
+            }
+        }
+
+        .timekeeping-text-large {
+            color: $text-color-1;
+            font-weight: 400;
+
+            > .btn {
+                color: $primary-color;
+                font-weight: $fw-1;
+            }
+        }
+
+        .timekeeping-text-small {
+            color: $text-color-3;
+        }
+    }
+
+    &__actions {
+        padding-top: 16px;
+        text-align: right;
+        text-align: -webkit-right;
+    }
+}

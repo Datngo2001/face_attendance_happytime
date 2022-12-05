@@ -36,6 +36,10 @@
             .label {
                 color: $text-color-3;
                 font-size: $fs-1;
+
+                span {
+                    color: $color-red-1;
+                }
             }
 
             .switch-control {

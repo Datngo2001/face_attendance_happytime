@@ -1,9 +1,11 @@
+import { AttendanceSettingsLayout } from "../../../layouts";
 import AttendancesLayout from "../../../layouts/Main/attendances";
 import CompanyLayout from "../../../layouts/Main/company";
 import EmployeesLayout from "../../../layouts/Main/employees";
 import ProfileLayout from "../../../layouts/Main/profile";
 import RequestsLayout from "../../../layouts/Main/requests";
 import WorkspaceSettingsLayout from "../../../layouts/Main/workspace-settings";
+import attendancesSettingsRouters from "./attendance-settings/router";
 import attendancesRouters from "./attendances/router";
 import companyRouters from "./company/router";
 import empoyeesRouters from "./employees/router";
@@ -37,12 +39,17 @@ const mainRouters = [
         listChildrenRoutes: companyRouters,
     },
     {
+        path: "attendance-settings",
+        component: <AttendanceSettingsLayout/>,
+        listChildrenRoutes: attendancesSettingsRouters,
+    },
+    {
         path: "profile",
         component: <ProfileLayout />,
         listChildrenRoutes: profileRouters,
     },
     {
-        path: "",
+        path: "workspace-settings",
         component: <WorkspaceSettingsLayout />,
         listChildrenRoutes: workspaceSettingsRouters,
     },

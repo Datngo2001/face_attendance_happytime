@@ -1,0 +1,17 @@
+@use "../../../../../../assets/styles/index.scss" as *;
+
+.timekeeping-by-phone {
+    &__wrapper {
+        width: 62%;
+        min-width: 600px;
+        height: auto;
+    }
+
+    &__title {
+        width: 100%;
+        // min-width: 960px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+}

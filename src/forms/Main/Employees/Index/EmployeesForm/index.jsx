@@ -14,7 +14,7 @@ import { useNavigate } from "react-router-dom";
 import Permission from "./components/Permission";
 import LoadingCustom from "../../../../../components/LoadingCustom";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
     extraReducersCreateInfoEmployee,
     extraReducersGetInfoEmployeeById,
@@ -23,6 +23,9 @@ import {
 import { convertStringToTimestamp, convertTimestampToString } from "../../../../../utils";
 import { updateStatusState } from "../../../../../store/slices/Main/Employees/employeesSlice";
 import * as auth from "../../../../../auth/index";
+import { uploadImgToFirebase } from "../../../../../utils/uploadImgToFirebase";
+import { listAll, ref, getDownloadURL } from "firebase/storage";
+import { storage } from "../../../../../utils/firebase";
 
 const EmployeesForm = ({ method }) => {
     // @method: update/create
@@ -143,12 +146,17 @@ const EmployeesForm = ({ method }) => {
         }
 
         if (checkPhone && checkPersonalEmail) {
+            const imgUrl = await uploadImgToFirebase({
+                idUser: "2",
+                imageUpload: data.avatar,
+            });
+            
             const dataSubmit = {
                 agent_code: infoOfEmployee.agent_code,
                 agent_position: data.agent_position,
                 agent_status: data.employeeStatus,
                 agent_type: data.typeEmployee,
-                avatar: null,
+                avatar: imgUrl,
                 bank: data.bankName,
                 bank_account_number: data.bankAccountNumber,
                 bank_branch: data.bankBranch,
@@ -187,7 +195,6 @@ const EmployeesForm = ({ method }) => {
                 working_branch: data.workBranch,
                 _id: infoOfEmployee._id,
             };
-
             // console.log("dataSubmit", dataSubmit);
             dispatch(
                 extraReducersUpdateInfoEmployee({

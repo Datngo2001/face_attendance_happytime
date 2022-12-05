@@ -61,9 +61,9 @@ const WorkspaceSettingsForm = () => {
                         type={1}
                     />
                     <div className="field-control">
-                        <label htmlFor="activeStatus" className="label">
-                            Trạng thái hoạt động:
-                        </label>
+                        <div className="label">
+                            <label htmlFor="activeStatus">Trạng thái hoạt động:</label>
+                        </div>
                         <div className="switch-control">
                             <ButtonSwitchCustom
                                 id="activeStatus"
@@ -95,12 +95,15 @@ const WorkspaceSettingsForm = () => {
                         </div>
                     </div>
                     <div className="field-control">
+                        <div className="label">
+                            <label htmlFor="workspaceName">
+                                Tên workspace<span> *</span>
+                            </label>
+                        </div>
                         <InputCustom
                             id="workspaceName"
-                            label="Tên workspace"
+                            className="input-item"
                             labelWidth="164px"
-                            required={true}
-                            direction="row"
                             width="272px"
                             placeholder="Nhập tên workspace"
                             register={register}
