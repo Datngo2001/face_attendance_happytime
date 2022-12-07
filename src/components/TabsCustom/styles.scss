@@ -1,0 +1,39 @@
+@use "../../assets/styles/index.scss" as *;
+
+.tabs-custom {
+    &__wrapper {
+        .ant-tabs {
+            .ant-tabs-nav {
+                padding: 0 32px;
+                .ant-tabs-nav-wrap {
+                    .ant-tabs-nav-list {
+                        .ant-tabs-tab {
+                            padding: 12px 0;
+                            .ant-tabs-tab-btn {
+                                text-transform: uppercase;
+                                font-weight: $fw-1;
+                                color: $text-color-2;
+                                font-size: $fs-1;
+                            }
+                            &-active {
+                                .ant-tabs-tab-btn {
+                                    color: $primary-color;
+                                }
+                            }
+                        }
+
+                        .ant-tabs-ink-bar {
+                            background-color: $primary-color;
+                        }
+                    }
+                }
+            }
+            .ant-tabs-content-holder {
+                .ant-tabs-content {
+                    .ant-tabs-tabpane {
+                    }
+                }
+            }
+        }
+    }
+}

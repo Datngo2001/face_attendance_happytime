@@ -18,7 +18,14 @@ import {
     convertIdToName,
     convertTimestampToString,
 } from "../../../../../utils/convertFunctions";
-import { listEducation, listGender, listRoles, listTypeEmployees } from "../../../../../utils/ListData";
+import {
+    listEducation,
+    listGender,
+    listMarriedStatus,
+    listRoles,
+    listStatusEmployees,
+    listTypeEmployees,
+} from "../../../../../utils/ListData";
 
 const View = () => {
     // HOOK REACT TOOLKIT
@@ -64,7 +71,10 @@ const View = () => {
                         <WorkInformation
                             jobPosition={infoOfEmployee.agent_position}
                             department={infoOfEmployee.agent_position}
-                            statusEmployee={infoOfEmployee.agent_status}
+                            statusEmployee={convertIdToName({
+                                id: infoOfEmployee.agent_status,
+                                list: listStatusEmployees,
+                            })}
                             statusUsingHappyTime={infoOfEmployee.is_used_happy_time}
                             startWorkingDate={convertTimestampToString(
                                 infoOfEmployee.start_working_date
@@ -86,7 +96,10 @@ const View = () => {
                                 infoOfEmployee.date_of_birth
                             )}
                             temporaryAddress={infoOfEmployee.staying_address}
-                            marriedStatus={infoOfEmployee.married_status}
+                            marriedStatus={convertIdToName({
+                                id: infoOfEmployee.married_status,
+                                list: listMarriedStatus,
+                            })}
                             personalTaxCode={infoOfEmployee.personal_tax_id}
                             citizenId={infoOfEmployee.identify_id}
                             issuedPlace={infoOfEmployee.issued_by}

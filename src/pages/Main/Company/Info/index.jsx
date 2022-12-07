@@ -89,6 +89,7 @@ const Info = () => {
                                         Hotline
                                     </div>
                                     <p id="phone" className="text">
+                                        {infoOfCompany.hotline}
                                     </p>
                                 </div>
                                 <div className="item divider-bottom">
@@ -99,6 +100,7 @@ const Info = () => {
                                         Email
                                     </div>
                                     <p id="email" className="text">
+                                        {infoOfCompany.company_mail}
                                     </p>
                                 </div>
                                 <div className="item divider-bottom">
@@ -108,7 +110,9 @@ const Info = () => {
                                         </span>
                                         Mã số thuế
                                     </div>
-                                    <p id="taxCode" className="text"></p>
+                                    <p id="taxCode" className="text">
+                                        {infoOfCompany.tax_number}
+                                    </p>
                                 </div>
                                 <div className="item divider-bottom">
                                     <div className="label">
@@ -128,7 +132,9 @@ const Info = () => {
                                         </span>
                                         Website
                                     </div>
-                                    <p id="website" className="text"></p>
+                                    <p id="website" className="text">
+                                        {infoOfCompany.website}
+                                    </p>
                                 </div>
                                 <div className="item divider-bottom">
                                     <div className="label">
@@ -137,7 +143,9 @@ const Info = () => {
                                         </span>
                                         Fanpage
                                     </div>
-                                    <p id="fanpage" className="text"></p>
+                                    <p id="fanpage" className="text">
+                                        {infoOfCompany.fanpage}
+                                    </p>
                                 </div>
                                 <div className="item divider-bottom">
                                     <div className="label">
@@ -155,7 +163,7 @@ const Info = () => {
                                         </span>
                                         Tên viết tắt của công ty
                                     </div>
-                                    <p id="mainBase" className="text">
+                                    <p id="shorthandName" className="text">
                                         {infoOfCompany.company_shorthand}
                                     </p>
                                 </div>

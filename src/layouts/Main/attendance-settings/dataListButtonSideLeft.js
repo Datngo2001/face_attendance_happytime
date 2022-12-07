@@ -8,7 +8,7 @@ export const dataListButtonSideLeft = [
         icon: <RouterRoundedIcon sx={{ stroke: "#ffffff", strokeWidth: 1.2 }} />,
     },
     {
-        path: "mobile/wifi",
+        path: "mobile",
         title: "Chấm công điện thoại",
         icon: <TapAndPlayIcon sx={{ stroke: "#ffffff", strokeWidth: 1.2 }} />,
     },

@@ -147,7 +147,7 @@ const EmployeesForm = ({ method }) => {
             let imgUrl;
             if (data.avatar !== infoOfEmployee.avatar) {
                 imgUrl = await uploadImgToFirebase({
-                    phoneNumber: data.phoneNumber,
+                    id: data.phoneNumber,
                     imageUpload: data.avatar,
                 });
             }
@@ -323,6 +323,9 @@ const EmployeesForm = ({ method }) => {
                         startWorkingDate={
                             method === "update" &&
                             convertTimestampToString(infoOfEmployee.start_working_date)
+                        }
+                        employeeStatus={
+                            method === "update" && infoOfEmployee.agent_status
                         }
                         typeEmployee={method === "update" && infoOfEmployee.agent_type}
                     />

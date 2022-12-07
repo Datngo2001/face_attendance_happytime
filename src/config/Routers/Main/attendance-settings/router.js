@@ -1,13 +1,13 @@
-import { Methods } from "../../../../pages/Main/Attendance-settings";
+import { Methods, Mobile } from "../../../../pages/Main/Attendance-settings";
 
 const attendancesSettingsRouters = [
     {
         path: "methods",
-        component: <Methods/>,
+        component: <Methods />,
     },
     {
-        path: "mobile/wifi",
-        component: "",
+        path: "mobile",
+        component: <Mobile />,
     },
 ];
 

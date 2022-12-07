@@ -1,3 +1,4 @@
 import Methods from "./Methods";
+import Mobile from "./Mobile";
 
-export { Methods };
+export { Methods, Mobile };

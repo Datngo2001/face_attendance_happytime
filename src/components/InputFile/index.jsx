@@ -2,7 +2,7 @@ import "./styles.scss";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import ApartmentIcon from "@mui/icons-material/Apartment";
 import PersonIcon from "@mui/icons-material/Person";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const InputFile = ({
     id,
@@ -24,6 +24,9 @@ const InputFile = ({
     // ******************************
 
     // HOOK EFFECT
+    useEffect(() => {
+        setValue(id, defaultValue);
+    }, []);
     // ****************************
 
     // ARROW FUNCTION

@@ -18,6 +18,7 @@ const WorkInformation = ({
     errors,
     startWorkingDate,
     typeEmployee,
+    employeeStatus,
 }) => {
     return (
         <>
@@ -93,6 +94,8 @@ const WorkInformation = ({
                             placeholder="Trạng thái nhân sự"
                             options={listStatusEmployees}
                             message={errors}
+                            setValue={setValue}
+                            defaultValue={employeeStatus}
                         />
                     </div>
                     <div className="col">

@@ -5,7 +5,7 @@ import "./styles.scss";
 import InputFile from "../../../../../components/InputFile";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { listScales, schema } from "./handleForm";
+import { schema } from "./handleForm";
 import InputCustom from "../../../../../components/InputCustom";
 import SelectCustom from "../../../../../components/SelectCustom";
 import ButtonCustom from "../../../../../components/ButtonCustom";
@@ -18,6 +18,8 @@ import {
     extraReducersUpdateInfoCompany,
 } from "../../../../../store/slices/Main/Company/actions/extraReducers";
 import { updateStatusState } from "../../../../../store/slices/Main/Company/companySlice";
+import { listScales } from "../../../../../utils/ListData";
+import { uploadImgToFirebase } from "../../../../../utils/uploadImgToFirebase";
 
 const ChangeInfoForm = () => {
     // REACT HOOK FORM
@@ -49,6 +51,11 @@ const ChangeInfoForm = () => {
     useEffect(() => {
         setValue("companyName", infoOfCompany.company_name);
         setValue("companyShorthand", infoOfCompany.company_shorthand);
+        setValue("companyWebsite", infoOfCompany.website);
+        setValue("companyHotline", infoOfCompany.hotline);
+        setValue("companyEmail", infoOfCompany.company_mail);
+        setValue("companyFanpage", infoOfCompany.fanpage);
+        setValue("codeTax", infoOfCompany.tax_number);
     }, [infoOfCompany]);
 
     useEffect(() => {
@@ -64,17 +71,28 @@ const ChangeInfoForm = () => {
     // ****************************
 
     //ARROW FUNCTIONS
-    const handleOnSubmit = (data) => {
+    const handleOnSubmit = async (data) => {
         // console.log("data", data);
+        let imgUrl;
+        if (data.companyAvatar !== infoOfCompany.avatar) {
+            imgUrl = await uploadImgToFirebase({
+                id: infoOfCompany._id,
+                imageUpload: data.companyAvatar,
+            });
+        }
         const dataSubmit = {
-            avatar: data.avatar,
+            avatar: imgUrl,
             company_name: data.companyName,
             company_shorthand: data.companyShorthand,
             scale: parseInt(data.companyScale),
             status: infoOfCompany.status,
-            // _id: infoOfCompany._id,
+            company_mail: data.companyEmail,
+            hotline: data.companyHotline,
+            tax_number: data.codeTax,
+            website: data.companyWebsite,
+            fanpage: data.companyFanpage,
         };
-        console.log("dataSubmit", dataSubmit);
+        // console.log("dataSubmit", dataSubmit);
 
         dispatch(
             extraReducersUpdateInfoCompany({
@@ -110,6 +128,7 @@ const ChangeInfoForm = () => {
                                 sizePreImg="100px"
                                 title="Đổi Logo"
                                 setValue={setValue}
+                                defaultValue={infoOfCompany.avatar}
                             />
                         </div>
                         <div className="width-40">
@@ -138,7 +157,6 @@ const ChangeInfoForm = () => {
                                 className="input-custom"
                                 label="Hotline công ty"
                                 type="phone"
-                                required={true}
                                 width="300px"
                                 placeholder="Nhập số điện thoại"
                                 register={register}
