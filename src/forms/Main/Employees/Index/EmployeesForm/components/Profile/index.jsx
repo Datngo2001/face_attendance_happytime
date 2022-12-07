@@ -21,6 +21,7 @@ const Profile = ({
     supplyDate,
     birthDate,
     education,
+    avatar
 }) => {
     return (
         <>
@@ -38,6 +39,7 @@ const Profile = ({
                             sizePreImg="180px"
                             register={register}
                             setValue={setValue}
+                            defaultValue={avatar}
                             title="Đổi ảnh đại diện"
                         />
                         <div style={{ width: "100%", height: "25px" }}></div>

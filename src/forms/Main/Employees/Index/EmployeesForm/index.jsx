@@ -14,7 +14,7 @@ import { useNavigate } from "react-router-dom";
 import Permission from "./components/Permission";
 import LoadingCustom from "../../../../../components/LoadingCustom";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import {
     extraReducersCreateInfoEmployee,
     extraReducersGetInfoEmployeeById,
@@ -24,8 +24,6 @@ import { convertStringToTimestamp, convertTimestampToString } from "../../../../
 import { updateStatusState } from "../../../../../store/slices/Main/Employees/employeesSlice";
 import * as auth from "../../../../../auth/index";
 import { uploadImgToFirebase } from "../../../../../utils/uploadImgToFirebase";
-import { listAll, ref, getDownloadURL } from "firebase/storage";
-import { storage } from "../../../../../utils/firebase";
 
 const EmployeesForm = ({ method }) => {
     // @method: update/create
@@ -146,11 +144,13 @@ const EmployeesForm = ({ method }) => {
         }
 
         if (checkPhone && checkPersonalEmail) {
-            const imgUrl = await uploadImgToFirebase({
-                idUser: "2",
-                imageUpload: data.avatar,
-            });
-            
+            let imgUrl;
+            if (data.avatar !== infoOfEmployee.avatar) {
+                imgUrl = await uploadImgToFirebase({
+                    phoneNumber: data.phoneNumber,
+                    imageUpload: data.avatar,
+                });
+            }
             const dataSubmit = {
                 agent_code: infoOfEmployee.agent_code,
                 agent_position: data.agent_position,
@@ -226,11 +226,15 @@ const EmployeesForm = ({ method }) => {
             });
         }
         if (!isExistPersonalEmail.payload && !isExistPhone.payload) {
+            const imgUrl = await uploadImgToFirebase({
+                phoneNumber: data.phoneNumber,
+                imageUpload: data.avatar,
+            });
             const dataSubmit = {
                 agent_position: null,
                 agent_status: data.employeeStatus || null,
                 agent_type: data.typeEmployee || null,
-                avatar: null,
+                avatar: imgUrl,
                 bank: data.bankName || null,
                 bank_account_number: data.bankAccountNumber || null,
                 bank_branch: data.bankBranch || null,
@@ -303,6 +307,7 @@ const EmployeesForm = ({ method }) => {
                             method === "update" &&
                             convertTimestampToString(infoOfEmployee.date_of_birth)
                         }
+                        avatar={method === "update" && infoOfEmployee.avatar}
                     />
                     <BankInformation
                         register={register}

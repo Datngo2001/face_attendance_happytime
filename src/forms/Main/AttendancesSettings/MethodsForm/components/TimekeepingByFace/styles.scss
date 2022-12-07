@@ -1,0 +1,22 @@
+@use "../../../../../../assets/styles/index.scss" as *;
+
+.timekeeping-by-face {
+    &__wrapper {
+        width: 62%;
+        height: auto;
+        min-width: 600px;
+        padding-top: 24px;
+    }
+
+    &__title {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 16px;
+    }
+
+    &__body {
+        margin: 0 0 20px 20px;
+    }
+}

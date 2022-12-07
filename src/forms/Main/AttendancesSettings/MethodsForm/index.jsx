@@ -20,9 +20,9 @@ const MethodsForm = () => {
     return (
         <>
             <div className="attendances-setting--methods-form__wrapper">
-                <TimekeepingByPhone setValue={setValue} />
-                <TimekeepingByFingerprint />
-                <TimekeepingByFace />
+                <TimekeepingByPhone setValue={setValue} register={register} />
+                <TimekeepingByFingerprint setValue={setValue} />
+                <TimekeepingByFace setValue={setValue} />
                 <div className="attendances-setting--methods-form__actions divider-top">
                     <ButtonCustom
                         height="32px"

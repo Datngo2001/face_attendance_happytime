@@ -17,6 +17,14 @@
         background-color: $primary-color-rgb;
         border-radius: $br-100;
     }
+
+    .img {
+        width: 48px;
+        height: 48px;
+        object-fit: cover;
+        border-radius: $br-100;
+    }
+
     .name-role {
         color: $text-color-3;
         font-family: $f-family-1;

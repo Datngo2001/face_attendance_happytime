@@ -1,7 +1,7 @@
 import "./styles.scss";
 import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
 
-export const ColumnName = ({ img, name, role }) => {
+export const ColumnName = ({ img, name }) => {
     // ARROW FUNCTIONS
     // ****************************
 
@@ -13,7 +13,7 @@ export const ColumnName = ({ img, name, role }) => {
                         <PersonRoundedIcon />
                     </span>
                 ) : (
-                    <img src="" alt="" className="img" />
+                    <img src={img} alt="" className="img" />
                 )}
                 <div className="name-role">
                     <p className="name">{name}</p>

@@ -13,15 +13,18 @@ const InputFile = ({
     setValue,
     title,
     sizePreImg,
+    defaultValue,
 }) => {
     // STATE
-    const [imgSrc, setImgSrc] = useState("");
-    const [fileName, setFileName] = useState("");
+    const [imgSrc, setImgSrc] = useState(defaultValue || "");
     // ******************************
 
     // VARIABLES
     const accept = ".png, .jpg, .jpeg, .gif, .bmp";
     // ******************************
+
+    // HOOK EFFECT
+    // ****************************
 
     // ARROW FUNCTION
     const handlePreviewFile = (e) => {
@@ -33,7 +36,6 @@ const InputFile = ({
             };
             reader.readAsDataURL(imgFile);
             setValue(id, imgFile);
-            setFileName(imgFile.name);
         }
     };
     // ****************************

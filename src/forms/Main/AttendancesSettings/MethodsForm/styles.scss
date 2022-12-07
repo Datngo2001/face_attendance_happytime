@@ -26,11 +26,20 @@
             > .btn {
                 color: $primary-color;
                 font-weight: $fw-1;
+                cursor: pointer;
+                transition: all 0.3s;
+
+                &:hover {
+                    opacity: 0.8;
+                }
             }
         }
 
         .timekeeping-text-small {
+            display: block;
             color: $text-color-3;
+            font-size: 12px;
+            margin-top: 4px;
         }
     }
 
