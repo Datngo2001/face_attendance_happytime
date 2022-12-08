@@ -46,7 +46,7 @@ export const extraReducersUpdateInfoEmployee = createAsyncThunk(
             .catch((error) => error);
 
         toastPromise(promise, {
-            titleLoading: "Đang thực hiện",
+            titleLoading: "Đang thực hiện...",
             titleSuccess: "Chỉnh sửa thành công",
             titleError: "Chỉnh sửa thất bại",
         });

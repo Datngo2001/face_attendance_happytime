@@ -16,10 +16,12 @@ import { schema } from "./handleForm";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { focusToElement } from "../../../utils";
 import SelectCustom from "../../../components/SelectCustom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import FormatShapesRoundedIcon from "@mui/icons-material/FormatShapesRounded";
 import { listPositions, listScales } from "../../../utils/ListData";
 import * as auth from "../../../auth/index";
+import * as registerActions from "../../../store/slices/Authentication/Register/registerActions";
+import { updateStatusState } from "../../../store/slices/Authentication/authSlice";
 
 const RegisterForm = () => {
     // VARIABLES
@@ -38,7 +40,11 @@ const RegisterForm = () => {
     // ************************************************************
 
     // HOOK REACT TOOLKIT
-    const { loading } = useSelector((state) => state.auth);
+    const { loading, status } = useSelector((state) => state.auth);
+    // ****************************
+
+    // HOOK REDUX TOOLKIT
+    const dispatch = useDispatch();
     // ****************************
 
     // EFFECT
@@ -61,6 +67,17 @@ const RegisterForm = () => {
             });
         };
     }, []);
+
+    useEffect(() => {
+        if (status) {
+            navigate("/auth/confirm-otp");
+        }
+
+        // Clean function
+        return () => {
+            dispatch(updateStatusState(false));
+        };
+    }, [status]);
     // **************************************************************
 
     // ARROW FUNCTION
@@ -90,13 +107,15 @@ const RegisterForm = () => {
         }
 
         if (!isExistPhone.payload && !isExistEmail.payload) {
-            navigate("/auth/set-password");
+            dispatch(
+                registerActions.extraReducersRequestOtp({
+                    dataRequest: { phone_number: data.phone },
+                })
+            );
         }
-        console.log("isExistPhone", isExistPhone);
     };
     // **************************************************************
 
-    console.log("loading", loading);
     return (
         <>
             <form action="" className="register-form__wrapper">

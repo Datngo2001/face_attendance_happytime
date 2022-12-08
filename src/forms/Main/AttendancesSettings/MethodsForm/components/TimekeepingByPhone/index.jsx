@@ -11,7 +11,11 @@ const TimekeepingByPhone = ({ checked, setValue, register }) => {
                         <TapAndPlayIcon />
                         Chấm công bằng điện thoại
                     </h4>
-                    <ButtonSwitchCustom id="methodByPhone" setValue={setValue} />
+                    <ButtonSwitchCustom
+                        id="methodByPhone"
+                        setValue={setValue}
+                        defaultChecked={checked}
+                    />
                 </div>
                 <div className="timekeeping-by-phone__options">
                     <div className="option-field">

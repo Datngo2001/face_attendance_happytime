@@ -6,7 +6,7 @@ import ButtonCustom from "../../../components/ButtonCustom";
 import { schema } from "./handleForm";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { focusToElement } from "../../../utils";
+import { focusToElement, toastify } from "../../../utils";
 import { useEffect } from "react";
 
 const ConfirmOTPForm = () => {
@@ -30,9 +30,22 @@ const ConfirmOTPForm = () => {
 
     // ARROW FUNCTIONS
     const onSubmit = (data) => {
-        console.log("data", data);
-
-        navigate("/auth/set-password", { replace: true });
+        const convertedArray = Object.entries(data);
+        let otpInput = "";
+        for (let i = 0; i < 6; i++) {
+            otpInput += convertedArray[i][1];
+        }
+        console.log("otpInput", otpInput);
+        if (otpInput === sessionStorage.getItem("otp")) {
+            sessionStorage.removeItem("otp");
+            sessionStorage.removeItem("phoneNumber");
+            navigate("/auth/set-password", { replace: true });
+        } else {
+            toastify({
+                mess: "Mã OTP không đúng",
+                type: "error",
+            });
+        }
     };
     // ****************************
 
@@ -48,8 +61,10 @@ const ConfirmOTPForm = () => {
                 </div>
                 <p className="confirm-otp-form__text">
                     Mã xác thực vừa được gửi về số điện thoại{" "}
-                    <span className="confirm-otp-form__text-phone">0964088473</span>. Vui
-                    lòng nhập mã để xác thực tài khoản HappyTime
+                    <span className="confirm-otp-form__text-phone">
+                        {sessionStorage.getItem("phoneNumber")}
+                    </span>
+                    . Vui lòng nhập mã để xác thực tài khoản HappyTime
                 </p>
                 <div className="confirm-otp-form__input-code">
                     <InputCode id="1" register={register} />

@@ -1,0 +1,14 @@
+@use "../../../../../../../../assets/styles/index.scss" as *;
+
+.attendance-settings--mobile-wifi {
+    &__wrapper {
+    }
+
+    &__control-panel {
+        padding: 0 30px;
+
+        .select-item {
+            margin-top: 10px;
+        }
+    }
+}

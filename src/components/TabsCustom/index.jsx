@@ -17,6 +17,7 @@ const TabsCustom = ({ listChildren = [] }) => {
                             label: children.title,
                             key: children.title,
                             children: children.component,
+                            disabled: children.disabled,
                         };
                     })}
                 />

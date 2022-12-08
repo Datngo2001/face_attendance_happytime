@@ -34,3 +34,26 @@ export const extraReducersCheckExists = createAsyncThunk("checkExists", async (d
         })
         .catch((error) => error);
 });
+
+export const extraReducersRequestOtp = createAsyncThunk(
+    "requestOtp",
+    async ({ dataRequest }) => {
+        sessionStorage.setItem("phoneNumber", dataRequest.phone_number);
+        const promise = api
+            .post("/auth/send_otp", dataRequest)
+            .then((response) => {
+                return {
+                    payload: response.payload,
+                    message: response.message,
+                };
+            })
+            .catch((error) => error);
+
+        toastPromise(promise, {
+            titleLoading: "Đang yêu cầu OTP...",
+            titleSuccess: "Đã yêu cầu OTP",
+            titleError: "Yêu cầu OTP thất bại",
+        });
+        return promise;
+    }
+);

@@ -31,6 +31,12 @@ const authSlice = createSlice({
                 }
             }
         );
+        builder.addCase(registerActions.extraReducersRequestOtp.fulfilled, (state, { payload }) => {
+            if (payload.message === "success") {
+                state.status = true;
+                sessionStorage.setItem("otp", payload.payload.otp_code);
+            }
+        });
         // builder
         //     .addCase(
         //         registerActions.extraReducersCheckExists.pending,

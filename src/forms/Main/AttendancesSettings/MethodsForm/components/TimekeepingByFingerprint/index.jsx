@@ -11,7 +11,11 @@ const TimekeepingByFingerprint = ({ setValue, checked }) => {
                         <FingerprintRoundedIcon />
                         Chấm công bằng vân tay (Tracker)
                     </h4>
-                    <ButtonSwitchCustom id="methodByFingerprint" setValue={setValue} />
+                    <ButtonSwitchCustom
+                        id="methodByFingerprint"
+                        setValue={setValue}
+                        defaultChecked={checked}
+                    />
                 </div>
                 <div className="timekeeping-by-fingerprint__body">
                     <div className="timekeeping-text-large">
