@@ -24,6 +24,7 @@ const ModalCustom = ({
     titleHeader,
     titleBtnCancel,
     titleBtnAccept,
+    footer = true,
     btnJustifyContent,
     children,
     callback,
@@ -54,7 +55,7 @@ const ModalCustom = ({
         // ADD EVENT
         document.getElementById(idTarget) &&
             document.getElementById(idTarget).addEventListener("click", handleOpen);
-            
+
         // CLEAN FUNCTION
         return () => {};
     }, []);
@@ -81,25 +82,29 @@ const ModalCustom = ({
                     <div className="modal-custom__content">
                         {children || "Missing chidren"}
                     </div>
-                    <div
-                        className={`modal-custom__actions ${divider && "divider-top"}`}
-                        style={{ justifyContent: btnJustifyContent || "center" }}
-                    >
-                        <ButtonCustom
-                            className="btn-cancel"
-                            width="auto"
-                            onClick={handleClose}
+                    {footer && (
+                        <div
+                            className={`modal-custom__actions ${
+                                divider && "divider-top"
+                            }`}
+                            style={{ justifyContent: btnJustifyContent || "center" }}
                         >
-                            {titleBtnCancel || "Hủy bỏ"}
-                        </ButtonCustom>
-                        <ButtonCustom
-                            className="btn-accept"
-                            width="auto"
-                            onClick={handleOnClick}
-                        >
-                            {titleBtnAccept || "Xác nhận"}
-                        </ButtonCustom>
-                    </div>
+                            <ButtonCustom
+                                className="btn-cancel"
+                                width="auto"
+                                onClick={handleClose}
+                            >
+                                {titleBtnCancel || "Hủy bỏ"}
+                            </ButtonCustom>
+                            <ButtonCustom
+                                className="btn-accept"
+                                width="auto"
+                                onClick={handleOnClick}
+                            >
+                                {titleBtnAccept || "Xác nhận"}
+                            </ButtonCustom>
+                        </div>
+                    )}
                 </Box>
             </Modal>
         </div>

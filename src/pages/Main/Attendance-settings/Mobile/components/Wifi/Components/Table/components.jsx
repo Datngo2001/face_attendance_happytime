@@ -1,9 +1,6 @@
-import DropMenu from "../../../../../../../../components/DropMenu";
-import ModalCustom from "../../../../../../../../components/ModalCustom";
 import NoRowsOverlayCustom from "../../../../../../../../components/NoRowsOverlayCustom";
-import { WifiAddingForm } from "../../../../../../../../forms/Main/AttendancesSettings";
 import ColumnActiveStatus from "../ColumnActiveStatus";
-import { ColumnOthers, InnerButtonOthers } from "../ColumnOthers";
+import { ColumnOthers } from "../ColumnOthers";
 
 export const columns = [
     {
@@ -16,14 +13,14 @@ export const columns = [
         sortable: false,
     },
     {
-        field: "wifiIPName",
+        field: "ip_name",
         headerName: "Tên IP Wi-Fi",
         // width: 150,
         flex: 0.3,
         sortable: false,
     },
     {
-        field: "IPAdress",
+        field: "ip_address",
         headerName: "IP",
         // width: 150,
         flex: 0.4,
@@ -39,7 +36,7 @@ export const columns = [
         renderCell: (params) => {
             return (
                 <>
-                    <ColumnActiveStatus stt={params.row.stt} />
+                    <ColumnActiveStatus stt={params.row._id} />
                 </>
             );
         },
@@ -56,7 +53,7 @@ export const columns = [
             // ******************************
             return (
                 <>
-                    <ColumnOthers stt={params.row.stt} />
+                    <ColumnOthers code={params.row._id} />
                 </>
             );
         },

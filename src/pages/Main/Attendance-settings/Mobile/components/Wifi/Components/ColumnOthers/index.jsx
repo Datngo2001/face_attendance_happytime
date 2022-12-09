@@ -5,17 +5,11 @@ import { useState } from "react";
 import DropMenu from "../../../../../../../../components/DropMenu";
 import ModalCustom from "../../../../../../../../components/ModalCustom";
 import { WifiAddingForm } from "../../../../../../../../forms/Main/AttendancesSettings";
-import { useForm } from "react-hook-form";
 
-export const ColumnOthers = ({ stt }) => {
+export const ColumnOthers = ({ code }) => {
     const [open, setOpen] = useState(false);
 
-    const { register, setValue, handleSubmit } = useForm({});
-
     // ARROW FUNCTIONS
-    const handleOnSubmit = () => {
-        handleSubmit();
-    };
     // ****************************
 
     return (
@@ -23,11 +17,11 @@ export const ColumnOthers = ({ stt }) => {
             <div className="attendance-settings--mobile-wifi__table-column-others">
                 <span className="icon">
                     <DropMenu parent={<MoreHorizRoundedIcon />} mt="2px" ml="4px">
-                        <InnerButtonOthers stt={stt} setOpen={setOpen} />
+                        <InnerButtonOthers code={code} setOpen={setOpen} />
                     </DropMenu>
                 </span>
                 <ModalCustom
-                    idTarget={`index-${stt}`}
+                    idTarget={`index-${code}`}
                     titleHeader={
                         <span
                             style={{
@@ -41,22 +35,23 @@ export const ColumnOthers = ({ stt }) => {
                     }
                     state={open}
                     setState={setOpen}
+                    footer={false}
                 >
-                    <WifiAddingForm />
+                    <WifiAddingForm method="update" setOpen={setOpen} />
                 </ModalCustom>
             </div>
         </>
     );
 };
 
-export const InnerButtonOthers = ({ stt, setOpen }) => {
+export const InnerButtonOthers = ({ code, setOpen }) => {
     // ARROW FUNCTION
     // ****************************
 
     return (
         <>
             <div className="attendance-settings--mobile-wifi__table-column-others--inner-button-others">
-                <div className="btn" id={`index-${stt}`} onClick={() => setOpen(true)}>
+                <div className="btn" id={`index-${code}`} onClick={() => setOpen(true)}>
                     <span className="icon">
                         <BorderColorRoundedIcon />
                     </span>

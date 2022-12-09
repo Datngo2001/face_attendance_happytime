@@ -1,0 +1,10 @@
+@use "../../../../../../../../assets/styles/index.scss" as *;
+
+.attendance-settings--mobile-devices {
+    &__wrapper {
+    }
+
+    &--control-panel {
+        padding: 0 30px;
+    }
+}

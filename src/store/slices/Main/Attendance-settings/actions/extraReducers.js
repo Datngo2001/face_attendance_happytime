@@ -35,3 +35,55 @@ export const extraReducersUpdateInfoConfig = createAsyncThunk(
         return promise;
     }
 );
+
+export const extraReducersGetListIPWifi = createAsyncThunk(
+    "getListIPWifi",
+    async ({ page, size }) => {
+        return api
+            .post(`/api/ip_config/search?page=${page}&size=${size}`, {})
+            .then((response) => {
+                return {
+                    payload: response.payload,
+                    message: response.message,
+                };
+            })
+            .catch((error) => error);
+    }
+);
+
+export const extraReducersCreateIPWifi = createAsyncThunk(
+    "createIPWifi",
+    async ({ data }) => {
+        const promise = api
+            .post("/api/ip_config/create", data)
+            .then((response) => {
+                return {
+                    payload: response.payload,
+                    message: response.message,
+                };
+            })
+            .catch((error) => error);
+
+        toastPromise(promise, {
+            titleLoading: "Đang thực hiện...",
+            titleSuccess: "Thêm thành công",
+            titleError: "Thêm thất bại",
+        });
+        return promise;
+    }
+);
+
+export const extraReducersGetListDeviceID = createAsyncThunk(
+    "getListDeviceID",
+    async ({ page, size }) => {
+        return api
+            .post(`/api/device_config/search?page=${page}&size=${size}`, {})
+            .then((response) => {
+                return {
+                    payload: response.payload,
+                    message: response.message,
+                };
+            })
+            .catch((error) => error);
+    }
+);
