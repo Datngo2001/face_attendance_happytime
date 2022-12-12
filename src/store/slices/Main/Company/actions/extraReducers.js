@@ -38,3 +38,5 @@ export const extraReducersUpdateInfoCompany = createAsyncThunk(
         return promise;
     }
 );
+
+// export const extraReducersGet

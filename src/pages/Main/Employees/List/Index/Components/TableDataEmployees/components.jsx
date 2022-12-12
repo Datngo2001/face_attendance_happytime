@@ -1,7 +1,7 @@
 import DropMenu from "../../../../../../../components/DropMenu";
 import NoRowsOverlayCustom from "../../../../../../../components/NoRowsOverlayCustom";
 import { convertIdToName } from "../../../../../../../utils/convertFunctions";
-import { listRoles } from "../../../../../../../utils/ListData";
+import { listRoles, listStatusEmployees } from "../../../../../../../utils/ListData";
 import { ColumnContactInfo } from "../ColumnContactInfo";
 import { ColumnName } from "../ColumnName";
 import { ColumnOthers } from "../ColumnOthers";
@@ -11,23 +11,12 @@ import "./styles.scss";
 
 export const StatusEmployee = ({ status }) => {
     // ARROW FUNCTION
-    const convertToTitle = (status) => {
-        let text = "";
-        switch (parseInt(status)) {
-            case 1:
-                text = "Đang làm việc";
-                break;
-            default:
-                text = "Không có trạng thái";
-        }
-        return text;
-    };
     // ********************************
 
     return (
         <>
             <div className={`status-emloyee__wrapper type-${status}`}>
-                <p className="text">{convertToTitle(status)}</p>
+                <p className="text">{status}</p>
             </div>
         </>
     );
@@ -37,11 +26,11 @@ export const StatusUsingHappyTime = ({ status }) => {
     // ARROW FUNCTION
     const convertToTitle = (status) => {
         let text = "";
-        switch (parseInt(status)) {
-            case 1:
+        switch (status) {
+            case true:
                 text = "Đã sử dụng";
                 break;
-            case 2:
+            case false:
                 text = "Chưa sử dụng";
                 break;
             default:
@@ -116,7 +105,14 @@ export const columns = [
         // flex: 1,
         sortable: false,
         renderCell: (params) => {
-            return <StatusEmployee status={params.row.username} />;
+            return (
+                <StatusEmployee
+                    status={convertIdToName({
+                        id: params.row.agent_status,
+                        list: listStatusEmployees
+                    })}
+                />
+            );
         },
     },
     {

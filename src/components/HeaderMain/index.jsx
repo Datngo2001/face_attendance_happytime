@@ -14,7 +14,10 @@ import {
 } from "./components";
 import DropMenu from "../DropMenu";
 import ModalCustom from "../ModalCustom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { extraReducersGetInfoCompany } from "../../store/slices/Main/Company/actions/extraReducers";
+import { extraReducersGetInfoUser } from "../../store/slices/Global/actions/extraReducers";
 
 const HeaderMain = ({ isActive, state, setState }) => {
     // STATE
@@ -28,6 +31,19 @@ const HeaderMain = ({ isActive, state, setState }) => {
     const navigate = useNavigate();
     // ****************************
 
+    // REDUX TOOLKIT
+    const { infoOfCompany } = useSelector((state) => state.company);
+    const { userInfor } = useSelector((state) => state.global);
+    const dispatch = useDispatch();
+    // ****************************
+
+    // HOOK EFFECT
+    useEffect(() => {
+        dispatch(extraReducersGetInfoCompany());
+        dispatch(extraReducersGetInfoUser());
+    }, []);
+    // ****************************
+
     // ARROW FUNCTION
     const handleLogOut = () => {
         sessionStorage.clear();
@@ -38,7 +54,7 @@ const HeaderMain = ({ isActive, state, setState }) => {
         setState(!state);
     };
     // ****************************************************************
-
+    console.log("userInfor", userInfor);
     return (
         <>
             <header className="header-main__wrapper">
@@ -74,7 +90,11 @@ const HeaderMain = ({ isActive, state, setState }) => {
                                 Chưa có tiêu đề
                             </h2>
                             <div>
-                                <ButtonUser type={1} name="Coffee Store" />
+                                <ButtonUser
+                                    type={1}
+                                    name={infoOfCompany.company_name}
+                                    avatar={infoOfCompany.avatar}
+                                />
                                 <DropMenu parent={<MenuBox />} mt="12px" ml="-4px">
                                     <MenuBoxInner />
                                 </DropMenu>
@@ -89,8 +109,9 @@ const HeaderMain = ({ isActive, state, setState }) => {
                                     parent={
                                         <ButtonUser
                                             type={2}
-                                            name="Lê Duy Tường"
-                                            avatar={avatar}
+                                            name={userInfor.name}
+                                            avatar={userInfor.avatar}
+                                            role={userInfor.role}
                                         />
                                     }
                                     mt="12px"
