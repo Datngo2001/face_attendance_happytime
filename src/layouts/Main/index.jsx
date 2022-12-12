@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
 import HeaderMain from "../../components/HeaderMain";
-import SideBar from "../../components/Sidebar";
+// import Sidebar from "../../components/Sidebar";
 import "./styles.scss";
 
 const MainLayout = () => {
@@ -25,7 +25,7 @@ const MainLayout = () => {
                 />
                 <div className="main-layout__container">
                     <div className="main-layout__sidebar">
-                        <SideBar state={isCollapsed} />
+                        {/* <Sidebar state={isCollapsed} /> */}
                     </div>
                     <div className="main-layout__content">
                         <Outlet />
