@@ -6,7 +6,7 @@ import "./styles.scss";
 import ModalCustom from "../ModalCustom";
 import { useLocation, useNavigate } from "react-router-dom";
 
-const Sidebar = ({ state }) => {
+const SidebarCustom = ({ state }) => {
     // VARIABLES
     const location = useLocation();
     // ******************************
@@ -67,4 +67,4 @@ const Sidebar = ({ state }) => {
     );
 };
 
-export default Sidebar;
+export default SidebarCustom;
