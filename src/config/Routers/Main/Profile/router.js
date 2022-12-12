@@ -1,6 +1,6 @@
 import { ChangePassword, Info } from "../../../../pages/Main/Profile";
 
-const profileRouters = [
+export const profileRouters = [
     {
         path: "info",
         component: <Info />,
@@ -11,4 +11,3 @@ const profileRouters = [
     },
 ];
 
-export default profileRouters;

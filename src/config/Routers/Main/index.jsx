@@ -9,7 +9,7 @@ import attendancesSettingsRouters from "./attendance-settings/router";
 import attendancesRouters from "./attendances/router";
 import companyRouters from "./company/router";
 import empoyeesRouters from "./employees/router";
-import profileRouters from "./profile/router";
+import { profileRouters } from "./profile/router";
 import workspaceSettingsRouters from "./workspace-settings/router";
 
 const mainRouters = [
