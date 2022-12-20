@@ -3,8 +3,9 @@ import ReplayRoundedIcon from "@mui/icons-material/ReplayRounded";
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import "./styles.scss";
 import InputCustom from "../../../../../../components/InputCustom";
+import InputDate from "../../../../../../components/InputDate";
 
-const ControlPanel = ({ register }) => {
+const ControlPanel = ({ register, setValue, trigger }) => {
     return (
         <>
             <div className="attendances--summary--control-panel__wrapper">
@@ -25,6 +26,15 @@ const ControlPanel = ({ register }) => {
                         register={register}
                         placeholder="Nhập tên nhân viên, mã nhân viên"
                         iconRight={<SearchRoundedIcon />}
+                    />
+                    <div style={{ width: "100%", height: "20px" }}></div>
+                    <InputDate
+                        id="timeRange"
+                        width="350px"
+                        register={register}
+                        setValue={setValue}
+                        type={2}
+                        trigger={trigger}
                     />
                 </div>
                 <div className="attendances--summary--control-panel__footer">
