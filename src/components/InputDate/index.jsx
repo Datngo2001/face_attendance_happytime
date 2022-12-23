@@ -16,7 +16,7 @@ const InputDate = ({
     message,
     trigger,
     defaultValue,
-    type = 1,
+    // type = 1,
 }) => {
     // VARIABLES
     const dateFormat = "DD/MM/YYYY";
@@ -55,7 +55,16 @@ const InputDate = ({
                     </div>
                 )}
                 <div className="input-date__container">
-                    {type === 1 ? (
+                    <DatePicker
+                        id={id}
+                        defaultValue={defaultValue ? dayjs(defaultValue, dateFormat) : ""}
+                        placeholder={placeholder}
+                        style={{ height: height, width: width }}
+                        locale={locale}
+                        format={dateFormat}
+                        onChange={onChange}
+                    />
+                    {/* {type === 1 ? (
                         <DatePicker
                             id={id}
                             defaultValue={
@@ -80,7 +89,7 @@ const InputDate = ({
                             format={dateFormat}
                             onChange={onChange}
                         />
-                    )}
+                    )} */}
                     {message && <p className="error-message">{message[id]?.message}</p>}
                 </div>
             </div>

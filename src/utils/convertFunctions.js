@@ -23,3 +23,33 @@ export const convertIdToName = ({ id, list = [] }) => {
     });
     return item?.name || "Chưa cập nhật";
 };
+
+export const convertDayToNameDay = ({ day, type = 1 }) => {
+    let finalResult = {};
+    switch (day) {
+        case 0:
+            finalResult = type === 1 ? "Chủ nhật" : "sunday";
+            break;
+        case 1:
+            finalResult = type === 1 ? "Thứ 2" : "monday";
+            break;
+        case 2:
+            finalResult = type === 1 ? "Thứ 3" : "tuesday";
+            break;
+        case 3:
+            finalResult = type === 1 ? "Thứ 4" : "wednesday";
+            break;
+        case 4:
+            finalResult = type === 1 ? "Thứ 5" : "thursday";
+            break;
+        case 5:
+            finalResult = type === 1 ? "Thứ 6" : "friday";
+            break;
+        case 6:
+            finalResult = type === 1 ? "Thứ 7" : "saturday";
+            break;
+        default:
+    }
+
+    return finalResult;
+};

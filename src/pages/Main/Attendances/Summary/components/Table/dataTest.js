@@ -49,7 +49,7 @@ export const rows = [
         img: "",
         monday: {
             morning: 1,
-            afternoon: 1,
+            afternoon: 2,
         },
         tuesday: null,
         wednesday: {
