@@ -4,23 +4,24 @@ import ControlPanel from "./components/ControlPanel";
 import "./styles.scss";
 
 const Summary = () => {
-    // REACT HOOOK FORM
-    const { register, watch } = useForm({ mode: "onChange" });
-    // ****************************
+  // REACT HOOOK FORM
+  const { register, watch } = useForm({ mode: "onChange" });
+  // ****************************
 
-    // HOOK EFFECT
-    useEffect(() => {
-        console.log("data", watch());
-    }, [watch()]);
-    // ****************************
+  // HOOK EFFECT
+  useEffect(() => {
+    const subscription = watch((value) => console.log("data", value));
+    return () => subscription.unsubscribe();
+  }, [watch]);
+  // ****************************
 
-    return (
-        <>
-            <div className="attendances--summary__wrapper">
-                <ControlPanel register={register} />
-            </div>
-        </>
-    );
+  return (
+    <>
+      <div className="attendances--summary__wrapper">
+        <ControlPanel register={register} />
+      </div>
+    </>
+  );
 };
 
 export default Summary;

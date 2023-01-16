@@ -26,15 +26,16 @@ import { extraReducersGetListEmployees } from "../../../../../../../store/slices
 
 export const IndexControlPanel = () => {
   // STATE
-  const { register, handleSubmit, watch } = useForm({});
+  const { register, watch } = useForm({});
   const { listIdInvitation } = useSelector((state) => state.employees);
   const dispatch = useDispatch();
   // ******************************
 
   // HOOK EFFECT
   useEffect(() => {
-    handleSearch(watch());
-  }, [watch()]);
+    const subscription = watch((value) => handleSearch(value));
+    return () => subscription.unsubscribe();
+  }, [watch]);
   // ******************************
 
   // ARROW FUNCTION
@@ -94,10 +95,7 @@ export const IndexControlPanel = () => {
             </Tooltip>
           </div>
         </div>
-        <form
-          className="index__actions"
-          onSubmit={handleSubmit((data) => console.log(data))}
-        >
+        <form className="index__actions">
           <SelectCustom
             id="statusActive"
             className="input-item"
