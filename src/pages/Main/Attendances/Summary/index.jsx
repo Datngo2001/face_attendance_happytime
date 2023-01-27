@@ -1,6 +1,9 @@
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { updateTimeStart } from "../../../../store/slices/Main/Attendances/attendancesSlice";
 import ControlPanel from "./components/ControlPanel";
+import Table from "./components/Table";
 import "./styles.scss";
 
 const Summary = () => {

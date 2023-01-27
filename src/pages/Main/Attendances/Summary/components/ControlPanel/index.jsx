@@ -3,8 +3,12 @@ import ReplayRoundedIcon from "@mui/icons-material/ReplayRounded";
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import "./styles.scss";
 import InputCustom from "../../../../../../components/InputCustom";
+import InputDate from "../../../../../../components/InputDate";
+import dayjs from "dayjs";
 
-const ControlPanel = ({ register }) => {
+const ControlPanel = ({ register, setValue, trigger }) => {
+    // VARIABLES
+    const today = dayjs(new Date().toString()).format("DD/MM/YYYY");
     return (
         <>
             <div className="attendances--summary--control-panel__wrapper">
@@ -25,6 +29,16 @@ const ControlPanel = ({ register }) => {
                         register={register}
                         placeholder="Nhập tên nhân viên, mã nhân viên"
                         iconRight={<SearchRoundedIcon />}
+                    />
+                    <div style={{ width: "100%", height: "20px" }}></div>
+                    <InputDate
+                        id="timeStart"
+                        width="250px"
+                        register={register}
+                        setValue={setValue}
+                        trigger={trigger}
+                        placeholder="Chọn ngày bắt đầu"
+                        defaultValue={today}
                     />
                 </div>
                 <div className="attendances--summary--control-panel__footer">

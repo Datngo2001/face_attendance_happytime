@@ -1,11 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { authSlice, employeesSlice } from "./slices";
+import { attendancesSlice, authSlice, companySlice, employeesSlice } from "./slices";
 import { globalSlice } from "./slices/Global/globalSlice";
 import attendanceSettingsSlice from "./slices/Main/Attendance-settings/attendanceSettingsSlice";
-import companySlice from "./slices/Main/Company/companySlice";
 
 const store = configureStore({
     reducer: {
+        attendances: attendancesSlice.reducer,
         employees: employeesSlice.reducer,
         company: companySlice.reducer,
         attendanceSettings: attendanceSettingsSlice.reducer,

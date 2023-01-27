@@ -1,0 +1,15 @@
+@use "../../../../../../../../assets/styles/index.scss" as *;
+
+.attendances--summary--table {
+    &--header-weekdays {
+        &__wrapper {
+            display: flex;
+            font-weight: $fw-1;
+            gap: 2px;
+
+            &.opacity {
+                opacity: 0.5;
+            }
+        }
+    }
+}
