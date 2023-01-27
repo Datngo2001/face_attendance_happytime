@@ -12,4 +12,9 @@ export const dataListButtonSlideLeft = [
         title: "Quản lý phép",
         icon: <AssignmentOutlinedIcon sx={{ stroke: "#ffffff", strokeWidth: 1.2 }} />,
     },
+    {
+        path: "permission-setting/list",
+        title: "Quản lý vai trò",
+        icon: <AssignmentOutlinedIcon sx={{ stroke: "#ffffff", strokeWidth: 1.2 }} />,
+    },
 ];
