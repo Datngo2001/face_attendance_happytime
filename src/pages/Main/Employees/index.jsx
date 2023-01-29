@@ -3,5 +3,6 @@ import View from "./List/View";
 import Update from "./List/Update";
 import Create from "./List/Create";
 import LeaveManagement from "./Leave-management";
+import PermissionList from "./Permission-management/List";
 
-export { Index, View, Update, Create, LeaveManagement };
+export { Index, View, Update, Create, LeaveManagement, PermissionList };

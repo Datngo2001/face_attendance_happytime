@@ -4,6 +4,7 @@ import {
     LeaveManagement,
     Update,
     View,
+    PermissionList
 } from "../../../../pages/Main/Employees";
 
 const empoyeesRouters = [
@@ -26,6 +27,10 @@ const empoyeesRouters = [
     {
         path: "leave-management",
         component: <LeaveManagement />,
+    },
+    {
+        path: "permission-setting/list",
+        component: <PermissionList />,
     },
 ];
 

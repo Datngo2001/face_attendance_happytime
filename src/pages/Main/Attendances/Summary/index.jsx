@@ -7,35 +7,24 @@ import Table from "./components/Table";
 import "./styles.scss";
 
 const Summary = () => {
-    // REACT HOOOK FORM
-    const { register, trigger, watch, setValue } = useForm({ mode: "onChange" });
-    // ****************************
+  // REACT HOOOK FORM
+  const { register, watch } = useForm({ mode: "onChange" });
+  // ****************************
 
-    // HOOK REDUX TOOLKIT
-    const { timeStart, listWeekdays } = useSelector((state) => state.attendances);
-    const dispatch = useDispatch();
-    // ****************************
+  // HOOK EFFECT
+  useEffect(() => {
+    const subscription = watch((value) => console.log("data", value));
+    return () => subscription.unsubscribe();
+  }, [watch]);
+  // ****************************
 
-    // STATE
-    // ****************************
-
-    // HOOK EFFECT
-    useEffect(() => {
-        console.log("data", watch());
-    }, [watch()]);
-
-    useEffect(() => {
-        dispatch(updateTimeStart(watch().timeStart));
-    }, [watch().timeStart]);
-    // ****************************
-    return (
-        <>
-            <div className="attendances--summary__wrapper">
-                <ControlPanel register={register} setValue={setValue} trigger={trigger} />
-                <Table />
-            </div>
-        </>
-    );
+  return (
+    <>
+      <div className="attendances--summary__wrapper">
+        <ControlPanel register={register} />
+      </div>
+    </>
+  );
 };
 
 export default Summary;
