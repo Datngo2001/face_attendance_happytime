@@ -1,8 +1,12 @@
 import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import * as auth from "../auth/index";
+import * as auth from "./index";
 
-export const AuthRouter = ({ children }) => {
+export type Props = {
+    children: JSX.Element
+}
+
+export const AuthRouter = ({ children }: Props) => {
     const location = useLocation();
     const navigate = useNavigate();
 

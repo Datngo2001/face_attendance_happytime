@@ -15,6 +15,7 @@ import {
 } from "./layouts";
 import { Toaster } from "react-hot-toast";
 import * as auth from "./auth";
+import React from "react";
 
 function App() {
     // ARROW FUNCTION
