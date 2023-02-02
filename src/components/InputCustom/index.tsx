@@ -1,6 +1,25 @@
+import { ReactElement } from "react";
 import "./styles.scss";
 
-const InputCustom = ({
+export type Props = {
+    id: string,
+    iconRight?: ReactElement,
+    iconLeft?: string,
+    placeholder?: string,
+    width?: string,
+    height?: string,
+    register: Function,
+    className?: string,
+    type?: string,
+    message?: string,
+    label?: string,
+    required?: boolean,
+    labelWidth?: string,
+    handleOnClick?: React.MouseEventHandler<HTMLButtonElement>,
+    disabled?: boolean,
+}
+
+const InputCustom: React.FC<Props> = ({
     id,
     iconRight,
     iconLeft,
@@ -35,9 +54,8 @@ const InputCustom = ({
                     </div>
                 )}
                 <div
-                    className={`container ${message && message[id] ? "error" : ""}  ${
-                        !iconLeft && !iconRight && "none-icon"
-                    } ${iconRight && "icon-right"} ${iconLeft && "icon-left"}`}
+                    className={`container ${message && message[id] ? "error" : ""}  ${!iconLeft && !iconRight && "none-icon"
+                        } ${iconRight && "icon-right"} ${iconLeft && "icon-left"}`}
                 >
                     {iconLeft}
                     <input
