@@ -3,6 +3,8 @@ import { DataGrid } from "@mui/x-data-grid";
 import LoadingCustom from "components/LoadingCustom";
 import NoRowsOverlayCustom from "components/NoRowsOverlayCustom";
 import PaginationCustom from "components/PaginationCustom";
+import { useAppDispatch } from "hooks/useAppDispatch";
+import { useAppSelector } from "hooks/useAppSelector";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { columns } from "./components";
@@ -13,14 +15,14 @@ function PermissionTable() {
   // ****************************************************
 
   // HOOK REACT TOOLKIT
-  // const { listOfEmployees, totalPages, totalEmployees, loading } = useSelector(
-  //   (state) => state.employees
-  // );
-  // const dispatch = useDispatch();
+  const { listOfEmployees, totalPages, totalEmployees, loading } = useAppSelector(
+    (state) => state.employees
+  );
+  const dispatch = useAppDispatch();
   // ******************************
 
   return <>
-    {/* <Box sx={{ height: 350, width: "100%" }}>
+    <Box sx={{ height: 350, width: "100%" }}>
       <>
         <DataGrid
           // onRowClick={hanldeOnRowClick}
@@ -29,7 +31,7 @@ function PermissionTable() {
           rowHeight={100}
           rows={listOfEmployees}
           columns={columns}
-          getRowId={(row) => row._id}
+          getRowId={(row: any) => row._id}
           rowsPerPageOptions={[5]}
           checkboxSelection
           disableSelectionOnClick
@@ -60,7 +62,7 @@ function PermissionTable() {
           </div>
         )}
       </>
-    </Box> */}
+    </Box>
   </>;
 }
 
