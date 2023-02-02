@@ -15,13 +15,14 @@ import {
 } from "./layouts";
 import { Toaster } from "react-hot-toast";
 import * as auth from "./auth";
-import React from "react";
+import React, { Suspense } from "react";
+import LoadingCustom from "components/LoadingCustom";
 
 function App() {
     // ARROW FUNCTION
     const renderRoute = (listRoutes) => {
         return listRoutes.map(({ path, component }, index) => {
-            return <Route path={path} element={component} key={index} />;
+            return <Route path={path} element={<Suspense fallback={<LoadingCustom />}>{component}</Suspense>} key={index} />;
         });
     };
     const renderRouterMain = (listRoutes) => {

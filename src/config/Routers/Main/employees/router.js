@@ -1,11 +1,11 @@
-import {
-    Create,
-    Index,
-    LeaveManagement,
-    Update,
-    View,
-    PermissionList
-} from "../../../../pages/Main/Employees";
+import React from "react"
+
+const Index = React.lazy(() => import("pages/Main/Employees/List/Index"));
+const Create = React.lazy(() => import("pages/Main/Employees/List/Create"));
+const Update = React.lazy(() => import("pages/Main/Employees/List/Update"));
+const View = React.lazy(() => import("pages/Main/Employees/List/View"));
+const LeaveManagement = React.lazy(() => import("pages/Main/Employees/Leave-management"));
+const PermissionList = React.lazy(() => import("pages/Main/Employees/Permission-management/List"));
 
 const empoyeesRouters = [
     {

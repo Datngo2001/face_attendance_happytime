@@ -8,9 +8,9 @@ import InputCustom from "components/InputCustom";
 import { useForm } from "react-hook-form";
 
 
-function PermissionPanel() {
+const PermissionPanel: React.FC = () => {
   // STATE
-  const { register, watch } = useForm({});
+  const { register } = useForm({});
   // ******************************
 
   return <div className="permission__control-panel">
