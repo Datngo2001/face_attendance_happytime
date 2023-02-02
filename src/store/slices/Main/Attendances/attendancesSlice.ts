@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import dayjs from "dayjs";
-import { renderWeekdays } from "../../../../utils";
+import { renderWeekdays } from "utils";
 import { reducersUpdateTimeStart } from "./actions/reducers";
 
 export type AttendancesState = {

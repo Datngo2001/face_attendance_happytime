@@ -1,4 +1,4 @@
-import { renderWeekdays } from "../../../../../utils";
+import { renderWeekdays } from "utils";
 import { AttendancesState } from "../attendancesSlice";
 
 export const reducersUpdateTimeStart = (state: AttendancesState, action) => {

@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { api } from "../../../../../config/api";
-import { toastPromise } from "../../../../../utils/toastPromise";
+import { api } from "config/api";
+import { toastPromise } from "utils/toastPromise";
 
 export const extraReducersGetInfoCompany = createAsyncThunk(
   "getInfoCompany",

@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { api } from "../../../../config/api";
+import { api } from "config/api";
 
 export const extraReducersGetInfoUser = createAsyncThunk(
   "GetInfoUser",
