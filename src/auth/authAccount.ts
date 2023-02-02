@@ -1,6 +1,9 @@
 export const authAccount = () => {
-    if (sessionStorage.getItem("isLoggedIn") && sessionStorage.getItem("token")) {
-        return true;
-    }
-    return false;
+  if (
+    sessionStorage.getItem("isLoggedIn") === "true" &&
+    sessionStorage.getItem("token")
+  ) {
+    return true;
+  }
+  return false;
 };
