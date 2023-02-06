@@ -4,6 +4,7 @@ import {
   authSlice,
   companySlice,
   employeesSlice,
+  permissionsSlice,
 } from "./slices";
 import { globalSlice } from "./slices/Global/globalSlice";
 import attendanceSettingsSlice from "./slices/Main/Attendance-settings/attendanceSettingsSlice";
@@ -12,6 +13,7 @@ const store = configureStore({
   reducer: {
     attendances: attendancesSlice.reducer,
     employees: employeesSlice.reducer,
+    permissions: permissionsSlice.reducer,
     company: companySlice.reducer,
     attendanceSettings: attendanceSettingsSlice.reducer,
     auth: authSlice.reducer,

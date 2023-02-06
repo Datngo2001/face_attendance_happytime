@@ -6,7 +6,6 @@ import PaginationCustom from "components/PaginationCustom";
 import { useAppDispatch } from "hooks/useAppDispatch";
 import { useAppSelector } from "hooks/useAppSelector";
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { columns } from "./components";
 
 function PermissionTable() {
@@ -15,7 +14,7 @@ function PermissionTable() {
   // ****************************************************
 
   // HOOK REACT TOOLKIT
-  const { listOfEmployees, totalPages, totalEmployees, loading } = useAppSelector(
+  const { listOfEmployees, totalPages, loading } = useAppSelector(
     (state) => state.employees
   );
   const dispatch = useAppDispatch();
@@ -36,7 +35,7 @@ function PermissionTable() {
           checkboxSelection
           disableSelectionOnClick
           hideFooter={true}
-          loading={loading}
+          // loading={loading}
           // onSelectionModelChange={handleOnSelectionModelChange}
           components={{
             Pagination: null,
