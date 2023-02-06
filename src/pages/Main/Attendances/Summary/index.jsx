@@ -8,7 +8,7 @@ import "./styles.scss";
 
 const Summary = () => {
   // REACT HOOOK FORM
-  const { register, watch } = useForm({ mode: "onChange" });
+  const { register, setValue, trigger, watch } = useForm({ mode: "onChange" });
   // ****************************
 
   // HOOK EFFECT
@@ -21,7 +21,11 @@ const Summary = () => {
   return (
     <>
       <div className="attendances--summary__wrapper">
-        <ControlPanel register={register} />
+        <ControlPanel
+          register={register}
+          setValue={setValue}
+          trigger={trigger}
+        />
       </div>
     </>
   );
