@@ -6,10 +6,20 @@
     gap: 12px;
     .email {
         display: flex;
+        p {
+            overflow: hidden;
+            white-space: nowrap; 
+            text-overflow: ellipsis;
+        }
     }
 
     .phone {
         display: flex;
+        p {
+            overflow: hidden;
+            white-space: nowrap; 
+            text-overflow: ellipsis;
+        }
     }
 
     .icon {

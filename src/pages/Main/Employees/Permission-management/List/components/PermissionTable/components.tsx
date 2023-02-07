@@ -1,10 +1,28 @@
 export const columns = [
     {
-        field: "No",
+        field: "no",
         headerName: "STT",
         sortable: false,
         // width: 200,
-        // flex: 1,
-        height: 100,
+    },
+    {
+        field: "name",
+        headerName: "Vai trò",
+        sortable: false,
+        // width: 200,
+        flex: 1,
+    },
+    {
+        field: "description",
+        headerName: "Mô tả",
+        sortable: false,
+        // width: 200,
+        flex: 1,
+    },
+    {
+        field: "",
+        headerName: "Tác vụ",
+        sortable: false,
+        // width: 200,
     },
 ]
