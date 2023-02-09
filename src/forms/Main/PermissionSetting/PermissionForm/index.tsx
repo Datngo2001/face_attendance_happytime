@@ -48,7 +48,7 @@ const PermissionForm: React.FC<Props> = ({ method }) => {
                         register={register}
                         label='Mô Tả'
                         placeholder='Nhập mô tả về vai trò'
-                        height='128px'
+                        height='150px'
                         isTextArea
                     />
                     <FeatureAccessTable featureGroups={listFeatureGroup} />
