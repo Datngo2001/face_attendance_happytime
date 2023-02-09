@@ -12,6 +12,12 @@
         ]
       }
     ],
-    "typescript-config/strict": "off"
+    "typescript-config/strict": "off",
+    "axe/parsing": [
+      "default",
+      {
+        "duplicate-id-aria": "off"
+      }
+    ]
   }
 }

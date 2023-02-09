@@ -1,12 +1,18 @@
-@use "../../../../../assets/styles/index.scss" as *;
+@use "../../../../assets/styles/index.scss" as *;
 
 .permission-form {
     &__wrapper {
         height: 100%;
         width: 100%;
-    }
+        display: flex;
+        flex-direction: column;
 
-    &__table {
-        margin-top: 20px;
+        &__inputs{
+            flex: 1;
+        };
+
+        &__visual{
+            flex: 1;
+        };
     }
 }
