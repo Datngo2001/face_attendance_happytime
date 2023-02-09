@@ -67,7 +67,7 @@ const permissionsSlice = createSlice({
     loading: false,
     listOfPermissions: listOfPermissions,
     permissionGroups: [],
-    totalPages: 0,
+    totalPages: 1,
     totalPermissions: 0,
   } as PermissionState,
   reducers: {},

@@ -1,16 +1,13 @@
-import DropMenu from "../../../../../../../components/DropMenu";
-import NoRowsOverlayCustom from "../../../../../../../components/NoRowsOverlayCustom";
-import { convertIdToName } from "../../../../../../../utils/convertFunctions";
-import {
-  listRoles,
-  listStatusEmployees,
-} from "../../../../../../../utils/ListData";
+import NoRowsOverlayCustom from "components/NoRowsOverlayCustom";
 import { ColumnContactInfo } from "../ColumnContactInfo";
 import { ColumnName } from "../ColumnName";
-import { ColumnOthers } from "../ColumnOthers";
-import { InnerButtonOthers } from "../ColumnOthers/components";
 import ColumnRole from "../ColumnRole";
 import "./styles.scss";
+import { convertIdToName } from "utils/convertFunctions";
+import { listRoles, listStatusEmployees } from "utils/ListData";
+import DropMenu from "components/DropMenu";
+import { OptionColumn } from "components/OptionColumn";
+import { RowOptions } from "../RowOptions";
 
 export const StatusEmployee = ({ status }) => {
   // ARROW FUNCTION
@@ -145,11 +142,11 @@ export const columns = [
       return (
         <>
           <DropMenu
-            parent={<ColumnOthers id={params.row.id} />}
+            parent={<OptionColumn id={params.row.id} />}
             mt="2px"
             ml="4px"
           >
-            <InnerButtonOthers />
+            <RowOptions />
           </DropMenu>
         </>
       );

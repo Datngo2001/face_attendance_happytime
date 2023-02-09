@@ -1,7 +1,11 @@
 import "./styles.scss";
 import MoreHorizRoundedIcon from "@mui/icons-material/MoreHorizRounded";
 
-export const ColumnOthers = ({ id }) => {
+export type Props = {
+    id: string;
+}
+
+export const OptionColumn: React.FC<Props> = ({ id }) => {
     // STATE
     // ******************************
 
@@ -13,7 +17,7 @@ export const ColumnOthers = ({ id }) => {
 
     return (
         <>
-            <div onClick={handleOnClick} className="column-others__wrapper">
+            <div onClick={handleOnClick} className="option-column__wrapper">
                 <span className="icon">
                     <MoreHorizRoundedIcon />
                 </span>

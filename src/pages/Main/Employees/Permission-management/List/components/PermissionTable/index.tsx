@@ -1,8 +1,4 @@
-import { Box } from "@mui/material";
-import { DataGrid } from "@mui/x-data-grid";
 import DataGridCustom from "components/DataGridCustom";
-import LoadingCustom from "components/LoadingCustom";
-import NoRowsOverlayCustom from "components/NoRowsOverlayCustom";
 import PaginationCustom from "components/PaginationCustom";
 import { useAppDispatch } from "hooks/useAppDispatch";
 import { useAppSelector } from "hooks/useAppSelector";
@@ -34,7 +30,6 @@ function PermissionTable() {
       disableSelectionOnClick
       hideFooter={true}
       loading={loading}
-
     // onSelectionModelChange={handleOnSelectionModelChange}
     />
     {listOfPermissions.length > 0 && (
