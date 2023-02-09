@@ -23,7 +23,7 @@
     }
 
     .container {
-        height: $h-1;
+        height: 100%;
         width: 100%;
         position: relative;
 
@@ -57,6 +57,12 @@
                     border-color: transparent;
                 }
             }
+        }
+
+        > textarea{
+            overflow-y: hidden;
+            resize: none;
+            flex-grow: 1;
         }
 
         &.none-icon {

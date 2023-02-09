@@ -6,6 +6,7 @@ export type PermissionState = {
   listOfPermissions: Permission[];
   totalPages: number;
   totalPermissions: number;
+  listFeatureGroup: FeatureGroup[];
 };
 
 export type Permission = {
@@ -13,7 +14,7 @@ export type Permission = {
   _id: string;
   name: string; // Nhân viên, Admin, Super Admin, ...
   description: string;
-  permissionGroups: FeatureGroup[];
+  featureGroups: FeatureGroup[];
 };
 
 export type FeatureGroup = {
@@ -41,23 +42,59 @@ const listOfPermissions: Permission[] = [
     no: 1,
     name: "Nhân viên",
     description: "Quyền của nhân viên cơ bản",
-    permissionGroups: [],
+    featureGroups: [],
   },
   {
     _id: "2",
     no: 2,
     name: "Admin",
     description: "Quyền admin của hệ thống",
-    permissionGroups: [],
+    featureGroups: [],
   },
   {
     _id: "3",
     no: 3,
     name: "Super Admin",
     description: "Vai trò có toàn bộ quyền",
-    permissionGroups: [],
+    featureGroups: [],
   },
 ];
+
+const listFeatureGroup: FeatureGroup[] = [
+  {
+    _id: "1",
+    name: "Quản lý workspacre",
+    featureAccess: [
+      {
+        _id: "1",
+        feature: "Hiển thị mã định danh workspace",
+        access: AccessEnum.WORKSPACE,
+      },
+      {
+        _id: "2",
+        feature: "Cập nhật thông tin workspace",
+        access: AccessEnum.WORKSPACE,
+      },
+    ],
+  },
+  {
+    _id: "2",
+    name: "Bảng công",
+    featureAccess: [
+      {
+        _id: "3",
+        feature: "Xem bảng công",
+        access: AccessEnum.USER,
+      },
+      {
+        _id: "4",
+        feature: "Cập nhật bảng công",
+        access: AccessEnum.DEPARTMENT,
+      },
+    ],
+  },
+];
+
 // ************************************************
 
 const permissionsSlice = createSlice({
@@ -66,7 +103,7 @@ const permissionsSlice = createSlice({
     status: "fail",
     loading: false,
     listOfPermissions: listOfPermissions,
-    permissionGroups: [],
+    listFeatureGroup: listFeatureGroup,
     totalPages: 1,
     totalPermissions: 0,
   } as PermissionState,

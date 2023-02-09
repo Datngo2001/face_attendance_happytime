@@ -2,6 +2,10 @@ import InputCustom from 'components/InputCustom'
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import "./styles.scss"
+import { useAppSelector } from 'hooks/useAppSelector'
+import { useAppDispatch } from 'hooks/useAppDispatch'
+import FeatureAccessTable from './components/FeatureAccessTable'
+import { Stack } from '@mui/system'
 
 export type Props = {
     method: FormMethod
@@ -24,10 +28,15 @@ const PermissionForm: React.FC<Props> = ({ method }) => {
         mode: "onChange",
     });
 
+    const { listFeatureGroup } = useAppSelector(
+        (state) => state.permissions
+    );
+    const dispatch = useAppDispatch();
+
     return (
         <>
             <div className="permission-form__wrapper">
-                <div className='permission-form__inputs'>
+                <Stack className='inputs' spacing={3}>
                     <InputCustom
                         id='permissionName'
                         register={register}
@@ -39,10 +48,12 @@ const PermissionForm: React.FC<Props> = ({ method }) => {
                         register={register}
                         label='Mô Tả'
                         placeholder='Nhập mô tả về vai trò'
+                        height='128px'
                         isTextArea
                     />
-                </div>
-                <div className='permission-form__visual'>
+                    <FeatureAccessTable featureGroups={listFeatureGroup} />
+                </Stack>
+                <div className='visual'>
                     <div></div>
                 </div>
             </div>
