@@ -1,0 +1,10 @@
+@use "../../../../../assets/styles/index.scss" as *;
+
+.create-permission {
+    &__wrapper {
+        height: auto;
+        width: 100%;
+        padding: 16px 28px;
+        font-size: $fs-1;
+    }
+}

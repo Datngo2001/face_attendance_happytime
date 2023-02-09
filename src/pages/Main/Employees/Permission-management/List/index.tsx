@@ -6,9 +6,9 @@ import "./styles.scss";
 function List() {
   return (
     <>
-      <div className="permission-setting__wrapper">
+      <div className="permission-list__wrapper">
         <PermissionPanel />
-        <div className="permission-setting__table">
+        <div className="permission-list__table">
           <PermissionTable />
         </div>
       </div>

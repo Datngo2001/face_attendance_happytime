@@ -6,6 +6,8 @@ const Update = React.lazy(() => import("pages/Main/Employees/List/Update"));
 const View = React.lazy(() => import("pages/Main/Employees/List/View"));
 const LeaveManagement = React.lazy(() => import("pages/Main/Employees/Leave-management"));
 const PermissionList = React.lazy(() => import("pages/Main/Employees/Permission-management/List"));
+const CreatePermission = React.lazy(() => import("pages/Main/Employees/Permission-management/Create"));
+const ViewPermission = React.lazy(() => import("pages/Main/Employees/Permission-management/View"));
 
 const empoyeesRouters = [
     {
@@ -31,6 +33,14 @@ const empoyeesRouters = [
     {
         path: "permission-setting/list",
         component: <PermissionList />,
+    },
+    {
+        path: "permission-setting/create",
+        component: <CreatePermission />,
+    },
+    {
+        path: "permission-setting/:id/view",
+        component: <ViewPermission />,
     },
 ];
 

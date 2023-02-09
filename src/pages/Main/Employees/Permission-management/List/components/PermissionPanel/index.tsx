@@ -6,11 +6,13 @@ import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import "./styles.scss"
 import InputCustom from "components/InputCustom";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 
 const PermissionPanel: React.FC = () => {
   // STATE
   const { register } = useForm({});
+  const navigate = useNavigate();
   // ******************************
 
   return <div className="permission__control-panel">
@@ -26,7 +28,7 @@ const PermissionPanel: React.FC = () => {
               className="button"
               width="124px"
               height="32px"
-              onClick={() => { }}
+              onClick={() => { navigate("../permission-setting/create") }}
               icon={<AddIcon />}>
               THÊM MỚI
             </ButtonCustom>
