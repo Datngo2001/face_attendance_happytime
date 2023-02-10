@@ -3,24 +3,25 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import "./styles.scss";
-import { ReactElement, useEffect, useState } from "react";
-import { number } from "yup";
+import { ReactElement, useEffect, useRef, useState } from "react";
 
 export type Props = {
     id: string;
-    icon: ReactElement;
-    width: string | number;
-    height: string | number;
-    register: any;
-    className: string;
+    icon?: ReactElement;
+    width?: string | number;
+    height?: string | number;
+    register?: any;
+    onChange?: any;
+    className?: string;
     message?: string;
-    placeholder: string;
-    defaultValue: string;
+    placeholder?: string;
+    defaultValue?: string;
     options: SelectBoxOption[];
-    setValue: any;
-    label: string;
+    setValue?: any;
+    label?: string;
     required?: boolean,
     disabled?: boolean,
+    value?: any;
 }
 
 export type SelectBoxOption = {
@@ -34,6 +35,7 @@ const SelectCustom: React.FC<Props> = ({
     width,
     height,
     register,
+    onChange,
     className,
     message = undefined,
     placeholder,
@@ -43,6 +45,7 @@ const SelectCustom: React.FC<Props> = ({
     label,
     required = false,
     disabled = false,
+    value = null
 }) => {
     // VARIABLES
     // ******************************
@@ -54,11 +57,6 @@ const SelectCustom: React.FC<Props> = ({
     // ******************************
 
     // EFFECT
-    useEffect(() => {
-        !icon &&
-            document.querySelector(`#${id} .MuiSelect-select`).classList.add("none-icon");
-    }, []);
-
     useEffect(() => {
         setValue && setValue(id, defaultValue);
     }, [defaultValue]);
@@ -75,6 +73,16 @@ const SelectCustom: React.FC<Props> = ({
         }
     };
 
+    const handleChange = () => {
+        if (onChange) {
+            return { onChange, value }
+        }
+        if (register) {
+            return register(id)
+        }
+        return undefined
+    }
+
     const handleOpen = () => {
         setOpen(true);
     };
@@ -86,12 +94,11 @@ const SelectCustom: React.FC<Props> = ({
 
     // CATCH ERRORS
     options || console.warn("Missing options!");
-    id || console.warn("Missing id");
+    // id || console.warn("Missing id");
     // ******************************
     return (
         <>
             <Box
-                id={id}
                 className={`select-custom__wrapper ${isSelectedPlaceholder && !defaultValue ? "selected-placeholder" : ""
                     } ${message && message[id] ? "error" : ""} ${className ? className : ""}`}
                 sx={{ height: height, width: width }}
@@ -108,17 +115,15 @@ const SelectCustom: React.FC<Props> = ({
                 <FormControl fullWidth>
                     {icon}
                     <Select
-                        id={id}
                         labelId="label"
                         open={open}
                         disabled={disabled}
                         onClose={handleClose}
                         onOpen={handleOpen}
-                        {...register(id)}
+                        {...handleChange()}
                         defaultValue={defaultValue || "null"}
-                        onFocus={handleOnFocus}
                         inputProps={{ "aria-label": "Without label" }}
-                        className="select-item"
+                        className={`select-item ${!icon && "none-icon"}`}
                     >
                         {!defaultValue && (
                             <MenuItem value={"null"} disabled>

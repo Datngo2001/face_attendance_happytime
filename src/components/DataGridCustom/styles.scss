@@ -2,7 +2,8 @@
 
 .MuiDataGrid-root {
     border-radius: 0px !important;
-    border: none !important;
+    border-left: none !important;
+    border-top: none !important;
     .MuiDataGrid-main {
         .MuiDataGrid-columnHeaders {
             border-radius: 0;

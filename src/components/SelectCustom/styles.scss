@@ -10,7 +10,7 @@
             height: $h-1;
             width: 100%;
 
-            .MuiInputBase-root {
+            .select-item {
                 border-radius: $br-1;
                 width: 100%;
                 height: 100%;
@@ -27,10 +27,6 @@
                     font-size: $fs-1;
                     font-family: $f-family-1;
                     flex: 1;
-
-                    &.none-icon {
-                        padding: 8px 16px 8px 16px;
-                    }
                 }
 
                 .MuiOutlinedInput-notchedOutline {
@@ -45,6 +41,13 @@
                     }
                 }
             }
+
+            .none-icon{
+                .MuiSelect-select{
+                    padding: 8px 16px 8px 16px;
+                }
+            }
+
             > svg {
                 position: absolute;
                 font-size: 18px;
@@ -86,8 +89,7 @@
             }
         }
 
-        &.MuiBox-root {
-        }
+        
     }
 
     &__label {

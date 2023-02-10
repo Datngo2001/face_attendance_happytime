@@ -65,5 +65,22 @@
                 }
             }
         }    
+        .access-cell{
+            &__wrapper{
+                flex: 1;
+                height: 100%;
+
+                .group-access,.access{
+                    height: 50px;
+                    display: flex;
+                    align-items: center;
+                    padding: 0px 10px ;
+                }
+
+                .access{
+                    border-top: $bt-1;
+                }
+            }
+        }
     }
 }

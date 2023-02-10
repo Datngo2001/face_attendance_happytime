@@ -14,6 +14,7 @@ type TableRow = {
     _ids: string[]
     features: string[];
     accesses: AccessEnum[];
+    allowAccessTypes: AccessEnum[];
 }
 
 const FeatureAccessTable: React.FC<Props> = ({ featureGroups }) => {
@@ -22,17 +23,33 @@ const FeatureAccessTable: React.FC<Props> = ({ featureGroups }) => {
 
     const handleOpenCloseFeature = (no) => {
         return () => {
-            let row = tableRows.find(row => row.no === no)
+            const newTableRows = [...tableRows]
+            const row = newTableRows.find(row => row.no === no)
             row.isOpen = !row.isOpen
-            setTableRows([...tableRows])
+            setTableRows(() => newTableRows)
         }
+    }
+
+    const onGroupAccessSelect = (id, value) => {
+        const newTableRows = [...tableRows]
+        const row = newTableRows.find(row => row._ids[0] === id)
+        row.accesses = row.accesses.map(access => value)
+        setTableRows(() => newTableRows)
+    }
+
+    const onFeatureAccessSelect = (groupId, id, value) => {
+        const newTableRows = [...tableRows]
+        const row = newTableRows.find(row => row._ids[0] === groupId)
+        const index = row._ids.findIndex(_id => _id === id && _id !== groupId)
+        row.accesses[index] = value
+        setTableRows(() => newTableRows)
     }
 
     return (
         <>
             <label>Cấp quyền truy cập</label>
             <DataGridCustom
-                columns={getColumns(handleOpenCloseFeature)}
+                columns={getColumns(handleOpenCloseFeature, onGroupAccessSelect, onFeatureAccessSelect)}
                 rows={tableRows}
                 isRowSelectable={() => false}
                 getRowId={(row) => row.no}
@@ -53,7 +70,14 @@ function toTableRows(featureGroups: FeatureGroup[]): TableRow[] {
     let result: TableRow[] = [];
 
     featureGroups.forEach((featureGroup, index) => {
-        result.push({ no: index + 1, _ids: [featureGroup._id], features: [featureGroup.name], accesses: [AccessEnum.UNSET], isOpen: false })
+        result.push({
+            no: index + 1,
+            _ids: [featureGroup._id],
+            features: [featureGroup.name],
+            accesses: [null],
+            allowAccessTypes: featureGroup.allowAccessTypes,
+            isOpen: false
+        })
         featureGroup.featureAccess.forEach(featureAccess => {
             result[index]._ids.push(featureAccess._id)
             result[index].features.push(featureAccess.feature)

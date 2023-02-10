@@ -21,6 +21,7 @@ export type FeatureGroup = {
   _id: string;
   name: string; // Quản lý work space, ...
   featureAccess: FeatureAccess[];
+  allowAccessTypes: AccessEnum[];
 };
 
 export type FeatureAccess = {
@@ -33,7 +34,6 @@ export enum AccessEnum {
   WORKSPACE = "WORKSPACE",
   DEPARTMENT = "DEPARTMENT",
   USER = "USER",
-  UNSET = "UNSET", // Unset used for UI only
 }
 
 // TEST DATA
@@ -63,35 +63,41 @@ const listOfPermissions: Permission[] = [
 
 const listFeatureGroup: FeatureGroup[] = [
   {
-    _id: "1",
+    _id: "11",
     name: "Quản lý workspacre",
     featureAccess: [
       {
-        _id: "1",
+        _id: "1111",
         feature: "Hiển thị mã định danh workspace",
         access: AccessEnum.WORKSPACE,
       },
       {
-        _id: "2",
+        _id: "2222",
         feature: "Cập nhật thông tin workspace",
         access: AccessEnum.WORKSPACE,
       },
     ],
+    allowAccessTypes: [AccessEnum.WORKSPACE],
   },
   {
-    _id: "2",
+    _id: "22",
     name: "Bảng công",
     featureAccess: [
       {
-        _id: "3",
+        _id: "3333",
         feature: "Xem bảng công",
         access: AccessEnum.USER,
       },
       {
-        _id: "4",
+        _id: "4444",
         feature: "Cập nhật bảng công",
         access: AccessEnum.DEPARTMENT,
       },
+    ],
+    allowAccessTypes: [
+      AccessEnum.WORKSPACE,
+      AccessEnum.DEPARTMENT,
+      AccessEnum.USER,
     ],
   },
 ];
