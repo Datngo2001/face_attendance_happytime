@@ -3,9 +3,32 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import "./styles.scss";
-import { useEffect, useState } from "react";
+import { ReactElement, useEffect, useState } from "react";
+import { number } from "yup";
 
-const SelectCustom = ({
+export type Props = {
+    id: string;
+    icon: ReactElement;
+    width: string | number;
+    height: string | number;
+    register: any;
+    className: string;
+    message?: string;
+    placeholder: string;
+    defaultValue: string;
+    options: SelectBoxOption[];
+    setValue: any;
+    label: string;
+    required?: boolean,
+    disabled?: boolean,
+}
+
+export type SelectBoxOption = {
+    id: string;
+    name: string;
+}
+
+const SelectCustom: React.FC<Props> = ({
     id,
     icon,
     width,
@@ -69,9 +92,8 @@ const SelectCustom = ({
         <>
             <Box
                 id={id}
-                className={`select-custom__wrapper ${
-                    isSelectedPlaceholder && !defaultValue ? "selected-placeholder" : ""
-                } ${message && message[id] ? "error" : ""} ${className ? className : ""}`}
+                className={`select-custom__wrapper ${isSelectedPlaceholder && !defaultValue ? "selected-placeholder" : ""
+                    } ${message && message[id] ? "error" : ""} ${className ? className : ""}`}
                 sx={{ height: height, width: width }}
             >
                 {label && (

@@ -33,6 +33,7 @@ export enum AccessEnum {
   WORKSPACE = "WORKSPACE",
   DEPARTMENT = "DEPARTMENT",
   USER = "USER",
+  UNSET = "UNSET", // Unset used for UI only
 }
 
 // TEST DATA

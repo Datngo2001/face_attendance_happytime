@@ -7,7 +7,7 @@ const ViewPermission: React.FC = () => {
     return (
         <>
             <div className="view-permission__wrapper">
-                <Link className="content-navigator" to="../list/index">
+                <Link className="content-navigator" to="../permission-setting/list">
                     <ArrowBackRoundedIcon />
                     Quay lại
                 </Link>

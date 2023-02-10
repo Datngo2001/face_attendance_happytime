@@ -18,5 +18,52 @@
         .visual{
             width: 50%;
         };
+
+        .MuiDataGrid-root{
+            :hover{
+                background-color: transparent;
+            }
+            .MuiDataGrid-row{
+                transition: max-height .5s linear;
+                cursor: auto;
+                .MuiDataGrid-cell{
+                    padding: 0;
+                    overflow: scroll;
+                }
+            }
+        }
+
+
+        .feature-cell{
+            &__wrapper{
+                flex: 1;
+                padding: 0;
+                .btn-custom {
+                    width: auto;
+                    padding: 0px 10px;
+                    text-transform: capitalize;
+                    background: none;
+                    font-weight: normal;
+                    color: $text-color-4;
+                    svg{
+                        font-size: 16px;
+                    }
+                }
+
+                .feature, button{
+                    height: 50px;
+                }
+
+                .feature{
+                    display: flex;  
+                    align-items: center;
+                    padding-left: 35px;
+                    border-top: $bt-1;
+                }
+                .feature:nth-child(2n){
+                    background-color: #fafafa;
+                }
+            }
+        }    
     }
 }

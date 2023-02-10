@@ -7,7 +7,7 @@ export type Props = {
     type?: number,
     height?: string,
     width?: string
-    onClick?: React.MouseEventHandler<HTMLButtonElement>,
+    onClick?: any,
     children?: any,
     className?: string,
     disabled?: boolean,
