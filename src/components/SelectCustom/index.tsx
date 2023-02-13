@@ -45,7 +45,7 @@ const SelectCustom: React.FC<Props> = ({
     label,
     required = false,
     disabled = false,
-    value = null
+    value = "null"
 }) => {
     // VARIABLES
     // ******************************
@@ -75,7 +75,7 @@ const SelectCustom: React.FC<Props> = ({
 
     const handleChange = () => {
         if (onChange) {
-            return { onChange, value }
+            return { onChange, value: value ?? "null" }
         }
         if (register) {
             return register(id)

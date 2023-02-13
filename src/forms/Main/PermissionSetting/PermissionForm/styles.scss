@@ -38,6 +38,8 @@
             &__wrapper{
                 flex: 1;
                 padding: 0;
+                width: 100%;
+
                 .btn-custom {
                     width: auto;
                     padding: 0px 10px;
@@ -52,6 +54,7 @@
 
                 .feature, button{
                     height: 50px;
+                    overflow-wrap: normal;
                 }
 
                 .feature{
