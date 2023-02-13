@@ -42,6 +42,7 @@ const FeatureAccessTable: React.FC<Props> = ({ featureGroups }) => {
         const row = newTableRows.find(row => row._ids[0] === groupId)
         const index = row._ids.findIndex(_id => _id === id && _id !== groupId)
         row.accesses[index] = value
+        row.accesses[0] = null
         setTableRows(() => newTableRows)
     }
 

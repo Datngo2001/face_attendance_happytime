@@ -69,12 +69,12 @@ const listFeatureGroup: FeatureGroup[] = [
       {
         _id: "1111",
         feature: "Hiển thị mã định danh workspace",
-        access: AccessEnum.WORKSPACE,
+        access: null,
       },
       {
         _id: "2222",
         feature: "Cập nhật thông tin workspace",
-        access: AccessEnum.WORKSPACE,
+        access: null,
       },
     ],
     allowAccessTypes: [AccessEnum.WORKSPACE],
@@ -86,12 +86,12 @@ const listFeatureGroup: FeatureGroup[] = [
       {
         _id: "3333",
         feature: "Xem bảng công",
-        access: AccessEnum.USER,
+        access: null,
       },
       {
         _id: "4444",
         feature: "Cập nhật bảng công",
-        access: AccessEnum.DEPARTMENT,
+        access: null,
       },
     ],
     allowAccessTypes: [

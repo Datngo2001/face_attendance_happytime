@@ -7,7 +7,7 @@ export type Props = {
     accesses: string[]
     onFeatureAccessSelect: any
     onGroupAccessSelect: any
-    _ids: string
+    _ids: string[]
     allowAccessTypes: AccessEnum[]
 }
 
@@ -23,6 +23,10 @@ const AccessCell: React.FC<Props> = ({ _ids, isOpen, accesses, onFeatureAccessSe
         return result
     }, [allowAccessTypes])
 
+    const selectedAccesses = getSelectedAccesses(accesses)
+
+    console.log(selectedAccesses)
+
     return (
         <div className="access-cell__wrapper">
             <div className="group-access">
@@ -31,7 +35,7 @@ const AccessCell: React.FC<Props> = ({ _ids, isOpen, accesses, onFeatureAccessSe
                     onChange={(e) => { onGroupAccessSelect(_ids[0], e.target.value) }}
                     value={accesses[0]}
                     options={options}
-                    placeholder="Lựa chọn"
+                    placeholder={selectedAccesses > 0 ? `Đã chọn ${selectedAccesses} quyền` : "Lựa chọn"}
                 />
             </div>
             {isOpen && accesses.map((access, index) => {
@@ -50,6 +54,23 @@ const AccessCell: React.FC<Props> = ({ _ids, isOpen, accesses, onFeatureAccessSe
             })}
         </div>
     )
+}
+
+function getSelectedAccesses(accesses: string[]): number {
+    let result = 0;
+    let firstSelected = null;
+
+    for (let i = 1; i < accesses.length; i++) {
+        if (!accesses[i]) continue;
+        if (accesses[i] && !firstSelected) {
+            firstSelected = accesses[i]
+            result++
+            continue
+        };
+        if (firstSelected !== accesses[i]) result++;
+    }
+
+    return result;
 }
 
 export default AccessCell
