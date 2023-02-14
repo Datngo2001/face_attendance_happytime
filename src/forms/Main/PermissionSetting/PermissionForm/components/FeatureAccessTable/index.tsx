@@ -1,14 +1,15 @@
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { AccessEnum, FeatureGroup } from 'store/slices/Main/Permission/permissionSlice'
 import { getColumns } from "./components"
 import DataGridCustom from 'components/DataGridCustom'
 import { GridRowHeightParams } from '@mui/x-data-grid'
+import { PermissionFormContext } from '../../context'
 
 export type Props = {
     featureGroups: FeatureGroup[]
 }
 
-type TableRow = {
+export type TableRow = {
     isOpen: boolean;
     no: number;
     _ids: string[]
@@ -19,7 +20,11 @@ type TableRow = {
 
 const FeatureAccessTable: React.FC<Props> = ({ featureGroups }) => {
 
-    const [tableRows, setTableRows] = useState(() => toTableRows(featureGroups))
+    const { tableRows, setTableRows } = useContext(PermissionFormContext)
+
+    useEffect(() => {
+        setTableRows(() => toTableRows(featureGroups))
+    }, [])
 
     const handleOpenCloseFeature = (no) => {
         return () => {

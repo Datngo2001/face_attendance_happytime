@@ -25,8 +25,6 @@ const AccessCell: React.FC<Props> = ({ _ids, isOpen, accesses, onFeatureAccessSe
 
     const selectedAccesses = getSelectedAccesses(accesses)
 
-    console.log(selectedAccesses)
-
     return (
         <div className="access-cell__wrapper">
             <div className="group-access">

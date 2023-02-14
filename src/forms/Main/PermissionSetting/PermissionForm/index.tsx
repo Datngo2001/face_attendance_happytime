@@ -1,11 +1,13 @@
 import InputCustom from 'components/InputCustom'
-import React from 'react'
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import "./styles.scss"
 import { useAppSelector } from 'hooks/useAppSelector'
 import { useAppDispatch } from 'hooks/useAppDispatch'
 import FeatureAccessTable from './components/FeatureAccessTable'
 import { Stack } from '@mui/system'
+import { PermissionFormContext } from "./context"
+import PermissionVisual from './components/PermissionVisual'
 
 export type Props = {
     method: FormMethod
@@ -17,6 +19,9 @@ export enum FormMethod {
 }
 
 const PermissionForm: React.FC<Props> = ({ method }) => {
+
+    const [tableRows, setTableRows] = useState([]);
+
     const {
         register,
         handleSubmit,
@@ -34,7 +39,7 @@ const PermissionForm: React.FC<Props> = ({ method }) => {
     const dispatch = useAppDispatch();
 
     return (
-        <>
+        <PermissionFormContext.Provider value={{ tableRows, setTableRows }}>
             <div className="permission-form__wrapper">
                 <Stack className='inputs' spacing={3}>
                     <InputCustom
@@ -54,10 +59,12 @@ const PermissionForm: React.FC<Props> = ({ method }) => {
                     <FeatureAccessTable featureGroups={listFeatureGroup} />
                 </Stack>
                 <div className='visual'>
-                    <div></div>
+                    <div>
+                        <PermissionVisual />
+                    </div>
                 </div>
             </div>
-        </>
+        </PermissionFormContext.Provider>
     )
 }
 
