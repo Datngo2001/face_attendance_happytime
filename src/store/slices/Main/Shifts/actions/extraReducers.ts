@@ -15,3 +15,18 @@ export const extraReducersGetListShifts = createAsyncThunk(
       .catch((error) => error);
   }
 );
+
+export const extraReducersGetListShiftTypes = createAsyncThunk(
+  "getListShiftTypes",
+  async () => {
+    return api
+      .get(`/default/shift_type/get_all`)
+      .then((response: any) => {
+        return {
+          payload: response.payload,
+          message: response.message,
+        };
+      })
+      .catch((error) => error);
+  }
+);

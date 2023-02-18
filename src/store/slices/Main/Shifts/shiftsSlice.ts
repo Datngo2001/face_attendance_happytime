@@ -1,5 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { extraReducersGetListShifts } from "./actions/extraReducers";
+import {
+  extraReducersGetListShiftTypes,
+  extraReducersGetListShifts,
+} from "./actions/extraReducers";
 
 export type ShiftsState = {
   status: string;
@@ -21,8 +24,16 @@ export type Shift = {
 };
 
 export type ShiftType = {
+  no: number;
   _id: string;
-  name: string;
+  create_by: number;
+  created_date: number;
+  description: string;
+  is_deleted: boolean;
+  last_update_by: number;
+  last_updated_date: number;
+  schedule_name: string;
+  tenant_id: string;
 };
 
 export enum ShiftStatus {
@@ -51,18 +62,6 @@ const listOfShifts: Shift[] = [
     type: "2",
   },
 ];
-
-const listFeatureGroup: ShiftType[] = [
-  {
-    _id: "1",
-    name: "Ca hành chính",
-  },
-  {
-    _id: "2",
-    name: "Ca đơn",
-  },
-];
-
 // ************************************************
 
 const shiftsSlice = createSlice({
@@ -71,7 +70,7 @@ const shiftsSlice = createSlice({
     status: "fail",
     loading: false,
     listOfShift: listOfShifts,
-    listOfShiftType: listFeatureGroup,
+    listOfShiftType: [],
     totalPages: 1,
     totalShifts: 0,
   } as ShiftsState,
@@ -85,11 +84,26 @@ const shiftsSlice = createSlice({
         extraReducersGetListShifts.fulfilled,
         (state: ShiftsState, { payload: { payload, message } }) => {
           state.loading = false;
-          console.log(payload);
           if (message === "success") {
             state.totalPages = payload.total_pages;
             state.totalShifts = payload.total_items;
             state.listOfShift = payload.items;
+          }
+        }
+      );
+    builder
+      .addCase(extraReducersGetListShiftTypes.pending, (state: ShiftsState) => {
+        state.loading = true;
+      })
+      .addCase(
+        extraReducersGetListShiftTypes.fulfilled,
+        (state: ShiftsState, { payload: { payload, message } }) => {
+          state.loading = false;
+          if (message === "success") {
+            state.listOfShiftType = payload.map((item, index) => ({
+              no: index + 1,
+              ...item,
+            }));
           }
         }
       );

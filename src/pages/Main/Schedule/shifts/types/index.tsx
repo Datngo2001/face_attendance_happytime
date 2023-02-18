@@ -1,8 +1,9 @@
 import React from 'react'
+import ShiftTypeTable from '../components/ShiftTypeTable'
 
 function ShilftTypes() {
     return (
-        <div>ShilftTypes</div>
+        <div><ShiftTypeTable /></div>
     )
 }
 
