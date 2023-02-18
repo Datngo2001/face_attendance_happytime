@@ -1,11 +1,12 @@
 import InputCustom from 'components/InputCustom';
 import SelectCustom, { SelectBoxOption } from 'components/SelectCustom';
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
-import React from 'react'
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form';
 import { ShiftStatus } from 'store/slices/Main/Shifts/shiftsSlice';
 import ButtonCustom from 'components/ButtonCustom';
 import AddIcon from '@mui/icons-material/Add';
+import ModalCustom from "components/ModalCustom";
 
 const shiftStatusOptions: SelectBoxOption[] = [
     {
@@ -40,35 +41,48 @@ const shiftTypeOptions: SelectBoxOption[] = [
 
 const ShiftSearchPannel: React.FC = () => {
     const { register } = useForm();
+    const [modal, setModal] = useState(false);
+
+    const handleCreateClick = () => setModal(() => true)
+
     return (
         <>
             <div className="ListShifts__control-panel">
-                <form>
-                    <SelectCustom
-                        id="shiftStatus"
-                        className="input-item"
-                        register={register}
-                        defaultValue={"ALL"}
-                        placeholder="Trạng thái hoạt động"
-                        options={shiftStatusOptions}
-                    />
-                    <SelectCustom
-                        id="shiftType"
-                        className="input-item"
-                        register={register}
-                        placeholder="Loại ca làm việc"
-                        options={shiftTypeOptions}
-                    />
-                    <InputCustom
-                        id="searchData"
-                        iconRight={<SearchRoundedIcon />}
-                        className="input-item flex-basic-25"
-                        placeholder="Nhập tên ca làm việc, mã ca"
-                        register={register}
-                    />
-                    <ButtonCustom icon={<AddIcon />}>Thêm mới</ButtonCustom>
-                </form>
+                <SelectCustom
+                    id="shiftStatus"
+                    className="input-item"
+                    register={register}
+                    defaultValue={"ALL"}
+                    placeholder="Trạng thái hoạt động"
+                    options={shiftStatusOptions}
+                />
+                <SelectCustom
+                    id="shiftType"
+                    className="input-item"
+                    register={register}
+                    placeholder="Loại ca làm việc"
+                    options={shiftTypeOptions}
+                />
+                <InputCustom
+                    id="searchData"
+                    iconRight={<SearchRoundedIcon />}
+                    className="input-item flex-basic-25"
+                    placeholder="Nhập tên ca làm việc, mã ca"
+                    register={register}
+                />
+                <ButtonCustom icon={<AddIcon />} onClick={handleCreateClick} type={2}>Thêm mới</ButtonCustom>
             </div>
+            <ModalCustom
+                callback={() => { }}
+                state={modal}
+                setState={setModal}
+                titleHeader='Thêm ca làm việc'
+                titleBtnAccept='Thêm mới'
+                titleBtnCancel='Hủy bỏ'>
+                <div>
+                    <h1>Modal</h1>
+                </div>
+            </ModalCustom>
         </>
     )
 }

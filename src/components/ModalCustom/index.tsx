@@ -7,6 +7,20 @@ import { useState } from "react";
 import { useEffect } from "react";
 import ButtonCustom from "../ButtonCustom";
 
+export type Props = {
+    titleHeader?: string;
+    titleBtnCancel?: string;
+    titleBtnAccept?: string;
+    footer?: boolean;
+    btnJustifyContent?: any;
+    children?: any;
+    callback: any;
+    idTarget?: string;
+    divider?: boolean;
+    state: boolean;
+    setState: any;
+}
+
 const style = {
     position: "absolute",
     top: "30%",
@@ -20,7 +34,7 @@ const style = {
     p: 4,
 };
 
-const ModalCustom = ({
+const ModalCustom: React.FC<Props> = ({
     titleHeader,
     titleBtnCancel,
     titleBtnAccept,
@@ -57,7 +71,7 @@ const ModalCustom = ({
             document.getElementById(idTarget).addEventListener("click", handleOpen);
 
         // CLEAN FUNCTION
-        return () => {};
+        return () => { };
     }, []);
     // ******************************
 
@@ -84,9 +98,8 @@ const ModalCustom = ({
                     </div>
                     {footer && (
                         <div
-                            className={`modal-custom__actions ${
-                                divider && "divider-top"
-                            }`}
+                            className={`modal-custom__actions ${divider && "divider-top"
+                                }`}
                             style={{ justifyContent: btnJustifyContent || "center" }}
                         >
                             <ButtonCustom
