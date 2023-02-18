@@ -2,8 +2,9 @@ import DataGridCustom from 'components/DataGridCustom'
 import PaginationCustom from 'components/PaginationCustom';
 import { useAppDispatch } from 'hooks/useAppDispatch';
 import { useAppSelector } from 'hooks/useAppSelector';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { columns } from './components';
+import { extraReducersGetListShifts } from 'store/slices/Main/Shifts/actions/extraReducers';
 
 const ShiftTable: React.FC = () => {
 
@@ -17,6 +18,15 @@ const ShiftTable: React.FC = () => {
     );
     const dispatch = useAppDispatch();
     // ******************************
+
+    useEffect(() => {
+        dispatch(
+            extraReducersGetListShifts({
+                page: page - 1,
+                size: process.env.REACT_APP_PAGE_SIZE,
+            })
+        );
+    }, [page]);
 
     const hanldeOnRowClick = () => { }
     const handleOnSelectionModelChange = () => { }

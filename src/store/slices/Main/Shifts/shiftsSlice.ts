@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { extraReducersGetListShifts } from "./actions/extraReducers";
 
 export type ShiftsState = {
   status: string;
@@ -75,6 +76,24 @@ const shiftsSlice = createSlice({
     totalShifts: 0,
   } as ShiftsState,
   reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(extraReducersGetListShifts.pending, (state: ShiftsState) => {
+        state.loading = true;
+      })
+      .addCase(
+        extraReducersGetListShifts.fulfilled,
+        (state: ShiftsState, { payload: { payload, message } }) => {
+          state.loading = false;
+          console.log(payload);
+          if (message === "success") {
+            state.totalPages = payload.total_pages;
+            state.totalShifts = payload.total_items;
+            state.listOfShift = payload.items;
+          }
+        }
+      );
+  },
 });
 
 export const {} = shiftsSlice.actions;
