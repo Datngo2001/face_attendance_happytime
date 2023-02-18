@@ -19,6 +19,8 @@ export type Props = {
     divider?: boolean;
     state: boolean;
     setState: any;
+    width?: number;
+    height?: number;
 }
 
 const style = {
@@ -46,6 +48,8 @@ const ModalCustom: React.FC<Props> = ({
     divider = false,
     state,
     setState,
+    width,
+    height
 }) => {
     // STATE
     const [open, setOpen] = useState(false);
@@ -86,7 +90,7 @@ const ModalCustom: React.FC<Props> = ({
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
             >
-                <Box className="modal-custom__wrapper" sx={style}>
+                <Box className="modal-custom__wrapper" sx={{ ...style, height, width }}>
                     <div className="modal-custom__header">
                         <Typography id="modal-modal-title" variant="h6" component="p">
                             {titleHeader || "Missing title"}
