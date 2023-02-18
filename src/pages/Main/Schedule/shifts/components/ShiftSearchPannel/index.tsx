@@ -1,14 +1,14 @@
 import InputCustom from 'components/InputCustom';
 import SelectCustom, { SelectBoxOption } from 'components/SelectCustom';
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
-import React, { useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { useForm } from 'react-hook-form';
-import { ShiftStatus } from 'store/slices/Main/Shifts/shiftsSlice';
 import ButtonCustom from 'components/ButtonCustom';
 import AddIcon from '@mui/icons-material/Add';
-import ModalCustom from "components/ModalCustom";
-import RadioGroupCustom from 'components/RadioGroupCustom';
 import CreateShiftModal from '../CreateShiftModal';
+import { useAppSelector } from 'hooks/useAppSelector';
+import { useAppDispatch } from 'hooks/useAppDispatch';
+import { extraReducersGetListShiftTypes } from 'store/slices/Main/Shifts/actions/extraReducers';
 
 const shiftStatusOptions: SelectBoxOption[] = [
     {
@@ -16,27 +16,12 @@ const shiftStatusOptions: SelectBoxOption[] = [
         name: "Tất cả"
     },
     {
-        id: ShiftStatus.ON.toString(),
+        id: "true",
         name: "Đang hoạt động"
     },
     {
-        id: ShiftStatus.OFF.toString(),
+        id: "false",
         name: "Không hoạt động"
-    }
-]
-
-const shiftTypeOptions: SelectBoxOption[] = [
-    {
-        id: "1",
-        name: "Ca đơn"
-    },
-    {
-        id: "2",
-        name: "Ca hành chính"
-    },
-    {
-        id: "3",
-        name: "Ca nâng cao"
     }
 ]
 
@@ -44,6 +29,21 @@ const shiftTypeOptions: SelectBoxOption[] = [
 const ShiftSearchPannel: React.FC = () => {
     const { register } = useForm();
     const [modal, setModal] = useState(false);
+
+    const { listOfShiftType } = useAppSelector(state => state.shifts);
+    const dispatch = useAppDispatch();
+
+    const shiftTypeOptions = useMemo(
+        () => listOfShiftType.map<SelectBoxOption>(type => ({
+            id: type._id, name: type.schedule_name
+        })),
+        [listOfShiftType])
+
+    useEffect(() => {
+        dispatch(
+            extraReducersGetListShiftTypes()
+        );
+    }, []);
 
     const handleCreateClick = () => setModal(() => true)
 

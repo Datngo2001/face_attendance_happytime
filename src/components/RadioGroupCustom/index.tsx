@@ -8,6 +8,7 @@ export type Props = {
     register: any
     items: RadioItem[]
     spacing?: number
+    defaultValue?: any
 }
 
 export type RadioItem = {
@@ -15,13 +16,14 @@ export type RadioItem = {
     value: string
 }
 
-const RadioGroupCustom: React.FC<Props> = ({ id, name, register, items, spacing = 2 }) => {
+const RadioGroupCustom: React.FC<Props> = ({ id, name, register, items, spacing = 2, defaultValue }) => {
     return (
         <div className='radioGroup__wrapper'>
             <Stack spacing={spacing}>
                 {items.map((item, index) => (
                     <div className="control">
                         <input
+                            defaultChecked={defaultValue ? item.value === defaultValue : false}
                             id={`${id ?? name}_${index}`}
                             {...register(name)}
                             type="radio"

@@ -2,8 +2,9 @@ import ModalCustom from 'components/ModalCustom'
 import RadioGroupCustom from 'components/RadioGroupCustom'
 import { useAppDispatch } from 'hooks/useAppDispatch'
 import { useAppSelector } from 'hooks/useAppSelector'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
 
 export type Props = {
     state: boolean,
@@ -12,6 +13,7 @@ export type Props = {
 
 const CreateShiftModal: React.FC<Props> = ({ state, setState }) => {
     const { register, getValues } = useForm()
+    const navigate = useNavigate()
 
     // HOOK REACT TOOLKIT
     const { listOfShiftType } = useAppSelector(
@@ -21,7 +23,8 @@ const CreateShiftModal: React.FC<Props> = ({ state, setState }) => {
     // ******************************
 
     const handleSubmit = () => {
-        console.log(getValues())
+        let { shiftType } = getValues()
+        navigate(`./create/${shiftType}`)
     }
 
     return (
@@ -39,6 +42,7 @@ const CreateShiftModal: React.FC<Props> = ({ state, setState }) => {
                 <RadioGroupCustom
                     name='shiftType'
                     register={register}
+                    defaultValue={listOfShiftType[0]?._id}
                     items={listOfShiftType.map(type => ({ value: type._id, label: type.schedule_name }))} />
             </div>
         </ModalCustom>

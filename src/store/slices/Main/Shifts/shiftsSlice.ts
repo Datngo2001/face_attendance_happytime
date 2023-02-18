@@ -15,12 +15,43 @@ export type ShiftsState = {
 
 export type Shift = {
   _id: string;
-  status: ShiftStatus;
-  code: string;
   name: string;
-  type: string;
-  work_from: string;
-  work_to: string;
+  name_unsigned: string;
+  shift_type: {
+    id: string;
+    name: string;
+  };
+  code: string;
+  is_enabled: true;
+  work_count: 0;
+  partial_work_count: 0;
+  is_using_check_in_limit: true;
+  is_using_check_out_limit: true;
+  config_in_late: ConfigLateOrEarly;
+  config_out_early: ConfigLateOrEarly;
+  working_time: TimeBox;
+  allow_in_time: TimeBox;
+  allow_out_time: TimeBox;
+  afternoon_allow_in_time: TimeBox;
+  afternoon_allow_out_time: TimeBox;
+  afternoon_working_time: TimeBox;
+  morning_allow_in_time: TimeBox;
+  morning_allow_out_time: TimeBox;
+  morning_working_time: TimeBox;
+};
+
+export type TimeBox = {
+  from: string;
+  to: string;
+};
+
+export type ConfigLateOrEarly = {
+  is_in_use: boolean;
+  time: string;
+  late_in_morning: string;
+  early_out_morning: string;
+  late_in_afternoon: string;
+  early_out_afternoon: string;
 };
 
 export type ShiftType = {
@@ -36,40 +67,12 @@ export type ShiftType = {
   tenant_id: string;
 };
 
-export enum ShiftStatus {
-  ON = 1,
-  OFF = 2,
-}
-
-// TEST DATA
-const listOfShifts: Shift[] = [
-  {
-    _id: "1",
-    code: "12345",
-    name: "123456789",
-    status: ShiftStatus.ON,
-    work_from: "08:00:00",
-    work_to: "12:00:00",
-    type: "1",
-  },
-  {
-    _id: "2",
-    code: "123asd45",
-    name: "123456asdas789",
-    status: ShiftStatus.ON,
-    work_from: "08:00:00",
-    work_to: "17:30:00",
-    type: "2",
-  },
-];
-// ************************************************
-
 const shiftsSlice = createSlice({
   name: "shifts",
   initialState: {
     status: "fail",
     loading: false,
-    listOfShift: listOfShifts,
+    listOfShift: [],
     listOfShiftType: [],
     totalPages: 1,
     totalShifts: 0,

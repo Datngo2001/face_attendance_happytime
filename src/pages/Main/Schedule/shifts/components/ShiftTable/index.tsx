@@ -41,8 +41,6 @@ const ShiftTable: React.FC = () => {
                 columns={columns}
                 getRowId={(row) => row._id}
                 rowsPerPageOptions={[5]}
-                checkboxSelection
-                disableSelectionOnClick
                 loading={loading}
                 onSelectionModelChange={handleOnSelectionModelChange}
             />
