@@ -37,7 +37,7 @@ export const listNavigatorOptions = [
     },
     {
         icon: <DateRangeRoundedIcon />,
-        linkTo: "schedule/shifts/list",
+        linkTo: "schedule/shifts",
         title: "Cài đặt lịch",
         pathActive: "schedule",
     },

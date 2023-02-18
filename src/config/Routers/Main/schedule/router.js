@@ -1,9 +1,9 @@
-import { ListShifts } from "pages/Main/Schedule";
+import { ListShifts, Shifts } from "pages/Main/Schedule";
 
 const scheduleRouters = [
     {
-        path: "shifts/list",
-        component: <ListShifts />,
+        path: "shifts",
+        component: <Shifts />,
     },
 ];
 

@@ -1,3 +1,3 @@
-import ListShifts from "./shifts/list";
+import Shifts from "./shifts";
 
-export { ListShifts }
+export { Shifts }
