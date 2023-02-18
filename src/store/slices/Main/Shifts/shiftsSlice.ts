@@ -5,7 +5,7 @@ export type ShiftsState = {
   loading: boolean;
   listOfShift: Shift[];
   totalPages: number;
-  totalPermissions: number;
+  totalShifts: number;
   listOfShiftType: ShiftType[];
 };
 
@@ -72,7 +72,7 @@ const shiftsSlice = createSlice({
     listOfShift: listOfShifts,
     listOfShiftType: listFeatureGroup,
     totalPages: 1,
-    totalPermissions: 0,
+    totalShifts: 0,
   } as ShiftsState,
   reducers: {},
 });

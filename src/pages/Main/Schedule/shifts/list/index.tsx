@@ -7,9 +7,7 @@ const ListShifts: React.FC = () => {
     <>
       <div className="ListShifts__wrapper">
         <ShiftSearchPannel />
-        <div className="ListShifts__table">
-          <ShiftTable />
-        </div>
+        <ShiftTable />
       </div>
     </>
   )
