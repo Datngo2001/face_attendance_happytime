@@ -23,6 +23,7 @@ const ControlPanel = () => {
       <div className="attendance-settings--mobile-devices--control-panel">
         <InputCustom
           id="dataSearch"
+          name="dataSearch"
           register={register}
           width="100%"
           placeholder="Tên nhân viên, mã nhân viên, Divice ID"

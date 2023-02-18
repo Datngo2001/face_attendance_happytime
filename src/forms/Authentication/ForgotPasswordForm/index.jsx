@@ -12,52 +12,53 @@ import { useEffect } from "react";
 import { focusToElement } from "../../../utils";
 
 const ForgotPasswordForm = () => {
-    // STATE
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-    } = useForm({ resolver: yupResolver(schema) });
-    // ******************************
+  // STATE
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(schema) });
+  // ******************************
 
-    // HOOK EFFECT
-    useEffect(() => {
-        focusToElement("phone");
-    }, []);
-    // ****************************
+  // HOOK EFFECT
+  useEffect(() => {
+    focusToElement("phone");
+  }, []);
+  // ****************************
 
-    // ARROW FUNCTIONS
-    const onSubmit = (data) => {
-        console.log("data", data);
-    };
-    // ****************************
+  // ARROW FUNCTIONS
+  const onSubmit = (data) => {
+    console.log("data", data);
+  };
+  // ****************************
 
-    return (
-        <>
-            <form action="" className="forgot-password-form__wrapper">
-                <Link className="tag-redirect" to="../login">
-                    <KeyboardBackspaceIcon />
-                    Quay lại
-                </Link>
-                <h2 className="forgot-password-form__title">Quên mật khẩu</h2>
-                <InputCustom
-                    id="phone"
-                    className="input-phone"
-                    type="tel"
-                    placeholder="Nhập số điện thoại"
-                    register={register}
-                    iconLeft={<LocalPhoneRoundedIcon />}
-                    message={errors}
-                />
-                <div style={{ marginTop: "40px" }}>
-                    <ButtonCustom height="48px" onClick={handleSubmit(onSubmit)}>
-                        GỬI MÃ XÁC NHẬN
-                    </ButtonCustom>
-                </div>
-            </form>
-            <Footer type="2" />
-        </>
-    );
+  return (
+    <>
+      <form action="" className="forgot-password-form__wrapper">
+        <Link className="tag-redirect" to="../login">
+          <KeyboardBackspaceIcon />
+          Quay lại
+        </Link>
+        <h2 className="forgot-password-form__title">Quên mật khẩu</h2>
+        <InputCustom
+          id="phone"
+          name="phone"
+          className="input-phone"
+          type="tel"
+          placeholder="Nhập số điện thoại"
+          register={register}
+          iconLeft={<LocalPhoneRoundedIcon />}
+          message={errors}
+        />
+        <div style={{ marginTop: "40px" }}>
+          <ButtonCustom height="48px" onClick={handleSubmit(onSubmit)}>
+            GỬI MÃ XÁC NHẬN
+          </ButtonCustom>
+        </div>
+      </form>
+      <Footer type="2" />
+    </>
+  );
 };
 
 export default ForgotPasswordForm;

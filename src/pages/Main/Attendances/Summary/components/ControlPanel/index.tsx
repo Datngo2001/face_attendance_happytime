@@ -1,10 +1,10 @@
-import ButtonCustom from "../../../../../../components/ButtonCustom";
 import ReplayRoundedIcon from "@mui/icons-material/ReplayRounded";
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import "./styles.scss";
-import InputCustom from "../../../../../../components/InputCustom";
-import InputDate from "../../../../../../components/InputDate";
 import dayjs from "dayjs";
+import ButtonCustom from "components/ButtonCustom";
+import InputCustom from "components/InputCustom";
+import InputDate from "components/InputDate";
 
 export type Props = {
   register: any;

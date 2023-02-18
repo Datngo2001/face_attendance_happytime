@@ -31,6 +31,7 @@ const ControlPanel = () => {
       <div className="attendance-settings--mobile-wifi__control-panel">
         <InputCustom
           id="dataSearch"
+          name="dataSearch"
           width="100%"
           register={register}
           placeholder="Tên IP Wi-Fi bạn muốn tìm"

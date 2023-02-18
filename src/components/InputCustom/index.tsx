@@ -2,7 +2,7 @@ import { ReactElement } from "react";
 import "./styles.scss";
 
 export type Props = {
-    id: string,
+    id?: string,
     name: string,
     iconRight?: ReactElement,
     iconLeft?: string,
@@ -51,28 +51,28 @@ const InputCustom: React.FC<Props> = ({
                         className={`label ${required && "required"}`}
                         style={{ width: labelWidth }}
                     >
-                        <label htmlFor={id}>
+                        <label htmlFor={id ?? name}>
                             {label}
                             <span> *</span>
                         </label>
                     </div>
                 )}
                 <div
-                    className={`container ${message && message[id] ? "error" : ""}  ${!iconLeft && !iconRight && "none-icon"
+                    className={`container ${message && message[id ?? name] ? "error" : ""}  ${!iconLeft && !iconRight && "none-icon"
                         } ${iconRight && "icon-right"} ${iconLeft && "icon-left"}`}
                 >
                     {iconLeft}
                     {isTextArea ? (
                         <textarea
-                            id={id}
-                            {...register(id)}
+                            id={id ?? name}
+                            {...register(name)}
                             disabled={disabled}
                             placeholder={placeholder}
                             onClick={handleOnClick} />
                     ) : (
                         <input
                             disabled={disabled}
-                            id={id}
+                            id={id ?? name}
                             placeholder={placeholder}
                             type={type}
                             {...register(name)}
@@ -80,7 +80,7 @@ const InputCustom: React.FC<Props> = ({
                         />
                     )}
                     {iconRight}
-                    {message && <p className="error-message">{message[id]?.message}</p>}
+                    {message && <p className="error-message">{message[id ?? name]?.message}</p>}
                 </div>
             </div>
         </>

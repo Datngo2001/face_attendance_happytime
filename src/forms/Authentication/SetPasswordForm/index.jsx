@@ -14,97 +14,99 @@ import { updateStatusState } from "../../../store/slices/Authentication/authSlic
 import * as registerActions from "../../../store/slices/Authentication/Register/registerActions";
 
 const SetPasswordForm = () => {
-    // STATE
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-    } = useForm({
-        mode: "onChange",
-        resolver: yupResolver(schema),
-    });
-    // ******************************
+  // STATE
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    mode: "onChange",
+    resolver: yupResolver(schema),
+  });
+  // ******************************
 
-    // HOOK REACT TOOLKIT
-    const { status } = useSelector((state) => state.auth);
-    const dispatch = useDispatch();
-    // ****************************
+  // HOOK REACT TOOLKIT
+  const { status } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+  // ****************************
 
-    // HOOK ROUTER DOM
-    const navigate = useNavigate();
-    // ****************************
+  // HOOK ROUTER DOM
+  const navigate = useNavigate();
+  // ****************************
 
-    // HOOK EFFECT
-    useEffect(() => {
-        focusToElement("password");
-    }, []);
+  // HOOK EFFECT
+  useEffect(() => {
+    focusToElement("password");
+  }, []);
 
-    useEffect(() => {
-        if (status) {
-            navigate("../login", { replace: true });
-        }
-        // Clean function
-        return () => dispatch(updateStatusState(false));
-    }, [status]);
-    // ****************************
+  useEffect(() => {
+    if (status) {
+      navigate("../login", { replace: true });
+    }
+    // Clean function
+    return () => dispatch(updateStatusState(false));
+  }, [status]);
+  // ****************************
 
-    // ARROW FUNCTIONS
-    const onSubmit = (data) => {
-        const dataRegister = JSON.parse(sessionStorage.getItem("dataRegister"));
-        const dataSubmit = {
-            name: dataRegister?.name,
-            phone_number: dataRegister?.phone,
-            company_name: dataRegister?.nameCompany,
-            company_shorthand: dataRegister?.nameCompanyShortHand,
-            job_position: dataRegister?.position,
-            personal_mail: dataRegister?.email,
-            scale: parseInt(dataRegister?.scale),
-            code: dataRegister?.code,
-            password: data.password,
-        };
-
-        console.log("dataSubmit", dataSubmit);
-        dispatch(registerActions.extraReducersRegister(dataSubmit));
+  // ARROW FUNCTIONS
+  const onSubmit = (data) => {
+    const dataRegister = JSON.parse(sessionStorage.getItem("dataRegister"));
+    const dataSubmit = {
+      name: dataRegister?.name,
+      phone_number: dataRegister?.phone,
+      company_name: dataRegister?.nameCompany,
+      company_shorthand: dataRegister?.nameCompanyShortHand,
+      job_position: dataRegister?.position,
+      personal_mail: dataRegister?.email,
+      scale: parseInt(dataRegister?.scale),
+      code: dataRegister?.code,
+      password: data.password,
     };
-    // ****************************
-    return (
-        <>
-            <form className="set-password-form__wrapper">
-                <div className="set-password-form__header">
-                    <Link className="tag-redirect" to="../login">
-                        <KeyboardBackspaceIcon />
-                        Quay lại
-                    </Link>
-                    <h2 className="set-password-form__title">Thiết lập mật khẩu</h2>
-                </div>
-                <div className="set-password-form__container">
-                    <InputCustom
-                        id="password"
-                        className="input-item"
-                        placeholder="Nhập mật khẩu"
-                        type="password"
-                        iconLeft={<LockIcon />}
-                        register={register}
-                        message={errors}
-                    />
-                    <InputCustom
-                        id="confirmPassword"
-                        className="input-item"
-                        placeholder="Xác nhận mật khẩu"
-                        type="password"
-                        iconLeft={<LockIcon />}
-                        register={register}
-                        message={errors}
-                    />
-                </div>
-                <div style={{ marginTop: "40px" }}>
-                    <ButtonCustom onClick={handleSubmit(onSubmit)} height="48px">
-                        Lưu
-                    </ButtonCustom>
-                </div>
-            </form>
-        </>
-    );
+
+    console.log("dataSubmit", dataSubmit);
+    dispatch(registerActions.extraReducersRegister(dataSubmit));
+  };
+  // ****************************
+  return (
+    <>
+      <form className="set-password-form__wrapper">
+        <div className="set-password-form__header">
+          <Link className="tag-redirect" to="../login">
+            <KeyboardBackspaceIcon />
+            Quay lại
+          </Link>
+          <h2 className="set-password-form__title">Thiết lập mật khẩu</h2>
+        </div>
+        <div className="set-password-form__container">
+          <InputCustom
+            id="password"
+            name="password"
+            className="input-item"
+            placeholder="Nhập mật khẩu"
+            type="password"
+            iconLeft={<LockIcon />}
+            register={register}
+            message={errors}
+          />
+          <InputCustom
+            id="confirmPassword"
+            name="confirmPassword"
+            className="input-item"
+            placeholder="Xác nhận mật khẩu"
+            type="password"
+            iconLeft={<LockIcon />}
+            register={register}
+            message={errors}
+          />
+        </div>
+        <div style={{ marginTop: "40px" }}>
+          <ButtonCustom onClick={handleSubmit(onSubmit)} height="48px">
+            Lưu
+          </ButtonCustom>
+        </div>
+      </form>
+    </>
+  );
 };
 
 export default SetPasswordForm;

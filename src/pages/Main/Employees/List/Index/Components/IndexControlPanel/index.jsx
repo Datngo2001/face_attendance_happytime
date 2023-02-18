@@ -112,6 +112,7 @@ export const IndexControlPanel = () => {
           />
           <InputCustom
             id="searchData"
+            name="searchData"
             iconRight={<SearchRoundedIcon />}
             className="input-item flex-basic-25"
             placeholder="Tên, email, số điện thoại, mã nhân viên"

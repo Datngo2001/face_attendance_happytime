@@ -8,116 +8,116 @@ import { updateStatusState } from "../../../../../store/slices/Main/Attendance-s
 import "./styles.scss";
 
 const WifiAddingForm = ({ method, setOpen }) => {
-    // REACT HOOK FORM
-    const { register, setValue, handleSubmit } = useForm({});
-    // ****************************
+  // REACT HOOK FORM
+  const { register, setValue, handleSubmit } = useForm({});
+  // ****************************
 
-    // REDUX TOOLKIT
-    const { status } = useSelector((state) => state.attendanceSettings);
-    const dispatch = useDispatch();
-    // ****************************
+  // REDUX TOOLKIT
+  const { status } = useSelector((state) => state.attendanceSettings);
+  const dispatch = useDispatch();
+  // ****************************
 
-    // HOOK EFFECT
-    useEffect(() => {
-        if (status === "success") {
-            setOpen(false);
-        }
+  // HOOK EFFECT
+  useEffect(() => {
+    if (status === "success") {
+      setOpen(false);
+    }
 
-        // Clean function
-        return () => dispatch(updateStatusState("fail"));
-    }, [status]);
-    // ****************************
+    // Clean function
+    return () => dispatch(updateStatusState("fail"));
+  }, [status]);
+  // ****************************
 
-    // ARROW FUNCTIONS
-    const handleOnSubmitCreate = (data) => {
-        console.log("data", data);
-        const dataSubmit = {
-            ip_name: data.wifiName,
-            ip_address: data.ipAddress,
-            status: parseInt(data.activeStatus),
-        };
-
-        dispatch(
-            extraReducersCreateIPWifi({
-                data: dataSubmit,
-            })
-        );
+  // ARROW FUNCTIONS
+  const handleOnSubmitCreate = (data) => {
+    console.log("data", data);
+    const dataSubmit = {
+      ip_name: data.wifiName,
+      ip_address: data.ipAddress,
+      status: parseInt(data.activeStatus),
     };
-    const handleOnSubmitUpdate = (data) => {
-        console.log("data", data);
-    };
-    // ****************************
 
-    return (
-        <>
-            <div className="wifi-adding-form__wrapper">
-                <div className="field-control">
-                    <InputCustom
-                        id="wifiName"
-                        width="470px"
-                        label="Tên IP Wi-Fi"
-                        placeholder="Nhập Tên IP Wi-Fi"
-                        register={register}
-                        required={true}
-                    />
-                </div>
-                <div className="field-control">
-                    <InputCustom
-                        id="ipAddress"
-                        width="470px"
-                        label="IP"
-                        placeholder="Nhập Địa chỉ IP"
-                        register={register}
-                        required={true}
-                    />
-                </div>
-                <p className="des">
-                    IP hiện tại của bạn là 2401:d800:724b:ee03:bdfa:be83:443d:fca2
-                </p>
-                <div className="field-radio-control">
-                    <p className="label">Trạng thái hoạt động</p>
-                    <div className="radios">
-                        <div className="radios-group">
-                            <input
-                                id="option1"
-                                value={1}
-                                type="radio"
-                                name="activeStatus"
-                                {...register("activeStatus")}
-                                defaultChecked={true}
-                            />
-                            <label htmlFor="option1">On</label>
-                        </div>
-                        <div className="radios-group">
-                            <input
-                                id="option2"
-                                value={2}
-                                type="radio"
-                                name="activeStatus"
-                                {...register("activeStatus")}
-                            />
-                            <label htmlFor="option2">Off</label>
-                        </div>
-                    </div>
-                </div>
-                <div className="wifi-adding-form__actions">
-                    <ButtonCustom width="84px" type={3} onClick={() => setOpen(false)}>
-                        Hủy bỏ
-                    </ButtonCustom>
-                    <ButtonCustom
-                        width="60px"
-                        onClick={handleSubmit(
-                            method === "update"
-                                ? handleOnSubmitUpdate
-                                : handleOnSubmitCreate
-                        )}
-                    >
-                        Lưu
-                    </ButtonCustom>
-                </div>
-            </div>
-        </>
+    dispatch(
+      extraReducersCreateIPWifi({
+        data: dataSubmit,
+      })
     );
+  };
+  const handleOnSubmitUpdate = (data) => {
+    console.log("data", data);
+  };
+  // ****************************
+
+  return (
+    <>
+      <div className="wifi-adding-form__wrapper">
+        <div className="field-control">
+          <InputCustom
+            id="wifiName"
+            name="wifiName"
+            width="470px"
+            label="Tên IP Wi-Fi"
+            placeholder="Nhập Tên IP Wi-Fi"
+            register={register}
+            required={true}
+          />
+        </div>
+        <div className="field-control">
+          <InputCustom
+            id="ipAddress"
+            name="ipAddress"
+            width="470px"
+            label="IP"
+            placeholder="Nhập Địa chỉ IP"
+            register={register}
+            required={true}
+          />
+        </div>
+        <p className="des">
+          IP hiện tại của bạn là 2401:d800:724b:ee03:bdfa:be83:443d:fca2
+        </p>
+        <div className="field-radio-control">
+          <p className="label">Trạng thái hoạt động</p>
+          <div className="radios">
+            <div className="radios-group">
+              <input
+                id="option1"
+                value={1}
+                type="radio"
+                name="activeStatus"
+                {...register("activeStatus")}
+                defaultChecked={true}
+              />
+              <label htmlFor="option1">On</label>
+            </div>
+            <div className="radios-group">
+              <input
+                id="option2"
+                value={2}
+                type="radio"
+                name="activeStatus"
+                {...register("activeStatus")}
+              />
+              <label htmlFor="option2">Off</label>
+            </div>
+          </div>
+        </div>
+        <div className="wifi-adding-form__actions">
+          <ButtonCustom width="84px" type={3} onClick={() => setOpen(false)}>
+            Hủy bỏ
+          </ButtonCustom>
+          <ButtonCustom
+            width="60px"
+            onClick={handleSubmit(
+              method === "update" ? handleOnSubmitUpdate : handleOnSubmitCreate
+            )}
+          >
+            Lưu
+          </ButtonCustom>
+        </div>
+      </div>
+    </>
+  );
 };
 
 export default WifiAddingForm;
