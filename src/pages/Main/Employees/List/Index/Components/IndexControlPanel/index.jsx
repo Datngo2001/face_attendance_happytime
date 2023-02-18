@@ -97,14 +97,14 @@ export const IndexControlPanel = () => {
         </div>
         <form className="index__actions">
           <SelectCustom
-            id="statusActive"
+            name="statusActive"
             className="input-item"
             register={register}
             defaultValue={1}
             options={listStatusActive}
           />
           <SelectCustom
-            id="statusEmployee"
+            name="statusEmployee"
             className="input-item"
             register={register}
             placeholder="Trạng thái nhân sự"
@@ -119,28 +119,28 @@ export const IndexControlPanel = () => {
             register={register}
           />
           <SelectCustom
-            id="role"
+            name="role"
             className="input-item"
             register={register}
             placeholder="Vai trò"
             options={listRoles}
           />
           <SelectCustom
-            id="jobPositionDepartment"
+            name="jobPositionDepartment"
             className="input-item"
             register={register}
             placeholder="Phòng ban vị trí công việc"
             options={listRoles}
           />
           <SelectCustom
-            id="typeEmployee"
+            name="typeEmployee"
             className="input-item"
             register={register}
             placeholder="Loại hình nhân sự"
             options={listTypeEmployees}
           />
           <SelectCustom
-            id="statusUsingHappyTime"
+            name="statusUsingHappyTime"
             className="input-item flex-basic-25"
             register={register}
             placeholder="Trạng thái sử dụng HappyTime"

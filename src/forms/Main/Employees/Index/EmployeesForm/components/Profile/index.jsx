@@ -65,7 +65,7 @@ const Profile = ({
               message={errors}
             />
             <SelectCustom
-              id="education"
+              name="education"
               width="100%"
               className="input-item"
               label="Học vấn"
@@ -151,7 +151,6 @@ const Profile = ({
               message={errors}
             />
             <SelectCustom
-              id="marriedStatus"
               name="marriedStatus"
               width="100%"
               className="input-item"
@@ -165,7 +164,6 @@ const Profile = ({
           </div>
           <div className="col">
             <SelectCustom
-              id="gender"
               name="gender"
               width="100%"
               className="input-item"

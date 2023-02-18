@@ -180,7 +180,6 @@ const ChangeInfoForm = () => {
                 message={errors}
               />
               <SelectCustom
-                id="companyScale"
                 name="companyScale"
                 label="Quy mô công ty"
                 placeholder="Quy mô công ty"

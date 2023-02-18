@@ -75,7 +75,7 @@ const WorkInformation = ({
           </div>
           <div className="col">
             <SelectCustom
-              id="department"
+              name="department"
               width="100%"
               className="input-item"
               required={true}
@@ -86,7 +86,7 @@ const WorkInformation = ({
               message={errors}
             />
             <SelectCustom
-              id="employeeStatus"
+              name="employeeStatus"
               width="100%"
               className="input-item"
               required={true}
@@ -101,7 +101,7 @@ const WorkInformation = ({
           </div>
           <div className="col">
             <SelectCustom
-              id="workBranch"
+              name="workBranch"
               width="100%"
               className="input-item"
               label="Chi nhánh làm việc"
@@ -112,7 +112,7 @@ const WorkInformation = ({
             />
             {typeEmployee ? (
               <SelectCustom
-                id="typeEmployee"
+                name="typeEmployee"
                 width="100%"
                 className="input-item"
                 label="Loại hình nhân sự"
@@ -126,7 +126,7 @@ const WorkInformation = ({
               />
             ) : (
               <SelectCustom
-                id="typeEmployee"
+                name="typeEmployee"
                 width="100%"
                 className="input-item"
                 label="Loại hình nhân sự"

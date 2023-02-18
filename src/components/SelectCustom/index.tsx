@@ -6,7 +6,8 @@ import "./styles.scss";
 import { ReactElement, useEffect, useRef, useState } from "react";
 
 export type Props = {
-    id: string;
+    id?: string;
+    name: string;
     icon?: ReactElement;
     width?: string | number;
     height?: string | number;
@@ -31,6 +32,7 @@ export type SelectBoxOption = {
 
 const SelectCustom: React.FC<Props> = ({
     id,
+    name,
     icon,
     width,
     height,
@@ -78,7 +80,7 @@ const SelectCustom: React.FC<Props> = ({
             return { onChange, value: value ?? "null" }
         }
         if (register) {
-            return register(id)
+            return register(name)
         }
         return undefined
     }
@@ -100,7 +102,7 @@ const SelectCustom: React.FC<Props> = ({
         <>
             <Box
                 className={`select-custom__wrapper ${isSelectedPlaceholder && !defaultValue ? "selected-placeholder" : ""
-                    } ${message && message[id] ? "error" : ""} ${className ? className : ""}`}
+                    } ${message && message[id ?? name] ? "error" : ""} ${className ? className : ""}`}
                 sx={{ height: height, width: width }}
             >
                 {label && (
@@ -140,7 +142,7 @@ const SelectCustom: React.FC<Props> = ({
                             })}
                     </Select>
                     {!(message === undefined) && (
-                        <p className="error-message">{message[id]?.message}</p>
+                        <p className="error-message">{message[id ?? name]?.message}</p>
                     )}
                 </FormControl>
             </Box>

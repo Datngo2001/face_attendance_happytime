@@ -167,7 +167,7 @@ const RegisterForm = () => {
           message={errors}
         />
         <SelectCustom
-          id="position"
+          name="position"
           className="input-item"
           width="100%"
           placeholder="Chức vụ *"
@@ -187,7 +187,7 @@ const RegisterForm = () => {
           message={errors}
         />
         <SelectCustom
-          id="scale"
+          name="scale"
           className="input-item"
           width="100%"
           placeholder="Quy mô công ty *"

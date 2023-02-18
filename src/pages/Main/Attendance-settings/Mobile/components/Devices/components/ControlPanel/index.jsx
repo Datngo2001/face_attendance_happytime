@@ -31,7 +31,7 @@ const ControlPanel = () => {
         />
         <div style={{ height: "20px", width: "100%" }}></div>
         <SelectCustom
-          id="activeStatus"
+          name="activeStatus"
           width="300px"
           register={register}
           options={listStatusActive}

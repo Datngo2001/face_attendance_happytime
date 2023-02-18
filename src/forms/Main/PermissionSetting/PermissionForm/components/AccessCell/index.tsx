@@ -29,7 +29,7 @@ const AccessCell: React.FC<Props> = ({ _ids, isOpen, accesses, onFeatureAccessSe
         <div className="access-cell__wrapper">
             <div className="group-access">
                 <SelectCustom
-                    id={_ids[0]}
+                    name={_ids[0]}
                     onChange={(e) => { onGroupAccessSelect(_ids[0], e.target.value) }}
                     value={accesses[0]}
                     options={options}
@@ -41,7 +41,7 @@ const AccessCell: React.FC<Props> = ({ _ids, isOpen, accesses, onFeatureAccessSe
                 return (
                     <div key={_ids[index]} className="access">
                         <SelectCustom
-                            id={_ids[index]}
+                            name={_ids[index]}
                             value={access}
                             options={options}
                             placeholder="Lựa chọn"

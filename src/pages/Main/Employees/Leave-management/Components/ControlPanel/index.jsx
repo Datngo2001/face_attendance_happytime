@@ -19,14 +19,14 @@ const ControlPanel = ({ register }) => {
             placeholder="Tên, mã nhân viên, số điện thoại"
           />
           <SelectCustom
-            id="department"
+            name="department"
             register={register}
             width="20%"
             options={departmentList}
             placeholder="Chọn phòng ban"
           />
           <SelectCustom
-            id="position"
+            name="position"
             register={register}
             width="20%"
             options={positionList}

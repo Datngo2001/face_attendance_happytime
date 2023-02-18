@@ -39,7 +39,7 @@ const ControlPanel = () => {
         />
         <div className="footer">
           <SelectCustom
-            id="activeStatus"
+            name="activeStatus"
             className="select-item"
             register={register}
             width="35%"

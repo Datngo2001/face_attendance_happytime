@@ -49,7 +49,7 @@ const ShiftSearchPannel: React.FC = () => {
         <>
             <div className="ListShifts__control-panel">
                 <SelectCustom
-                    id="shiftStatus"
+                    name="shiftStatus"
                     className="input-item"
                     register={register}
                     defaultValue={"ALL"}
@@ -57,7 +57,7 @@ const ShiftSearchPannel: React.FC = () => {
                     options={shiftStatusOptions}
                 />
                 <SelectCustom
-                    id="shiftType"
+                    name="shiftType"
                     className="input-item"
                     register={register}
                     placeholder="Loại ca làm việc"
