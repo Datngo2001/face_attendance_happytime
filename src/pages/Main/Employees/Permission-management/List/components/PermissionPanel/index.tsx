@@ -39,6 +39,7 @@ const PermissionPanel: React.FC = () => {
     <form className="search-form">
       <InputCustom
         id="searchPermission"
+        name="searchPermission"
         register={register}
         iconRight={<SearchRoundedIcon />}
         className="input-item"

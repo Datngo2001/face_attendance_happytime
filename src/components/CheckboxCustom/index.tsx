@@ -1,6 +1,15 @@
 import "./styles.scss";
 
-const CheckboxCustom = ({ id, className, label, register, width, height }) => {
+export type Props = {
+    id: string;
+    className: string;
+    label: string;
+    register: any;
+    width: string;
+    height: string;
+}
+
+const CheckboxCustom: React.FC<Props> = ({ id, className, label, register, width, height }) => {
     return (
         <>
             <div className={`checkbox-custom__wrapper ${className ? className : ""}`}>

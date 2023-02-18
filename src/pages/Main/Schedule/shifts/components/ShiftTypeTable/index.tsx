@@ -28,7 +28,8 @@ const ShiftTypeTable: React.FC = () => {
     return (
         <div className="ListShifts__table">
             <DataGridCustom
-                rowHeight={50}
+                headerHeight={75}
+                rowHeight={75}
                 getRowId={row => row._id}
                 rows={listOfShiftType}
                 columns={getColumns(handleAddClick)}

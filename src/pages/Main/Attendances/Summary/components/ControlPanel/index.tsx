@@ -32,6 +32,7 @@ const ControlPanel: React.FC<Props> = ({ register, setValue, trigger }) => {
         <div className="attendances--summary--control-panel__body">
           <InputCustom
             id="searchData"
+            name="searchData"
             register={register}
             placeholder="Nhập tên nhân viên, mã nhân viên"
             iconRight={<SearchRoundedIcon />}

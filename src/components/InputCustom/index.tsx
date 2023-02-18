@@ -3,6 +3,7 @@ import "./styles.scss";
 
 export type Props = {
     id: string,
+    name: string,
     iconRight?: ReactElement,
     iconLeft?: string,
     placeholder?: string,
@@ -22,6 +23,7 @@ export type Props = {
 
 const InputCustom: React.FC<Props> = ({
     id,
+    name,
     iconRight,
     iconLeft,
     placeholder,
@@ -73,7 +75,7 @@ const InputCustom: React.FC<Props> = ({
                             id={id}
                             placeholder={placeholder}
                             type={type}
-                            {...register(id)}
+                            {...register(name)}
                             onClick={handleOnClick}
                         />
                     )}

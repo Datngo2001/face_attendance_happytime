@@ -64,7 +64,8 @@ const ShiftSearchPannel: React.FC = () => {
                     options={shiftTypeOptions}
                 />
                 <InputCustom
-                    id="searchData"
+                    id="txt_code_name"
+                    name='codeOrName'
                     iconRight={<SearchRoundedIcon />}
                     className="input-item flex-basic-25"
                     placeholder="Nhập tên ca làm việc, mã ca"

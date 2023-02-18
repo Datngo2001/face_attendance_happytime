@@ -44,12 +44,14 @@ const PermissionForm: React.FC<Props> = ({ method }) => {
                 <Stack className='inputs' spacing={3}>
                     <InputCustom
                         id='permissionName'
+                        name="permissionName"
                         register={register}
                         label='Vai trò'
                         placeholder='Nhập tên vai trò. VD: Admin'
                     />
                     <InputCustom
                         id='permissionDescription'
+                        name="permissionDescription"
                         register={register}
                         label='Mô Tả'
                         placeholder='Nhập mô tả về vai trò'
