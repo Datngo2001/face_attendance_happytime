@@ -1,32 +1,73 @@
+import InputCustom from 'components/InputCustom';
+import SelectCustom, { SelectBoxOption } from 'components/SelectCustom';
+import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import React from 'react'
+import { useForm } from 'react-hook-form';
+import { ShiftStatus } from 'store/slices/Main/Shifts/shiftsSlice';
+import ButtonCustom from 'components/ButtonCustom';
+import AddIcon from '@mui/icons-material/Add';
+
+const shiftStatusOptions: SelectBoxOption[] = [
+    {
+        id: "ALL",
+        name: "Tất cả"
+    },
+    {
+        id: ShiftStatus.ON.toString(),
+        name: "Đang hoạt động"
+    },
+    {
+        id: ShiftStatus.OFF.toString(),
+        name: "Không hoạt động"
+    }
+]
+
+const shiftTypeOptions: SelectBoxOption[] = [
+    {
+        id: "1",
+        name: "Ca đơn"
+    },
+    {
+        id: "2",
+        name: "Ca hành chính"
+    },
+    {
+        id: "3",
+        name: "Ca nâng cao"
+    }
+]
+
 
 const ShiftSearchPannel: React.FC = () => {
+    const { register } = useForm();
     return (
         <>
             <div className="ListShifts__control-panel">
-                {/* <form className="index__actions">
+                <form>
                     <SelectCustom
-                        id="statusActive"
+                        id="shiftStatus"
                         className="input-item"
                         register={register}
-                        defaultValue={1}
-                        options={listStatusActive}
+                        defaultValue={"ALL"}
+                        placeholder="Trạng thái hoạt động"
+                        options={shiftStatusOptions}
                     />
                     <SelectCustom
-                        id="statusEmployee"
+                        id="shiftType"
                         className="input-item"
                         register={register}
-                        placeholder="Trạng thái nhân sự"
-                        options={listStatusEmployees}
+                        placeholder="Loại ca làm việc"
+                        options={shiftTypeOptions}
                     />
                     <InputCustom
                         id="searchData"
                         iconRight={<SearchRoundedIcon />}
                         className="input-item flex-basic-25"
-                        placeholder="Tên, email, số điện thoại, mã nhân viên"
+                        placeholder="Nhập tên ca làm việc, mã ca"
                         register={register}
                     />
-                </form> */}
+                    <ButtonCustom icon={<AddIcon />}>Thêm mới</ButtonCustom>
+                </form>
             </div>
         </>
     )

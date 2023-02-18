@@ -5,6 +5,7 @@ import {
   companySlice,
   employeesSlice,
   permissionsSlice,
+  shiftsSlice,
 } from "./slices";
 import { globalSlice } from "./slices/Global/globalSlice";
 import attendanceSettingsSlice from "./slices/Main/Attendance-settings/attendanceSettingsSlice";
@@ -18,6 +19,7 @@ const store = configureStore({
     attendanceSettings: attendanceSettingsSlice.reducer,
     auth: authSlice.reducer,
     global: globalSlice.reducer,
+    shifts: shiftsSlice.reducer,
   },
 });
 

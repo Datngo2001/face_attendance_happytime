@@ -2,5 +2,25 @@
 
 
 .shifts__wrapper{
-    
+    .ListShifts__control-panel{
+        form{
+            display: flex;
+            flex-direction: row;
+            padding: 10px;
+            justify-content: space-between;
+            gap: 10px;
+
+            .select-custom__wrapper{
+                flex: 1;
+            }
+
+            .input-custom__wrapper{
+                flex: 2;
+            }
+
+            .btn-custom{
+                flex: 1;
+            }
+        }
+    }
 }
