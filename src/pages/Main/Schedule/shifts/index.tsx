@@ -6,7 +6,7 @@ import { listTabs } from './listTabs'
 const Shifts: React.FC = () => {
     return (
         <>
-            <div className="">
+            <div className="shifts__wrapper">
                 <TabsCustom listChildren={listTabs} />
             </div>
         </>
