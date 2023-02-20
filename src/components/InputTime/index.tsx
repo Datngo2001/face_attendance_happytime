@@ -1,11 +1,11 @@
-import { ReactElement } from "react";
-import "./styles.scss";
+import { TextField } from '@mui/material'
+import { TimePicker } from 'antd'
+import React from 'react'
+import "./styles.scss"
 
 export type Props = {
     id?: string,
     name: string,
-    iconRight?: ReactElement,
-    iconLeft?: string,
     placeholder?: string,
     width?: string,
     height?: string,
@@ -22,11 +22,9 @@ export type Props = {
     defaultValue?: string
 }
 
-const InputCustom: React.FC<Props> = ({
+const InputTime: React.FC<Props> = ({
     id,
     name,
-    iconRight,
-    iconLeft,
     placeholder,
     width,
     height,
@@ -45,7 +43,7 @@ const InputCustom: React.FC<Props> = ({
     return (
         <>
             <div
-                className={`input-custom__wrapper ${className ? className : ""}`}
+                className={`InputTime__wrapper ${className ? className : ""}`}
                 style={{ width: width ? width : "", height: height ? height : "" }}
             >
                 {label && (
@@ -60,35 +58,23 @@ const InputCustom: React.FC<Props> = ({
                     </div>
                 )}
                 <div
-                    className={`container ${message && message[id ?? name] ? "error" : ""}  ${!iconLeft && !iconRight && "none-icon"
-                        } ${iconRight && "icon-right"} ${iconLeft && "icon-left"}`}
+                    className={`container ${message && message[id ?? name] ? "error" : ""}`}
                 >
-                    {iconLeft}
-                    {isTextArea ? (
-                        <textarea
-                            id={id ?? name}
-                            {...register(name)}
-                            disabled={disabled}
-                            placeholder={placeholder}
-                            onClick={handleOnClick}
-                            defaultValue={defaultValue} />
-                    ) : (
-                        <input
-                            disabled={disabled}
-                            id={id ?? name}
-                            placeholder={placeholder}
-                            type={type}
-                            {...register(name)}
-                            onClick={handleOnClick}
-                            defaultValue={defaultValue}
-                        />
-                    )}
-                    {iconRight}
+                    <TimePicker
+                        size='small'
+                        {...register(name)}
+                        disabled={disabled}
+                        id={id ?? name}
+                        placeholder={placeholder}
+                        onClick={handleOnClick}
+                        defaultValue={defaultValue}
+                        renderInput={(params) => <TextField {...params} />}
+                    />
                     {message && <p className="error-message">{message[id ?? name]?.message}</p>}
                 </div>
             </div>
         </>
-    );
-};
+    )
+}
 
-export default InputCustom;
+export default InputTime

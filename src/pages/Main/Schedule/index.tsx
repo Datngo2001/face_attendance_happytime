@@ -1,4 +1,4 @@
 import Shifts from "./shifts";
-import CreateShift from "./shifts/create";
+import ShiftPage from "./shifts/shift";
 
-export { Shifts, CreateShift }
+export { Shifts, ShiftPage }

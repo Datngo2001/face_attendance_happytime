@@ -1,6 +1,6 @@
 @use "../../../../assets/styles/index.scss" as *;
 
-.createShiftForm__wrapper{
+.shiftForm__wrapper{
     .actions {
         display: flex;
         justify-content: right;
@@ -15,6 +15,15 @@
                 background-color: #eeeeee;
                 color: $text-color-3;
             }
+        }
+    }
+    .group{
+        margin-bottom: 10px;
+        padding-top: 10px;
+    }
+    .group-number{
+        input{
+            width: 80px;
         }
     }
 }

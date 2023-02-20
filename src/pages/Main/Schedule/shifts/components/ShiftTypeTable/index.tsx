@@ -4,8 +4,11 @@ import { useAppSelector } from 'hooks/useAppSelector';
 import React, { useEffect, useRef } from 'react'
 import { extraReducersGetListShiftTypes } from 'store/slices/Main/Shifts/actions/extraReducers';
 import { getColumns } from './components';
+import { useNavigate } from 'react-router-dom';
 
 const ShiftTypeTable: React.FC = () => {
+    const navigate = useNavigate();
+
     // HOOK REACT TOOLKIT
     const { listOfShiftType, loading } = useAppSelector(
         (state) => state.shifts
@@ -21,7 +24,7 @@ const ShiftTypeTable: React.FC = () => {
 
     const handleAddClick = (_id: string) => {
         return () => {
-            console.log(_id)
+            navigate(`./create/${_id}`)
         }
     }
 

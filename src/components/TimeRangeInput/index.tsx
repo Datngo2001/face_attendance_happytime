@@ -1,11 +1,12 @@
-import { ReactElement } from "react";
-import "./styles.scss";
+import { TextField } from '@mui/material'
+import { TimePicker } from 'antd'
+import React from 'react'
+import "./styles.scss"
 
 export type Props = {
     id?: string,
-    name: string,
-    iconRight?: ReactElement,
-    iconLeft?: string,
+    from_name: string,
+    to_name: string,
     placeholder?: string,
     width?: string,
     height?: string,
@@ -22,11 +23,10 @@ export type Props = {
     defaultValue?: string
 }
 
-const InputCustom: React.FC<Props> = ({
+const TimeRangeInput: React.FC<Props> = ({
     id,
-    name,
-    iconRight,
-    iconLeft,
+    from_name,
+    to_name,
     placeholder,
     width,
     height,
@@ -45,7 +45,7 @@ const InputCustom: React.FC<Props> = ({
     return (
         <>
             <div
-                className={`input-custom__wrapper ${className ? className : ""}`}
+                className={`TimeRangeInput__wrapper ${className ? className : ""}`}
                 style={{ width: width ? width : "", height: height ? height : "" }}
             >
                 {label && (
@@ -53,42 +53,47 @@ const InputCustom: React.FC<Props> = ({
                         className={`label ${required && "required"}`}
                         style={{ width: labelWidth }}
                     >
-                        <label htmlFor={id ?? name}>
+                        <label>
                             {label}
                             <span> *</span>
                         </label>
                     </div>
                 )}
                 <div
-                    className={`container ${message && message[id ?? name] ? "error" : ""}  ${!iconLeft && !iconRight && "none-icon"
-                        } ${iconRight && "icon-right"} ${iconLeft && "icon-left"}`}
+                    className={`container ${message && (message[from_name] || message[to_name]) ? "error" : ""}`}
                 >
-                    {iconLeft}
-                    {isTextArea ? (
-                        <textarea
-                            id={id ?? name}
-                            {...register(name)}
+                    <div className='inputGroup'>
+                        <div className='fromLabel'>Từ</div>
+                        <TimePicker
+                            {...register(from_name)}
+                            views={['hours', 'minutes']}
+                            inputFormat="HH:mm"
+                            mask="__:__:00"
                             disabled={disabled}
                             placeholder={placeholder}
-                            onClick={handleOnClick}
-                            defaultValue={defaultValue} />
-                    ) : (
-                        <input
-                            disabled={disabled}
-                            id={id ?? name}
-                            placeholder={placeholder}
-                            type={type}
-                            {...register(name)}
                             onClick={handleOnClick}
                             defaultValue={defaultValue}
+                            renderInput={(params) => <TextField {...params} />}
                         />
-                    )}
-                    {iconRight}
-                    {message && <p className="error-message">{message[id ?? name]?.message}</p>}
+                        <div className='toLabel'>Đến</div>
+                        <TimePicker
+                            {...register(to_name)}
+                            openTo="hours"
+                            views={['hours', 'minutes']}
+                            inputFormat="HH:mm"
+                            mask="__:__:00"
+                            disabled={disabled}
+                            placeholder={placeholder}
+                            onClick={handleOnClick}
+                            defaultValue={defaultValue}
+                            renderInput={(params) => <TextField {...params} />}
+                        />
+                    </div>
+                    {message && <p className="error-message">{message[from_name]?.message ?? message[to_name]?.message}</p>}
                 </div>
             </div>
         </>
-    );
-};
+    )
+}
 
-export default InputCustom;
+export default TimeRangeInput

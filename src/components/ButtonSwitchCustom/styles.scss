@@ -2,7 +2,7 @@
 
 .button-switch-custom {
     &__wrapper {
-        &.MuiSwitch-root {
+        .MuiSwitch-root {
             width: 28px;
             height: 16px;
             padding: 0;
@@ -52,6 +52,22 @@
                     ),
                     linear-gradient(90deg, #fff, #fff);
                 opacity: 1;
+            }
+        }
+        .label {
+            padding-bottom: 10px;
+            color: $text-color-3;
+            font-size: $fs-1;
+    
+            span {
+                color: red;
+                display: none;
+            }
+    
+            &.required {
+                span {
+                    display: inherit;
+                }
             }
         }
     }

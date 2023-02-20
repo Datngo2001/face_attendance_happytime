@@ -1,4 +1,4 @@
-import { CreateShift, Shifts } from "pages/Main/Schedule";
+import { ShiftPage, Shifts } from "pages/Main/Schedule";
 
 const scheduleRouters = [
     {
@@ -6,8 +6,8 @@ const scheduleRouters = [
         component: <Shifts />,
     },
     {
-        path: "shifts/create/:typeid",
-        component: <CreateShift />,
+        path: "shifts/:action/:typeid",
+        component: <ShiftPage />,
     },
 ];
 
