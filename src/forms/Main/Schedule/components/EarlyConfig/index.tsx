@@ -1,68 +1,68 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './styles.scss'
-import InputCustom from 'components/InputCustom'
 import FormSwitchCustom from 'components/ButtonSwitchCustom/FormSwitchCustom'
-import { Stack } from '@mui/material'
-import InputTime from 'components/InputTime'
+import Stack from '@mui/material/Stack'
+import InputTime from "components/InputTime"
+import InputCustom from 'components/InputCustom'
 import { useForm } from 'react-hook-form'
 import { TypeName } from '../../CreateShiftForm'
 
 export type Props = {
-    register: any
+    register: any,
     typeName: TypeName
 }
 
-const LateConfig: React.FC<Props> = ({ register, typeName }) => {
+const EarlyConfig: React.FC<Props> = ({ register, typeName }) => {
 
     const { register: internalRegister, getValues } = useForm({ defaultValues: { block: 10 } });
 
     return (
-        <div className='LateConfig__wrapper'>
+        <div className='EarlyConfig__wrapper'>
             <div className='title'>
-                <p>Số phút đi muộn</p>
+                <p>Số phút về sớm</p>
                 <FormSwitchCustom
                     size='medium'
-                    {...register("config_in_late.is_in_use")} />
+                    {...register("config_out_early.is_in_use")} />
             </div>
             <Stack spacing={2}>
                 {typeName === TypeName.SINGLE && (
                     <>
                         <InputTime
-                            name="config_in_late"
-                            label='Thời gian bắt đầu tính đi muộn'
+                            name="config_out_early"
+                            label='Thời gian bắt đầu tính về sớm'
                             register={register} />
                     </>
                 )}
                 {typeName === TypeName.OFFICE && (
                     <>
                         <InputTime
-                            name="config_in_late.late_in_morning"
-                            label='Thời gian tính đi muộn buổi sáng từ:'
+                            name="config_out_early.early_out_morning"
+                            label='Thời gian tính về sớm buổi sáng đến:'
                             register={register} />
                         <InputTime
-                            name="config_in_late.late_in_afternoon"
-                            label='Thời gian tính đi muộn buổi chiều từ:'
+                            name="config_out_early.early_out_afternoon"
+                            label='Thời gian tính về sớm buổi chiều đến:'
                             register={register} />
                     </>
                 )}
                 <div className="radio">
                     <input
-                        {...register("config_in_late.time")}
+                        {...register("config_out_early.time")}
                         type="radio"
                         value=""
                         checked
                     />
-                    <label htmlFor="config_in_late.time">
+                    <label htmlFor="config_out_early.time">
                         Tính theo số phút
                     </label>
                 </div>
                 <div className="radio">
                     <input
-                        {...register("config_in_late.time")}
+                        {...register("config_out_early.time")}
                         type="radio"
                         value={getValues("block")}
                     />
-                    <label htmlFor="config_in_late.time">
+                    <label htmlFor="config_out_early.time">
                         Tính theo block
                     </label>
                     <InputCustom
@@ -83,4 +83,4 @@ const LateConfig: React.FC<Props> = ({ register, typeName }) => {
     )
 }
 
-export default LateConfig
+export default EarlyConfig

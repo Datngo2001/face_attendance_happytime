@@ -5,7 +5,7 @@ export type Props = {
     id?: string,
     name: string,
     iconRight?: ReactElement,
-    iconLeft?: string,
+    iconLeft?: ReactElement,
     placeholder?: string,
     width?: string,
     height?: string,
@@ -19,7 +19,9 @@ export type Props = {
     handleOnClick?: React.MouseEventHandler<HTMLButtonElement>,
     disabled?: boolean,
     isTextArea?: boolean
-    defaultValue?: string
+    defaultValue?: string,
+    min?: string,
+    max?: string
 }
 
 const InputCustom: React.FC<Props> = ({
@@ -40,7 +42,9 @@ const InputCustom: React.FC<Props> = ({
     handleOnClick,
     disabled = false,
     isTextArea = false,
-    defaultValue = ""
+    defaultValue = "",
+    min,
+    max
 }) => {
     return (
         <>
@@ -74,6 +78,8 @@ const InputCustom: React.FC<Props> = ({
                             defaultValue={defaultValue} />
                     ) : (
                         <input
+                            min={min}
+                            max={max}
                             disabled={disabled}
                             id={id ?? name}
                             placeholder={placeholder}

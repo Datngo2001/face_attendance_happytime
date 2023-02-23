@@ -9,13 +9,18 @@ import { Stack } from '@mui/material'
 import FormSwitchCustom from 'components/ButtonSwitchCustom/FormSwitchCustom'
 import TimeRangeInput from 'components/TimeRangeInput'
 import OfficeTimeInput from '../components/OfficeTimeInput'
+import EarlyConfig from '../components/EarlyConfig'
+import LateConfig from '../components/LateConfig'
+import SingleTimeInput from '../components/SingleTimeInput'
+import CheckInLimit from '../components/CheckInLimit'
+import CheckOutLimit from '../components/CheckOutLimit'
 
 export type Props = {
     shiftType: ShiftType
     action?: string
 }
 
-enum TypeName {
+export enum TypeName {
     OFFICE = "OFFICE",
     SINGLE = "SINGLE",
     UNKNOW = "UNKNOW"
@@ -26,7 +31,7 @@ const ShiftForm: React.FC<Props> = ({ shiftType, action = "create" }) => {
     const navigate = useNavigate()
 
     const typeName = useMemo(() => {
-        if (!shiftType) return ""
+        if (!shiftType) return TypeName.UNKNOW
         if (shiftType.schedule_name === "Ca hành chính") {
             return TypeName.OFFICE
         }
@@ -52,18 +57,30 @@ const ShiftForm: React.FC<Props> = ({ shiftType, action = "create" }) => {
                         {...register("is_enabled")} />
                     <InputCustom
                         required
+                        placeholder='Tên ca làm việc của bạn'
                         label='Tên ca làm việc'
                         name="name"
                         register={register} />
                     <InputCustom
                         required
+                        placeholder='Mã ca làm việc của bạn'
                         label='Mã ca làm việc'
                         name="code"
                         register={register} />
                 </Stack>
                 <div className='group'>
                     {typeName === TypeName.OFFICE && (<OfficeTimeInput register={register} />)}
-                    {typeName === TypeName.SINGLE && (<OfficeTimeInput register={register} />)}
+                    {typeName === TypeName.SINGLE && (<SingleTimeInput register={register} />)}
+                </div>
+                {typeName === TypeName.SINGLE && (
+                    <div className='group group-limit divider-top`'>
+                        <CheckInLimit register={register} />
+                        <CheckOutLimit register={register} />
+                    </div>
+                )}
+                <div className='group group-late-early'>
+                    <LateConfig register={register} typeName={typeName} />
+                    <EarlyConfig register={register} typeName={typeName} />
                 </div>
                 <Stack className='group divider-top group-number' spacing={2}>
                     <InputCustom
