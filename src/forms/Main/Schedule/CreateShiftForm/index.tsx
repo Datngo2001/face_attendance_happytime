@@ -14,6 +14,7 @@ import LateConfig from '../components/LateConfig'
 import SingleTimeInput from '../components/SingleTimeInput'
 import CheckInLimit from '../components/CheckInLimit'
 import CheckOutLimit from '../components/CheckOutLimit'
+import { defaultValues } from './defaultValues'
 
 export type Props = {
     shiftType: ShiftType
@@ -27,7 +28,7 @@ export enum TypeName {
 }
 
 const ShiftForm: React.FC<Props> = ({ shiftType, action = "create" }) => {
-    const { register, handleSubmit } = useForm();
+    const { register, control, handleSubmit } = useForm({ defaultValues: defaultValues });
     const navigate = useNavigate()
 
     const typeName = useMemo(() => {
@@ -41,20 +42,24 @@ const ShiftForm: React.FC<Props> = ({ shiftType, action = "create" }) => {
         return TypeName.UNKNOW
     }, [shiftType?.schedule_name])
 
-    const onSubmit = (data) => { }
+    const onSubmit = (data) => {
+        console.log(data)
+    }
 
     const handleOnCancel = () => { navigate("../shifts") }
-    const handleOnSubmitUpdate = () => { }
-    const handleOnSubmitCreate = () => { }
+    const handleOnSubmitUpdate = (data) => { console.log(data) }
+    const handleOnSubmitCreate = (data) => { console.log(data) }
 
     return (
         <div className='shiftForm__wrapper'>
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form>
                 <Stack className='group' spacing={2}>
                     <FormSwitchCustom
                         size='medium'
                         label='Trạng thái hoạt động'
-                        {...register("is_enabled")} />
+                        control={control}
+                        name='is_enabled'
+                    />
                     <InputCustom
                         required
                         placeholder='Tên ca làm việc của bạn'
@@ -74,13 +79,13 @@ const ShiftForm: React.FC<Props> = ({ shiftType, action = "create" }) => {
                 </div>
                 {typeName === TypeName.SINGLE && (
                     <div className='group group-limit divider-top`'>
-                        <CheckInLimit register={register} />
-                        <CheckOutLimit register={register} />
+                        <CheckInLimit register={register} control={control} />
+                        <CheckOutLimit register={register} control={control} />
                     </div>
                 )}
                 <div className='group group-late-early'>
-                    <LateConfig register={register} typeName={typeName} />
-                    <EarlyConfig register={register} typeName={typeName} />
+                    <LateConfig register={register} control={control} typeName={typeName} />
+                    <EarlyConfig register={register} control={control} typeName={typeName} />
                 </div>
                 <Stack className='group divider-top group-number' spacing={2}>
                     <InputCustom
@@ -116,6 +121,7 @@ const ShiftForm: React.FC<Props> = ({ shiftType, action = "create" }) => {
                                 ? handleOnSubmitUpdate
                                 : handleOnSubmitCreate
                         )}
+                        isSubmit
                     >
                         Lưu
                     </ButtonCustom>

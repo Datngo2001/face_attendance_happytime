@@ -11,6 +11,7 @@ export type Props = {
     children?: any,
     className?: string,
     disabled?: boolean,
+    isSubmit?: boolean
 }
 
 const ButtonCustom: React.FC<Props> = ({
@@ -23,6 +24,7 @@ const ButtonCustom: React.FC<Props> = ({
     children,
     className,
     disabled,
+    isSubmit = false
 }) => {
     return (
         <>
@@ -34,6 +36,7 @@ const ButtonCustom: React.FC<Props> = ({
                     } ${type === 1 ? "type-1" : ""} ${type === 2 ? "type-2" : ""} ${type === 3 ? "type-3" : ""
                     }`}
                 style={{ height: height ? height : "", width: width ? width : "" }}
+                type={isSubmit ? "submit" : "button"}
             >
                 {icon}
                 {children}

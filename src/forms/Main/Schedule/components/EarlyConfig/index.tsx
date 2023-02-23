@@ -10,9 +10,10 @@ import { TypeName } from '../../CreateShiftForm'
 export type Props = {
     register: any,
     typeName: TypeName
+    control: any
 }
 
-const EarlyConfig: React.FC<Props> = ({ register, typeName }) => {
+const EarlyConfig: React.FC<Props> = ({ register, typeName, control }) => {
 
     const { register: internalRegister, getValues } = useForm({ defaultValues: { block: 10 } });
 
@@ -22,7 +23,8 @@ const EarlyConfig: React.FC<Props> = ({ register, typeName }) => {
                 <p>Số phút về sớm</p>
                 <FormSwitchCustom
                     size='medium'
-                    {...register("config_out_early.is_in_use")} />
+                    control={control}
+                    name='config_out_early.is_in_use' />
             </div>
             <Stack spacing={2}>
                 {typeName === TypeName.SINGLE && (

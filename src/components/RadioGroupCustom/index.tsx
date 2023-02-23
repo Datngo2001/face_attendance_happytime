@@ -21,7 +21,7 @@ const RadioGroupCustom: React.FC<Props> = ({ id, name, register, items, spacing 
         <div className='radioGroup__wrapper'>
             <Stack spacing={spacing}>
                 {items.map((item, index) => (
-                    <div className="control">
+                    <div className="control" key={index}>
                         <input
                             defaultChecked={defaultValue ? item.value === defaultValue : false}
                             id={`${id ?? name}_${index}`}

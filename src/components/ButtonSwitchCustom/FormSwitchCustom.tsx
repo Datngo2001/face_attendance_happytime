@@ -1,14 +1,16 @@
 import Switch, { SwitchProps } from '@mui/material/Switch'
 import React from 'react'
+import { Controller } from 'react-hook-form'
 
 export type Props = {
     label?: string
     labelWidth?: string
+    control: any
 }
 
 const FormSwitchCustom: React.FC<SwitchProps & Props> = (props) => {
 
-    const { id, name, label, labelWidth, required } = props;
+    const { id, name, label, labelWidth, required, control } = props;
 
     return (
         <div className='button-switch-custom__wrapper'>
@@ -23,10 +25,20 @@ const FormSwitchCustom: React.FC<SwitchProps & Props> = (props) => {
                     </label>
                 </div>
             )}
-            <Switch
-                id={id ?? name}
-                className=""
-                {...props}
+            <Controller
+                control={control}
+                name={name}
+                render={({
+                    field: { onChange, onBlur, value, name, ref },
+                }) => (
+                    <Switch
+                        checked={value}
+                        onChange={onChange}
+                        id={id ?? name}
+                        className=""
+                        {...props}
+                    />
+                )}
             />
         </div>
     )
