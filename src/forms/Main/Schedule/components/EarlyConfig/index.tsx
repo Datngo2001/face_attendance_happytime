@@ -2,10 +2,10 @@ import React, { useState } from 'react'
 import './styles.scss'
 import FormSwitchCustom from 'components/ButtonSwitchCustom/FormSwitchCustom'
 import Stack from '@mui/material/Stack'
-import InputTime from "components/InputTime"
 import InputCustom from 'components/InputCustom'
 import { useForm } from 'react-hook-form'
 import { TypeName } from '../../CreateShiftForm'
+import TimePickerCustom from 'components/InputTime/TimePickerCustom'
 
 export type Props = {
     register: any,
@@ -29,22 +29,22 @@ const EarlyConfig: React.FC<Props> = ({ register, typeName, control }) => {
             <Stack spacing={2}>
                 {typeName === TypeName.SINGLE && (
                     <>
-                        <InputTime
+                        <TimePickerCustom
                             name="config_out_early"
                             label='Thời gian bắt đầu tính về sớm'
-                            register={register} />
+                            control={control} />
                     </>
                 )}
                 {typeName === TypeName.OFFICE && (
                     <>
-                        <InputTime
+                        <TimePickerCustom
                             name="config_out_early.early_out_morning"
                             label='Thời gian tính về sớm buổi sáng đến:'
-                            register={register} />
-                        <InputTime
+                            control={control} />
+                        <TimePickerCustom
                             name="config_out_early.early_out_afternoon"
                             label='Thời gian tính về sớm buổi chiều đến:'
-                            register={register} />
+                            control={control} />
                     </>
                 )}
                 <div className="radio">

@@ -3,9 +3,9 @@ import './styles.scss'
 import InputCustom from 'components/InputCustom'
 import FormSwitchCustom from 'components/ButtonSwitchCustom/FormSwitchCustom'
 import { Stack } from '@mui/material'
-import InputTime from 'components/InputTime'
 import { useForm } from 'react-hook-form'
 import { TypeName } from '../../CreateShiftForm'
+import TimePickerCustom from 'components/InputTime/TimePickerCustom'
 
 export type Props = {
     register: any
@@ -30,22 +30,22 @@ const LateConfig: React.FC<Props> = ({ register, typeName, control }) => {
             <Stack spacing={2}>
                 {typeName === TypeName.SINGLE && (
                     <>
-                        <InputTime
+                        <TimePickerCustom
                             name="config_in_late"
                             label='Thời gian bắt đầu tính đi muộn'
-                            register={register} />
+                            control={control} />
                     </>
                 )}
                 {typeName === TypeName.OFFICE && (
                     <>
-                        <InputTime
+                        <TimePickerCustom
                             name="config_in_late.late_in_morning"
                             label='Thời gian tính đi muộn buổi sáng từ:'
-                            register={register} />
-                        <InputTime
+                            control={control} />
+                        <TimePickerCustom
                             name="config_in_late.late_in_afternoon"
                             label='Thời gian tính đi muộn buổi chiều từ:'
-                            register={register} />
+                            control={control} />
                     </>
                 )}
                 <div className="radio">

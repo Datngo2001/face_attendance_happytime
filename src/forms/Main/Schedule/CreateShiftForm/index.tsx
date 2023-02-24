@@ -7,7 +7,6 @@ import { ShiftType } from 'store/slices/Main/Shifts/shiftsSlice'
 import InputCustom from 'components/InputCustom'
 import { Stack } from '@mui/material'
 import FormSwitchCustom from 'components/ButtonSwitchCustom/FormSwitchCustom'
-import TimeRangeInput from 'components/TimeRangeInput'
 import OfficeTimeInput from '../components/OfficeTimeInput'
 import EarlyConfig from '../components/EarlyConfig'
 import LateConfig from '../components/LateConfig'
@@ -74,8 +73,8 @@ const ShiftForm: React.FC<Props> = ({ shiftType, action = "create" }) => {
                         register={register} />
                 </Stack>
                 <div className='group'>
-                    {typeName === TypeName.OFFICE && (<OfficeTimeInput register={register} />)}
-                    {typeName === TypeName.SINGLE && (<SingleTimeInput register={register} />)}
+                    {typeName === TypeName.OFFICE && (<OfficeTimeInput control={control} />)}
+                    {typeName === TypeName.SINGLE && (<SingleTimeInput control={control} />)}
                 </div>
                 {typeName === TypeName.SINGLE && (
                     <div className='group group-limit divider-top`'>

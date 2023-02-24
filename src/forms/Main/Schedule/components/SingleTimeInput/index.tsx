@@ -1,32 +1,32 @@
-import TimeRangeInput from 'components/TimeRangeInput'
 import React from 'react'
 import './styles.scss'
+import TimeRangeCustom from 'components/InputTime/TimeRangeCustom'
 
 export type Props = {
-    register: any
+    control: any
 }
 
-const SingleTimeInput: React.FC<Props> = ({ register }) => {
+const SingleTimeInput: React.FC<Props> = ({ control }) => {
     return (
         <div className='SingleTimeInput__wrapper divider-top'>
-            <TimeRangeInput
+            <TimeRangeCustom
                 required
                 label='Giờ làm việc'
                 from_name="working_time.from"
                 to_name='working_time.to'
-                register={register} />
-            <TimeRangeInput
+                control={control} />
+            <TimeRangeCustom
                 required
                 label='Giờ Checkin hợp lệ'
                 from_name="allow_in_time.from"
                 to_name="allow_in_time.to"
-                register={register} />
-            <TimeRangeInput
+                control={control} />
+            <TimeRangeCustom
                 required
                 label='Giờ Checkout hợp lệ'
                 from_name="allow_out_time.from"
                 to_name="allow_out_time.to"
-                register={register} />
+                control={control} />
         </div>
     )
 }
