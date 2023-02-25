@@ -1,10 +1,9 @@
-import { TextField } from '@mui/material'
 import { TimePicker } from 'antd'
 import React from 'react'
 import "./styles.scss"
 import { Controller } from 'react-hook-form'
 import dayjs from 'dayjs'
-import { format } from './default'
+import { dataFormat, viewFormat } from './default'
 
 export type Props = {
     id?: string,
@@ -70,12 +69,12 @@ const TimePickerCustom: React.FC<Props> = ({
                         <div className={`container ${error ? "error" : ""}`}>
                             <TimePicker
                                 name={name}
-                                value={dayjs(value, format)}
-                                onChange={date => onChange(date.format(format))}
+                                value={dayjs(value, viewFormat)}
+                                onChange={date => onChange(date.format(dataFormat))}
                                 onBlur={onBlur}
                                 disabled={disabled}
                                 placeholder={placeholder}
-                                format={format}
+                                format={viewFormat}
                             />
                             {error && <p className="error-message">{error.message}</p>}
                         </div>

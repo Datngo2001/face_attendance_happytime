@@ -6,6 +6,7 @@ import { useAppSelector } from 'hooks/useAppSelector';
 import { extraReducersGetListShiftTypes } from 'store/slices/Main/Shifts/actions/extraReducers';
 import { useAppDispatch } from 'hooks/useAppDispatch';
 import ShiftForm from 'forms/Main/Schedule/CreateShiftForm';
+import { FormAction } from 'forms/formAction';
 
 const ShiftPage: React.FC = () => {
     const { typeid, action } = useParams();
@@ -27,6 +28,8 @@ const ShiftPage: React.FC = () => {
             actionTitle = "THÊM MỚI"
         } else if (action === "update") {
             actionTitle = "CẬP NHẬT"
+        } else {
+            return ""
         }
 
         return `${actionTitle} ${shiftType?.schedule_name.toUpperCase()}`
@@ -40,7 +43,7 @@ const ShiftPage: React.FC = () => {
                     Quay lại
                 </Link>
                 <div className="content-title">{title}</div>
-                <ShiftForm action={action} shiftType={shiftType} />
+                {shiftType && <ShiftForm action={FormAction.CREATE} shiftType={shiftType} />}
             </div>
         </>
     )

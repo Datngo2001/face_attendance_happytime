@@ -31,7 +31,7 @@ const EarlyConfig: React.FC<Props> = ({ register, typeName, control }) => {
                 {typeName === TypeName.SINGLE && (
                     <>
                         <TimePickerCustom
-                            name="config_out_early"
+                            name="config_out_early.time"
                             label='Thời gian bắt đầu tính về sớm'
                             control={control} />
                     </>
@@ -48,14 +48,14 @@ const EarlyConfig: React.FC<Props> = ({ register, typeName, control }) => {
                             control={control} />
                     </>
                 )}
-                <Controller
+                {/* <Controller
                     control={control}
                     name="config_out_early.time"
                     render={({
                         field: { onChange, value },
                     }) => (
                         <TimeBlockConfig radioName='config_out_early.time' onChange={onChange} value={value} />
-                    )} />
+                    )} /> */}
             </Stack>
         </div>
     )

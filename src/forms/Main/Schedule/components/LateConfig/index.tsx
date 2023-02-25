@@ -29,7 +29,7 @@ const LateConfig: React.FC<Props> = ({ register, typeName, control }) => {
                 {typeName === TypeName.SINGLE && (
                     <>
                         <TimePickerCustom
-                            name="config_in_late"
+                            name="config_in_late.time"
                             label='Thời gian bắt đầu tính đi muộn'
                             control={control} />
                     </>
@@ -46,14 +46,14 @@ const LateConfig: React.FC<Props> = ({ register, typeName, control }) => {
                             control={control} />
                     </>
                 )}
-                <Controller
+                {/* <Controller
                     control={control}
                     name="config_in_late.time"
                     render={({
                         field: { onChange, value },
                     }) => (
                         <TimeBlockConfig radioName="config_in_late.time" onChange={onChange} value={value} />
-                    )} />
+                    )} /> */}
             </Stack>
         </div>
     )

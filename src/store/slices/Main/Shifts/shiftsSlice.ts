@@ -23,10 +23,10 @@ export type Shift = {
   };
   code: string;
   is_enabled: true;
-  work_count: 0;
-  partial_work_count: 0;
-  is_using_check_in_limit: true;
-  is_using_check_out_limit: true;
+  work_count: number;
+  partial_work_count: number;
+  is_using_check_in_limit: boolean;
+  is_using_check_out_limit: boolean;
   config_in_late: ConfigLateOrEarly;
   config_out_early: ConfigLateOrEarly;
   working_time: TimeBox;

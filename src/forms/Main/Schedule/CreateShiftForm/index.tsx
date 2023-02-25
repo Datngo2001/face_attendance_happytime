@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form'
 import "./styles.scss"
 import ButtonCustom from 'components/ButtonCustom'
 import { useNavigate } from 'react-router-dom'
-import { ShiftType } from 'store/slices/Main/Shifts/shiftsSlice'
+import { Shift, ShiftType } from 'store/slices/Main/Shifts/shiftsSlice'
 import InputCustom from 'components/InputCustom'
 import { Stack } from '@mui/material'
 import FormSwitchCustom from 'components/ButtonSwitchCustom/FormSwitchCustom'
@@ -13,11 +13,15 @@ import LateConfig from '../components/LateConfig'
 import SingleTimeInput from '../components/SingleTimeInput'
 import CheckInLimit from '../components/CheckInLimit'
 import CheckOutLimit from '../components/CheckOutLimit'
-import { defaultValues } from './defaultValues'
+import { defaultValuesOffice, defaultValuesSingle } from './defaultValues'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { schema } from './validator'
+import { FormAction } from 'forms/formAction'
 
 export type Props = {
+    shift?: Shift
     shiftType: ShiftType
-    action?: string
+    action?: FormAction
 }
 
 export enum TypeName {
@@ -26,10 +30,7 @@ export enum TypeName {
     UNKNOW = "UNKNOW"
 }
 
-const ShiftForm: React.FC<Props> = ({ shiftType, action = "create" }) => {
-    const { register, control, handleSubmit } = useForm({ defaultValues: defaultValues });
-    const navigate = useNavigate()
-
+const ShiftForm: React.FC<Props> = ({ shiftType, shift, action = FormAction.CREATE }) => {
     const typeName = useMemo(() => {
         if (!shiftType) return TypeName.UNKNOW
         if (shiftType.schedule_name === "Ca hành chính") {
@@ -40,6 +41,21 @@ const ShiftForm: React.FC<Props> = ({ shiftType, action = "create" }) => {
         }
         return TypeName.UNKNOW
     }, [shiftType?.schedule_name])
+
+    const defaultValue = useMemo(() => {
+        if (action === FormAction.CREATE) {
+            return typeName === TypeName.OFFICE ? defaultValuesOffice : defaultValuesSingle
+        } else if (action === FormAction.UPDATE || action === FormAction.VIEW) {
+            return shift
+        }
+    }, [action])
+
+    const { register, control, handleSubmit, formState: { errors } } = useForm({
+        defaultValues: defaultValue,
+        resolver: yupResolver(schema)
+    });
+
+    const navigate = useNavigate()
 
     const onSubmit = (data) => {
         console.log(data)
@@ -64,13 +80,15 @@ const ShiftForm: React.FC<Props> = ({ shiftType, action = "create" }) => {
                         placeholder='Tên ca làm việc của bạn'
                         label='Tên ca làm việc'
                         name="name"
-                        register={register} />
+                        register={register}
+                        message={errors} />
                     <InputCustom
                         required
                         placeholder='Mã ca làm việc của bạn'
                         label='Mã ca làm việc'
                         name="code"
-                        register={register} />
+                        register={register}
+                        message={errors} />
                 </Stack>
                 <div className='group'>
                     {typeName === TypeName.OFFICE && (<OfficeTimeInput control={control} />)}
@@ -92,15 +110,15 @@ const ShiftForm: React.FC<Props> = ({ shiftType, action = "create" }) => {
                         label='Số công ghi nhận'
                         name="work_count"
                         register={register}
-                        defaultValue='1'
-                        type='number' />
+                        type='number'
+                        message={errors} />
                     <InputCustom
                         required
                         label='Số công ghi nhận nếu quên Check out'
                         name="partial_work_count"
                         register={register}
-                        defaultValue='0.5'
-                        type='number' />
+                        type='number'
+                        message={errors} />
                 </Stack>
                 <div className="actions divider-top">
                     <ButtonCustom
@@ -116,7 +134,7 @@ const ShiftForm: React.FC<Props> = ({ shiftType, action = "create" }) => {
                         width="auto"
                         height="32px"
                         onClick={handleSubmit(
-                            action === "update"
+                            action === FormAction.UPDATE
                                 ? handleOnSubmitUpdate
                                 : handleOnSubmitCreate
                         )}

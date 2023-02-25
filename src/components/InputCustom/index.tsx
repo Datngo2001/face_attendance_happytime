@@ -12,7 +12,7 @@ export type Props = {
     register: Function,
     className?: string,
     type?: string,
-    message?: string,
+    message?: any,
     label?: string,
     required?: boolean,
     labelWidth?: string,
