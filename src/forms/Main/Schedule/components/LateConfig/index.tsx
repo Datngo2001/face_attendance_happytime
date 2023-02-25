@@ -1,11 +1,12 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import './styles.scss'
 import InputCustom from 'components/InputCustom'
 import FormSwitchCustom from 'components/ButtonSwitchCustom/FormSwitchCustom'
 import { Stack } from '@mui/material'
-import { useForm } from 'react-hook-form'
+import { Controller, useForm } from 'react-hook-form'
 import { TypeName } from '../../CreateShiftForm'
 import TimePickerCustom from 'components/InputTime/TimePickerCustom'
+import TimeBlockConfig from '../TimeBlockConfig'
 
 export type Props = {
     register: any
@@ -14,9 +15,6 @@ export type Props = {
 }
 
 const LateConfig: React.FC<Props> = ({ register, typeName, control }) => {
-
-    const { register: internalRegister, getValues } = useForm({ defaultValues: { block: 10 } });
-
     return (
         <div className='LateConfig__wrapper'>
             <div className='title'>
@@ -48,39 +46,14 @@ const LateConfig: React.FC<Props> = ({ register, typeName, control }) => {
                             control={control} />
                     </>
                 )}
-                <div className="radio">
-                    <input
-                        {...register("config_in_late.time")}
-                        type="radio"
-                        value=""
-                        checked
-                    />
-                    <label htmlFor="config_in_late.time">
-                        Tính theo số phút
-                    </label>
-                </div>
-                <div className="radio">
-                    <input
-                        {...register("config_in_late.time")}
-                        type="radio"
-                        value={getValues("block")}
-                    />
-                    <label htmlFor="config_in_late.time">
-                        Tính theo block
-                    </label>
-                    <InputCustom
-                        width='50px'
-                        name="block"
-                        type='number'
-                        min="1"
-                        max="60"
-                        register={internalRegister} />
-                    <label htmlFor="block">
-                        phút
-                    </label>
-                </div>
-                <p>Số phút bạn nhập sẽ được tính là 1 Block.</p>
-                <p>VD: 10 phút = 1 Block</p>
+                <Controller
+                    control={control}
+                    name="config_in_late.time"
+                    render={({
+                        field: { onChange, value },
+                    }) => (
+                        <TimeBlockConfig radioName="config_in_late.time" onChange={onChange} value={value} />
+                    )} />
             </Stack>
         </div>
     )

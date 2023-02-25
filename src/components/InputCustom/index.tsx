@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import { ForwardedRef, ReactElement, forwardRef } from "react";
 import "./styles.scss";
 
 export type Props = {
@@ -24,7 +24,7 @@ export type Props = {
     max?: string
 }
 
-const InputCustom: React.FC<Props> = ({
+const InputCustom = forwardRef<HTMLInputElement, Props>(({
     id,
     name,
     iconRight,
@@ -45,7 +45,7 @@ const InputCustom: React.FC<Props> = ({
     defaultValue = "",
     min,
     max
-}) => {
+}, ref: ForwardedRef<HTMLInputElement>) => {
     return (
         <>
             <div
@@ -70,6 +70,7 @@ const InputCustom: React.FC<Props> = ({
                     {iconLeft}
                     {isTextArea ? (
                         <textarea
+                            ref={ref}
                             id={id ?? name}
                             {...register(name)}
                             disabled={disabled}
@@ -78,6 +79,7 @@ const InputCustom: React.FC<Props> = ({
                             defaultValue={defaultValue} />
                     ) : (
                         <input
+                            ref={ref}
                             min={min}
                             max={max}
                             disabled={disabled}
@@ -95,6 +97,6 @@ const InputCustom: React.FC<Props> = ({
             </div>
         </>
     );
-};
+});
 
 export default InputCustom;

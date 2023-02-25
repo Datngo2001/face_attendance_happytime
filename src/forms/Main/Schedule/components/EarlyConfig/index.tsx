@@ -3,9 +3,10 @@ import './styles.scss'
 import FormSwitchCustom from 'components/ButtonSwitchCustom/FormSwitchCustom'
 import Stack from '@mui/material/Stack'
 import InputCustom from 'components/InputCustom'
-import { useForm } from 'react-hook-form'
+import { Controller, useForm } from 'react-hook-form'
 import { TypeName } from '../../CreateShiftForm'
 import TimePickerCustom from 'components/InputTime/TimePickerCustom'
+import TimeBlockConfig from '../TimeBlockConfig'
 
 export type Props = {
     register: any,
@@ -47,39 +48,14 @@ const EarlyConfig: React.FC<Props> = ({ register, typeName, control }) => {
                             control={control} />
                     </>
                 )}
-                <div className="radio">
-                    <input
-                        {...register("config_out_early.time")}
-                        type="radio"
-                        value=""
-                        checked
-                    />
-                    <label htmlFor="config_out_early.time">
-                        Tính theo số phút
-                    </label>
-                </div>
-                <div className="radio">
-                    <input
-                        {...register("config_out_early.time")}
-                        type="radio"
-                        value={getValues("block")}
-                    />
-                    <label htmlFor="config_out_early.time">
-                        Tính theo block
-                    </label>
-                    <InputCustom
-                        width='50px'
-                        name="block"
-                        type='number'
-                        min="1"
-                        max="60"
-                        register={internalRegister} />
-                    <label htmlFor="block">
-                        phút
-                    </label>
-                </div>
-                <p>Số phút bạn nhập sẽ được tính là 1 Block.</p>
-                <p>VD: 10 phút = 1 Block</p>
+                <Controller
+                    control={control}
+                    name="config_out_early.time"
+                    render={({
+                        field: { onChange, value },
+                    }) => (
+                        <TimeBlockConfig radioName='config_out_early.time' onChange={onChange} value={value} />
+                    )} />
             </Stack>
         </div>
     )

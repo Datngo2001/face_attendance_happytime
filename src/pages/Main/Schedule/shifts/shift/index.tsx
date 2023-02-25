@@ -14,7 +14,6 @@ const ShiftPage: React.FC = () => {
     const dispatch = useAppDispatch()
 
     useEffect(() => {
-        debugger
         dispatch(
             extraReducersGetListShiftTypes()
         );
