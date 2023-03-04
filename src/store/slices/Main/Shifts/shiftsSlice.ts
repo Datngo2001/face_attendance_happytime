@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
+  extraReducersCreateShift,
   extraReducersGetListShiftTypes,
   extraReducersGetListShifts,
 } from "./actions/extraReducers";
@@ -14,9 +15,9 @@ export type ShiftsState = {
 };
 
 export type Shift = {
-  _id: string;
+  _id?: string;
   name: string;
-  name_unsigned: string;
+  name_unsigned?: string;
   shift_type: {
     id: string;
     name: string;
@@ -108,6 +109,17 @@ const shiftsSlice = createSlice({
               ...item,
             }));
           }
+        }
+      );
+    builder
+      .addCase(extraReducersCreateShift.pending, (state: ShiftsState) => {
+        state.loading = true;
+      })
+      .addCase(
+        extraReducersCreateShift.fulfilled,
+        (state: ShiftsState, { payload: { payload, message, onSuccess } }) => {
+          state.loading = false;
+          onSuccess();
         }
       );
   },

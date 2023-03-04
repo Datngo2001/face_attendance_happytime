@@ -1,9 +1,7 @@
 import { Shift } from "store/slices/Main/Shifts/shiftsSlice";
 
 export const defaultValuesOffice: Shift = {
-  _id: "",
   name: "",
-  name_unsigned: "",
   shift_type: {
     id: "",
     name: "",
@@ -69,9 +67,7 @@ export const defaultValuesOffice: Shift = {
 };
 
 export const defaultValuesSingle: Shift = {
-  _id: "",
   name: "",
-  name_unsigned: "",
   shift_type: {
     id: "",
     name: "",

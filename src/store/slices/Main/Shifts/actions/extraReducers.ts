@@ -30,3 +30,19 @@ export const extraReducersGetListShiftTypes = createAsyncThunk(
       .catch((error) => error);
   }
 );
+
+export const extraReducersCreateShift = createAsyncThunk(
+  "createShift",
+  async ({ data, onSuccess }: any) => {
+    return api
+      .post(`/api/shift_schedule/create`, data)
+      .then((response: any) => {
+        return {
+          payload: response.payload,
+          message: response.message,
+          onSuccess,
+        };
+      })
+      .catch((error) => error);
+  }
+);

@@ -17,6 +17,8 @@ import { defaultValuesOffice, defaultValuesSingle } from './defaultValues'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { schema } from './validator'
 import { FormAction } from 'forms/formAction'
+import { useAppDispatch } from 'hooks/useAppDispatch'
+import { extraReducersCreateShift } from 'store/slices/Main/Shifts/actions/extraReducers'
 
 export type Props = {
     shift?: Shift
@@ -40,7 +42,7 @@ const ShiftForm: React.FC<Props> = ({ shiftType, shift, action = FormAction.CREA
             return TypeName.SINGLE
         }
         return TypeName.UNKNOW
-    }, [shiftType?.schedule_name])
+    }, [shiftType])
 
     const defaultValue = useMemo(() => {
         if (action === FormAction.CREATE) {
@@ -48,7 +50,7 @@ const ShiftForm: React.FC<Props> = ({ shiftType, shift, action = FormAction.CREA
         } else if (action === FormAction.UPDATE || action === FormAction.VIEW) {
             return shift
         }
-    }, [action])
+    }, [action, shift, typeName])
 
     const { register, control, handleSubmit, formState: { errors } } = useForm({
         defaultValues: defaultValue,
@@ -57,13 +59,17 @@ const ShiftForm: React.FC<Props> = ({ shiftType, shift, action = FormAction.CREA
 
     const navigate = useNavigate()
 
-    const onSubmit = (data) => {
-        console.log(data)
-    }
+    const dispatch = useAppDispatch();
 
     const handleOnCancel = () => { navigate("../shifts") }
-    const handleOnSubmitUpdate = (data) => { console.log(data) }
-    const handleOnSubmitCreate = (data) => { console.log(data) }
+    const handleOnSubmitUpdate = (data) => {
+        console.log(data)
+    }
+    const handleOnSubmitCreate = (data) => {
+        data.shift_type.id = shiftType._id;
+        data.shift_type.name = shiftType.schedule_name;
+        dispatch(extraReducersCreateShift({ data, onSuccess: () => { navigate("../shifts") } }))
+    }
 
     return (
         <div className='shiftForm__wrapper'>
