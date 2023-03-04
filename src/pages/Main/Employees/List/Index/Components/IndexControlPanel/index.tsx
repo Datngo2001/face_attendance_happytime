@@ -2,33 +2,28 @@ import "./styles.scss";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
-import ButtonCustom from "../../../../../../../components/ButtonCustom";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import HandymanRoundedIcon from "@mui/icons-material/HandymanRounded";
 import DriveFileMoveRoundedIcon from "@mui/icons-material/DriveFileMoveRounded";
-import { InnerButtonAdd } from "../../Components/InnerButtonAdd";
+import { InnerButtonAdd } from "../InnerButtonAdd";
 import { Tooltip } from "@mui/material";
-import InputCustom from "../../../../../../../components/InputCustom";
-import DropMenu from "../../../../../../../components/DropMenu";
 import { InnerButtonManipulation } from "./components";
-import { useDispatch, useSelector } from "react-redux";
-import SelectCustom from "../../../../../../../components/SelectCustom";
-import { toastify } from "../../../../../../../utils";
-import {
-  listRoles,
-  listStatusActive,
-  listStatusEmployees,
-  listStatusUsingHappyTime,
-  listTypeEmployees,
-} from "../../../../../../../utils/ListData";
-import useThrottle from "../../../../../../../hooks/useThrottle";
-import { extraReducersGetListEmployees } from "../../../../../../../store/slices/Main/Employees/actions/extraReducers";
+import useThrottle from "hooks/useThrottle";
+import { toastify } from "utils";
+import { extraReducersGetListEmployees } from "store/slices/Main/Employees/actions/extraReducers";
+import { useAppDispatch } from "hooks/useAppDispatch";
+import { useAppSelector } from "hooks/useAppSelector";
+import DropMenu from "components/DropMenu";
+import ButtonCustom from "components/ButtonCustom";
+import SelectCustom from "components/SelectCustom";
+import { listRoles, listStatusActive, listStatusEmployees, listStatusUsingHappyTime, listTypeEmployees } from "utils/ListData";
+import InputCustom from "components/InputCustom";
 
 export const IndexControlPanel = () => {
   // STATE
   const { register, watch } = useForm({});
-  const { listIdInvitation } = useSelector((state) => state.employees);
-  const dispatch = useDispatch();
+  const { listIdInvitation } = useAppSelector((state) => state.employees);
+  const dispatch = useAppDispatch();
   // ******************************
 
   // HOOK EFFECT
@@ -39,7 +34,7 @@ export const IndexControlPanel = () => {
   // ******************************
 
   // ARROW FUNCTION
-  const handleExport = () => {};
+  const handleExport = () => { };
   const handleSendInvitation = () => {
     console.log("List id", listIdInvitation);
     toastify({ mess: "Gửi lời mời thành công", type: "success" });

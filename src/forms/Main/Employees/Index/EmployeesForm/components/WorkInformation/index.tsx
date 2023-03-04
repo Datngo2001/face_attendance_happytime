@@ -1,14 +1,10 @@
 import BusinessCenterRoundedIcon from "@mui/icons-material/BusinessCenterRounded";
-import CheckboxCustom from "../../../../../../../components/CheckboxCustom";
-import InputCustom from "../../../../../../../components/InputCustom";
-import InputDate from "../../../../../../../components/InputDate";
-import SelectCustom from "../../../../../../../components/SelectCustom";
-import {
-  jobPositionList,
-  listStatusEmployees,
-  listTypeEmployees,
-} from "../../../../../../../utils/ListData";
 import "./styles.scss";
+import InputCustom from "components/InputCustom";
+import InputDate from "components/InputDate";
+import CheckboxCustom from "components/CheckboxCustom";
+import SelectCustom from "components/SelectCustom";
+import { jobPositionList, listStatusEmployees, listTypeEmployees } from "utils/ListData";
 
 const WorkInformation = ({
   method,
@@ -70,8 +66,7 @@ const WorkInformation = ({
               id="doNotRequireTimekeeping"
               className="input-item checkbox"
               register={register}
-              label="Không yêu cầu chấm công"
-            />
+              label="Không yêu cầu chấm công" width={""} height={""} />
           </div>
           <div className="col">
             <SelectCustom

@@ -1,7 +1,21 @@
 import { useEffect, useState } from "react";
 import "./styles.scss";
 
-const InputNote = ({
+export type Props = {
+    id: string,
+    width: string,
+    height: string,
+    className?: string,
+    label: string,
+    maxLength?: number,
+    register: any,
+    setValue?: any,
+    required?: string,
+    placeholder: string,
+    message?: string,
+}
+
+const InputNote: React.FC<Props> = ({
     id,
     width,
     height,
@@ -20,7 +34,7 @@ const InputNote = ({
 
     // ARROW FUNCTIONS
     const getLengthTextarea = () => {
-        const textarea = document.getElementById(id);
+        const textarea: any = document.getElementById(id);
         return textarea.value.length;
     };
 
@@ -38,9 +52,8 @@ const InputNote = ({
                     </div>
                 )}
                 <div
-                    className={`input-note__container ${
-                        message && message[id] ? "error" : ""
-                    }`}
+                    className={`input-note__container ${message && message[id] ? "error" : ""
+                        }`}
                     style={{ width: width, height: height }}
                 >
                     <textarea

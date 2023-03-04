@@ -2,11 +2,11 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Divider } from "@mui/material";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import ButtonCustom from "../../../../components/ButtonCustom";
-import CheckboxCustom from "../../../../components/CheckboxCustom";
-import InputCustom from "../../../../components/InputCustom";
 import { schema } from "./handleForm";
 import "./styles.scss";
+import InputCustom from "components/InputCustom";
+import CheckboxCustom from "components/CheckboxCustom";
+import ButtonCustom from "components/ButtonCustom";
 
 const ChangePasswordForm = () => {
   // REACT HOOK FORM
@@ -18,7 +18,7 @@ const ChangePasswordForm = () => {
   // ****************************
 
   // HOOK EFFECT
-  useEffect(() => {}, []);
+  useEffect(() => { }, []);
   // ****************************
 
   // ARROW FUNCTIONS
@@ -81,8 +81,7 @@ const ChangePasswordForm = () => {
             <CheckboxCustom
               id="logoutFromAllOfDevices"
               label="Đăng xuất khỏi tất cả các thiết bị"
-              register={register}
-            />
+              register={register} />
           </div>
         </div>
       </div>

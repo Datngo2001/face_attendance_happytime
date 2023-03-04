@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import InputCustom from "../../../../../../../../components/InputCustom";
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import "./styles.scss";
-import SelectCustom from "../../../../../../../../components/SelectCustom";
-import { listStatusActive } from "../../../../../../../../utils/ListData";
+import InputCustom from "components/InputCustom";
+import SelectCustom from "components/SelectCustom";
+import { listStatusActive } from "utils/ListData";
 
 const ControlPanel = () => {
   // REACT HOOK FORM

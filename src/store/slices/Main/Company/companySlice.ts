@@ -6,6 +6,10 @@ import {
 import { reducersUpdateStatusState } from "./actions/reducers";
 
 export type CompanyInfo = {
+  _id: string;
+  avatar: string;
+  status: string;
+  scale: string;
   company_name: string;
   company_shorthand: string;
   website: string;

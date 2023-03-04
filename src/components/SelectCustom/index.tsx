@@ -14,9 +14,9 @@ export type Props = {
     register?: any;
     onChange?: any;
     className?: string;
-    message?: string;
+    message?: any;
     placeholder?: string;
-    defaultValue?: string;
+    defaultValue?: string | number;
     options: SelectBoxOption[];
     setValue?: any;
     label?: string;
@@ -26,7 +26,7 @@ export type Props = {
 }
 
 export type SelectBoxOption = {
-    id: string;
+    id: string | number;
     name: string;
 }
 

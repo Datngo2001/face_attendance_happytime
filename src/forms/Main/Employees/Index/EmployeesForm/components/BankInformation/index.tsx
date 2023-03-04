@@ -1,6 +1,6 @@
 import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
-import InputCustom from "../../../../../../../components/InputCustom";
 import "./styles.scss";
+import InputCustom from "components/InputCustom";
 
 const BankInformation = ({ register, setValue, errors }) => {
   return (

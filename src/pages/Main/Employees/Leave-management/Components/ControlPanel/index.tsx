@@ -1,8 +1,8 @@
-import InputCustom from "../../../../../../components/InputCustom";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import "./styles.scss";
-import SelectCustom from "../../../../../../components/SelectCustom";
 import { departmentList, positionList } from "./data";
+import InputCustom from "components/InputCustom";
+import SelectCustom from "components/SelectCustom";
 
 const ControlPanel = ({ register }) => {
   return (

@@ -1,15 +1,15 @@
 import "./styles.scss";
 import { useForm } from "react-hook-form";
-import InputCustom from "../../../components/InputCustom";
 import LocalPhoneRoundedIcon from "@mui/icons-material/LocalPhoneRounded";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import { Link } from "react-router-dom";
-import Footer from "../../../components/Footer";
-import ButtonCustom from "../../../components/ButtonCustom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "./handleForm";
 import { useEffect } from "react";
-import { focusToElement } from "../../../utils";
+import { focusToElement } from "utils";
+import InputCustom from "components/InputCustom";
+import ButtonCustom from "components/ButtonCustom";
+import { Footer } from "antd/es/layout/layout";
 
 const ForgotPasswordForm = () => {
   // STATE
@@ -56,7 +56,7 @@ const ForgotPasswordForm = () => {
           </ButtonCustom>
         </div>
       </form>
-      <Footer type="2" />
+      <Footer itemType="2" />
     </>
   );
 };

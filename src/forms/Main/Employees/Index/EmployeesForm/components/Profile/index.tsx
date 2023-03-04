@@ -1,14 +1,10 @@
 import AccountBoxRoundedIcon from "@mui/icons-material/AccountBoxRounded";
-import InputCustom from "../../../../../../../components/InputCustom";
-import InputDate from "../../../../../../../components/InputDate";
-import InputFile from "../../../../../../../components/InputFile";
-import SelectCustom from "../../../../../../../components/SelectCustom";
-import {
-  listEducation,
-  listGender,
-  listMarriedStatus,
-} from "../../../../../../../utils/ListData";
 import "./styles.scss";
+import InputFile from "components/InputFile";
+import InputCustom from "components/InputCustom";
+import SelectCustom from "components/SelectCustom";
+import InputDate from "components/InputDate";
+import { listEducation, listGender, listMarriedStatus } from "utils/ListData";
 
 const Profile = ({
   register,
@@ -84,7 +80,8 @@ const Profile = ({
               defaultValue={graduationDate}
               message={errors}
               trigger={trigger}
-            />
+              register={undefined}
+              errors={undefined} />
           </div>
           <div className="col">
             <InputCustom
@@ -183,8 +180,7 @@ const Profile = ({
               register={register}
               setValue={setValue}
               defaultValue={birthDate}
-              errors={errors}
-            />
+              errors={errors} />
             <InputCustom
               id="personalEmail"
               name="personalEmail"
@@ -206,8 +202,7 @@ const Profile = ({
               setValue={setValue}
               defaultValue={supplyDate}
               errors={errors}
-              trigger={trigger}
-            />
+              trigger={trigger} name={""} />
             <InputCustom
               id="personalTaxCode"
               name="personalTaxCode"

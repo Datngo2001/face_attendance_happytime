@@ -1,18 +1,19 @@
 import "./styles.scss";
 import { useForm } from "react-hook-form";
-import InputCustom from "../../../components/InputCustom";
 import LocalPhoneRoundedIcon from "@mui/icons-material/LocalPhoneRounded";
 import LockIcon from "@mui/icons-material/Lock";
 import { Link, useNavigate } from "react-router-dom";
-import ButtonCustom from "../../../components/ButtonCustom";
-import Footer from "../../../components/Footer";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "./handleForm";
 import { useEffect } from "react";
-import { focusToElement } from "../../../utils";
-import { useDispatch, useSelector } from "react-redux";
-import * as loginActions from "../../../store/slices/Authentication/Login/loginActions";
-import { updateStatusState } from "../../../store/slices/Authentication/authSlice";
+import { useAppSelector } from "hooks/useAppSelector";
+import { useAppDispatch } from "hooks/useAppDispatch";
+import { focusToElement } from "utils";
+import { updateStatusState } from "store/slices/Authentication/authSlice";
+import InputCustom from "components/InputCustom";
+import ButtonCustom from "components/ButtonCustom";
+import { Footer } from "antd/es/layout/layout";
+import { extraReducersLogin } from "store/slices/Authentication/Login/loginActions";
 
 const LoginForm = () => {
   // STATE
@@ -24,8 +25,8 @@ const LoginForm = () => {
   const navigate = useNavigate();
 
   // HOOK REDUX TOOLKIT
-  const dispatch = useDispatch();
-  const { status } = useSelector((state) => state.auth);
+  const dispatch = useAppDispatch();
+  const { status } = useAppSelector((state) => state.auth);
   // ****************************
 
   const onSubmit = (data) => {
@@ -33,7 +34,7 @@ const LoginForm = () => {
       phone_number: data.phone,
       password: data.password,
     };
-    dispatch(loginActions.extraReducersLogin(dataSubmit));
+    dispatch(extraReducersLogin(dataSubmit));
   };
   // ******************************
 
@@ -43,9 +44,9 @@ const LoginForm = () => {
   // HOOK EFFECT
   useEffect(() => {
     const formLogin = document.querySelector(".login-form__wrapper");
-    formLogin.addEventListener("keypress", (e) => {
+    formLogin.addEventListener("keypress", (e: any) => {
       if (e.key === "Enter") {
-        document.querySelector(".btn-login").click();
+        // document.querySelector(".btn-login").click();
       }
     });
 
@@ -53,9 +54,9 @@ const LoginForm = () => {
 
     // CLEAN FUNCTION
     return () => {
-      formLogin.removeEventListener("keypress", (e) => {
+      formLogin.removeEventListener("keypress", (e: any) => {
         if (e.key === "Enter") {
-          document.querySelector(".btn-login").click();
+          // document.querySelector(".btn-login").click();
         }
       });
     };
@@ -72,7 +73,7 @@ const LoginForm = () => {
 
   return (
     <>
-      <div action="" className="login-form__wrapper">
+      <div className="login-form__wrapper">
         <h2 className="login-form__title">Đăng nhập</h2>
         <InputCustom
           id="phone"
@@ -116,7 +117,7 @@ const LoginForm = () => {
           </Link>
         </div>
       </div>
-      <Footer type="2" />
+      <Footer itemType="2" />
     </>
   );
 };

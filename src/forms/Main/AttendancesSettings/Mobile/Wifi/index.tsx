@@ -1,11 +1,13 @@
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import ButtonCustom from "../../../../../components/ButtonCustom";
-import InputCustom from "../../../../../components/InputCustom";
-import { extraReducersCreateIPWifi } from "../../../../../store/slices/Main/Attendance-settings/actions/extraReducers";
-import { updateStatusState } from "../../../../../store/slices/Main/Attendance-settings/attendanceSettingsSlice";
 import "./styles.scss";
+import { useAppSelector } from "hooks/useAppSelector";
+import { useAppDispatch } from "hooks/useAppDispatch";
+import { updateStatusState } from "store/slices/Authentication/authSlice";
+import { extraReducersCreateIPWifi } from "store/slices/Main/Attendance-settings/actions/extraReducers";
+import InputCustom from "components/InputCustom";
+import ButtonCustom from "components/ButtonCustom";
 
 const WifiAddingForm = ({ method, setOpen }) => {
   // REACT HOOK FORM
@@ -13,12 +15,12 @@ const WifiAddingForm = ({ method, setOpen }) => {
   // ****************************
 
   // REDUX TOOLKIT
-  const { status } = useSelector((state) => state.attendanceSettings);
-  const dispatch = useDispatch();
+  const { status } = useAppSelector((state) => state.attendanceSettings);
+  const dispatch = useAppDispatch();
   // ****************************
 
   // HOOK EFFECT
-  useEffect(() => {
+  useEffect((): any => {
     if (status === "success") {
       setOpen(false);
     }

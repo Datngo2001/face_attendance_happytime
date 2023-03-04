@@ -2,24 +2,22 @@ import { Link, useNavigate } from "react-router-dom";
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import "./styles.scss";
-import InputFile from "../../../../../components/InputFile";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "./handleForm";
-import InputCustom from "../../../../../components/InputCustom";
-import SelectCustom from "../../../../../components/SelectCustom";
-import ButtonCustom from "../../../../../components/ButtonCustom";
-import InputNote from "../../../../../components/InputNote";
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import LoadingCustom from "../../../../../components/LoadingCustom";
-import {
-  extraReducersGetInfoCompany,
-  extraReducersUpdateInfoCompany,
-} from "../../../../../store/slices/Main/Company/actions/extraReducers";
-import { updateStatusState } from "../../../../../store/slices/Main/Company/companySlice";
-import { listScales } from "../../../../../utils/ListData";
-import { uploadImgToFirebase } from "../../../../../utils/uploadImgToFirebase";
+import { useAppSelector } from "hooks/useAppSelector";
+import { extraReducersGetInfoCompany, extraReducersUpdateInfoCompany } from "store/slices/Main/Company/actions/extraReducers";
+import { useAppDispatch } from "hooks/useAppDispatch";
+import { updateStatusState } from "store/slices/Authentication/authSlice";
+import { uploadImgToFirebase } from "utils/uploadImgToFirebase";
+import LoadingCustom from "components/LoadingCustom";
+import InputFile from "components/InputFile";
+import InputCustom from "components/InputCustom";
+import SelectCustom from "components/SelectCustom";
+import { listScales } from "utils/ListData";
+import InputNote from "components/InputNote";
+import ButtonCustom from "components/ButtonCustom";
 
 const ChangeInfoForm = () => {
   // REACT HOOK FORM
@@ -39,14 +37,14 @@ const ChangeInfoForm = () => {
   //****************************
 
   // HOOK REACT TOOLKIT
-  const { infoOfCompany, status, loading } = useSelector(
+  const { infoOfCompany, status, loading } = useAppSelector(
     (state) => state.company
   );
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   // ****************************
 
   // HOOK EFFECT
-  useEffect(() => {
+  useEffect((): any => {
     dispatch(extraReducersGetInfoCompany());
   }, []);
 
@@ -226,16 +224,13 @@ const ChangeInfoForm = () => {
               />
               <InputNote
                 id="mainBaseAddress"
-                name="mainBaseAddress"
                 label="Địa chỉ trụ sở chính"
                 register={register}
                 placeholder="Nhập địa chỉ trụ sở chính"
                 width="300px"
-                height="128px"
-              />
+                height="128px" />
               <InputNote
                 id="introBusiness"
-                name="introBusiness"
                 label="Giới thiệu doanh nghiệp"
                 register={register}
                 placeholder="Nhập giới thiệu doanh nghiệp"

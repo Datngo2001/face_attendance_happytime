@@ -16,12 +16,13 @@ import { schema } from "./handleForm";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { focusToElement } from "../../../utils";
 import SelectCustom from "../../../components/SelectCustom";
-import { useDispatch, useSelector } from "react-redux";
 import FormatShapesRoundedIcon from "@mui/icons-material/FormatShapesRounded";
 import { listPositions, listScales } from "../../../utils/ListData";
 import * as auth from "../../../auth/index";
 import * as registerActions from "../../../store/slices/Authentication/Register/registerActions";
 import { updateStatusState } from "../../../store/slices/Authentication/authSlice";
+import { useAppDispatch } from "hooks/useAppDispatch";
+import { useAppSelector } from "hooks/useAppSelector";
 
 const RegisterForm = () => {
   // VARIABLES
@@ -40,19 +41,19 @@ const RegisterForm = () => {
   // ************************************************************
 
   // HOOK REACT TOOLKIT
-  const { loading, status } = useSelector((state) => state.auth);
+  const { loading, status } = useAppSelector((state) => state.auth);
   // ****************************
 
   // HOOK REDUX TOOLKIT
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   // ****************************
 
   // EFFECT
   useEffect(() => {
     const formRegister = document.querySelector(".register-form__wrapper");
-    formRegister.addEventListener("keypress", (e) => {
+    formRegister.addEventListener("keypress", (e: any) => {
       if (e.key === "Enter") {
-        document.querySelector(".btn-register").click();
+        // document.querySelector(".btn-register").click();
       }
     });
 
@@ -60,9 +61,9 @@ const RegisterForm = () => {
 
     // CLEAN FUNCTION
     return () => {
-      formRegister.removeEventListener("keypress", (e) => {
+      formRegister.removeEventListener("keypress", (e: any) => {
         if (e.key === "Enter") {
-          document.querySelector(".btn-register").click();
+          // document.querySelector(".btn-register").click();
         }
       });
     };
@@ -217,7 +218,6 @@ const RegisterForm = () => {
           Đồng ý với{" "}
           <a
             href="https://www.happytimeapp.vn/dieu-khoan-su-dung"
-            alt=""
             target="_blank"
             rel="noreferrer"
           >
@@ -226,7 +226,6 @@ const RegisterForm = () => {
           và
           <a
             href="https://www.happytimeapp.vn/chinh-sach-bao-mat"
-            alt=""
             target="_blank"
             rel="noreferrer"
           >

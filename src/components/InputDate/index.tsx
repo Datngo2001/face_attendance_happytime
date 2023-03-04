@@ -6,6 +6,9 @@ import "./styles.scss";
 
 export type Props = {
   id: string,
+  name?: string,
+  register?: any,
+  errors?: any,
   className?: string,
   height?: string,
   width?: string,
@@ -14,12 +17,14 @@ export type Props = {
   placeholder?: string,
   required?: Boolean,
   message?: string,
-  trigger: any,
+  trigger?: any,
   defaultValue?: string,
 };
 
 const InputDate: React.FC<Props> = ({
   id,
+  name,
+  register,
   className,
   height,
   width,

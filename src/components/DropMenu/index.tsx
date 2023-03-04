@@ -1,9 +1,16 @@
 import Box from "@mui/material/Box";
 import Menu from "@mui/material/Menu";
-import { useState } from "react";
+import React, { useState } from "react";
 import "./styles.scss";
 
-const DropMenu = ({ parent, children, mt, ml }) => {
+export type Props = {
+    parent?: any;
+    children?: any;
+    mt?: any;
+    ml?: any;
+}
+
+const DropMenu: React.FC<Props> = ({ parent, children, mt, ml }) => {
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {

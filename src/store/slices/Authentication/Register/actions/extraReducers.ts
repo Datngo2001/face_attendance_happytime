@@ -4,7 +4,7 @@ import { toastPromise } from "utils";
 
 export const extraReducersRegister = createAsyncThunk(
   "register",
-  async (data) => {
+  async (data: any) => {
     const promise = api
       .post("/auth/register", data)
       .then((response: any) => {

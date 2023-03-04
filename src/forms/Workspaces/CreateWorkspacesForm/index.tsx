@@ -1,13 +1,13 @@
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Link } from "react-router-dom";
 import "./styles.scss";
-import InputCustom from "../../../components/InputCustom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Divider } from "@mui/material";
-import ButtonCustom from "../../../components/ButtonCustom";
-import InputFile from "../../../components/InputFile";
 import { schema } from "./handleForm";
+import InputFile from "components/InputFile";
+import InputCustom from "components/InputCustom";
+import ButtonCustom from "components/ButtonCustom";
 
 const CreateWorkspacesForm = () => {
   const {

@@ -2,13 +2,13 @@ import { Divider, Tooltip } from "@mui/material";
 import ErrorOutlineOutlinedIcon from "@mui/icons-material/ErrorOutlineOutlined";
 import "./styles.scss";
 import "../index.scss";
-import ButtonCustom from "../../../../components/ButtonCustom";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import InputCustom from "../../../../components/InputCustom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "./handleForm";
-import InputFile from "../../../../components/InputFile";
+import InputFile from "components/InputFile";
+import InputCustom from "components/InputCustom";
+import ButtonCustom from "components/ButtonCustom";
 
 const InfoForm = () => {
   // HOOK FORM
@@ -21,7 +21,7 @@ const InfoForm = () => {
   // ****************************
 
   // HOOK EFFECT
-  useEffect(() => {}, []);
+  useEffect(() => { }, []);
   // ****************************
 
   // ARROW FUNCTIONS

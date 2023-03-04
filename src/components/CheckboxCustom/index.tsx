@@ -2,11 +2,11 @@ import "./styles.scss";
 
 export type Props = {
     id: string;
-    className: string;
+    className?: string;
     label: string;
     register: any;
-    width: string;
-    height: string;
+    width?: string;
+    height?: string;
 }
 
 const CheckboxCustom: React.FC<Props> = ({ id, className, label, register, width, height }) => {

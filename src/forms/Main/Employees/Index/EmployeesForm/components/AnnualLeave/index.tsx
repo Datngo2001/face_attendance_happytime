@@ -1,6 +1,6 @@
 import CalendarMonthRoundedIcon from "@mui/icons-material/CalendarMonthRounded";
-import InputCustom from "../../../../../../../components/InputCustom";
 import "./styles.scss";
+import InputCustom from "components/InputCustom";
 
 const AnnualLeave = ({ register, setValue, errors }) => {
   return (

@@ -1,14 +1,14 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import ButtonCustom from "../../../components/ButtonCustom";
-import ButtonSwitchCustom from "../../../components/ButtonSwitchCustom";
-import InputCustom from "../../../components/InputCustom";
-import InputFile from "../../../components/InputFile";
-import ModalCustom from "../../../components/ModalCustom";
 import { ActivedStatusContent, DisabledStatusContent } from "./components";
 import { schema } from "./handleForm";
 import "./styles.scss";
+import InputFile from "components/InputFile";
+import ButtonSwitchCustom from "components/ButtonSwitchCustom";
+import ModalCustom from "components/ModalCustom";
+import InputCustom from "components/InputCustom";
+import ButtonCustom from "components/ButtonCustom";
 
 const WorkspaceSettingsForm = () => {
   // REACT HOOK FORM
@@ -25,7 +25,7 @@ const WorkspaceSettingsForm = () => {
   // ****************************
 
   // HOOK EFFECT (CALL API)
-  useEffect(() => {}, []);
+  useEffect(() => { }, []);
   // ****************************
 
   // HOOK EFFECT (SET VALUE FOR FORM)
@@ -69,7 +69,7 @@ const WorkspaceSettingsForm = () => {
               <ButtonSwitchCustom
                 id="activeStatus"
                 checked={activeStatus}
-                setChecked={setActiveStatus}
+                setValue={setActiveStatus}
               />
               {activeStatus ? (
                 <p className="status-des actived">Đang hoạt động</p>
@@ -83,8 +83,7 @@ const WorkspaceSettingsForm = () => {
                 btnJustifyContent="right"
                 titleBtnAccept="Đồng ý"
                 divider={true}
-                callback={activeStatus ? handleDisableStatus : handleActStatus}
-              >
+                callback={activeStatus ? handleDisableStatus : handleActStatus} state={false} setState={undefined}              >
                 {activeStatus ? (
                   <DisabledStatusContent />
                 ) : (

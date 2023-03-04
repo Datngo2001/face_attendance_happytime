@@ -1,17 +1,18 @@
 import { Link, useNavigate } from "react-router-dom";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import { schema } from "./handleForm";
-import InputCustom from "../../../components/InputCustom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import "./styles.scss";
-import ButtonCustom from "../../../components/ButtonCustom";
 import LockIcon from "@mui/icons-material/Lock";
 import { useEffect } from "react";
 import { focusToElement } from "../../../utils";
-import { useDispatch, useSelector } from "react-redux";
-import { updateStatusState } from "../../../store/slices/Authentication/authSlice";
-import * as registerActions from "../../../store/slices/Authentication/Register/registerActions";
+import { useAppSelector } from "hooks/useAppSelector";
+import { useAppDispatch } from "hooks/useAppDispatch";
+import { updateStatusState } from "store/slices/Authentication/authSlice";
+import { extraReducersRegister } from "store/slices/Authentication/Register/registerActions";
+import InputCustom from "components/InputCustom";
+import ButtonCustom from "components/ButtonCustom";
 
 const SetPasswordForm = () => {
   // STATE
@@ -26,8 +27,8 @@ const SetPasswordForm = () => {
   // ******************************
 
   // HOOK REACT TOOLKIT
-  const { status } = useSelector((state) => state.auth);
-  const dispatch = useDispatch();
+  const { status } = useAppSelector((state) => state.auth);
+  const dispatch = useAppDispatch();
   // ****************************
 
   // HOOK ROUTER DOM
@@ -39,7 +40,7 @@ const SetPasswordForm = () => {
     focusToElement("password");
   }, []);
 
-  useEffect(() => {
+  useEffect((): any => {
     if (status) {
       navigate("../login", { replace: true });
     }
@@ -64,7 +65,7 @@ const SetPasswordForm = () => {
     };
 
     console.log("dataSubmit", dataSubmit);
-    dispatch(registerActions.extraReducersRegister(dataSubmit));
+    dispatch(extraReducersRegister(dataSubmit));
   };
   // ****************************
   return (

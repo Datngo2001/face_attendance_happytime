@@ -1,14 +1,14 @@
-import InputCustom from "../../../../../../../../components/InputCustom";
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import "./styles.scss";
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
-import { listStatusActive } from "../../../../../../../../utils/ListData";
-import SelectCustom from "../../../../../../../../components/SelectCustom";
-import ButtonCustom from "../../../../../../../../components/ButtonCustom";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
-import ModalCustom from "../../../../../../../../components/ModalCustom";
-import { WifiAddingForm } from "../../../../../../../../forms/Main/AttendancesSettings";
+import InputCustom from "components/InputCustom";
+import SelectCustom from "components/SelectCustom";
+import { listStatusActive } from "utils/ListData";
+import ButtonCustom from "components/ButtonCustom";
+import ModalCustom from "components/ModalCustom";
+import { WifiAddingForm } from "forms/Main/AttendancesSettings";
 
 const ControlPanel = () => {
   // REACT HOOK FORM
@@ -60,8 +60,7 @@ const ControlPanel = () => {
           idTarget="addBtn"
           footer={false}
           state={open}
-          setState={setOpen}
-        >
+          setState={setOpen} callback={undefined}>
           <WifiAddingForm method="create" setOpen={setOpen} />
         </ModalCustom>
       </div>
