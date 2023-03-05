@@ -1,20 +1,16 @@
-import React, { useEffect, useRef } from 'react'
+import React from 'react'
 import './styles.scss'
-import InputCustom from 'components/InputCustom'
 import FormSwitchCustom from 'components/ButtonSwitchCustom/FormSwitchCustom'
 import { Stack } from '@mui/material'
-import { Controller, useForm } from 'react-hook-form'
-import { TypeName } from '../../CreateShiftForm'
+import { TypeName } from '../../ShiftForm'
 import TimePickerCustom from 'components/InputTime/TimePickerCustom'
-import TimeBlockConfig from '../TimeBlockConfig'
 
 export type Props = {
-    register: any
     typeName: TypeName
     control: any
 }
 
-const LateConfig: React.FC<Props> = ({ register, typeName, control }) => {
+const LateConfig: React.FC<Props> = ({ typeName, control }) => {
     return (
         <div className='LateConfig__wrapper'>
             <div className='title'>
@@ -46,14 +42,6 @@ const LateConfig: React.FC<Props> = ({ register, typeName, control }) => {
                             control={control} />
                     </>
                 )}
-                {/* <Controller
-                    control={control}
-                    name="config_in_late.time"
-                    render={({
-                        field: { onChange, value },
-                    }) => (
-                        <TimeBlockConfig radioName="config_in_late.time" onChange={onChange} value={value} />
-                    )} /> */}
             </Stack>
         </div>
     )

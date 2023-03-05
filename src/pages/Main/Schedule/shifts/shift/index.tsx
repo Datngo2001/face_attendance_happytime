@@ -5,7 +5,7 @@ import "../styles.scss"
 import { useAppSelector } from 'hooks/useAppSelector';
 import { extraReducersGetListShiftTypes } from 'store/slices/Main/Shifts/actions/extraReducers';
 import { useAppDispatch } from 'hooks/useAppDispatch';
-import ShiftForm from 'forms/Main/Schedule/CreateShiftForm';
+import ShiftForm from 'forms/Main/Schedule/ShiftForm';
 import { FormAction } from 'forms/formAction';
 
 const ShiftPage: React.FC = () => {

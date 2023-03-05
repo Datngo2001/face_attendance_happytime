@@ -12,7 +12,7 @@ const TimeBlockConfig: React.FC<Props> = ({ onChange, value, radioName }) => {
     const redioMinuteId = useMemo(() => `${radioName}_minute`, [radioName])
     const redioBlockId = useMemo(() => `${radioName}_block`, [radioName])
 
-    const { register: blockRegister, watch, getValues } = useForm({ defaultValues: { block: 10 } });
+    const { control, watch, getValues } = useForm({ defaultValues: { block: 10 } });
 
     useEffect(() => {
         onChange(getValues("block"))
@@ -47,9 +47,7 @@ const TimeBlockConfig: React.FC<Props> = ({ onChange, value, radioName }) => {
                     width='50px'
                     name="block"
                     type='number'
-                    min="1"
-                    max="60"
-                    register={blockRegister} />
+                    control={control} />
                 <label htmlFor="block">
                     phút
                 </label>

@@ -12,15 +12,16 @@ export type Props = {
 }
 
 const CreateShiftModal: React.FC<Props> = ({ state, setState }) => {
-    const { register, getValues } = useForm()
     const navigate = useNavigate()
-
-    // HOOK REACT TOOLKIT
     const { listOfShiftType } = useAppSelector(
         (state) => state.shifts
     );
+    const { control, getValues } = useForm({
+        defaultValues: {
+            shiftType: listOfShiftType[0]?._id
+        }
+    })
     const dispatch = useAppDispatch();
-    // ******************************
 
     const handleSubmit = () => {
         let { shiftType } = getValues()
@@ -41,8 +42,7 @@ const CreateShiftModal: React.FC<Props> = ({ state, setState }) => {
                 <p style={{ textAlign: "left", marginBottom: "20px" }}>Chọn loại ca làm việc</p>
                 <RadioGroupCustom
                     name='shiftType'
-                    register={register}
-                    defaultValue={listOfShiftType[0]?._id}
+                    control={control}
                     items={listOfShiftType.map(type => ({ value: type._id, label: type.schedule_name }))} />
             </div>
         </ModalCustom>

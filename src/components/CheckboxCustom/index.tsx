@@ -1,30 +1,42 @@
+import { Controller } from "react-hook-form";
 import "./styles.scss";
 
 export type Props = {
-    id: string;
+    name: string;
     className?: string;
     label: string;
-    register: any;
+    control: any;
     width?: string;
     height?: string;
 }
 
-const CheckboxCustom: React.FC<Props> = ({ id, className, label, register, width, height }) => {
+const CheckboxCustom: React.FC<Props> = ({ name, className, label, control, width, height }) => {
     return (
-        <>
-            <div className={`checkbox-custom__wrapper ${className ? className : ""}`}>
-                <input
-                    id={id}
-                    className="checkbox"
-                    style={{ width: width, height: height }}
-                    type="checkbox"
-                    {...register(id)}
-                />
-                <div className="label">
-                    <label htmlFor={id}>{label}</label>
+        <Controller
+            control={control}
+            name={name}
+            render={({
+                field: { onChange, onBlur, value, name, ref },
+                fieldState: { error },
+            }) => (
+                <div className={`checkbox-custom__wrapper ${className ? className : ""}`}>
+                    <input
+                        id={name}
+                        className="checkbox"
+                        style={{ width: width, height: height }}
+                        type="checkbox"
+                        name={name}
+                        onChange={onChange}
+                        value={value}
+                        onBlur={onBlur}
+                        ref={ref}
+                    />
+                    <div className="label">
+                        <label htmlFor={name}>{label}</label>
+                    </div>
                 </div>
-            </div>
-        </>
+            )}
+        />
     );
 };
 

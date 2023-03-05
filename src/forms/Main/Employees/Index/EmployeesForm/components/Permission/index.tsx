@@ -3,12 +3,14 @@ import SelectCustom from "../../../../../../../components/SelectCustom";
 import { listRoles } from "../../../../../../../utils/ListData";
 import "./styles.scss";
 
-const Permission = ({
-  register,
-  setValue,
-  errors,
+export type Props = {
+  control: any,
+  manipulationRight: any,
+}
+
+const Permission: React.FC<Props> = ({
+  control,
   manipulationRight,
-  method,
 }) => {
   return (
     <>
@@ -27,11 +29,9 @@ const Permission = ({
               className="input-item"
               label="Quyền thao tác"
               options={listRoles}
-              register={register}
+              control={control}
               placeholder="Quyền thao tác"
-              message={errors}
               defaultValue={manipulationRight}
-              setValue={setValue}
             />
           </div>
           <div className="col"></div>

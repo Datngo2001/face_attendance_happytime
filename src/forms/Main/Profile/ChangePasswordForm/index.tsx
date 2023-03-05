@@ -11,9 +11,8 @@ import ButtonCustom from "components/ButtonCustom";
 const ChangePasswordForm = () => {
   // REACT HOOK FORM
   const {
-    register,
+    control,
     handleSubmit,
-    formState: { errors },
   } = useForm({ resolver: yupResolver(schema), mode: "onChange" });
   // ****************************
 
@@ -37,14 +36,12 @@ const ChangePasswordForm = () => {
               Mật khẩu hiện tại<span> *</span>
             </label>
             <InputCustom
-              id="oldPassword"
               name="oldPassword"
               required={true}
               type="password"
               width="300px"
-              register={register}
+              control={control}
               placeholder="Nhập mật khẩu hiện tại"
-              message={errors}
             />
           </div>
           <div className="field-control">
@@ -52,14 +49,12 @@ const ChangePasswordForm = () => {
               Mật khẩu mới<span> *</span>
             </label>
             <InputCustom
-              id="newPassword"
               name="newPassword"
               required={true}
               type="password"
               width="300px"
-              register={register}
+              control={control}
               placeholder="Nhập mật khẩu mới"
-              message={errors}
             />
           </div>
           <div className="field-control">
@@ -67,21 +62,19 @@ const ChangePasswordForm = () => {
               Xác nhận lại mật khẩu mới<span> *</span>
             </label>
             <InputCustom
-              id="confirmNewPassword"
               name="confirmNewPassword"
               required={true}
               type="password"
               width="300px"
-              register={register}
+              control={control}
               placeholder="Xác nhận lại mật khẩu mới"
-              message={errors}
             />
           </div>
           <div className="checbox-control">
             <CheckboxCustom
-              id="logoutFromAllOfDevices"
+              name="logoutFromAllOfDevices"
               label="Đăng xuất khỏi tất cả các thiết bị"
-              register={register} />
+              control={control} />
           </div>
         </div>
       </div>

@@ -8,6 +8,7 @@ import FeatureAccessTable from './components/FeatureAccessTable'
 import { Stack } from '@mui/system'
 import { PermissionFormContext } from "./context"
 import PermissionVisual from './components/PermissionVisual'
+import InputNote from 'components/InputNote'
 
 export type Props = {
     method: FormMethod
@@ -23,12 +24,7 @@ const PermissionForm: React.FC<Props> = ({ method }) => {
     const [tableRows, setTableRows] = useState([]);
 
     const {
-        register,
-        handleSubmit,
-        setValue,
-        setError,
-        trigger,
-        formState: { errors },
+        control
     } = useForm({
         mode: "onChange",
     });
@@ -43,22 +39,20 @@ const PermissionForm: React.FC<Props> = ({ method }) => {
             <div className="permission-form__wrapper">
                 <Stack className='inputs' spacing={3}>
                     <InputCustom
-                        id='permissionName'
                         name="permissionName"
-                        register={register}
+                        control={control}
                         label='Vai trò'
                         placeholder='Nhập tên vai trò. VD: Admin'
                     />
-                    <InputCustom
-                        id='permissionDescription'
+                    <InputNote
                         name="permissionDescription"
-                        register={register}
+                        control={control}
                         label='Mô Tả'
                         placeholder='Nhập mô tả về vai trò'
-                        height='150px'
-                        isTextArea
+                        height='' width=''
+                        maxLength={500}
                     />
-                    <FeatureAccessTable featureGroups={listFeatureGroup} />
+                    <FeatureAccessTable control={control} featureGroups={listFeatureGroup} />
                 </Stack>
                 <div className='visual'>
                     <div>

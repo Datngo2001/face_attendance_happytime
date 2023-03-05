@@ -7,12 +7,12 @@ import InputCustom from "components/InputCustom";
 import InputDate from "components/InputDate";
 
 export type Props = {
-  register: any;
+  control: any;
   setValue: any;
   trigger: any;
 }
 
-const ControlPanel: React.FC<Props> = ({ register, setValue, trigger }) => {
+const ControlPanel: React.FC<Props> = ({ control, setValue, trigger }) => {
   // VARIABLES
   const today = dayjs(new Date().toString()).format("DD/MM/YYYY");
   return (
@@ -31,9 +31,8 @@ const ControlPanel: React.FC<Props> = ({ register, setValue, trigger }) => {
         </div>
         <div className="attendances--summary--control-panel__body">
           <InputCustom
-            id="searchData"
             name="searchData"
-            register={register}
+            control={control}
             placeholder="Nhập tên nhân viên, mã nhân viên"
             iconRight={<SearchRoundedIcon />}
           />

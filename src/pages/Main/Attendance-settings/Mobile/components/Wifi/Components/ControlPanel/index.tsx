@@ -12,7 +12,7 @@ import { WifiAddingForm } from "forms/Main/AttendancesSettings";
 
 const ControlPanel = () => {
   // REACT HOOK FORM
-  const { register, watch } = useForm({});
+  const { control, watch } = useForm({});
   // ****************************
 
   // HOOK STATE
@@ -30,10 +30,9 @@ const ControlPanel = () => {
     <>
       <div className="attendance-settings--mobile-wifi__control-panel">
         <InputCustom
-          id="dataSearch"
           name="dataSearch"
           width="100%"
-          register={register}
+          control={control}
           placeholder="Tên IP Wi-Fi bạn muốn tìm"
           iconRight={<SearchRoundedIcon />}
         />
@@ -41,7 +40,7 @@ const ControlPanel = () => {
           <SelectCustom
             name="activeStatus"
             className="select-item"
-            register={register}
+            control={control}
             width="35%"
             placeholder="Trạng thái hoạt động"
             options={listStatusActive}

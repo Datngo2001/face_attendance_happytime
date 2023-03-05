@@ -5,7 +5,6 @@ import PersonIcon from "@mui/icons-material/Person";
 import { useEffect, useState } from "react";
 
 export type Props = {
-  id: string;
   name: string;
   className?: string;
   type?: number;
@@ -18,7 +17,6 @@ export type Props = {
 }
 
 const InputFile: React.FC<Props> = ({
-  id,
   name,
   className,
   type,
@@ -39,7 +37,7 @@ const InputFile: React.FC<Props> = ({
 
   // HOOK EFFECT
   useEffect(() => {
-    setValue(id, defaultValue);
+    setValue(name, defaultValue);
   }, []);
   // ****************************
 
@@ -52,7 +50,7 @@ const InputFile: React.FC<Props> = ({
         setImgSrc(x.target.result);
       };
       reader.readAsDataURL(imgFile);
-      setValue(id, imgFile);
+      setValue(name, imgFile);
     }
   };
   // ****************************
@@ -77,16 +75,16 @@ const InputFile: React.FC<Props> = ({
           )}
         </div>
         {type === 1 ? (
-          <label htmlFor={id} className="icon">
+          <label htmlFor={name} className="icon">
             <CameraAltIcon />
           </label>
         ) : (
-          <label htmlFor={id} className="btn">
+          <label htmlFor={name} className="btn">
             {title}
           </label>
         )}
         <input
-          id={id}
+          id={name}
           {...register(name)}
           onChange={handlePreviewFile}
           type="file"

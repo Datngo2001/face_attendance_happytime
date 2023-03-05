@@ -7,11 +7,11 @@ import SelectCustom from "components/SelectCustom";
 import { jobPositionList, listStatusEmployees, listTypeEmployees } from "utils/ListData";
 
 const WorkInformation = ({
+  control,
   method,
-  register,
+  errors,
   setValue,
   trigger,
-  errors,
   startWorkingDate,
   typeEmployee,
   employeeStatus,
@@ -27,15 +27,13 @@ const WorkInformation = ({
           <div className="col">
             {method === "update" && (
               <InputCustom
-                id="staffId"
                 name="staffId"
+                control={control}
                 disabled={true}
                 width="100%"
                 className="input-item"
                 label="Mã nhân viên"
-                register={register}
                 placeholder="Mã nhân viên"
-                message={errors}
               />
             )}
             {method === "update" ? (
@@ -63,10 +61,10 @@ const WorkInformation = ({
               />
             )}
             <CheckboxCustom
-              id="doNotRequireTimekeeping"
+              name="doNotRequireTimekeeping"
               className="input-item checkbox"
-              register={register}
-              label="Không yêu cầu chấm công" width={""} height={""} />
+              control={control}
+              label="Không yêu cầu chấm công" />
           </div>
           <div className="col">
             <SelectCustom
@@ -75,10 +73,9 @@ const WorkInformation = ({
               className="input-item"
               required={true}
               label="Phòng ban"
-              register={register}
+              control={control}
               placeholder="Phòng ban"
               options={jobPositionList}
-              message={errors}
             />
             <SelectCustom
               name="employeeStatus"
@@ -86,11 +83,9 @@ const WorkInformation = ({
               className="input-item"
               required={true}
               label="Trạng thái nhân sự"
-              register={register}
+              control={control}
               placeholder="Trạng thái nhân sự"
               options={listStatusEmployees}
-              message={errors}
-              setValue={setValue}
               defaultValue={employeeStatus}
             />
           </div>
@@ -100,10 +95,9 @@ const WorkInformation = ({
               width="100%"
               className="input-item"
               label="Chi nhánh làm việc"
-              register={register}
+              control={control}
               placeholder="Chi nhánh làm việc"
               options={listStatusEmployees}
-              message={errors}
             />
             {typeEmployee ? (
               <SelectCustom
@@ -112,11 +106,9 @@ const WorkInformation = ({
                 className="input-item"
                 label="Loại hình nhân sự"
                 required={true}
-                register={register}
+                control={control}
                 placeholder="Loại hình nhân sự"
                 options={listTypeEmployees}
-                message={errors}
-                setValue={setValue}
                 defaultValue={typeEmployee}
               />
             ) : (
@@ -126,10 +118,9 @@ const WorkInformation = ({
                 className="input-item"
                 label="Loại hình nhân sự"
                 required={true}
-                register={register}
+                control={control}
                 placeholder="Loại hình nhân sự"
                 options={listTypeEmployees}
-                message={errors}
               />
             )}
           </div>

@@ -7,6 +7,7 @@ import { PermissionFormContext } from '../../context'
 
 export type Props = {
     featureGroups: FeatureGroup[]
+    control: any
 }
 
 export type TableRow = {
@@ -18,7 +19,7 @@ export type TableRow = {
     allowAccessTypes: AccessEnum[];
 }
 
-const FeatureAccessTable: React.FC<Props> = ({ featureGroups }) => {
+const FeatureAccessTable: React.FC<Props> = ({ featureGroups, control }) => {
 
     const { tableRows, setTableRows } = useContext(PermissionFormContext)
 
@@ -55,7 +56,7 @@ const FeatureAccessTable: React.FC<Props> = ({ featureGroups }) => {
         <>
             <label>Cấp quyền truy cập</label>
             <DataGridCustom
-                columns={getColumns(handleOpenCloseFeature, onGroupAccessSelect, onFeatureAccessSelect)}
+                columns={getColumns(handleOpenCloseFeature, onGroupAccessSelect, onFeatureAccessSelect, control)}
                 rows={tableRows}
                 isRowSelectable={() => false}
                 getRowId={(row) => row.no}

@@ -14,9 +14,9 @@ const InfoForm = () => {
   // HOOK FORM
   const {
     register,
+    control,
     handleSubmit,
     setValue,
-    formState: { errors },
   } = useForm({ resolver: yupResolver(schema), mode: "onChange" });
   // ****************************
 
@@ -37,7 +37,6 @@ const InfoForm = () => {
         <div className="info-form__body">
           <div className="avatar">
             <InputFile
-              id="avatar"
               name="avatar"
               className="avatar-input"
               title="Đổi ảnh đại diện"
@@ -67,27 +66,23 @@ const InfoForm = () => {
             </div>
             <div className="field-control">
               <InputCustom
-                id="name"
                 name="name"
                 label="Họ và tên"
                 required={true}
                 width="300px"
                 type="text"
-                register={register}
+                control={control}
                 placeholder="Nhập họ và tên"
-                message={errors}
               />
             </div>
             <div className="field-control">
               <InputCustom
-                id="email"
                 name="email"
                 label="Email"
                 required={true}
                 width="300px"
-                register={register}
+                control={control}
                 placeholder="Nhập email"
-                message={errors}
               />
             </div>
           </div>

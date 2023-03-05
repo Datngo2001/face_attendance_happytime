@@ -12,6 +12,7 @@ import ButtonCustom from "components/ButtonCustom";
 const CreateWorkspacesForm = () => {
   const {
     register,
+    control,
     setValue,
     handleSubmit,
     formState: { errors },
@@ -31,7 +32,6 @@ const CreateWorkspacesForm = () => {
         <div className="create-workspaces-form__input-content">
           <div className="input-image">
             <InputFile
-              id="companyImg"
               name="companyImg"
               sizePreImg="100px"
               type={1}
@@ -42,12 +42,10 @@ const CreateWorkspacesForm = () => {
           </div>
           <div className="input-name">
             <InputCustom
-              id="companyName"
               name="companyName"
               className="name-company"
               placeholder="Tên workspace của bạn"
-              register={register}
-              message={errors}
+              control={control}
             />
           </div>
           <Divider className="divider" />

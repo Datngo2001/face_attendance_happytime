@@ -6,33 +6,28 @@ import dayjs from 'dayjs'
 import { dataFormat, viewFormat } from './default'
 
 export type Props = {
-    id?: string,
     from_name: string,
     to_name: string,
+    control: any,
     placeholder?: string,
     width?: string,
     height?: string,
-    control: any,
     className?: string,
     type?: string,
-    message?: string,
     label?: string,
     required?: boolean,
     labelWidth?: string,
-    handleOnClick?: React.MouseEventHandler<HTMLButtonElement>,
     disabled?: boolean,
 }
 
 const TimeRangeCustom: React.FC<Props> = ({
-    id,
     from_name,
     to_name,
     placeholder,
-    width,
-    height,
+    width = "",
+    height = "",
     control,
-    className,
-    message,
+    className = "",
     label,
     required = false,
     labelWidth,
@@ -41,8 +36,8 @@ const TimeRangeCustom: React.FC<Props> = ({
     return (
         <>
             <div
-                className={`TimeRangeCustom__wrapper ${className ? className : ""}`}
-                style={{ width: width ? width : "", height: height ? height : "" }}
+                className={`TimeRangeCustom__wrapper ${className}`}
+                style={{ width: width, height: height }}
             >
                 {label && (
                     <div
@@ -56,7 +51,7 @@ const TimeRangeCustom: React.FC<Props> = ({
                     </div>
                 )}
                 <div
-                    className={`container ${message && (message[from_name] || message[to_name]) ? "error" : ""}`}
+                    className={`container`}
                 >
                     <div className='inputGroup'>
                         <div className='fromLabel'>Từ</div>
@@ -96,7 +91,6 @@ const TimeRangeCustom: React.FC<Props> = ({
                             )}
                         />
                     </div>
-                    {message && <p className="error-message">{message[from_name]?.message ?? message[to_name]?.message}</p>}
                 </div>
             </div>
         </>

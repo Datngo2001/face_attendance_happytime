@@ -1,4 +1,3 @@
-import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import "./styles.scss";
 import "../index.scss";
@@ -12,25 +11,17 @@ import {
     WorkInformation,
 } from "./components";
 import { useEffect } from "react";
-import LoadingCustom from "../../../../../components/LoadingCustom";
-import { extraReducersGetInfoEmployeeById } from "../../../../../store/slices/Main/Employees/actions/extraReducers";
-import {
-    convertIdToName,
-    convertTimestampToString,
-} from "../../../../../utils/convertFunctions";
-import {
-    listEducation,
-    listGender,
-    listMarriedStatus,
-    listRoles,
-    listStatusEmployees,
-    listTypeEmployees,
-} from "../../../../../utils/ListData";
+import { useAppSelector } from "hooks/useAppSelector";
+import { useAppDispatch } from "hooks/useAppDispatch";
+import { extraReducersGetInfoEmployeeById } from "store/slices/Main/Employees/actions/extraReducers";
+import LoadingCustom from "components/LoadingCustom";
+import { convertIdToName, convertTimestampToString } from "utils/convertFunctions";
+import { listEducation, listGender, listMarriedStatus, listRoles, listStatusEmployees, listTypeEmployees } from "utils/ListData";
 
 const View = () => {
     // HOOK REACT TOOLKIT
-    const { loading, infoOfEmployee } = useSelector((state) => state.employees);
-    const dispatch = useDispatch();
+    const { loading, infoOfEmployee } = useAppSelector((state) => state.employees);
+    const dispatch = useAppDispatch();
     // *****************************
 
     // VARIABLES
@@ -82,8 +73,7 @@ const View = () => {
                             typeEmployee={convertIdToName({
                                 id: infoOfEmployee.agent_type,
                                 list: listTypeEmployees,
-                            })}
-                        />
+                            })} isRequiredTimekeeping={undefined} workBranch={undefined} />
                         <Profile
                             phoneNumber={infoOfEmployee.phone_number}
                             email={infoOfEmployee.personal_mail}

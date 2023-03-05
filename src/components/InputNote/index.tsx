@@ -1,73 +1,64 @@
-import { useEffect, useState } from "react";
 import "./styles.scss";
+import { Controller } from "react-hook-form";
 
 export type Props = {
-    id: string,
+    name: string,
+    control: any,
     width: string,
     height: string,
     className?: string,
-    label: string,
+    label?: string,
     maxLength?: number,
-    register: any,
     setValue?: any,
     required?: string,
-    placeholder: string,
-    message?: string,
+    placeholder?: string,
 }
 
 const InputNote: React.FC<Props> = ({
-    id,
-    width,
-    height,
-    className,
+    name,
+    control,
+    width = "",
+    height = "",
+    className = "",
     label,
     maxLength = 500,
-    register,
-    setValue,
-    required,
+    required = false,
     placeholder,
-    message,
 }) => {
-    // STATE
-    const [length, setLength] = useState(0);
-    // ****************************
-
-    // ARROW FUNCTIONS
-    const getLengthTextarea = () => {
-        const textarea: any = document.getElementById(id);
-        return textarea.value.length;
-    };
-
-    const handleOnChange = (e) => {
-        setLength(getLengthTextarea);
-    };
-    // ****************************
-
     return (
-        <>
-            <div className="input-note__wrapper">
-                {label && (
-                    <div className="input-note__label">
-                        <label htmlFor={id}>{label}</label>
+        <Controller
+            control={control}
+            name={name}
+            render={({
+                field: { onChange, onBlur, value, name, ref },
+                fieldState: { error },
+            }) => (
+                <div className="input-note__wrapper">
+                    {label && (
+                        <div className="input-note__label">
+                            <label htmlFor={name}>{label}</label>
+                        </div>
+                    )}
+                    <div
+                        className={`input-note__container ${error ? "error" : ""}`}
+                        style={{ width: width, height: height }}
+                    >
+                        <textarea
+                            id={name}
+                            name={name}
+                            value={value}
+                            onChange={onChange}
+                            onBlur={onBlur}
+                            ref={ref}
+                            placeholder={placeholder}
+                            maxLength={maxLength}
+                        />
+                        {error && <p className="error-message">{error.message}</p>}
                     </div>
-                )}
-                <div
-                    className={`input-note__container ${message && message[id] ? "error" : ""
-                        }`}
-                    style={{ width: width, height: height }}
-                >
-                    <textarea
-                        id={id}
-                        placeholder={placeholder}
-                        {...register(id)}
-                        maxLength={maxLength}
-                        onChange={handleOnChange}
-                    />
-                    {message && <p className="error-message">{message[id]?.message}</p>}
+                    <div className="input-note__length">{`${value?.lenght} / ${maxLength}`}</div>
                 </div>
-                <div className="input-note__length">{`${length} / ${maxLength}`}</div>
-            </div>
-        </>
+            )}
+        />
     );
 };
 

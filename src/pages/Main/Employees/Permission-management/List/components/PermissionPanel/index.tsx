@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 
 const PermissionPanel: React.FC = () => {
   // STATE
-  const { register } = useForm({});
+  const { control } = useForm({});
   const navigate = useNavigate();
   // ******************************
 
@@ -38,9 +38,8 @@ const PermissionPanel: React.FC = () => {
     </div>
     <form className="search-form">
       <InputCustom
-        id="searchPermission"
         name="searchPermission"
-        register={register}
+        control={control}
         iconRight={<SearchRoundedIcon />}
         className="input-item"
         placeholder="Nhập tên vai trò"

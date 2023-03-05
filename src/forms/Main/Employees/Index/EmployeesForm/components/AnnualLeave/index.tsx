@@ -2,7 +2,7 @@ import CalendarMonthRoundedIcon from "@mui/icons-material/CalendarMonthRounded";
 import "./styles.scss";
 import InputCustom from "components/InputCustom";
 
-const AnnualLeave = ({ register, setValue, errors }) => {
+const AnnualLeave = ({ control }) => {
   return (
     <>
       <div className="employees-form--annual-leave__wrapper divider-top">
@@ -13,30 +13,26 @@ const AnnualLeave = ({ register, setValue, errors }) => {
         <div className="employees-form__container">
           <div className="col">
             <InputCustom
-              id="numOfLeaveThisYear"
               name="numOfLeaveThisYear"
               type="number"
               width="100%"
               required={true}
               className="input-item"
               label="Số phép năm nay"
-              register={register}
+              control={control}
               placeholder="0"
-              message={errors}
             />
           </div>
           <div className="col">
             <InputCustom
-              id="numOfLeaveLastYear"
               name="numOfLeaveLastYear"
               type="number"
               width="100%"
               required={true}
               className="input-item"
               label="Số phép năm trước"
-              register={register}
+              control={control}
               placeholder="0"
-              message={errors}
             />
           </div>
           <div className="col"></div>

@@ -5,11 +5,26 @@ import InputCustom from "components/InputCustom";
 import SelectCustom from "components/SelectCustom";
 import InputDate from "components/InputDate";
 import { listEducation, listGender, listMarriedStatus } from "utils/ListData";
+import React from "react";
 
-const Profile = ({
+export type Props = {
+  register: any,
+  setValue: any,
+  control: any,
+  trigger: any,
+  graduationDate: any,
+  gender: any,
+  marriedStatus: any,
+  supplyDate: any,
+  birthDate: any,
+  education: any,
+  avatar: any,
+}
+
+const Profile: React.FC<Props> = ({
   register,
   setValue,
-  errors,
+  control,
   trigger,
   graduationDate,
   gender,
@@ -29,7 +44,6 @@ const Profile = ({
         <div className="employees-form__container">
           <div className="col">
             <InputFile
-              id="avatar"
               name="avatar"
               className="input-item"
               type={2}
@@ -41,35 +55,30 @@ const Profile = ({
             />
             <div style={{ width: "100%", height: "25px" }}></div>
             <InputCustom
-              id="citizenId"
               name="citizenId"
               width="100%"
               className="input-item"
               label="Số CCCD/CMND/Hộ chiếu"
-              register={register}
+              control={control}
               placeholder="Số CCCD/CMND/Hộ chiếu"
-              message={errors}
             />
             <InputCustom
-              id="temporaryAddress"
               name="temporaryAddress"
               width="100%"
               className="input-item"
               label="Địa chỉ tạm trú"
-              register={register}
+              control={control}
               placeholder="Địa chỉ tạm trú"
-              message={errors}
             />
             <SelectCustom
               name="education"
+              control={control}
               width="100%"
               className="input-item"
               label="Học vấn"
-              register={register}
               options={listEducation}
               placeholder="Học vấn"
               defaultValue={education}
-              setValue={setValue}
             />
             <InputDate
               id="graduationDate"
@@ -78,85 +87,69 @@ const Profile = ({
               placeholder="Ngày tốt nghiệp"
               setValue={setValue}
               defaultValue={graduationDate}
-              message={errors}
-              trigger={trigger}
-              register={undefined}
-              errors={undefined} />
+              trigger={trigger} />
           </div>
           <div className="col">
             <InputCustom
-              id="name"
               name="name"
               width="100%"
               className="input-item"
               label="Họ và tên"
               required={true}
-              register={register}
+              control={control}
               placeholder="Họ và tên"
-              message={errors}
             />
             <InputCustom
-              id="phoneNumber"
               name="phoneNumber"
               width="100%"
               className="input-item"
               label="Số điện thoại"
               required={true}
-              register={register}
               placeholder="Số điện thoại"
-              message={errors}
+              control={control}
             />
             <InputCustom
-              id="emailCompany"
               name="emailCompany"
               width="100%"
               type="email"
               className="input-item"
               label="Email công ty"
-              register={register}
+              control={control}
               placeholder="Email công ty"
-              message={errors}
             />
             <InputCustom
-              id="issuedPlace"
               name="issuedPlace"
               width="100%"
               className="input-item"
               label="Nơi cấp"
-              register={register}
+              control={control}
               placeholder="Nơi cấp"
-              message={errors}
             />
             <InputCustom
-              id="permanentAddress"
               name="permanentAddress"
               width="100%"
               className="input-item"
               label="Địa chỉ thường trú"
-              register={register}
+              control={control}
               placeholder="Địa chỉ thường trú"
-              message={errors}
             />
             <InputCustom
-              id="school"
               name="school"
               width="100%"
               className="input-item"
               label="Trường học"
-              register={register}
+              control={control}
               placeholder="Trường học"
-              message={errors}
             />
             <SelectCustom
               name="marriedStatus"
               width="100%"
               className="input-item"
               label="Tình trạng hôn nhân"
-              register={register}
+              control={control}
               options={listMarriedStatus}
               placeholder="Tình trạng hôn nhân"
               defaultValue={marriedStatus}
-              setValue={setValue}
             />
           </div>
           <div className="col">
@@ -165,63 +158,52 @@ const Profile = ({
               width="100%"
               className="input-item"
               label="Giới tính"
-              register={register}
+              control={control}
               options={listGender}
               placeholder="Giới tính"
               defaultValue={gender}
-              setValue={setValue}
             />
             <InputDate
               id="birthDate"
-              name="birthDate"
               className="input-item"
               label="Ngày sinh"
               placeholder="Ngày sinh"
-              register={register}
               setValue={setValue}
               defaultValue={birthDate}
-              errors={errors} />
+              trigger={trigger} />
             <InputCustom
-              id="personalEmail"
               name="personalEmail"
               width="100%"
               type="email"
               className="input-item"
               label="Email cá nhân"
               required={true}
-              register={register}
+              control={control}
               placeholder="Email cá nhân"
-              message={errors}
             />
             <InputDate
               id="supplyDate"
               className="input-item"
               label="Ngày cấp"
               placeholder="Ngày cấp"
-              register={register}
               setValue={setValue}
               defaultValue={supplyDate}
-              errors={errors}
-              trigger={trigger} name={""} />
+              trigger={trigger} />
             <InputCustom
-              id="personalTaxCode"
               name="personalTaxCode"
               width="100%"
               className="input-item"
               label="Mã số thuế cá nhân"
-              register={register}
+              control={control}
               placeholder="Mã số thuế cá nhân"
-              message={errors}
             />
             <InputCustom
-              id="major"
               name="major"
               width="100%"
               className="input-item"
               label="Chuyên ngành"
-              register={register}
+              control={control}
               placeholder="Chuyên ngành"
-              message={errors}
             />
           </div>
         </div>

@@ -4,13 +4,14 @@ import { Controller } from "react-hook-form";
 export type Props = {
     name: string,
     control: any,
+    min: number,
+    max: number,
     iconRight?: any,
     iconLeft?: any,
     placeholder?: string,
     width?: string,
     height?: string,
     className?: string,
-    type?: string,
     label?: string,
     required?: boolean,
     labelWidth?: string,
@@ -18,16 +19,17 @@ export type Props = {
     disabled?: boolean,
 }
 
-const InputCustom: React.FC<Props> = ({
+const InputNumber: React.FC<Props> = ({
     name,
     control,
+    min,
+    max,
     iconRight,
     iconLeft,
     placeholder,
     width = "",
     height = "",
     className = "",
-    type = "text",
     label,
     required = false,
     labelWidth,
@@ -43,7 +45,7 @@ const InputCustom: React.FC<Props> = ({
                 fieldState: { error },
             }) => (
                 <div
-                    className={`input-custom__wrapper ${className}`}
+                    className={`input-number__wrapper ${className}`}
                     style={{ width: width, height: height }}
                 >
                     {label && (
@@ -59,22 +61,33 @@ const InputCustom: React.FC<Props> = ({
                     )}
                     <div
                         className={`container 
-                        ${error ? "error" : ""}  
-                        ${!iconLeft && !iconRight && "none-icon"} 
-                        ${iconRight && "icon-right"} 
-                        ${iconLeft && "icon-left"}`}
+                            ${error ? "error" : ""}  
+                            ${!iconLeft && !iconRight && "none-icon"} 
+                            ${iconRight && "icon-right"} 
+                            ${iconLeft && "icon-left"}`
+                        }
                     >
                         {iconLeft}
                         <input
                             id={name}
                             name={name}
                             value={value}
-                            onChange={onChange}
+                            onChange={(e) => {
+                                let numberValue = parseInt(e.target.value)
+                                if (isNaN(numberValue)) {
+                                    e.target.value = "0"
+                                } else if (numberValue < min || numberValue > max) {
+                                    return
+                                } else {
+                                    e.target.value = numberValue.toString()
+                                }
+                                onChange(e)
+                            }}
                             onBlur={onBlur}
                             ref={ref}
                             disabled={disabled}
                             placeholder={placeholder}
-                            type={type}
+                            type="number"
                             onClick={handleOnClick}
                         />
                         {iconRight}
@@ -86,4 +99,4 @@ const InputCustom: React.FC<Props> = ({
     );
 };
 
-export default InputCustom;
+export default InputNumber;

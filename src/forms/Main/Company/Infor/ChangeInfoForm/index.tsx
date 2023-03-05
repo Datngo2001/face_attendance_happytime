@@ -20,22 +20,6 @@ import InputNote from "components/InputNote";
 import ButtonCustom from "components/ButtonCustom";
 
 const ChangeInfoForm = () => {
-  // REACT HOOK FORM
-  const {
-    register,
-    handleSubmit,
-    setValue,
-    formState: { errors },
-  } = useForm({
-    resolver: yupResolver(schema),
-    mode: "onChange",
-  });
-  //****************************
-
-  // ROUTER HOOK
-  const navigate = useNavigate();
-  //****************************
-
   // HOOK REACT TOOLKIT
   const { infoOfCompany, status, loading } = useAppSelector(
     (state) => state.company
@@ -43,20 +27,30 @@ const ChangeInfoForm = () => {
   const dispatch = useAppDispatch();
   // ****************************
 
+  // REACT HOOK FORM
+  const {
+    control,
+    register,
+    handleSubmit,
+    setValue,
+  } = useForm({
+    resolver: yupResolver(schema),
+    mode: "onChange",
+    defaultValues: {
+      avatar: infoOfCompany.avatar
+    }
+  });
+  //****************************
+
+  // ROUTER HOOK
+  const navigate = useNavigate();
+  //****************************
+
+
   // HOOK EFFECT
   useEffect((): any => {
     dispatch(extraReducersGetInfoCompany());
   }, []);
-
-  useEffect(() => {
-    setValue("companyName", infoOfCompany.company_name);
-    setValue("companyShorthand", infoOfCompany.company_shorthand);
-    setValue("companyWebsite", infoOfCompany.website);
-    setValue("companyHotline", infoOfCompany.hotline);
-    setValue("companyEmail", infoOfCompany.company_mail);
-    setValue("companyFanpage", infoOfCompany.fanpage);
-    setValue("codeTax", infoOfCompany.tax_number);
-  }, [infoOfCompany]);
 
   useEffect(() => {
     if (status === "success") {
@@ -72,36 +66,21 @@ const ChangeInfoForm = () => {
 
   //ARROW FUNCTIONS
   const handleOnSubmit = async (data) => {
-    // console.log("data", data);
     let imgUrl;
-    if (data.companyAvatar !== infoOfCompany.avatar) {
+    if (data.avatar !== infoOfCompany.avatar) {
       imgUrl = await uploadImgToFirebase({
         id: infoOfCompany._id,
-        imageUpload: data.companyAvatar,
+        imageUpload: data.avatar,
       });
     }
-    const dataSubmit = {
-      avatar: imgUrl,
-      company_name: data.companyName,
-      company_shorthand: data.companyShorthand,
-      scale: parseInt(data.companyScale),
-      status: infoOfCompany.status,
-      company_mail: data.companyEmail,
-      hotline: data.companyHotline,
-      tax_number: data.codeTax,
-      website: data.companyWebsite,
-      fanpage: data.companyFanpage,
-    };
-    // console.log("dataSubmit", dataSubmit);
 
     dispatch(
       extraReducersUpdateInfoCompany({
-        dataUpdate: dataSubmit,
+        dataUpdate: { ...data, avatar: imgUrl, scale: parseInt(data.companyScale) },
       })
     );
   };
   //****************************
-  // console.log("infoOfCompany", infoOfCompany);
 
   return (
     <>
@@ -123,59 +102,49 @@ const ChangeInfoForm = () => {
             <div className="width-20">
               <p className="avatar-header">Logo công ty</p>
               <InputFile
-                id="companyAvatar"
-                name="companyAvatar"
+                name="avatar"
                 register={register}
                 sizePreImg="100px"
                 title="Đổi Logo"
                 setValue={setValue}
-                defaultValue={infoOfCompany.avatar}
               />
             </div>
             <div className="width-40">
               <InputCustom
-                id="companyName"
-                name="companyName"
+                name="company_name"
                 className="input-custom"
                 label="Tên công ty"
                 required={true}
                 width="300px"
                 placeholder="Nhập tên công ty"
-                register={register}
-                message={errors}
+                control={control}
               />
               <InputCustom
-                id="companyShorthand"
-                name="companyShorthand"
+                name="company_shorthand"
                 className="input-custom"
                 label="Tên viết tắt của công ty"
                 required={true}
                 width="300px"
                 placeholder="Nhập tên viết tắt của công ty"
-                register={register}
-                message={errors}
+                control={control}
               />
               <InputCustom
-                id="companyHotline"
-                name="companyHotline"
+                name="hotline"
                 className="input-custom"
                 label="Hotline công ty"
                 type="phone"
                 width="300px"
                 placeholder="Nhập số điện thoại"
-                register={register}
-                message={errors}
+                control={control}
               />
               <InputCustom
-                id="companyEmail"
-                name="companyEmail"
+                name="company_mail"
                 className="input-custom"
                 type="email"
                 label="Địa chỉ email công ty"
                 width="300px"
                 placeholder="Nhập email"
-                register={register}
-                message={errors}
+                control={control}
               />
               <SelectCustom
                 name="companyScale"
@@ -183,56 +152,48 @@ const ChangeInfoForm = () => {
                 placeholder="Quy mô công ty"
                 required={true}
                 width="300px"
-                register={register}
+                control={control}
                 className="input-custom"
                 options={listScales}
-                message={errors}
-                setValue={setValue}
                 defaultValue={infoOfCompany.scale}
               />
               <InputCustom
-                id="codeTax"
-                name="codeTax"
+                name="tax_number"
                 className="input-custom"
                 label="Mã số thuế"
                 width="300px"
                 placeholder="Nhập Mã số thuế"
-                register={register}
-                message={errors}
+                control={control}
               />
             </div>
             <div className="width-40">
               <InputCustom
-                id="companyWebsite"
-                name="companyWebsite"
+                name="website"
                 className="input-custom"
                 label="Website"
                 width="300px"
                 placeholder="Nhập địa chỉ website"
-                register={register}
-                message={errors}
+                control={control}
               />
               <InputCustom
-                id="companyFanpage"
-                name="companyFanpage"
+                name="fanpage"
                 className="input-custom"
                 label="Fanpage"
                 width="300px"
                 placeholder="Nhập địa chỉ fanpage"
-                register={register}
-                message={errors}
+                control={control}
               />
               <InputNote
-                id="mainBaseAddress"
+                name="mainBaseAddress"
                 label="Địa chỉ trụ sở chính"
-                register={register}
+                control={control}
                 placeholder="Nhập địa chỉ trụ sở chính"
                 width="300px"
                 height="128px" />
               <InputNote
-                id="introBusiness"
+                name="introBusiness"
                 label="Giới thiệu doanh nghiệp"
-                register={register}
+                control={control}
                 placeholder="Nhập giới thiệu doanh nghiệp"
                 width="300px"
                 height="128px"

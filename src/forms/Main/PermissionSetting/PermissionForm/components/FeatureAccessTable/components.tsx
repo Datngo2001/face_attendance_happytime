@@ -2,7 +2,7 @@ import { GridColumns } from "@mui/x-data-grid";
 import FeatureCell from "../FeatureCell";
 import AccessCell from "../AccessCell";
 
-export const getColumns = (handleOpenCloseFeature, onGroupAccessSelect, onFeatureAccessSelect): GridColumns => {
+export const getColumns = (handleOpenCloseFeature, onGroupAccessSelect, onFeatureAccessSelect, control): GridColumns => {
     return [
         {
             field: "no",
@@ -49,6 +49,7 @@ export const getColumns = (handleOpenCloseFeature, onGroupAccessSelect, onFeatur
                 return (
                     <>
                         <AccessCell
+                            control={control}
                             _ids={params.row._ids}
                             isOpen={params.row.isOpen}
                             accesses={params.row.accesses}

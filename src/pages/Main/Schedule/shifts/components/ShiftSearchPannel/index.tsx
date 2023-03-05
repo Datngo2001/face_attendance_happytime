@@ -27,7 +27,7 @@ const shiftStatusOptions: SelectBoxOption[] = [
 
 
 const ShiftSearchPannel: React.FC = () => {
-    const { register } = useForm();
+    const { control } = useForm();
     const [modal, setModal] = useState(false);
 
     const { listOfShiftType } = useAppSelector(state => state.shifts);
@@ -52,7 +52,7 @@ const ShiftSearchPannel: React.FC = () => {
             <SelectCustom
                 name="shiftStatus"
                 className="input-item"
-                register={register}
+                control={control}
                 defaultValue={"ALL"}
                 placeholder="Trạng thái hoạt động"
                 options={shiftStatusOptions}
@@ -60,17 +60,16 @@ const ShiftSearchPannel: React.FC = () => {
             <SelectCustom
                 name="shiftType"
                 className="input-item"
-                register={register}
+                control={control}
                 placeholder="Loại ca làm việc"
                 options={shiftTypeOptions}
             />
             <InputCustom
-                id="txt_code_name"
                 name='codeOrName'
                 iconRight={<SearchRoundedIcon />}
                 className="input-item flex-basic-25"
                 placeholder="Nhập tên ca làm việc, mã ca"
-                register={register}
+                control={control}
             />
             <ButtonCustom icon={<AddIcon />} onClick={handleCreateClick} type={2}>Thêm mới</ButtonCustom>
 

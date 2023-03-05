@@ -8,7 +8,7 @@ import { listStatusActive } from "utils/ListData";
 
 const ControlPanel = () => {
   // REACT HOOK FORM
-  const { register, watch } = useForm();
+  const { control, watch } = useForm();
   // ****************************
 
   // HOOK EFFECT
@@ -22,9 +22,8 @@ const ControlPanel = () => {
     <>
       <div className="attendance-settings--mobile-devices--control-panel">
         <InputCustom
-          id="dataSearch"
           name="dataSearch"
-          register={register}
+          control={control}
           width="100%"
           placeholder="Tên nhân viên, mã nhân viên, Divice ID"
           iconRight={<SearchRoundedIcon />}
@@ -33,7 +32,7 @@ const ControlPanel = () => {
         <SelectCustom
           name="activeStatus"
           width="300px"
-          register={register}
+          control={control}
           options={listStatusActive}
           placeholder="Trạng thái hoạt động"
         />

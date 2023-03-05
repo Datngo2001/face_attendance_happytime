@@ -14,9 +14,8 @@ import { Footer } from "antd/es/layout/layout";
 const ForgotPasswordForm = () => {
   // STATE
   const {
-    register,
+    control,
     handleSubmit,
-    formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
   // ******************************
 
@@ -41,14 +40,12 @@ const ForgotPasswordForm = () => {
         </Link>
         <h2 className="forgot-password-form__title">Quên mật khẩu</h2>
         <InputCustom
-          id="phone"
           name="phone"
+          control={control}
           className="input-phone"
           type="tel"
           placeholder="Nhập số điện thoại"
-          register={register}
           iconLeft={<LocalPhoneRoundedIcon />}
-          message={errors}
         />
         <div style={{ marginTop: "40px" }}>
           <ButtonCustom height="48px" onClick={handleSubmit(onSubmit)}>

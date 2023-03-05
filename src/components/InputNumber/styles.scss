@@ -1,0 +1,123 @@
+@use "../../assets/styles/index.scss" as *;
+
+.input-number__wrapper {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+
+    > .label {
+        padding-bottom: 10px;
+        color: $text-color-3;
+        font-size: $fs-1;
+
+        span {
+            color: red;
+            display: none;
+        }
+
+        &.required {
+            span {
+                display: inherit;
+            }
+        }
+    }
+
+    .container {
+        height: 100%;
+        width: 100%;
+        position: relative;
+
+        > input, textarea {
+            height: 100%;
+            width: 100%;
+            border-radius: $br-1;
+            border: 1px solid transparent;
+            color: $text-color-1;
+            background-color: $primary-bg-color;
+            font-family: $f-family-1;
+            transition: all 0.3s;
+            font-size: 14px;
+            padding: 8px 16px 8px 32px;
+            display: inline-flex;
+            text-overflow: ellipsis;
+            &:focus {
+                outline: none;
+                border-color: $primary-color;
+                box-shadow: $bs-2;
+            }
+
+            &:hover {
+                border-color: $primary-color;
+            }
+
+            &[disabled] {
+                opacity: 0.8;
+                cursor: not-allowed;
+                &:hover {
+                    border-color: transparent;
+                }
+            }
+        }
+
+        > textarea{
+            overflow-y: hidden;
+            resize: none;
+            flex-grow: 1;
+        }
+
+        &.none-icon {
+            > input, textarea {
+                padding: 8px 16px 8px 16px;
+            }
+        }
+
+        &.icon-right {
+            > input, textarea {
+                padding: 8px 32px 8px 16px;
+            }
+
+            > svg, span {
+                position: absolute;
+                font-size: 18px;
+                top: 50%;
+                right: 8px;
+                transform: translateY(-50%);
+                color: $text-color-2;
+            }
+        }
+
+        &.icon-left {
+            > svg, span {
+                position: absolute;
+                font-size: 18px;
+                top: 50%;
+                left: 8px;
+                transform: translateY(-50%);
+                color: $text-color-2;
+            }
+        }
+
+        ::placeholder {
+            color: $text-color-2;
+        }
+
+        &.error {
+            > input, textarea {
+                border-color: $color-red-1;
+
+                &:focus {
+                    border-color: $color-red-1;
+                }
+            }
+            .error-message {
+                color: $color-red-1;
+                font-size: $fs-1;
+                text-align: left;
+            }
+
+            > svg {
+                color: $color-red-1;
+            }
+        }
+    }
+}

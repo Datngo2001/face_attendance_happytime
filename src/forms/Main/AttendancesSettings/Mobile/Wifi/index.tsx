@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
 import "./styles.scss";
 import { useAppSelector } from "hooks/useAppSelector";
 import { useAppDispatch } from "hooks/useAppDispatch";
@@ -11,7 +10,7 @@ import ButtonCustom from "components/ButtonCustom";
 
 const WifiAddingForm = ({ method, setOpen }) => {
   // REACT HOOK FORM
-  const { register, setValue, handleSubmit } = useForm({});
+  const { control, register, handleSubmit } = useForm({});
   // ****************************
 
   // REDUX TOOLKIT
@@ -55,23 +54,21 @@ const WifiAddingForm = ({ method, setOpen }) => {
       <div className="wifi-adding-form__wrapper">
         <div className="field-control">
           <InputCustom
-            id="wifiName"
             name="wifiName"
             width="470px"
             label="Tên IP Wi-Fi"
             placeholder="Nhập Tên IP Wi-Fi"
-            register={register}
+            control={control}
             required={true}
           />
         </div>
         <div className="field-control">
           <InputCustom
-            id="ipAddress"
             name="ipAddress"
             width="470px"
             label="IP"
             placeholder="Nhập Địa chỉ IP"
-            register={register}
+            control={control}
             required={true}
           />
         </div>

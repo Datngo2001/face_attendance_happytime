@@ -1,22 +1,16 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './styles.scss'
 import FormSwitchCustom from 'components/ButtonSwitchCustom/FormSwitchCustom'
 import Stack from '@mui/material/Stack'
-import InputCustom from 'components/InputCustom'
-import { Controller, useForm } from 'react-hook-form'
-import { TypeName } from '../../CreateShiftForm'
+import { TypeName } from '../../ShiftForm'
 import TimePickerCustom from 'components/InputTime/TimePickerCustom'
-import TimeBlockConfig from '../TimeBlockConfig'
 
 export type Props = {
-    register: any,
     typeName: TypeName
     control: any
 }
 
-const EarlyConfig: React.FC<Props> = ({ register, typeName, control }) => {
-
-    const { register: internalRegister, getValues } = useForm({ defaultValues: { block: 10 } });
+const EarlyConfig: React.FC<Props> = ({ typeName, control }) => {
 
     return (
         <div className='EarlyConfig__wrapper'>
@@ -48,14 +42,6 @@ const EarlyConfig: React.FC<Props> = ({ register, typeName, control }) => {
                             control={control} />
                     </>
                 )}
-                {/* <Controller
-                    control={control}
-                    name="config_out_early.time"
-                    render={({
-                        field: { onChange, value },
-                    }) => (
-                        <TimeBlockConfig radioName='config_out_early.time' onChange={onChange} value={value} />
-                    )} /> */}
             </Stack>
         </div>
     )

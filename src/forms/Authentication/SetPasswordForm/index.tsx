@@ -17,9 +17,8 @@ import ButtonCustom from "components/ButtonCustom";
 const SetPasswordForm = () => {
   // STATE
   const {
-    register,
+    control,
     handleSubmit,
-    formState: { errors },
   } = useForm({
     mode: "onChange",
     resolver: yupResolver(schema),
@@ -64,13 +63,12 @@ const SetPasswordForm = () => {
       password: data.password,
     };
 
-    console.log("dataSubmit", dataSubmit);
     dispatch(extraReducersRegister(dataSubmit));
   };
   // ****************************
   return (
     <>
-      <form className="set-password-form__wrapper">
+      <form className="set-password-form__wrapper" onSubmit={handleSubmit(onSubmit)}>
         <div className="set-password-form__header">
           <Link className="tag-redirect" to="../login">
             <KeyboardBackspaceIcon />
@@ -80,28 +78,24 @@ const SetPasswordForm = () => {
         </div>
         <div className="set-password-form__container">
           <InputCustom
-            id="password"
             name="password"
             className="input-item"
             placeholder="Nhập mật khẩu"
             type="password"
             iconLeft={<LockIcon />}
-            register={register}
-            message={errors}
+            control={control}
           />
           <InputCustom
-            id="confirmPassword"
             name="confirmPassword"
             className="input-item"
             placeholder="Xác nhận mật khẩu"
             type="password"
             iconLeft={<LockIcon />}
-            register={register}
-            message={errors}
+            control={control}
           />
         </div>
         <div style={{ marginTop: "40px" }}>
-          <ButtonCustom onClick={handleSubmit(onSubmit)} height="48px">
+          <ButtonCustom isSubmit height="48px">
             Lưu
           </ButtonCustom>
         </div>

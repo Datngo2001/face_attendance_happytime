@@ -1,14 +1,13 @@
 import React from 'react'
 import "./styles.scss"
 import { Stack } from '@mui/material'
+import { Controller } from 'react-hook-form'
 
 export type Props = {
-    id?: string
     name: string
-    register: any
+    control: any
     items: RadioItem[]
     spacing?: number
-    defaultValue?: any
 }
 
 export type RadioItem = {
@@ -16,22 +15,35 @@ export type RadioItem = {
     value: string
 }
 
-const RadioGroupCustom: React.FC<Props> = ({ id, name, register, items, spacing = 2, defaultValue }) => {
+const RadioGroupCustom: React.FC<Props> = ({ name, control, items, spacing = 2 }) => {
     return (
         <div className='radioGroup__wrapper'>
             <Stack spacing={spacing}>
                 {items.map((item, index) => (
                     <div className="control" key={index}>
-                        <input
-                            defaultChecked={defaultValue ? item.value === defaultValue : false}
-                            id={`${id ?? name}_${index}`}
-                            {...register(name)}
-                            type="radio"
-                            value={item.value}
+                        <Controller
+                            control={control}
+                            name={name}
+                            render={({
+                                field: { onChange, onBlur, value, name, ref },
+                            }) => (
+                                <>
+                                    <input
+                                        defaultChecked={item.value === value}
+                                        id={`${name}_${index}`}
+                                        type="radio"
+                                        name={name}
+                                        value={item.value}
+                                        onChange={onChange}
+                                        onBlur={onBlur}
+                                        ref={ref}
+                                    />
+                                    <label htmlFor={`${name}_${index}`}>
+                                        {item.label}
+                                    </label>
+                                </>
+                            )}
                         />
-                        <label htmlFor={`${id ?? name}_${index}`}>
-                            {item.label}
-                        </label>
                     </div>
                 ))}
             </Stack>

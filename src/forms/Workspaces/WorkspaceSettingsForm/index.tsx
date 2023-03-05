@@ -14,6 +14,7 @@ const WorkspaceSettingsForm = () => {
   // REACT HOOK FORM
   const {
     register,
+    control,
     handleSubmit,
     setValue,
     formState: { errors },
@@ -53,7 +54,6 @@ const WorkspaceSettingsForm = () => {
         <h3 className="workspace-settings-form__title">workspace của bạn</h3>
         <div className="workspace-settings-form__body">
           <InputFile
-            id="workspaceImg"
             name="workspaceImg"
             sizePreImg="120px"
             className="workspace-img"
@@ -99,14 +99,12 @@ const WorkspaceSettingsForm = () => {
               </label>
             </div>
             <InputCustom
-              id="workspaceName"
               name="workspaceName"
               className="input-item"
               labelWidth="164px"
               width="272px"
               placeholder="Nhập tên workspace"
-              register={register}
-              message={errors}
+              control={control}
             />
           </div>
         </div>

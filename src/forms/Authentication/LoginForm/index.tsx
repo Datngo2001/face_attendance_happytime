@@ -18,9 +18,8 @@ import { extraReducersLogin } from "store/slices/Authentication/Login/loginActio
 const LoginForm = () => {
   // STATE
   const {
-    register,
+    control,
     handleSubmit,
-    formState: { errors },
   } = useForm({ resolver: yupResolver(schema), mode: "onChange" });
   const navigate = useNavigate();
 
@@ -76,24 +75,20 @@ const LoginForm = () => {
       <div className="login-form__wrapper">
         <h2 className="login-form__title">Đăng nhập</h2>
         <InputCustom
-          id="phone"
           name="phone"
           className="input-phone"
           type="tel"
           placeholder="Nhập số điện thoại *"
-          register={register}
+          control={control}
           iconLeft={<LocalPhoneRoundedIcon />}
-          message={errors}
         />
         <InputCustom
-          id="password"
           name="password"
           className="input-password"
           type="password"
           placeholder="Nhập mật khẩu *"
-          register={register}
+          control={control}
           iconLeft={<LockIcon />}
-          message={errors}
         />
         <div className="tag-redirect text-right">
           <Link className="tag" to="/auth/forgot-password">

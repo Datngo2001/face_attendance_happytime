@@ -4,7 +4,7 @@ import "./styles.scss";
 
 const LeaveManagement = () => {
     // REACT HOOK FORM
-    const { register, watch } = useForm({ mode: "onChange" });
+    const { control, watch } = useForm({ mode: "onChange" });
     //****************************
 
     // ARROW FUNCTIONS
@@ -14,7 +14,7 @@ const LeaveManagement = () => {
     return (
         <>
             <div className="leave-management__wrapper">
-                <ControlPanel register={register} />
+                <ControlPanel control={control} />
                 <TableLeaveManagement />
             </div>
         </>

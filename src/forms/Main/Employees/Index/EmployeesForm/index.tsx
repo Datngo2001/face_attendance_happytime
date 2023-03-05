@@ -9,26 +9,24 @@ import {
     Profile,
     WorkInformation,
 } from "./components";
-import ButtonCustom from "../../../../../components/ButtonCustom";
 import { useNavigate } from "react-router-dom";
 import Permission from "./components/Permission";
-import LoadingCustom from "../../../../../components/LoadingCustom";
-import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import {
-    extraReducersCreateInfoEmployee,
-    extraReducersGetInfoEmployeeById,
-    extraReducersUpdateInfoEmployee,
-} from "../../../../../store/slices/Main/Employees/actions/extraReducers";
-import { convertStringToTimestamp, convertTimestampToString } from "../../../../../utils";
-import { updateStatusState } from "../../../../../store/slices/Main/Employees/employeesSlice";
-import * as auth from "../../../../../auth/index";
-import { uploadImgToFirebase } from "../../../../../utils/uploadImgToFirebase";
+import { useAppSelector } from "hooks/useAppSelector";
+import { useAppDispatch } from "hooks/useAppDispatch";
+import { extraReducersCreateInfoEmployee, extraReducersGetInfoEmployeeById, extraReducersUpdateInfoEmployee } from "store/slices/Main/Employees/actions/extraReducers";
+import { updateStatusState } from "store/slices/Authentication/authSlice";
+import { checkExist } from "auth";
+import { uploadImgToFirebase } from "utils/uploadImgToFirebase";
+import { convertStringToTimestamp, convertTimestampToString } from "utils";
+import LoadingCustom from "components/LoadingCustom";
+import ButtonCustom from "components/ButtonCustom";
 
 const EmployeesForm = ({ method }) => {
     // @method: update/create
     // REACT HOOK FORM
     const {
+        control,
         register,
         handleSubmit,
         setValue,
@@ -46,8 +44,8 @@ const EmployeesForm = ({ method }) => {
     // ******************************
 
     // HOOK REACT TOOLKIT
-    const { loading, infoOfEmployee, status } = useSelector((state) => state.employees);
-    const dispatch = useDispatch();
+    const { loading, infoOfEmployee, status } = useAppSelector((state) => state.employees);
+    const dispatch = useAppDispatch();
     // ****************************
 
     // HOOK EFFECT
@@ -103,10 +101,10 @@ const EmployeesForm = ({ method }) => {
 
     // ARROW FUNCTIONS
     const handleOnSubmitUpdate = async (data) => {
-        const isExistPhone = await auth.checkExist({
+        const isExistPhone = await checkExist({
             phone: data.phoneNumber,
         });
-        const isExistPersonalEmail = await auth.checkExist({
+        const isExistPersonalEmail = await checkExist({
             email: data.personalEmail,
         });
 
@@ -206,10 +204,10 @@ const EmployeesForm = ({ method }) => {
     };
     const handleOnSubmitCreate = async (data) => {
         // console.log("data", data);
-        const isExistPhone = await auth.checkExist({
+        const isExistPhone = await checkExist({
             phone: data.phoneNumber,
         });
-        const isExistPersonalEmail = await auth.checkExist({
+        const isExistPersonalEmail = await checkExist({
             email: data.personalEmail,
         });
 
@@ -227,7 +225,7 @@ const EmployeesForm = ({ method }) => {
         }
         if (!isExistPersonalEmail.payload && !isExistPhone.payload) {
             const imgUrl = await uploadImgToFirebase({
-                phoneNumber: data.phoneNumber,
+                id: data.id,
                 imageUpload: data.avatar,
             });
             const dataSubmit = {
@@ -284,9 +282,9 @@ const EmployeesForm = ({ method }) => {
             ) : (
                 <div className="employees-form__wrapper">
                     <Profile
+                        control={control}
                         register={register}
                         setValue={setValue}
-                        errors={errors}
                         trigger={trigger}
                         graduationDate={
                             method === "update" &&
@@ -310,13 +308,11 @@ const EmployeesForm = ({ method }) => {
                         avatar={method === "update" && infoOfEmployee.avatar}
                     />
                     <BankInformation
-                        register={register}
-                        setValue={setValue}
-                        errors={errors}
+                        control={control}
                     />
                     <WorkInformation
                         method={method}
-                        register={register}
+                        control={control}
                         setValue={setValue}
                         trigger={trigger}
                         errors={errors}
@@ -330,17 +326,13 @@ const EmployeesForm = ({ method }) => {
                         typeEmployee={method === "update" && infoOfEmployee.agent_type}
                     />
                     <AnnualLeave
-                        register={register}
-                        setValue={setValue}
-                        errors={errors}
+                        control={control}
                     />
                     <Permission
-                        register={register}
-                        setValue={setValue}
-                        errors={errors}
+                        control={control}
                         manipulationRight={method === "update" ? infoOfEmployee.role : 2}
                     />
-                    <Note register={register} setValue={setValue} errors={errors} />
+                    <Note control={control} />
                     <div className="employees-form__actions divider-top">
                         <ButtonCustom
                             className="btn btn--cancel"

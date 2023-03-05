@@ -9,9 +9,10 @@ export type Props = {
     onGroupAccessSelect: any
     _ids: string[]
     allowAccessTypes: AccessEnum[]
+    control: any
 }
 
-const AccessCell: React.FC<Props> = ({ _ids, isOpen, accesses, onFeatureAccessSelect, onGroupAccessSelect, allowAccessTypes }) => {
+const AccessCell: React.FC<Props> = ({ _ids, isOpen, accesses, onFeatureAccessSelect, onGroupAccessSelect, allowAccessTypes, control }) => {
 
     const options = useMemo(() => {
         let result: SelectBoxOption[] = []
@@ -29,9 +30,10 @@ const AccessCell: React.FC<Props> = ({ _ids, isOpen, accesses, onFeatureAccessSe
         <div className="access-cell__wrapper">
             <div className="group-access">
                 <SelectCustom
+                    control={control}
                     name={_ids[0]}
-                    onChange={(e) => { onGroupAccessSelect(_ids[0], e.target.value) }}
-                    value={accesses[0]}
+                    // onChangeCustom={(e) => { onGroupAccessSelect(_ids[0], e.target.value) }}
+                    // valueCustom={accesses[0]}
                     options={options}
                     placeholder={selectedAccesses > 0 ? `Đã chọn ${selectedAccesses} quyền` : "Lựa chọn"}
                 />
@@ -41,11 +43,12 @@ const AccessCell: React.FC<Props> = ({ _ids, isOpen, accesses, onFeatureAccessSe
                 return (
                     <div key={_ids[index]} className="access">
                         <SelectCustom
+                            control={control}
                             name={_ids[index]}
-                            value={access}
+                            // valueCustom={access}
                             options={options}
                             placeholder="Lựa chọn"
-                            onChange={(e) => { onFeatureAccessSelect(_ids[0], _ids[index], e.target.value) }}
+                        // onChangeCustom={(e) => { onFeatureAccessSelect(_ids[0], _ids[index], e.target.value) }}
                         />
                     </div>
                 )

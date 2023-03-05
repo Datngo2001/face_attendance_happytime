@@ -2,7 +2,7 @@ import StickyNote2RoundedIcon from "@mui/icons-material/StickyNote2Rounded";
 import InputNote from "../../../../../../../components/InputNote";
 import "./styles.scss";
 
-const Note = ({ register, setValue, errors }) => {
+const Note = ({ control }) => {
     return (
         <>
             <div className="employees-form--note__wrapper divider-top">
@@ -10,7 +10,7 @@ const Note = ({ register, setValue, errors }) => {
                     <StickyNote2RoundedIcon />
                     Ghi chú
                 </div>
-                <InputNote id="note" register={register} width="100%" height="92px" />
+                <InputNote name="note" control={control} width="100%" height="92px" />
             </div>
         </>
     );

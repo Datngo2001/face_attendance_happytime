@@ -2,11 +2,10 @@ import FormSwitchCustom from 'components/ButtonSwitchCustom/FormSwitchCustom'
 import React from 'react'
 
 export type Props = {
-    register: any
     control: any
 }
 
-const CheckInLimit: React.FC<Props> = ({ register, control }) => {
+const CheckInLimit: React.FC<Props> = ({ control }) => {
     return (
         <div className='CheckInLimit'>
             <div className='title'>

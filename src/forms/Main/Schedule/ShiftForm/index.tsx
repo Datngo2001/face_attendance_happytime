@@ -19,6 +19,7 @@ import { schema } from './validator'
 import { FormAction } from 'forms/formAction'
 import { useAppDispatch } from 'hooks/useAppDispatch'
 import { extraReducersCreateShift } from 'store/slices/Main/Shifts/actions/extraReducers'
+import InputNumber from 'components/InputNumber'
 
 export type Props = {
     shift?: Shift
@@ -52,7 +53,7 @@ const ShiftForm: React.FC<Props> = ({ shiftType, shift, action = FormAction.CREA
         }
     }, [action, shift, typeName])
 
-    const { register, control, handleSubmit, formState: { errors } } = useForm({
+    const { control, handleSubmit } = useForm({
         defaultValues: defaultValue,
         resolver: yupResolver(schema)
     });
@@ -86,15 +87,13 @@ const ShiftForm: React.FC<Props> = ({ shiftType, shift, action = FormAction.CREA
                         placeholder='Tên ca làm việc của bạn'
                         label='Tên ca làm việc'
                         name="name"
-                        register={register}
-                        message={errors} />
+                        control={control} />
                     <InputCustom
                         required
                         placeholder='Mã ca làm việc của bạn'
                         label='Mã ca làm việc'
                         name="code"
-                        register={register}
-                        message={errors} />
+                        control={control} />
                 </Stack>
                 <div className='group'>
                     {typeName === TypeName.OFFICE && (<OfficeTimeInput control={control} />)}
@@ -102,29 +101,29 @@ const ShiftForm: React.FC<Props> = ({ shiftType, shift, action = FormAction.CREA
                 </div>
                 {typeName === TypeName.SINGLE && (
                     <div className='group group-limit divider-top`'>
-                        <CheckInLimit register={register} control={control} />
-                        <CheckOutLimit register={register} control={control} />
+                        <CheckInLimit control={control} />
+                        <CheckOutLimit control={control} />
                     </div>
                 )}
                 <div className='group group-late-early'>
-                    <LateConfig register={register} control={control} typeName={typeName} />
-                    <EarlyConfig register={register} control={control} typeName={typeName} />
+                    <LateConfig control={control} typeName={typeName} />
+                    <EarlyConfig control={control} typeName={typeName} />
                 </div>
                 <Stack className='group divider-top group-number' spacing={2}>
-                    <InputCustom
+                    <InputNumber
                         required
                         label='Số công ghi nhận'
                         name="work_count"
-                        register={register}
-                        type='number'
-                        message={errors} />
-                    <InputCustom
+                        control={control}
+                        max={9999}
+                        min={0} />
+                    <InputNumber
                         required
                         label='Số công ghi nhận nếu quên Check out'
                         name="partial_work_count"
-                        register={register}
-                        type='number'
-                        message={errors} />
+                        control={control}
+                        max={9999}
+                        min={0} />
                 </Stack>
                 <div className="actions divider-top">
                     <ButtonCustom

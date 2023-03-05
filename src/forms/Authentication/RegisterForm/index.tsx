@@ -14,15 +14,15 @@ import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { schema } from "./handleForm";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { focusToElement } from "../../../utils";
-import SelectCustom from "../../../components/SelectCustom";
 import FormatShapesRoundedIcon from "@mui/icons-material/FormatShapesRounded";
-import { listPositions, listScales } from "../../../utils/ListData";
-import * as auth from "../../../auth/index";
-import * as registerActions from "../../../store/slices/Authentication/Register/registerActions";
-import { updateStatusState } from "../../../store/slices/Authentication/authSlice";
 import { useAppDispatch } from "hooks/useAppDispatch";
 import { useAppSelector } from "hooks/useAppSelector";
+import { focusToElement } from "utils";
+import { updateStatusState } from "store/slices/Authentication/authSlice";
+import { checkExist } from "auth";
+import { extraReducersRequestOtp } from "store/slices/Authentication/Register/registerActions";
+import SelectCustom from "components/SelectCustom";
+import { listPositions, listScales } from "utils/ListData";
 
 const RegisterForm = () => {
   // VARIABLES
@@ -32,16 +32,15 @@ const RegisterForm = () => {
 
   // STATE
   const {
-    register,
+    control,
     handleSubmit,
     setError,
-    formState: { errors },
   } = useForm({ resolver: yupResolver(schema), mode: "onChange" });
   const [disabled, setDisabled] = useState(true);
   // ************************************************************
 
   // HOOK REACT TOOLKIT
-  const { loading, status } = useAppSelector((state) => state.auth);
+  const { status } = useAppSelector((state) => state.auth);
   // ****************************
 
   // HOOK REDUX TOOLKIT
@@ -50,23 +49,7 @@ const RegisterForm = () => {
 
   // EFFECT
   useEffect(() => {
-    const formRegister = document.querySelector(".register-form__wrapper");
-    formRegister.addEventListener("keypress", (e: any) => {
-      if (e.key === "Enter") {
-        // document.querySelector(".btn-register").click();
-      }
-    });
-
     focusToElement("phone");
-
-    // CLEAN FUNCTION
-    return () => {
-      formRegister.removeEventListener("keypress", (e: any) => {
-        if (e.key === "Enter") {
-          // document.querySelector(".btn-register").click();
-        }
-      });
-    };
   }, []);
 
   useEffect(() => {
@@ -86,11 +69,11 @@ const RegisterForm = () => {
     console.log("data register:", data);
 
     sessionStorage.setItem("dataRegister", JSON.stringify(data));
-    const isExistPhone = await auth.checkExist({
+    const isExistPhone = await checkExist({
       phone: data.phone,
     });
 
-    const isExistEmail = await auth.checkExist({
+    const isExistEmail = await checkExist({
       email: data.email,
     });
 
@@ -109,7 +92,7 @@ const RegisterForm = () => {
 
     if (!isExistPhone.payload && !isExistEmail.payload) {
       dispatch(
-        registerActions.extraReducersRequestOtp({
+        extraReducersRequestOtp({
           dataRequest: { phone_number: data.phone },
         })
       );
@@ -119,7 +102,7 @@ const RegisterForm = () => {
 
   return (
     <>
-      <form action="" className="register-form__wrapper">
+      <form className="register-form__wrapper" onSubmit={handleSubmit(onSubmit)}>
         <div className="register-form__header">
           <Link className="tag-redirect" to="../login">
             <KeyboardBackspaceIcon />
@@ -128,84 +111,70 @@ const RegisterForm = () => {
           <h2 className="register-form__title">Đăng ký</h2>
         </div>
         <InputCustom
-          id="phone"
           name="phone"
           className="input-item"
           type="tel"
           placeholder="Nhập số điện thoại *"
-          register={register}
+          control={control}
           iconLeft={<LocalPhoneRoundedIcon />}
-          message={errors}
         />
         <InputCustom
-          id="name"
           name="name"
           className="input-item"
           type="text"
           placeholder="Nhập họ và tên *"
-          register={register}
+          control={control}
           iconLeft={<AccountCircleSharpIcon />}
-          message={errors}
         />
         <InputCustom
-          id="nameCompany"
           name="nameCompany"
           className="input-item"
           type="text"
           placeholder="Nhập tên công ty *"
-          register={register}
+          control={control}
           iconLeft={<ApartmentIcon />}
-          message={errors}
         />
         <InputCustom
-          id="nameCompanyShortHand"
           name="nameCompanyShortHand"
           className="input-item"
           type="text"
           placeholder="Nhập tên viết tắt của công ty *"
-          register={register}
+          control={control}
           iconLeft={<FormatShapesRoundedIcon />}
-          message={errors}
         />
         <SelectCustom
           name="position"
           className="input-item"
           width="100%"
           placeholder="Chức vụ *"
-          register={register}
+          control={control}
           icon={<HailIcon />}
           options={listPositions}
-          message={errors}
         />
         <InputCustom
-          id="email"
           name="email"
           className="input-item"
           type="email"
           placeholder="Nhập email *"
-          register={register}
+          control={control}
           iconLeft={<EmailIcon />}
-          message={errors}
         />
         <SelectCustom
           name="scale"
           className="input-item"
           width="100%"
           placeholder="Quy mô công ty *"
-          register={register}
+          control={control}
           icon={<SupervisorAccountIcon />}
           options={listScales}
-          message={errors}
         />
         <InputCustom
-          id="code"
           name="code"
           className="input-item"
           type="text"
           placeholder="Nhập mã giới thiệu"
-          register={register}
+          control={control}
           iconLeft={<KeyIcon />}
-          message={errors}
         />
         <div className="policies">
           <input
@@ -238,7 +207,7 @@ const RegisterForm = () => {
             className="btn-register"
             height="48px"
             disabled={disabled}
-            onClick={handleSubmit(onSubmit)}
+            isSubmit
           >
             ĐĂNG KÝ
           </ButtonCustom>

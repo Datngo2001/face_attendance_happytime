@@ -17,6 +17,8 @@ export type CompanyInfo = {
   company_mail: string;
   fanpage: string;
   tax_number: string;
+  mainBaseAddress: string;
+  introBusiness: string;
 };
 
 export type CompanyState = {

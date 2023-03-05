@@ -21,7 +21,7 @@ import InputCustom from "components/InputCustom";
 
 export const IndexControlPanel = () => {
   // STATE
-  const { register, watch } = useForm({});
+  const { control, watch } = useForm({});
   const { listIdInvitation } = useAppSelector((state) => state.employees);
   const dispatch = useAppDispatch();
   // ******************************
@@ -94,50 +94,49 @@ export const IndexControlPanel = () => {
           <SelectCustom
             name="statusActive"
             className="input-item"
-            register={register}
+            control={control}
             defaultValue={1}
             options={listStatusActive}
           />
           <SelectCustom
             name="statusEmployee"
             className="input-item"
-            register={register}
+            control={control}
             placeholder="Trạng thái nhân sự"
             options={listStatusEmployees}
           />
           <InputCustom
-            id="searchData"
             name="searchData"
             iconRight={<SearchRoundedIcon />}
             className="input-item flex-basic-25"
             placeholder="Tên, email, số điện thoại, mã nhân viên"
-            register={register}
+            control={control}
           />
           <SelectCustom
             name="role"
             className="input-item"
-            register={register}
+            control={control}
             placeholder="Vai trò"
             options={listRoles}
           />
           <SelectCustom
             name="jobPositionDepartment"
             className="input-item"
-            register={register}
+            control={control}
             placeholder="Phòng ban vị trí công việc"
             options={listRoles}
           />
           <SelectCustom
             name="typeEmployee"
             className="input-item"
-            register={register}
+            control={control}
             placeholder="Loại hình nhân sự"
             options={listTypeEmployees}
           />
           <SelectCustom
             name="statusUsingHappyTime"
             className="input-item flex-basic-25"
-            register={register}
+            control={control}
             placeholder="Trạng thái sử dụng HappyTime"
             options={listStatusUsingHappyTime}
           />
