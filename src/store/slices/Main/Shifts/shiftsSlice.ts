@@ -3,6 +3,8 @@ import {
   extraReducersCreateShift,
   extraReducersGetListShiftTypes,
   extraReducersGetListShifts,
+  extraReducersGetShiftById,
+  extraReducersUpdateShift,
 } from "./actions/extraReducers";
 
 export type ShiftsState = {
@@ -12,7 +14,14 @@ export type ShiftsState = {
   totalPages: number;
   totalShifts: number;
   listOfShiftType: ShiftType[];
+  shift: Shift;
 };
+
+export enum ShiftTypeName {
+  OFFICE = "Ca hành chính",
+  SINGLE = "Ca đơn",
+  UNKNOW = "UNKNOW",
+}
 
 export type Shift = {
   _id?: string;
@@ -120,6 +129,28 @@ const shiftsSlice = createSlice({
         (state: ShiftsState, { payload: { payload, message, onSuccess } }) => {
           state.loading = false;
           onSuccess();
+        }
+      );
+    builder
+      .addCase(extraReducersUpdateShift.pending, (state: ShiftsState) => {
+        state.loading = true;
+      })
+      .addCase(
+        extraReducersUpdateShift.fulfilled,
+        (state: ShiftsState, { payload: { payload, message, onSuccess } }) => {
+          state.loading = false;
+          onSuccess();
+        }
+      );
+    builder
+      .addCase(extraReducersGetShiftById.pending, (state: ShiftsState) => {
+        state.loading = true;
+      })
+      .addCase(
+        extraReducersGetShiftById.fulfilled,
+        (state: ShiftsState, { payload: { payload, message } }) => {
+          state.loading = false;
+          state.shift = payload;
         }
       );
   },

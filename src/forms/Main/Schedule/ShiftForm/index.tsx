@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form'
 import "./styles.scss"
 import ButtonCustom from 'components/ButtonCustom'
 import { useNavigate } from 'react-router-dom'
-import { Shift, ShiftType } from 'store/slices/Main/Shifts/shiftsSlice'
+import { Shift, ShiftType, ShiftTypeName } from 'store/slices/Main/Shifts/shiftsSlice'
 import InputCustom from 'components/InputCustom'
 import { Stack } from '@mui/material'
 import FormSwitchCustom from 'components/ButtonSwitchCustom/FormSwitchCustom'
@@ -18,7 +18,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { schema } from './validator'
 import { FormAction } from 'forms/formAction'
 import { useAppDispatch } from 'hooks/useAppDispatch'
-import { extraReducersCreateShift } from 'store/slices/Main/Shifts/actions/extraReducers'
+import { extraReducersCreateShift, extraReducersUpdateShift } from 'store/slices/Main/Shifts/actions/extraReducers'
 import InputNumber from 'components/InputNumber'
 
 export type Props = {
@@ -27,27 +27,21 @@ export type Props = {
     action?: FormAction
 }
 
-export enum TypeName {
-    OFFICE = "OFFICE",
-    SINGLE = "SINGLE",
-    UNKNOW = "UNKNOW"
-}
-
 const ShiftForm: React.FC<Props> = ({ shiftType, shift, action = FormAction.CREATE }) => {
     const typeName = useMemo(() => {
-        if (!shiftType) return TypeName.UNKNOW
-        if (shiftType.schedule_name === "Ca hành chính") {
-            return TypeName.OFFICE
+        if (!shiftType) return ShiftTypeName.UNKNOW
+        if (shiftType.schedule_name === ShiftTypeName.OFFICE.toString()) {
+            return ShiftTypeName.OFFICE
         }
-        if (shiftType.schedule_name === "Ca đơn") {
-            return TypeName.SINGLE
+        if (shiftType.schedule_name === ShiftTypeName.SINGLE.toString()) {
+            return ShiftTypeName.SINGLE
         }
-        return TypeName.UNKNOW
+        return ShiftTypeName.UNKNOW
     }, [shiftType])
 
     const defaultValue = useMemo(() => {
         if (action === FormAction.CREATE) {
-            return typeName === TypeName.OFFICE ? defaultValuesOffice : defaultValuesSingle
+            return typeName === ShiftTypeName.OFFICE ? defaultValuesOffice : defaultValuesSingle
         } else if (action === FormAction.UPDATE || action === FormAction.VIEW) {
             return shift
         }
@@ -64,7 +58,9 @@ const ShiftForm: React.FC<Props> = ({ shiftType, shift, action = FormAction.CREA
 
     const handleOnCancel = () => { navigate("../shifts") }
     const handleOnSubmitUpdate = (data) => {
-        console.log(data)
+        data.shift_type.id = shiftType._id;
+        data.shift_type.name = shiftType.schedule_name;
+        dispatch(extraReducersUpdateShift({ data, onSuccess: () => { navigate("../shifts") } }))
     }
     const handleOnSubmitCreate = (data) => {
         data.shift_type.id = shiftType._id;
@@ -96,10 +92,10 @@ const ShiftForm: React.FC<Props> = ({ shiftType, shift, action = FormAction.CREA
                         control={control} />
                 </Stack>
                 <div className='group'>
-                    {typeName === TypeName.OFFICE && (<OfficeTimeInput control={control} />)}
-                    {typeName === TypeName.SINGLE && (<SingleTimeInput control={control} />)}
+                    {typeName === ShiftTypeName.OFFICE && (<OfficeTimeInput control={control} />)}
+                    {typeName === ShiftTypeName.SINGLE && (<SingleTimeInput control={control} />)}
                 </div>
-                {typeName === TypeName.SINGLE && (
+                {typeName === ShiftTypeName.SINGLE && (
                     <div className='group group-limit divider-top`'>
                         <CheckInLimit control={control} />
                         <CheckOutLimit control={control} />
@@ -125,29 +121,32 @@ const ShiftForm: React.FC<Props> = ({ shiftType, shift, action = FormAction.CREA
                         max={9999}
                         min={0} />
                 </Stack>
-                <div className="actions divider-top">
-                    <ButtonCustom
-                        className="btn btn--cancel"
-                        width="auto"
-                        height="32px"
-                        onClick={handleOnCancel}
-                    >
-                        Hủy bỏ
-                    </ButtonCustom>
-                    <ButtonCustom
-                        className="btn"
-                        width="auto"
-                        height="32px"
-                        onClick={handleSubmit(
-                            action === FormAction.UPDATE
-                                ? handleOnSubmitUpdate
-                                : handleOnSubmitCreate
-                        )}
-                        isSubmit
-                    >
-                        Lưu
-                    </ButtonCustom>
-                </div>
+                {action === FormAction.VIEW ? null : (
+                    <div className="actions divider-top">
+                        <ButtonCustom
+                            className="btn btn--cancel"
+                            width="auto"
+                            height="32px"
+                            onClick={handleOnCancel}
+                        >
+                            Hủy bỏ
+                        </ButtonCustom>
+                        <ButtonCustom
+                            className="btn"
+                            width="auto"
+                            height="32px"
+                            onClick={handleSubmit(
+                                action === FormAction.UPDATE
+                                    ? handleOnSubmitUpdate
+                                    : handleOnSubmitCreate
+                            )}
+                            isSubmit
+                        >
+                            Lưu
+                        </ButtonCustom>
+                    </div>
+
+                )}
             </form>
         </div>
     )

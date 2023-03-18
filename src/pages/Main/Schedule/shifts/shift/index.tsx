@@ -3,30 +3,36 @@ import { Link, useParams } from 'react-router-dom'
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 import "../styles.scss"
 import { useAppSelector } from 'hooks/useAppSelector';
-import { extraReducersGetListShiftTypes } from 'store/slices/Main/Shifts/actions/extraReducers';
+import { extraReducersGetListShiftTypes, extraReducersGetShiftById } from 'store/slices/Main/Shifts/actions/extraReducers';
 import { useAppDispatch } from 'hooks/useAppDispatch';
 import ShiftForm from 'forms/Main/Schedule/ShiftForm';
 import { FormAction } from 'forms/formAction';
 
 const ShiftPage: React.FC = () => {
-    const { typeid, action } = useParams();
+    const { id, typeid, action } = useParams();
 
-    const { listOfShiftType } = useAppSelector(state => state.shifts)
+    const { listOfShiftType, shift } = useAppSelector(state => state.shifts)
     const dispatch = useAppDispatch()
 
     useEffect(() => {
         dispatch(
             extraReducersGetListShiftTypes()
         );
+
+        if (id) {
+            dispatch(
+                extraReducersGetShiftById({ id: id })
+            );
+        }
     }, []);
 
     const shiftType = useMemo(() => listOfShiftType.find(type => type._id === typeid), [listOfShiftType, typeid])
 
     const title = useMemo(() => {
         let actionTitle = ""
-        if (action === "create") {
+        if (action === FormAction.CREATE) {
             actionTitle = "THÊM MỚI"
-        } else if (action === "update") {
+        } else if (action === FormAction.UPDATE) {
             actionTitle = "CẬP NHẬT"
         } else {
             return ""
@@ -43,7 +49,7 @@ const ShiftPage: React.FC = () => {
                     Quay lại
                 </Link>
                 <div className="content-title">{title}</div>
-                {shiftType && <ShiftForm action={FormAction.CREATE} shiftType={shiftType} />}
+                {shiftType && <ShiftForm action={FormAction[action.toUpperCase()]} shiftType={shiftType} shift={shift} />}
             </div>
         </>
     )

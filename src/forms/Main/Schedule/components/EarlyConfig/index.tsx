@@ -2,11 +2,11 @@ import React from 'react'
 import './styles.scss'
 import FormSwitchCustom from 'components/ButtonSwitchCustom/FormSwitchCustom'
 import Stack from '@mui/material/Stack'
-import { TypeName } from '../../ShiftForm'
 import TimePickerCustom from 'components/InputTime/TimePickerCustom'
+import { ShiftTypeName } from 'store/slices/Main/Shifts/shiftsSlice'
 
 export type Props = {
-    typeName: TypeName
+    typeName: ShiftTypeName
     control: any
 }
 
@@ -22,7 +22,7 @@ const EarlyConfig: React.FC<Props> = ({ typeName, control }) => {
                     name='config_out_early.is_in_use' />
             </div>
             <Stack spacing={2}>
-                {typeName === TypeName.SINGLE && (
+                {typeName === ShiftTypeName.SINGLE && (
                     <>
                         <TimePickerCustom
                             name="config_out_early.time"
@@ -30,7 +30,7 @@ const EarlyConfig: React.FC<Props> = ({ typeName, control }) => {
                             control={control} />
                     </>
                 )}
-                {typeName === TypeName.OFFICE && (
+                {typeName === ShiftTypeName.OFFICE && (
                     <>
                         <TimePickerCustom
                             name="config_out_early.early_out_morning"

@@ -1,5 +1,6 @@
 import ModalCustom from 'components/ModalCustom'
 import RadioGroupCustom from 'components/RadioGroupCustom'
+import { FormAction } from 'forms/formAction'
 import { useAppDispatch } from 'hooks/useAppDispatch'
 import { useAppSelector } from 'hooks/useAppSelector'
 import React, { useEffect } from 'react'
@@ -25,7 +26,7 @@ const CreateShiftModal: React.FC<Props> = ({ state, setState }) => {
 
     const handleSubmit = () => {
         let { shiftType } = getValues()
-        navigate(`./create/${shiftType}`)
+        navigate(`./${FormAction.CREATE.toString()}/${shiftType}`)
     }
 
     return (

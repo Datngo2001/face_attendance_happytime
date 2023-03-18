@@ -16,6 +16,21 @@ export const extraReducersGetListShifts = createAsyncThunk(
   }
 );
 
+export const extraReducersGetShiftById = createAsyncThunk(
+  "getShiftById",
+  async ({ id }: any) => {
+    return api
+      .get(`/api/shift_schedule/get/${id}`)
+      .then((response: any) => {
+        return {
+          payload: response.payload,
+          message: response.message,
+        };
+      })
+      .catch((error) => error);
+  }
+);
+
 export const extraReducersGetListShiftTypes = createAsyncThunk(
   "getListShiftTypes",
   async () => {
@@ -36,6 +51,22 @@ export const extraReducersCreateShift = createAsyncThunk(
   async ({ data, onSuccess }: any) => {
     return api
       .post(`/api/shift_schedule/create`, data)
+      .then((response: any) => {
+        return {
+          payload: response.payload,
+          message: response.message,
+          onSuccess,
+        };
+      })
+      .catch((error) => error);
+  }
+);
+
+export const extraReducersUpdateShift = createAsyncThunk(
+  "updateShift",
+  async ({ data, onSuccess }: any) => {
+    return api
+      .put(`/api/shift_schedule/update/${data._id}`, data)
       .then((response: any) => {
         return {
           payload: response.payload,

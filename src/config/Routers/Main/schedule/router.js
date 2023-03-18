@@ -6,9 +6,14 @@ const scheduleRouters = [
         component: <Shifts />,
     },
     {
+        path: "shifts/:action/:typeid/:id",
+        component: <ShiftPage />,
+    },
+    {
         path: "shifts/:action/:typeid",
         component: <ShiftPage />,
     },
+
 ];
 
 export default scheduleRouters;
