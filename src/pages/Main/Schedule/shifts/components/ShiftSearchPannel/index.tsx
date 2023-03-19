@@ -25,13 +25,11 @@ const shiftStatusOptions: SelectBoxOption[] = [
     }
 ]
 
+export type Props = {
+    control: any
+}
 
-const ShiftSearchPannel: React.FC = () => {
-    const { control } = useForm({
-        defaultValues: {
-            shiftStatus: "ALL"
-        }
-    });
+const ShiftSearchPannel: React.FC<Props> = ({ control }) => {
     const [modal, setModal] = useState(false);
 
     const { listOfShiftType } = useAppSelector(state => state.shifts);

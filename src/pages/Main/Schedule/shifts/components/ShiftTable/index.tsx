@@ -2,15 +2,16 @@ import DataGridCustom from 'components/DataGridCustom'
 import PaginationCustom from 'components/PaginationCustom';
 import { useAppDispatch } from 'hooks/useAppDispatch';
 import { useAppSelector } from 'hooks/useAppSelector';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { columns } from './components';
 import { extraReducersGetListShifts } from 'store/slices/Main/Shifts/actions/extraReducers';
 
-const ShiftTable: React.FC = () => {
+export type Props = {
+    page: number
+    setPage: any
+}
 
-    // STATE
-    const [page, setPage] = useState(1);
-    // ****************************************************
+const ShiftTable: React.FC<Props> = ({ page, setPage }) => {
 
     // HOOK REACT TOOLKIT
     const { listOfShift, totalPages, loading } = useAppSelector(
@@ -22,27 +23,22 @@ const ShiftTable: React.FC = () => {
     useEffect(() => {
         dispatch(
             extraReducersGetListShifts({
-                page: page - 1,
+                page: page,
                 size: process.env.REACT_APP_PAGE_SIZE,
             })
         );
-    }, [page]);
-
-    const hanldeOnRowClick = () => { }
-    const handleOnSelectionModelChange = () => { }
+    }, []);
 
     return (
         <div className="ListShifts__table">
             <DataGridCustom
-                onRowClick={hanldeOnRowClick}
-                headerHeight={100}
-                rowHeight={100}
+                headerHeight={60}
+                rowHeight={60}
                 rows={listOfShift}
                 columns={columns}
                 getRowId={(row) => row._id}
                 rowsPerPageOptions={[5]}
                 loading={loading}
-                onSelectionModelChange={handleOnSelectionModelChange}
             />
             {listOfShift.length > 0 && (
                 <div

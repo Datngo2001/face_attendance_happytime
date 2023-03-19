@@ -4,7 +4,8 @@ import { toastPromise } from "utils";
 
 export const extraReducersGetListShifts = createAsyncThunk(
   "getListShifts",
-  async ({ page, size }: any) => {
+  async ({ page, size, params }: any) => {
+    console.log(params);
     return api
       .post(`/api/shift_schedule/search?page=${page}&size=${size}`, {})
       .then((response: any) => {
