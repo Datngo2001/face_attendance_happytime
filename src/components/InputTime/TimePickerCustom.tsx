@@ -3,7 +3,7 @@ import React from 'react'
 import "./styles.scss"
 import { Controller } from 'react-hook-form'
 import dayjs from 'dayjs'
-import { dataFormat, viewFormat } from './default'
+import { DataFormat, ViewFormat } from './default'
 
 export type Props = {
     name: string,
@@ -57,12 +57,12 @@ const TimePickerCustom: React.FC<Props> = ({
                         <TimePicker
                             id={name}
                             name={name}
-                            value={dayjs(value, viewFormat)}
-                            onChange={date => onChange(date.format(dataFormat))}
+                            value={dayjs(value, ViewFormat)}
+                            onChange={date => onChange(date.format(DataFormat))}
                             onBlur={onBlur}
                             disabled={disabled}
                             placeholder={placeholder}
-                            format={viewFormat}
+                            format={ViewFormat}
                         />
                         {error && <p className="error-message">{error.message}</p>}
                     </div>

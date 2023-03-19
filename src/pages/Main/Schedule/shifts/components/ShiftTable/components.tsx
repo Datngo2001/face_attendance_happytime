@@ -4,6 +4,8 @@ import DropMenu from "components/DropMenu";
 import { OptionColumn } from "components/OptionColumn";
 import { ShiftTypeName } from "store/slices/Main/Shifts/shiftsSlice";
 import RowOptions from "../RowOptions";
+import dayjs from "dayjs";
+import { DataFormat, ViewFormat } from "components/InputTime/default";
 
 export const columns: GridColumns = [
     {
@@ -38,12 +40,12 @@ export const columns: GridColumns = [
             return <div className="column-working-time">
                 {params.row.shift_type.name === ShiftTypeName.OFFICE.toString() &&
                     <span>
-                        {params.row.morning_working_time.from} - {params.row.afternoon_working_time.from}
+                        {dayjs(params.row.morning_working_time.from, DataFormat).format(ViewFormat)} - {dayjs(params.row.afternoon_working_time.from, DataFormat).format(ViewFormat)}
                     </span>
                 }
                 {params.row.shift_type.name === ShiftTypeName.SINGLE.toString() &&
                     <span>
-                        {params.row.working_time.from} - {params.row.working_time.from}
+                        {dayjs(params.row.working_time.from, DataFormat).format(ViewFormat)} - {dayjs(params.row.working_time.from, DataFormat).format(ViewFormat)}
                     </span>
                 }
             </div>;

@@ -1,3 +1,3 @@
-export const viewFormat = "HH:mm";
+export const ViewFormat = "HH:mm";
 
-export const dataFormat = "HH:mm:00";
+export const DataFormat = "HH:mm:00";
