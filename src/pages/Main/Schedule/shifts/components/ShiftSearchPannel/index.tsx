@@ -27,7 +27,11 @@ const shiftStatusOptions: SelectBoxOption[] = [
 
 
 const ShiftSearchPannel: React.FC = () => {
-    const { control } = useForm();
+    const { control } = useForm({
+        defaultValues: {
+            shiftStatus: "ALL"
+        }
+    });
     const [modal, setModal] = useState(false);
 
     const { listOfShiftType } = useAppSelector(state => state.shifts);
@@ -53,7 +57,6 @@ const ShiftSearchPannel: React.FC = () => {
                 name="shiftStatus"
                 className="input-item"
                 control={control}
-                defaultValue={"ALL"}
                 placeholder="Trạng thái hoạt động"
                 options={shiftStatusOptions}
             />

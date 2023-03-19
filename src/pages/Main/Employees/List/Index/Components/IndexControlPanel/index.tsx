@@ -21,7 +21,11 @@ import InputCustom from "components/InputCustom";
 
 export const IndexControlPanel = () => {
   // STATE
-  const { control, watch } = useForm({});
+  const { control, watch } = useForm({
+    defaultValues: {
+      statusActive: 1
+    }
+  });
   const { listIdInvitation } = useAppSelector((state) => state.employees);
   const dispatch = useAppDispatch();
   // ******************************
@@ -95,7 +99,6 @@ export const IndexControlPanel = () => {
             name="statusActive"
             className="input-item"
             control={control}
-            defaultValue={1}
             options={listStatusActive}
           />
           <SelectCustom
