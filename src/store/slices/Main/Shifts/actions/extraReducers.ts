@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { api } from "config/api";
+import { toastPromise } from "utils";
 
 export const extraReducersGetListShifts = createAsyncThunk(
   "getListShifts",
@@ -49,7 +50,7 @@ export const extraReducersGetListShiftTypes = createAsyncThunk(
 export const extraReducersCreateShift = createAsyncThunk(
   "createShift",
   async ({ data, onSuccess }: any) => {
-    return api
+    const promise = api
       .post(`/api/shift_schedule/create`, data)
       .then((response: any) => {
         return {
@@ -59,13 +60,21 @@ export const extraReducersCreateShift = createAsyncThunk(
         };
       })
       .catch((error) => error);
+
+    toastPromise(promise, {
+      titleLoading: "Đang thực hiện",
+      titleSuccess: "Tạo mới thành công",
+      titleError: "Tạo mới thất bại",
+    });
+
+    return promise;
   }
 );
 
 export const extraReducersUpdateShift = createAsyncThunk(
   "updateShift",
   async ({ data, onSuccess }: any) => {
-    return api
+    const promise = api
       .put(`/api/shift_schedule/update/${data._id}`, data)
       .then((response: any) => {
         return {
@@ -75,5 +84,13 @@ export const extraReducersUpdateShift = createAsyncThunk(
         };
       })
       .catch((error) => error);
+
+    toastPromise(promise, {
+      titleLoading: "Đang thực hiện",
+      titleSuccess: "Cập nhật thành công",
+      titleError: "Cập nhật thất bại",
+    });
+
+    return promise;
   }
 );

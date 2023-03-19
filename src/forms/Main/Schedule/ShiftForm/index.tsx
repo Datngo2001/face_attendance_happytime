@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React, { useEffect, useMemo } from 'react'
 import { useForm } from 'react-hook-form'
 import "./styles.scss"
 import ButtonCustom from 'components/ButtonCustom'
@@ -47,10 +47,12 @@ const ShiftForm: React.FC<Props> = ({ shiftType, shift, action = FormAction.CREA
         }
     }, [action, shift, typeName])
 
-    const { control, handleSubmit } = useForm({
+    const { control, handleSubmit, reset } = useForm({
         defaultValues: defaultValue,
         resolver: yupResolver(schema)
     });
+
+    useEffect(() => { reset(defaultValue) }, [defaultValue])
 
     const navigate = useNavigate()
 

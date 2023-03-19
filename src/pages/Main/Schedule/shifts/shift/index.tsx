@@ -7,6 +7,7 @@ import { extraReducersGetListShiftTypes, extraReducersGetShiftById } from 'store
 import { useAppDispatch } from 'hooks/useAppDispatch';
 import ShiftForm from 'forms/Main/Schedule/ShiftForm';
 import { FormAction } from 'forms/formAction';
+import { resetShift } from 'store/slices/Main/Shifts/shiftsSlice';
 
 const ShiftPage: React.FC = () => {
     const { id, typeid, action } = useParams();
@@ -23,6 +24,10 @@ const ShiftPage: React.FC = () => {
             dispatch(
                 extraReducersGetShiftById({ id: id })
             );
+        }
+
+        return () => {
+            dispatch(resetShift());
         }
     }, []);
 

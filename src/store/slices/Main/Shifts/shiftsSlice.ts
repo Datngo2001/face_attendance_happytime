@@ -6,6 +6,7 @@ import {
   extraReducersGetShiftById,
   extraReducersUpdateShift,
 } from "./actions/extraReducers";
+import { reducersResetShift } from "./actions/reducer";
 
 export type ShiftsState = {
   status: string;
@@ -87,7 +88,9 @@ const shiftsSlice = createSlice({
     totalPages: 1,
     totalShifts: 0,
   } as ShiftsState,
-  reducers: {},
+  reducers: {
+    resetShift: reducersResetShift,
+  },
   extraReducers: (builder) => {
     builder
       .addCase(extraReducersGetListShifts.pending, (state: ShiftsState) => {
@@ -156,5 +159,5 @@ const shiftsSlice = createSlice({
   },
 });
 
-export const {} = shiftsSlice.actions;
+export const { resetShift } = shiftsSlice.actions;
 export default shiftsSlice;
