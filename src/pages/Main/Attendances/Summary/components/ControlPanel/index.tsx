@@ -38,12 +38,10 @@ const ControlPanel: React.FC<Props> = ({ control, setValue, trigger }) => {
           />
           <div style={{ width: "100%", height: "20px" }}></div>
           <InputDate
-            id="timeStart"
+            name="timeStart"
             width="250px"
-            setValue={setValue}
-            trigger={trigger}
+            control={control}
             placeholder="Chọn ngày bắt đầu"
-            defaultValue={today}
           />
         </div>
         <div className="attendances--summary--control-panel__footer">

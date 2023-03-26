@@ -4,7 +4,7 @@ import { extraReducersGetInfoUser } from "./actions/extraReducers";
 export type UserInfor = {
   name: string;
   avatar: string;
-  role: string;
+  role: number;
 };
 
 export type GlobalState = {
@@ -18,7 +18,7 @@ export const globalSlice = createSlice({
   initialState: {
     status: "fail",
     loading: false,
-    userInfor: {},
+    userInfor: {} as UserInfor,
   },
   reducers: {},
   extraReducers: (builder) => {

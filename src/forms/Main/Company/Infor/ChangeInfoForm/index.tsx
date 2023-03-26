@@ -155,7 +155,6 @@ const ChangeInfoForm = () => {
                 control={control}
                 className="input-custom"
                 options={listScales}
-                defaultValue={infoOfCompany.scale}
               />
               <InputCustom
                 name="tax_number"

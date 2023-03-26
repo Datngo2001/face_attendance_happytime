@@ -15,7 +15,6 @@ export type Props = {
     height?: string | number;
     className?: string;
     placeholder?: string;
-    defaultValue?: string | number;
     label?: string;
     required?: boolean,
     disabled?: boolean,
@@ -34,7 +33,6 @@ const SelectCustom: React.FC<Props> = ({
     height,
     className = "",
     placeholder,
-    defaultValue,
     options,
     label,
     required = false,
@@ -54,6 +52,10 @@ const SelectCustom: React.FC<Props> = ({
     };
     // ******************************
 
+    const isValidValue = (value) => {
+        return options.find(x => x.id === parseInt(value)) ? true : false;
+    }
+
     return (
         <Controller
             control={control}
@@ -64,7 +66,7 @@ const SelectCustom: React.FC<Props> = ({
             }) => (
                 <Box
                     className={`select-custom__wrapper 
-                        ${!defaultValue ? "selected-placeholder" : ""} 
+                        ${isValidValue(value) ? "" : "selected-placeholder"} 
                         ${error ? "error" : ""} 
                         ${className}`}
                     sx={{ height: height, width: width }}
@@ -81,33 +83,30 @@ const SelectCustom: React.FC<Props> = ({
                     <FormControl fullWidth>
                         {icon}
                         <Select
+                            placeholder={placeholder}
                             labelId="label"
                             open={open}
                             disabled={disabled}
                             onClose={handleClose}
                             onOpen={handleOpen}
                             name={name}
-                            value={value ?? "null"}
+                            value={isValidValue(value) ? value : "null"}
                             onChange={onChange}
                             onBlur={onBlur}
                             inputRef={ref}
-                            defaultValue={defaultValue || "null"}
                             inputProps={{ "aria-label": "Without label" }}
                             className={`select-item ${!icon && "none-icon"}`}
                         >
-                            {!defaultValue && (
-                                <MenuItem value={"null"} disabled>
-                                    {placeholder}
-                                </MenuItem>
-                            )}
-                            {options &&
-                                options.map((option) => {
-                                    return (
-                                        <MenuItem value={option.id} key={option.id}>
-                                            {option.name}
-                                        </MenuItem>
-                                    );
-                                })}
+                            <MenuItem value={"null"} disabled>
+                                {placeholder}
+                            </MenuItem>
+                            {options.map((option) => {
+                                return (
+                                    <MenuItem value={option.id} key={option.id}>
+                                        {option.name}
+                                    </MenuItem>
+                                );
+                            })}
                         </Select>
                         {error && (<p className="error-message">{error.message}</p>)}
                     </FormControl>

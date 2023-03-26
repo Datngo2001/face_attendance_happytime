@@ -5,16 +5,16 @@ import InputDate from "components/InputDate";
 import CheckboxCustom from "components/CheckboxCustom";
 import SelectCustom from "components/SelectCustom";
 import { jobPositionList, listStatusEmployees, listTypeEmployees } from "utils/ListData";
+import { FormAction } from "forms/formAction";
+
+export type Props = {
+  control: any;
+  action: FormAction;
+}
 
 const WorkInformation = ({
   control,
-  method,
-  errors,
-  setValue,
-  trigger,
-  startWorkingDate,
-  typeEmployee,
-  employeeStatus,
+  action
 }) => {
   return (
     <>
@@ -25,9 +25,9 @@ const WorkInformation = ({
         </div>
         <div className="employees-form__container">
           <div className="col">
-            {method === "update" && (
+            {action === FormAction.UPDATE && (
               <InputCustom
-                name="staffId"
+                name="agent_code"
                 control={control}
                 disabled={true}
                 width="100%"
@@ -36,35 +36,19 @@ const WorkInformation = ({
                 placeholder="Mã nhân viên"
               />
             )}
-            {method === "update" ? (
-              <InputDate
-                id="startWorkingDate"
-                className="input-item"
-                label="Ngày bắt đầu đi làm"
-                required={true}
-                placeholder="Ngày bắt đầu đi làm"
-                setValue={setValue}
-                message={errors}
-                trigger={trigger}
-                defaultValue={startWorkingDate}
-              />
-            ) : (
-              <InputDate
-                id="startWorkingDate"
-                className="input-item"
-                label="Ngày bắt đầu đi làm"
-                required={true}
-                placeholder="Ngày bắt đầu đi làm"
-                setValue={setValue}
-                message={errors}
-                trigger={trigger}
-              />
-            )}
-            <CheckboxCustom
+            <InputDate
+              name="start_working_date"
+              className="input-item"
+              label="Ngày bắt đầu đi làm"
+              required={true}
+              placeholder="Ngày bắt đầu đi làm"
+              control={control}
+            />
+            {/* <CheckboxCustom
               name="doNotRequireTimekeeping"
               className="input-item checkbox"
               control={control}
-              label="Không yêu cầu chấm công" />
+              label="Không yêu cầu chấm công" /> */}
           </div>
           <div className="col">
             <SelectCustom
@@ -78,7 +62,7 @@ const WorkInformation = ({
               options={jobPositionList}
             />
             <SelectCustom
-              name="employeeStatus"
+              name="agent_status"
               width="100%"
               className="input-item"
               required={true}
@@ -86,12 +70,11 @@ const WorkInformation = ({
               control={control}
               placeholder="Trạng thái nhân sự"
               options={listStatusEmployees}
-              defaultValue={employeeStatus}
             />
           </div>
           <div className="col">
             <SelectCustom
-              name="workBranch"
+              name="working_branch"
               width="100%"
               className="input-item"
               label="Chi nhánh làm việc"
@@ -99,30 +82,16 @@ const WorkInformation = ({
               placeholder="Chi nhánh làm việc"
               options={listStatusEmployees}
             />
-            {typeEmployee ? (
-              <SelectCustom
-                name="typeEmployee"
-                width="100%"
-                className="input-item"
-                label="Loại hình nhân sự"
-                required={true}
-                control={control}
-                placeholder="Loại hình nhân sự"
-                options={listTypeEmployees}
-                defaultValue={typeEmployee}
-              />
-            ) : (
-              <SelectCustom
-                name="typeEmployee"
-                width="100%"
-                className="input-item"
-                label="Loại hình nhân sự"
-                required={true}
-                control={control}
-                placeholder="Loại hình nhân sự"
-                options={listTypeEmployees}
-              />
-            )}
+            <SelectCustom
+              name="agent_type"
+              width="100%"
+              className="input-item"
+              label="Loại hình nhân sự"
+              required={true}
+              control={control}
+              placeholder="Loại hình nhân sự"
+              options={listTypeEmployees}
+            />
           </div>
         </div>
       </div>

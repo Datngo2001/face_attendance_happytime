@@ -4,24 +4,24 @@ import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 import "./styles.scss";
 
 const Update = () => {
-    // STATE
-    // ******************************
+  // STATE
+  // ******************************
 
-    // HOOK EFFECT
-    // *****************************
+  // HOOK EFFECT
+  // *****************************
 
-    return (
-        <>
-            <div className="update__wrapper">
-                <Link className="content-navigator" to="../list/view">
-                    <ArrowBackRoundedIcon />
-                    Quay lại
-                </Link>
-                <h3 className="content-title">Chỉnh sửa thông tin nhân viên</h3>
-                <EmployeesForm method={"update"} />
-            </div>
-        </>
-    );
+  return (
+    <>
+      <div className="update__wrapper">
+        <Link className="content-navigator" to="../list/view">
+          <ArrowBackRoundedIcon />
+          Quay lại
+        </Link>
+        <h3 className="content-title">Chỉnh sửa thông tin nhân viên</h3>
+        <EmployeesForm action={"update"} />
+      </div>
+    </>
+  );
 };
 
 export default Update;

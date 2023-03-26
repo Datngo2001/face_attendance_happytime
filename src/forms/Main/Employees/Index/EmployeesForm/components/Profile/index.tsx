@@ -8,31 +8,11 @@ import { listEducation, listGender, listMarriedStatus } from "utils/ListData";
 import React from "react";
 
 export type Props = {
-  register: any,
-  setValue: any,
   control: any,
-  trigger: any,
-  graduationDate: any,
-  gender: any,
-  marriedStatus: any,
-  supplyDate: any,
-  birthDate: any,
-  education: any,
-  avatar: any,
 }
 
 const Profile: React.FC<Props> = ({
-  register,
-  setValue,
   control,
-  trigger,
-  graduationDate,
-  gender,
-  marriedStatus,
-  supplyDate,
-  birthDate,
-  education,
-  avatar,
 }) => {
   return (
     <>
@@ -43,7 +23,7 @@ const Profile: React.FC<Props> = ({
         </div>
         <div className="employees-form__container">
           <div className="col">
-            <InputFile
+            {/* <InputFile
               name="avatar"
               className="input-item"
               type={2}
@@ -52,10 +32,10 @@ const Profile: React.FC<Props> = ({
               setValue={setValue}
               defaultValue={avatar}
               title="Đổi ảnh đại diện"
-            />
+            /> */}
             <div style={{ width: "100%", height: "25px" }}></div>
             <InputCustom
-              name="citizenId"
+              name="identify_id"
               width="100%"
               className="input-item"
               label="Số CCCD/CMND/Hộ chiếu"
@@ -63,7 +43,7 @@ const Profile: React.FC<Props> = ({
               placeholder="Số CCCD/CMND/Hộ chiếu"
             />
             <InputCustom
-              name="temporaryAddress"
+              name="staying_address"
               width="100%"
               className="input-item"
               label="Địa chỉ tạm trú"
@@ -71,23 +51,20 @@ const Profile: React.FC<Props> = ({
               placeholder="Địa chỉ tạm trú"
             />
             <SelectCustom
-              name="education"
+              name="education_type"
               control={control}
               width="100%"
               className="input-item"
               label="Học vấn"
               options={listEducation}
               placeholder="Học vấn"
-              defaultValue={education}
             />
             <InputDate
-              id="graduationDate"
+              name="graduation_date"
               className="input-item"
               label="Ngày tốt nghiệp"
               placeholder="Ngày tốt nghiệp"
-              setValue={setValue}
-              defaultValue={graduationDate}
-              trigger={trigger} />
+              control={control} />
           </div>
           <div className="col">
             <InputCustom
@@ -100,7 +77,7 @@ const Profile: React.FC<Props> = ({
               placeholder="Họ và tên"
             />
             <InputCustom
-              name="phoneNumber"
+              name="phone_number"
               width="100%"
               className="input-item"
               label="Số điện thoại"
@@ -109,7 +86,7 @@ const Profile: React.FC<Props> = ({
               control={control}
             />
             <InputCustom
-              name="emailCompany"
+              name="company_mail"
               width="100%"
               type="email"
               className="input-item"
@@ -118,7 +95,7 @@ const Profile: React.FC<Props> = ({
               placeholder="Email công ty"
             />
             <InputCustom
-              name="issuedPlace"
+              name="issued_by"
               width="100%"
               className="input-item"
               label="Nơi cấp"
@@ -126,7 +103,7 @@ const Profile: React.FC<Props> = ({
               placeholder="Nơi cấp"
             />
             <InputCustom
-              name="permanentAddress"
+              name="residence_address"
               width="100%"
               className="input-item"
               label="Địa chỉ thường trú"
@@ -134,7 +111,7 @@ const Profile: React.FC<Props> = ({
               placeholder="Địa chỉ thường trú"
             />
             <InputCustom
-              name="school"
+              name="school_name"
               width="100%"
               className="input-item"
               label="Trường học"
@@ -142,14 +119,13 @@ const Profile: React.FC<Props> = ({
               placeholder="Trường học"
             />
             <SelectCustom
-              name="marriedStatus"
+              name="married_status"
               width="100%"
               className="input-item"
               label="Tình trạng hôn nhân"
               control={control}
               options={listMarriedStatus}
               placeholder="Tình trạng hôn nhân"
-              defaultValue={marriedStatus}
             />
           </div>
           <div className="col">
@@ -161,18 +137,15 @@ const Profile: React.FC<Props> = ({
               control={control}
               options={listGender}
               placeholder="Giới tính"
-              defaultValue={gender}
             />
             <InputDate
-              id="birthDate"
+              name="date_of_birth"
               className="input-item"
               label="Ngày sinh"
               placeholder="Ngày sinh"
-              setValue={setValue}
-              defaultValue={birthDate}
-              trigger={trigger} />
+              control={control} />
             <InputCustom
-              name="personalEmail"
+              name="personal_mail"
               width="100%"
               type="email"
               className="input-item"
@@ -182,15 +155,13 @@ const Profile: React.FC<Props> = ({
               placeholder="Email cá nhân"
             />
             <InputDate
-              id="supplyDate"
+              name="issued_date"
               className="input-item"
               label="Ngày cấp"
               placeholder="Ngày cấp"
-              setValue={setValue}
-              defaultValue={supplyDate}
-              trigger={trigger} />
+              control={control} />
             <InputCustom
-              name="personalTaxCode"
+              name="personal_tax_id"
               width="100%"
               className="input-item"
               label="Mã số thuế cá nhân"

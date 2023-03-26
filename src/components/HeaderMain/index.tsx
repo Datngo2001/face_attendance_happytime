@@ -4,7 +4,6 @@ import ButtonCustom from "../ButtonCustom";
 import MenuIcon from "@mui/icons-material/Menu";
 import ButtonUser from "../ButtonUser";
 import { Link, useNavigate } from "react-router-dom";
-import avatar from "../../assets/images/avatar.jpg"; //test avatar
 import {
     ButtonUserInner,
     MenuBox,
@@ -15,9 +14,10 @@ import {
 import DropMenu from "../DropMenu";
 import ModalCustom from "../ModalCustom";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { extraReducersGetInfoCompany } from "../../store/slices/Main/Company/actions/extraReducers";
 import { extraReducersGetInfoUser } from "../../store/slices/Global/actions/extraReducers";
+import { useAppSelector } from "hooks/useAppSelector";
+import { useAppDispatch } from "hooks/useAppDispatch";
 
 const HeaderMain = ({ isActive, state, setState }) => {
     // STATE
@@ -32,9 +32,9 @@ const HeaderMain = ({ isActive, state, setState }) => {
     // ****************************
 
     // REDUX TOOLKIT
-    const { infoOfCompany } = useSelector((state) => state.company);
-    const { userInfor } = useSelector((state) => state.global);
-    const dispatch = useDispatch();
+    const { infoOfCompany } = useAppSelector((state) => state.company);
+    const { userInfor } = useAppSelector((state) => state.global);
+    const dispatch = useAppDispatch();
     // ****************************
 
     // HOOK EFFECT
@@ -54,7 +54,7 @@ const HeaderMain = ({ isActive, state, setState }) => {
         setState(!state);
     };
     // ****************************************************************
-    console.log("userInfor", userInfor);
+
     return (
         <>
             <header className="header-main__wrapper">
@@ -92,8 +92,8 @@ const HeaderMain = ({ isActive, state, setState }) => {
                             <div>
                                 <ButtonUser
                                     type={1}
-                                    name={infoOfCompany.company_name}
-                                    avatar={infoOfCompany.avatar}
+                                    name={infoOfCompany?.company_name}
+                                    avatar={infoOfCompany?.avatar}
                                 />
                                 <DropMenu parent={<MenuBox />} mt="12px" ml="-4px">
                                     <MenuBoxInner />

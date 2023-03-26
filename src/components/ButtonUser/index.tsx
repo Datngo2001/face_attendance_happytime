@@ -4,7 +4,14 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import PersonIcon from "@mui/icons-material/Person";
 import { Link } from "react-router-dom";
 
-const ButtonUser = ({ type, avatar, name, role }) => {
+export type Props = {
+    type: number;
+    avatar?: string;
+    name: string;
+    role?: number;
+}
+
+const ButtonUser: React.FC<Props> = ({ type, avatar, name, role }) => {
     return (
         <>
             <div className="button-user__wrapper">
@@ -20,7 +27,7 @@ const ButtonUser = ({ type, avatar, name, role }) => {
                     )}
                     <div className="infor">
                         <p className="name">{name}</p>
-                        <p className="role">{role===1 ? "Admin" : "Super Admin"}</p>
+                        <p className="role">{role === 1 ? "Admin" : "Super Admin"}</p>
                     </div>
                     {type === 1 ? (
                         <Link to="/workspaces">

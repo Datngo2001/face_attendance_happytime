@@ -10,7 +10,7 @@ const Note = ({ control }) => {
                     <StickyNote2RoundedIcon />
                     Ghi chú
                 </div>
-                <InputNote name="note" control={control} width="100%" height="92px" />
+                <InputNote name="note" control={control} maxLength={500} width="100%" height="92px" />
             </div>
         </>
     );

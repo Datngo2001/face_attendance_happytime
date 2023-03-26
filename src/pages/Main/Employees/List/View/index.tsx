@@ -107,11 +107,7 @@ const View = () => {
                                 infoOfEmployee.graduation_date
                             )}
                         />
-                        <BankInformation
-                            bankAccountNumber={infoOfEmployee.bank_account_number}
-                            bankName={infoOfEmployee.bank}
-                            bankBranch={infoOfEmployee.bank_branch}
-                        />
+                        {/* <BankInformation control={control} /> */}
                         <Permission
                             role={convertIdToName({
                                 id: infoOfEmployee.role,

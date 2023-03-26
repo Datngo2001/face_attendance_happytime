@@ -1,16 +1,14 @@
 import SettingsRoundedIcon from "@mui/icons-material/SettingsRounded";
-import SelectCustom from "../../../../../../../components/SelectCustom";
-import { listRoles } from "../../../../../../../utils/ListData";
 import "./styles.scss";
+import SelectCustom from "components/SelectCustom";
+import { listRoles } from "utils/ListData";
 
 export type Props = {
   control: any,
-  manipulationRight: any,
 }
 
 const Permission: React.FC<Props> = ({
   control,
-  manipulationRight,
 }) => {
   return (
     <>
@@ -22,16 +20,14 @@ const Permission: React.FC<Props> = ({
         <div className="employees-form__container">
           <div className="col">
             <SelectCustom
-              name="manipulationRight"
+              name="role"
               width="100%"
               required={true}
-              disabled={true}
               className="input-item"
               label="Quyền thao tác"
               options={listRoles}
               control={control}
               placeholder="Quyền thao tác"
-              defaultValue={manipulationRight}
             />
           </div>
           <div className="col"></div>

@@ -4,24 +4,24 @@ import "./styles.scss";
 import { Link } from "react-router-dom";
 
 const Create = () => {
-    // STATE
-    // ******************************
+  // STATE
+  // ******************************
 
-    // HOOK EFFECT
-    // *****************************
+  // HOOK EFFECT
+  // *****************************
 
-    return (
-        <>
-            <div className="create__wrapper">
-                <Link className="content-navigator" to="../list/index">
-                    <ArrowBackRoundedIcon />
-                    Quay lại
-                </Link>
-                <div className="content-title">Thêm mới nhân viên</div>
-                <EmployeesForm method="create" />
-            </div>
-        </>
-    );
+  return (
+    <>
+      <div className="create__wrapper">
+        <Link className="content-navigator" to="../list/index">
+          <ArrowBackRoundedIcon />
+          Quay lại
+        </Link>
+        <div className="content-title">Thêm mới nhân viên</div>
+        <EmployeesForm action="create" />
+      </div>
+    </>
+  );
 };
 
 export default Create;

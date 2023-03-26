@@ -1,6 +1,10 @@
 import "./styles.scss";
 
-const NotificationBoxInner = ({ listOfNotifications }) => {
+export type Props = {
+    listOfNotifications?: any;
+}
+
+const NotificationBoxInner: React.FC<Props> = ({ listOfNotifications }) => {
     return (
         <>
             <div className="notification-box-inner__wrapper">

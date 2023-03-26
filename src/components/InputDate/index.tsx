@@ -1,112 +1,67 @@
 import { DatePicker } from "antd";
 import locale from "antd/es/date-picker/locale/vi_VN";
 import dayjs from "dayjs";
-import { useEffect } from "react";
 import "./styles.scss";
+import { Controller } from "react-hook-form";
 
 export type Props = {
-  id: string,
+  name: string,
+  control: any,
   className?: string,
   height?: string,
   width?: string,
-  setValue: any,
   label?: string,
   placeholder?: string,
   required?: Boolean,
-  message?: string,
-  trigger: any,
-  defaultValue?: string,
 };
 
 const InputDate: React.FC<Props> = ({
-  id,
+  name,
+  control,
   className,
   height,
   width,
-  setValue,
   label,
   placeholder,
   required = false,
-  message,
-  trigger,
-  defaultValue,
-  // type = 1,
 }) => {
-  // VARIABLES
+
   const dateFormat = "DD/MM/YYYY";
-  const { RangePicker } = DatePicker;
-  // ******************************
-
-  // STATE
-  // ******************************
-
-  // HOOK EFFECT
-  useEffect(() => {
-    defaultValue ? setValue(id, defaultValue) : setValue(id, "");
-  }, []);
-  // ****************************
-
-  // ARROW FUNCTIONS
-  const onChange = (date, dateString) => {
-    setValue(id, dateString);
-    trigger(id);
-  };
-  // *****************************
 
   return (
-    <>
-      <div
-        className={`input-date__wrapper ${className ? className : ""} ${message && message[id] ? "error" : ""
-          }`}
-      >
-        {label && (
-          <div className={`label ${required && "required"}`}>
-            <label htmlFor={id}>
-              {label}
-              <span className="required"> *</span>
-            </label>
+    <Controller
+      control={control}
+      name={name}
+      render={({
+        field: { onChange, value, name },
+        fieldState: { error }
+      }) => (
+        <div
+          className={`input-date__wrapper ${className ? className : ""} ${error ? "error" : ""}`}
+        >
+          {label && (
+            <div className={`label ${required && "required"}`}>
+              <label htmlFor={name}>
+                {label}
+                <span className="required"> *</span>
+              </label>
+            </div>
+          )}
+          <div className="input-date__container">
+            <DatePicker
+              id={name}
+              placeholder={placeholder}
+              style={{ height: height, width: width }}
+              locale={locale}
+              format={dateFormat}
+              value={value ? dayjs(value, dateFormat) : dayjs()}
+              onChange={(date, dateString) => onChange(dateString)}
+            />
+            {error && <p className="error-message">{error.message}</p>}
           </div>
-        )}
-        <div className="input-date__container">
-          <DatePicker
-            id={id}
-            defaultValue={defaultValue ? dayjs(defaultValue, dateFormat) : dayjs(dateFormat)}
-            placeholder={placeholder}
-            style={{ height: height, width: width }}
-            locale={locale}
-            format={dateFormat}
-            onChange={onChange}
-          />
-          {/* {type === 1 ? (
-                        <DatePicker
-                            id={id}
-                            defaultValue={
-                                defaultValue ? dayjs(defaultValue, dateFormat) : ""
-                            }
-                            placeholder={placeholder}
-                            style={{ height: height, width: width }}
-                            locale={locale}
-                            format={dateFormat}
-                            onChange={onChange}
-                        />
-                    ) : (
-                        <RangePicker
-                            id={id}
-                            placeholder={placeholder}
-                            defaultValue={[
-                                dayjs("20/10/2022", dateFormat),
-                                dayjs("14/12/2022", dateFormat),
-                            ]}
-                            locale={locale}
-                            style={{ height: height, width: width }}
-                            format={dateFormat}
-                            onChange={onChange}
-                        />
-                    )} */}
-          {message && <p className="error-message">{message[id]?.message}</p>}
         </div>
-      </div>
-    </>
+      )}
+    />
   );
 };
 

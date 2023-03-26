@@ -13,7 +13,7 @@ const AnnualLeave = ({ control }) => {
         <div className="employees-form__container">
           <div className="col">
             <InputCustom
-              name="numOfLeaveThisYear"
+              name="total_date_off"
               type="number"
               width="100%"
               required={true}
@@ -24,7 +24,7 @@ const AnnualLeave = ({ control }) => {
             />
           </div>
           <div className="col">
-            <InputCustom
+            {/* <InputCustom
               name="numOfLeaveLastYear"
               type="number"
               width="100%"
@@ -33,7 +33,7 @@ const AnnualLeave = ({ control }) => {
               label="Số phép năm trước"
               control={control}
               placeholder="0"
-            />
+            /> */}
           </div>
           <div className="col"></div>
         </div>

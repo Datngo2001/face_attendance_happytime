@@ -55,7 +55,7 @@ const InputNote: React.FC<Props> = ({
                         />
                         {error && <p className="error-message">{error.message}</p>}
                     </div>
-                    <div className="input-note__length">{`${value?.lenght} / ${maxLength}`}</div>
+                    <div className="input-note__length">{`${value ? value.length : 0} / ${maxLength}`}</div>
                 </div>
             )}
         />
