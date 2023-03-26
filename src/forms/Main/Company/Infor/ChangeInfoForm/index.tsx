@@ -30,9 +30,7 @@ const ChangeInfoForm = () => {
   // REACT HOOK FORM
   const {
     control,
-    register,
     handleSubmit,
-    setValue,
   } = useForm({
     resolver: yupResolver(schema),
     mode: "onChange",
@@ -103,10 +101,9 @@ const ChangeInfoForm = () => {
               <p className="avatar-header">Logo công ty</p>
               <InputFile
                 name="avatar"
-                register={register}
+                control={control}
                 sizePreImg="100px"
                 title="Đổi Logo"
-                setValue={setValue}
               />
             </div>
             <div className="width-40">

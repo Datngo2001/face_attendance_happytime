@@ -23,16 +23,14 @@ const Profile: React.FC<Props> = ({
         </div>
         <div className="employees-form__container">
           <div className="col">
-            {/* <InputFile
+            <InputFile
               name="avatar"
               className="input-item"
               type={2}
               sizePreImg="180px"
-              register={register}
-              setValue={setValue}
-              defaultValue={avatar}
+              control={control}
               title="Đổi ảnh đại diện"
-            /> */}
+            />
             <div style={{ width: "100%", height: "25px" }}></div>
             <InputCustom
               name="identify_id"

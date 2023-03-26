@@ -36,8 +36,7 @@ const CreateWorkspacesForm = () => {
               sizePreImg="100px"
               type={1}
               className="input-btn"
-              setValue={setValue}
-              register={register}
+              control={control}
             />
           </div>
           <div className="input-name">

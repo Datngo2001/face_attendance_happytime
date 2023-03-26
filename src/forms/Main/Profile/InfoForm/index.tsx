@@ -13,10 +13,8 @@ import ButtonCustom from "components/ButtonCustom";
 const InfoForm = () => {
   // HOOK FORM
   const {
-    register,
     control,
     handleSubmit,
-    setValue,
   } = useForm({ resolver: yupResolver(schema), mode: "onChange" });
   // ****************************
 
@@ -42,8 +40,7 @@ const InfoForm = () => {
               title="Đổi ảnh đại diện"
               sizePreImg="100px"
               type={2}
-              register={register}
-              setValue={setValue}
+              control={control}
             />
           </div>
           <div className="info">

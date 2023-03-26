@@ -128,12 +128,12 @@ const EmployeesForm: React.FC<Props> = ({ action = FormAction.CREATE }) => {
                 });
             }
 
-            // dispatch(
-            //     extraReducersUpdateInfoEmployee({
-            //         id: infoOfEmployee._id,
-            //         dataUpdate: data,
-            //     })
-            // );
+            dispatch(
+                extraReducersUpdateInfoEmployee({
+                    id: infoOfEmployee._id,
+                    dataUpdate: { ...data, avatar: imgUrl },
+                })
+            );
         }
     };
     const handleOnSubmitCreate = async (data) => {
@@ -162,11 +162,11 @@ const EmployeesForm: React.FC<Props> = ({ action = FormAction.CREATE }) => {
                 id: data.id,
                 imageUpload: data.avatar,
             });
-            // dispatch(
-            //     extraReducersCreateInfoEmployee({
-            //         dataCreate: data,
-            //     })
-            // );
+            dispatch(
+                extraReducersCreateInfoEmployee({
+                    dataCreate: { ...data, avatar: imgUrl },
+                })
+            );
         }
     };
 

@@ -3,14 +3,13 @@ import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import ApartmentIcon from "@mui/icons-material/Apartment";
 import PersonIcon from "@mui/icons-material/Person";
 import { useEffect, useState } from "react";
+import { Controller } from "react-hook-form";
 
 export type Props = {
+  control: any;
   name: string;
   className?: string;
   type?: number;
-  format?: string;
-  register: any;
-  setValue: any;
   title?: string;
   sizePreImg?: string;
   defaultValue?: string;
@@ -18,11 +17,9 @@ export type Props = {
 
 const InputFile: React.FC<Props> = ({
   name,
+  control,
   className,
   type,
-  format,
-  register,
-  setValue,
   title,
   sizePreImg,
   defaultValue,
@@ -35,12 +32,6 @@ const InputFile: React.FC<Props> = ({
   const accept = ".png, .jpg, .jpeg, .gif, .bmp";
   // ******************************
 
-  // HOOK EFFECT
-  useEffect(() => {
-    setValue(name, defaultValue);
-  }, []);
-  // ****************************
-
   // ARROW FUNCTION
   const handlePreviewFile = (e) => {
     if (e.target.files && e.target.files[0]) {
@@ -50,14 +41,19 @@ const InputFile: React.FC<Props> = ({
         setImgSrc(x.target.result);
       };
       reader.readAsDataURL(imgFile);
-      setValue(name, imgFile);
+      return imgFile;
     }
   };
   // ****************************
 
   return (
-    <>
-      <div className={`input-file__wrapper ${className ? className : ""}`}>
+    <Controller
+      name={name}
+      control={control}
+      render={({
+        field: { onChange, value, name, ref },
+        fieldState: { error },
+      }) => (<div className={`input-file__wrapper ${className ? className : ""}`}>
         <div
           className="input-file__image"
           style={{
@@ -85,13 +81,14 @@ const InputFile: React.FC<Props> = ({
         )}
         <input
           id={name}
-          {...register(name)}
-          onChange={handlePreviewFile}
+          ref={ref}
+          onChange={e => onChange(handlePreviewFile(e))}
+          value={value.filename}
           type="file"
           accept={accept}
         />
-      </div>
-    </>
+      </div>)}
+    />
   );
 };
 

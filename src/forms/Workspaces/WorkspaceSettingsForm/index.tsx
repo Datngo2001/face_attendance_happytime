@@ -57,8 +57,7 @@ const WorkspaceSettingsForm = () => {
             name="workspaceImg"
             sizePreImg="120px"
             className="workspace-img"
-            register={register}
-            setValue={setValue}
+            control={control}
             type={1}
           />
           <div className="field-control">
