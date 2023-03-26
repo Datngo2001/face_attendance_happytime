@@ -41,7 +41,7 @@ const InputFile: React.FC<Props> = ({
         setImgSrc(x.target.result);
       };
       reader.readAsDataURL(imgFile);
-      return imgFile;
+      return imgFile.filename;
     }
   };
   // ****************************
@@ -83,7 +83,7 @@ const InputFile: React.FC<Props> = ({
           id={name}
           ref={ref}
           onChange={e => onChange(handlePreviewFile(e))}
-          value={value.filename}
+          value={value}
           type="file"
           accept={accept}
         />
