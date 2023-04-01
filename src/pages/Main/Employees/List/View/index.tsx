@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "./styles.scss";
 import "../index.scss";
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
@@ -19,28 +19,17 @@ import { convertIdToName, convertTimestampToString } from "utils/convertFunction
 import { listEducation, listGender, listMarriedStatus, listRoles, listStatusEmployees, listTypeEmployees } from "utils/ListData";
 
 const View = () => {
-    // HOOK REACT TOOLKIT
     const { loading, infoOfEmployee } = useAppSelector((state) => state.employees);
+    const { id } = useParams();
     const dispatch = useAppDispatch();
-    // *****************************
 
-    // VARIABLES
-    // ******************************
-
-    // HOOK EFFECT
     useEffect(() => {
         dispatch(
             extraReducersGetInfoEmployeeById({
-                id: sessionStorage.getItem("idSelectedEmployee"),
+                id: id,
             })
         );
-
-        // Clean function
-    }, []);
-    // *****************************
-
-    // ARROW FUNCTIONS
-    // *****************************
+    }, [id])
 
     return (
         <>
@@ -57,7 +46,8 @@ const View = () => {
                         <Header
                             avatar={infoOfEmployee.avatar}
                             name={infoOfEmployee.name}
-                            id={infoOfEmployee.agent_code}
+                            agent_code={infoOfEmployee.agent_code}
+                            id={infoOfEmployee._id}
                         />
                         <WorkInformation
                             jobPosition={infoOfEmployee.agent_position}
@@ -107,7 +97,11 @@ const View = () => {
                                 infoOfEmployee.graduation_date
                             )}
                         />
-                        {/* <BankInformation control={control} /> */}
+                        <BankInformation
+                            bankAccountNumber={infoOfEmployee.bank_account_number}
+                            bankName={infoOfEmployee.bank}
+                            bankBranch={infoOfEmployee.bank_branch}
+                        />
                         <Permission
                             role={convertIdToName({
                                 id: infoOfEmployee.role,

@@ -4,6 +4,13 @@
     &__wrapper {
         height: auto;
         width: 100%;
+
+        .title{
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }    
     }
 
     &__container {

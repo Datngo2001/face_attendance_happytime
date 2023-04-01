@@ -8,6 +8,7 @@ import { listRoles, listStatusEmployees } from "utils/ListData";
 import DropMenu from "components/DropMenu";
 import { OptionColumn } from "components/OptionColumn";
 import { RowOptions } from "../RowOptions";
+import { GridColumns } from "@mui/x-data-grid";
 
 export const StatusEmployee = ({ status }) => {
   // ARROW FUNCTION
@@ -52,7 +53,7 @@ export const CustomNoRowsOverlay = () => {
   return <NoRowsOverlayCustom />;
 };
 
-export const columns = [
+export const columns: GridColumns = [
   {
     flex: 0.6,
     field: "agent_code",
@@ -73,7 +74,6 @@ export const columns = [
     field: "username",
     headerName: "Phòng ban",
     sortable: false,
-    height: 100,
   },
   {
     flex: 2,
@@ -146,7 +146,7 @@ export const columns = [
             mt="2px"
             ml="4px"
           >
-            <RowOptions />
+            <RowOptions id={params.row._id} />
           </DropMenu>
         </>
       );

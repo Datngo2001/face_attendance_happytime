@@ -68,7 +68,7 @@ const InputCustom: React.FC<Props> = ({
                         <input
                             id={name}
                             name={name}
-                            value={value}
+                            value={value ?? ""}
                             onChange={onChange}
                             onBlur={onBlur}
                             ref={ref}

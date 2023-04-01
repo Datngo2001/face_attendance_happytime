@@ -1,10 +1,6 @@
-import Box from "@mui/material/Box";
-import { DataGrid } from "@mui/x-data-grid";
 import "./styles.scss";
-import { columns, CustomNoRowsOverlay } from "./components";
-import LoadingCustom from "../../../../../../../components/LoadingCustom";
+import { columns } from "./components";
 import { useDispatch, useSelector } from "react-redux";
-import { updateIdListInvitation } from "../../../../../../../store/slices/Main/Employees/employeesSlice";
 import { useEffect, useState } from "react";
 import PaginationCustom from "../../../../../../../components/PaginationCustom";
 import { extraReducersGetListEmployees } from "../../../../../../../store/slices/Main/Employees/actions/extraReducers";
@@ -46,15 +42,7 @@ export default function TableDataEmployees() {
 
   // ARROW FUNCTIONS
   const hanldeOnRowClick = (rowData) => {
-    console.log("Row Data", rowData.row);
-    sessionStorage.setItem("idSelectedEmployee", rowData.row._id);
-    dispatch(updateIdListInvitation([]));
-    navigate("../list/view");
-  };
-
-  const handleOnSelectionModelChange = (idRows) => {
-    console.log("idRows", idRows);
-    dispatch(updateIdListInvitation(idRows));
+    navigate(`../list/view/${rowData.row._id}`);
   };
   // ****************************************************
 
@@ -75,7 +63,6 @@ export default function TableDataEmployees() {
         checkboxSelection
         disableSelectionOnClick
         loading={loading}
-        onSelectionModelChange={handleOnSelectionModelChange}
       />
       {listOfEmployees.length > 0 && (
         <div

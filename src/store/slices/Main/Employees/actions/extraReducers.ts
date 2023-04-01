@@ -57,6 +57,8 @@ export const extraReducersUpdateInfoEmployee = createAsyncThunk(
 export const extraReducersCreateInfoEmployee = createAsyncThunk(
   "createEmployee",
   async ({ dataCreate }: any) => {
+    dataCreate._id = undefined;
+
     const promise = api
       .post(`/api/agent/create`, dataCreate)
       .then((response: any) => {

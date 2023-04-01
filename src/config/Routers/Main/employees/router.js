@@ -15,7 +15,7 @@ const empoyeesRouters = [
         component: <Index />,
     },
     {
-        path: "list/view",
+        path: "list/view/:id",
         component: <View />,
     },
     {
@@ -23,7 +23,7 @@ const empoyeesRouters = [
         component: <Create />,
     },
     {
-        path: "list/update",
+        path: "list/update/:id",
         component: <Update />,
     },
     {

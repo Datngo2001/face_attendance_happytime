@@ -3,6 +3,7 @@ import locale from "antd/es/date-picker/locale/vi_VN";
 import dayjs from "dayjs";
 import "./styles.scss";
 import { Controller } from "react-hook-form";
+import { DateFormat } from "./default";
 
 export type Props = {
   name: string,
@@ -25,8 +26,6 @@ const InputDate: React.FC<Props> = ({
   placeholder,
   required = false,
 }) => {
-
-  const dateFormat = "DD/MM/YYYY";
 
   return (
     <Controller
@@ -53,8 +52,8 @@ const InputDate: React.FC<Props> = ({
               placeholder={placeholder}
               style={{ height: height, width: width }}
               locale={locale}
-              format={dateFormat}
-              value={value ? dayjs(value, dateFormat) : dayjs()}
+              value={value ? dayjs(value) : null}
+              format={DateFormat}
               onChange={(date, dateString) => onChange(dateString)}
             />
             {error && <p className="error-message">{error.message}</p>}

@@ -63,7 +63,7 @@ const TimeRangeCustom: React.FC<Props> = ({
                             }) => (
                                 <TimePicker
                                     name={name}
-                                    value={dayjs(value, ViewFormat)}
+                                    value={value ? dayjs(value, ViewFormat) : null}
                                     onChange={date => onChange(date.format(DataFormat))}
                                     onBlur={onBlur}
                                     disabled={disabled}
@@ -81,7 +81,7 @@ const TimeRangeCustom: React.FC<Props> = ({
                             }) => (
                                 <TimePicker
                                     name={name}
-                                    value={dayjs(value, ViewFormat)}
+                                    value={value ? dayjs(value, ViewFormat) : null}
                                     onChange={date => onChange(date.format(DataFormat))}
                                     onBlur={onBlur}
                                     disabled={disabled}

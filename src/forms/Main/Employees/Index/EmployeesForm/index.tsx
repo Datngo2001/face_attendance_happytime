@@ -14,7 +14,7 @@ import Permission from "./components/Permission";
 import { useEffect, useMemo } from "react";
 import { useAppSelector } from "hooks/useAppSelector";
 import { useAppDispatch } from "hooks/useAppDispatch";
-import { extraReducersCreateInfoEmployee, extraReducersGetInfoEmployeeById, extraReducersUpdateInfoEmployee } from "store/slices/Main/Employees/actions/extraReducers";
+import { extraReducersCreateInfoEmployee, extraReducersUpdateInfoEmployee } from "store/slices/Main/Employees/actions/extraReducers";
 import { updateStatusState } from "store/slices/Authentication/authSlice";
 import { checkExist } from "auth";
 import { uploadImgToFirebase } from "utils/uploadImgToFirebase";
@@ -47,21 +47,13 @@ const EmployeesForm: React.FC<Props> = ({ action = FormAction.CREATE }) => {
         defaultValues: defaultValue
     });
 
-    useEffect(() => { reset(defaultValue) }, [defaultValue])
+    useEffect(() => {
+        reset(defaultValue)
+    }, [defaultValue])
 
     const navigate = useNavigate();
 
     const dispatch = useAppDispatch();
-
-    useEffect(() => {
-        if (action === FormAction.UPDATE) {
-            dispatch(
-                extraReducersGetInfoEmployeeById({
-                    id: sessionStorage.getItem("idSelectedEmployee"),
-                })
-            );
-        }
-    }, []);
 
     useEffect(() => {
         if (status === "success") {
@@ -137,7 +129,6 @@ const EmployeesForm: React.FC<Props> = ({ action = FormAction.CREATE }) => {
         }
     };
     const handleOnSubmitCreate = async (data) => {
-        console.log(data)
         const isExistPhone = await checkExist({
             phone: data.phone_number,
         });

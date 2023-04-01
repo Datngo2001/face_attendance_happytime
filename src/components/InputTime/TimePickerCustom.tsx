@@ -57,7 +57,7 @@ const TimePickerCustom: React.FC<Props> = ({
                         <TimePicker
                             id={name}
                             name={name}
-                            value={dayjs(value, ViewFormat)}
+                            value={value ? dayjs(value, ViewFormat) : null}
                             onChange={date => onChange(date.format(DataFormat))}
                             onBlur={onBlur}
                             disabled={disabled}

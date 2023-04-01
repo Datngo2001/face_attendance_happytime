@@ -3,14 +3,15 @@ import React from 'react'
 import { Controller } from 'react-hook-form'
 
 export type Props = {
+    size: "small" | "medium"
+    name: string
     label?: string
     labelWidth?: string
     control: any
+    required?: boolean
 }
 
-const FormSwitchCustom: React.FC<SwitchProps & Props> = (props) => {
-
-    const { id, name, label, labelWidth, required, control } = props;
+const FormSwitchCustom: React.FC<Props> = ({ name, label, labelWidth, required = false, control, size }) => {
 
     return (
         <div className='button-switch-custom__wrapper'>
@@ -19,7 +20,7 @@ const FormSwitchCustom: React.FC<SwitchProps & Props> = (props) => {
                     className={`label ${required && "required"}`}
                     style={{ width: labelWidth }}
                 >
-                    <label htmlFor={id ?? name}>
+                    <label htmlFor={name}>
                         {label}
                         <span> *</span>
                     </label>
@@ -29,14 +30,14 @@ const FormSwitchCustom: React.FC<SwitchProps & Props> = (props) => {
                 control={control}
                 name={name}
                 render={({
-                    field: { onChange, onBlur, value, name, ref },
+                    field: { onChange, value, name },
                 }) => (
                     <Switch
-                        checked={value}
+                        size={size}
+                        checked={value ?? false}
                         onChange={onChange}
-                        id={id ?? name}
+                        id={name}
                         className=""
-                        {...props}
                     />
                 )}
             />
