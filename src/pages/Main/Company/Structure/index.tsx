@@ -1,6 +1,6 @@
 import "./styles.scss";
 
-const Structure = () => {
+const Structure: React.FC = () => {
     return (
         <>
             <div className="company--structure__wrapper">

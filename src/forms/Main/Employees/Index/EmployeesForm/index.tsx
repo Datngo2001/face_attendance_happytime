@@ -1,6 +1,4 @@
-import { useForm } from "react-hook-form";
 import { schema } from "./handleForm";
-import { yupResolver } from "@hookform/resolvers/yup";
 import "./styles.scss";
 import {
     AnnualLeave,
@@ -22,6 +20,7 @@ import LoadingCustom from "components/LoadingCustom";
 import ButtonCustom from "components/ButtonCustom";
 import { FormAction } from "forms/formAction";
 import { CreateDefaultValues } from "./defaultValues";
+import useCRUDForm from "hooks/useCRUDForm";
 
 export type Props = {
     action: FormAction
@@ -30,26 +29,17 @@ export type Props = {
 const EmployeesForm: React.FC<Props> = ({ action = FormAction.CREATE }) => {
     const { loading, infoOfEmployee, status } = useAppSelector((state) => state.employees);
 
-    const defaultValue = useMemo(() => {
+    const defaultValues = useMemo(() => {
         if (action === FormAction.CREATE) {
             return CreateDefaultValues
         }
         return infoOfEmployee;
     }, [infoOfEmployee])
 
-    const {
-        control,
-        handleSubmit,
-        setError,
-        reset,
-    } = useForm({
-        resolver: yupResolver(schema),
-        defaultValues: defaultValue
+    const { control, handleSubmit, setError } = useCRUDForm({
+        defaultValues: defaultValues,
+        validationSchema: schema,
     });
-
-    useEffect(() => {
-        reset(defaultValue)
-    }, [defaultValue])
 
     const navigate = useNavigate();
 
@@ -58,7 +48,7 @@ const EmployeesForm: React.FC<Props> = ({ action = FormAction.CREATE }) => {
     useEffect(() => {
         if (status === "success") {
             if (action === FormAction.UPDATE) {
-                navigate("../list/view");
+                navigate(`../list/view/${infoOfEmployee._id}`);
             } else {
                 navigate("../list/index");
             }

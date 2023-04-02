@@ -1,5 +1,4 @@
 import React, { useEffect, useMemo } from 'react'
-import { useForm } from 'react-hook-form'
 import "./styles.scss"
 import ButtonCustom from 'components/ButtonCustom'
 import { useNavigate } from 'react-router-dom'
@@ -14,12 +13,12 @@ import SingleTimeInput from '../components/SingleTimeInput'
 import CheckInLimit from '../components/CheckInLimit'
 import CheckOutLimit from '../components/CheckOutLimit'
 import { defaultValuesOffice, defaultValuesSingle } from './defaultValues'
-import { yupResolver } from '@hookform/resolvers/yup'
 import { schema } from './validator'
 import { FormAction } from 'forms/formAction'
 import { useAppDispatch } from 'hooks/useAppDispatch'
 import { extraReducersCreateShift, extraReducersUpdateShift } from 'store/slices/Main/Shifts/actions/extraReducers'
 import InputNumber from 'components/InputNumber'
+import useCRUDForm from 'hooks/useCRUDForm'
 
 export type Props = {
     shift?: Shift
@@ -47,12 +46,10 @@ const ShiftForm: React.FC<Props> = ({ shiftType, shift, action = FormAction.CREA
         }
     }, [action, shift, typeName])
 
-    const { control, handleSubmit, reset } = useForm({
+    const { control, handleSubmit } = useCRUDForm({
         defaultValues: defaultValue,
-        resolver: yupResolver(schema)
+        validationSchema: schema
     });
-
-    useEffect(() => { reset(defaultValue) }, [defaultValue])
 
     const navigate = useNavigate()
 

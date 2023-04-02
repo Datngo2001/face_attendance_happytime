@@ -42,7 +42,7 @@ const Info = () => {
 
   return (
     <>
-      {loading ? (
+      {loading || infoOfCompany == null ? (
         <LoadingCustom />
       ) : (
         <div className="company--info__wrapper">
