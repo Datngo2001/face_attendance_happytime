@@ -5,6 +5,7 @@ import {
   extraReducersGetListShifts,
   extraReducersGetShiftById,
   extraReducersUpdateShift,
+  extraReducersUpdateShiftStatus,
 } from "./actions/extraReducers";
 import { reducersResetShift } from "./actions/reducer";
 
@@ -143,6 +144,22 @@ const shiftsSlice = createSlice({
         (state: ShiftsState, { payload: { payload, message, onSuccess } }) => {
           state.loading = false;
           onSuccess();
+        }
+      );
+    builder
+      .addCase(extraReducersUpdateShiftStatus.pending, (state: ShiftsState) => {
+        state.loading = true;
+      })
+      .addCase(
+        extraReducersUpdateShiftStatus.fulfilled,
+        (state: ShiftsState, { payload: { payload, message } }) => {
+          state.loading = false;
+          if (message === "success") {
+            let index = state.listOfShift.findIndex(
+              (x) => x._id === payload._id
+            );
+            state.listOfShift[index].is_enabled = payload.is_enabled;
+          }
         }
       );
     builder

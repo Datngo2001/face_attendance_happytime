@@ -7,11 +7,13 @@ export type Props = {
     checked: boolean
     defaultChecked?: boolean
     setValue: any
+    handleClick?: any
 }
 
-const ButtonSwitchCustom: React.FC<Props> = ({ id, checked = false, defaultChecked, setValue }) => {
+const ButtonSwitchCustom: React.FC<Props> = ({ id, checked = false, defaultChecked, setValue, handleClick }) => {
     // HOOK STATE
-    const [isChecking, setIsChecking] = useState(defaultChecked);
+    const [isChecking, setIsChecking] = useState(defaultChecked ?? checked);
+    console.log(isChecking)
     // ****************************
 
     // HOOK EFFECT
@@ -29,12 +31,17 @@ const ButtonSwitchCustom: React.FC<Props> = ({ id, checked = false, defaultCheck
         }
         setIsChecking(e.target.checked);
     };
+
+    const onClick = (id, value) => {
+        if (handleClick) handleClick(id, !value);
+    }
     // ****************************
 
     return (
         <div className="button-switch-custom__wrapper">
             <Switch
                 id={id}
+                onClick={() => onClick(id, isChecking)}
                 onChange={handleOnChange}
                 checked={defaultChecked !== undefined ? isChecking : checked}
             />

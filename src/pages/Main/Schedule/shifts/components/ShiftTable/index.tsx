@@ -3,8 +3,8 @@ import PaginationCustom from 'components/PaginationCustom';
 import { useAppDispatch } from 'hooks/useAppDispatch';
 import { useAppSelector } from 'hooks/useAppSelector';
 import React, { useEffect } from 'react'
-import { columns } from './components';
-import { extraReducersGetListShifts } from 'store/slices/Main/Shifts/actions/extraReducers';
+import { extraReducersGetListShifts, extraReducersUpdateShiftStatus } from 'store/slices/Main/Shifts/actions/extraReducers';
+import { getColumns } from './components';
 
 export type Props = {
     page: number
@@ -29,13 +29,23 @@ const ShiftTable: React.FC<Props> = ({ page, setPage }) => {
         );
     }, []);
 
+    const updateStatus = (id, value) => {
+        dispatch(
+            extraReducersUpdateShiftStatus({
+                id: id,
+                isEnabled: value
+            })
+        );
+    }
+
+
     return (
         <div className="ListShifts__table">
             <DataGridCustom
                 headerHeight={60}
                 rowHeight={60}
                 rows={listOfShift}
-                columns={columns}
+                columns={getColumns(updateStatus)}
                 getRowId={(row) => row._id}
                 rowsPerPageOptions={[5]}
                 loading={loading}

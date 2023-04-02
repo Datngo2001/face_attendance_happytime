@@ -95,3 +95,26 @@ export const extraReducersUpdateShift = createAsyncThunk(
     return promise;
   }
 );
+
+export const extraReducersUpdateShiftStatus = createAsyncThunk(
+  "updateShiftStatus",
+  async ({ id, isEnabled }: any) => {
+    const promise = api
+      .put(`/api/shift_schedule/update/${id}`, { is_enabled: isEnabled })
+      .then((response: any) => {
+        return {
+          payload: response.payload,
+          message: response.message,
+        };
+      })
+      .catch((error) => error);
+
+    toastPromise(promise, {
+      titleLoading: "Đang thực hiện",
+      titleSuccess: "Cập nhật thành công",
+      titleError: "Cập nhật thất bại",
+    });
+
+    return promise;
+  }
+);

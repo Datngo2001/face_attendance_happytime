@@ -7,7 +7,7 @@ import RowOptions from "../RowOptions";
 import dayjs from "dayjs";
 import { DataFormat, ViewFormat } from "components/InputTime/default";
 
-export const columns: GridColumns = [
+export const getColumns = (updateStatus): GridColumns => ([
     {
         flex: 1,
         field: "is_enabled",
@@ -16,7 +16,12 @@ export const columns: GridColumns = [
         align: "center",
         headerAlign: "center",
         renderCell: (params) => {
-            return <ButtonSwitchCustom id="" checked={params.row.is_enabled} setValue={() => { }} />;
+            return <ButtonSwitchCustom
+                id={params.row._id}
+                checked={params.row.is_enabled}
+                handleClick={(id, value) => updateStatus(id, value)}
+                setValue={() => { }}
+            />;
         },
     },
     {
@@ -80,4 +85,4 @@ export const columns: GridColumns = [
             );
         },
     },
-]
+])
