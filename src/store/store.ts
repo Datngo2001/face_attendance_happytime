@@ -3,6 +3,7 @@ import {
   attendancesSlice,
   authSlice,
   companySlice,
+  departmentsSlice,
   employeesSlice,
   permissionsSlice,
   shiftsSlice,
@@ -20,6 +21,7 @@ const store = configureStore({
     auth: authSlice.reducer,
     global: globalSlice.reducer,
     shifts: shiftsSlice.reducer,
+    departments: departmentsSlice.reducer,
   },
 });
 

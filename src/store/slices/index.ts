@@ -4,6 +4,7 @@ import companySlice from "./Main/Company/companySlice";
 import attendancesSlice from "./Main/Attendances/attendancesSlice";
 import permissionsSlice from "./Main/Permission/permissionSlice";
 import shiftsSlice from "./Main/Shifts/shiftsSlice";
+import departmentsSlice from "./Main/Departments/departmentsSlice";
 
 export {
   employeesSlice,
@@ -12,4 +13,5 @@ export {
   companySlice,
   attendancesSlice,
   shiftsSlice,
+  departmentsSlice,
 };
