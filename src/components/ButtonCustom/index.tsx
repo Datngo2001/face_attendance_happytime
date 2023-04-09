@@ -4,7 +4,7 @@ import "./styles.scss";
 export type Props = {
     id?: string,
     icon?: ReactElement,
-    type?: number,
+    type?: 1 | 2 | 3,
     height?: string,
     width?: string
     onClick?: any,
