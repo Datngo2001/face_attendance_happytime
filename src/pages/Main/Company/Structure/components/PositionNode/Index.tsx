@@ -10,8 +10,9 @@ export type Props = {
 
 const PositionNode: React.FC<Props> = ({ depth, position }) => {
     return (
-        <div className='tree-node' style={{ marginLeft: `${DEFAULT_LEFT_INDENT}px`, marginTop: `${DEFAULT_TOP_INDENT}px` }}>
+        <div className='tree-node position-node' style={{ marginLeft: `${DEFAULT_LEFT_INDENT}px`, marginTop: `${DEFAULT_TOP_INDENT}px` }}>
             <div className='node-title'>
+                <div className='node-branch-line' style={{ width: `${DEFAULT_LEFT_INDENT}px`, left: `-${DEFAULT_LEFT_INDENT}px` }}></div>
                 <div className='node-icon'><PersonIcon fontSize='inherit' /></div>
                 <div className='node-name'>{position.position_name}</div>
             </div>
