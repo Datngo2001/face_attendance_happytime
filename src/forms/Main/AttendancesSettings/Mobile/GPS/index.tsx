@@ -17,7 +17,7 @@ export type Props = {
 
 const GPSAddingForm: React.FC<Props> = ({ action, setOpen }) => {
 
-  const { loading, GPSConfig } = useAppSelector((state) => state.attendanceSettings);
+  const { GPSConfig } = useAppSelector((state) => state.attendanceSettings);
   const dispatch = useAppDispatch();
 
   const { control, handleSubmit } = useCRUDForm({
@@ -94,7 +94,6 @@ const GPSAddingForm: React.FC<Props> = ({ action, setOpen }) => {
             min={0}
             max={1000} />
         </div>
-
 
         <div className="wifi-adding-form__actions">
           <ButtonCustom width="84px" type={3} onClick={() => setOpen(false)}>

@@ -86,6 +86,7 @@ const ModalCustom: React.FC<Props> = ({
     return (
         <div>
             <Modal
+                sx={{ overflow: "auto" }}
                 open={state || open}
                 onClose={handleClose}
                 aria-labelledby="modal-modal-title"

@@ -108,7 +108,7 @@ export const extraReducersGetListGPSConfig = createAsyncThunk(
 
 export const extraReducersCreateGPSConfig = createAsyncThunk(
   "createGPSConfig",
-  async ({ data }: any) => {
+  async ({ data, callback }: any) => {
     const promise = api
       .post("/api/gps_config/create", data)
       .then((response: any) => {
@@ -130,9 +130,9 @@ export const extraReducersCreateGPSConfig = createAsyncThunk(
 
 export const extraReducersUpdateGPSConfig = createAsyncThunk(
   "updateGPSConfig",
-  async ({ data }: any) => {
+  async ({ data, callback }: any) => {
     const promise = api
-      .post("/api/gps_config/update", data)
+      .put(`/api/gps_config/update/${data._id}`, data)
       .then((response: any) => {
         return {
           payload: response.payload,
