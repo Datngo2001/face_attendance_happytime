@@ -76,6 +76,72 @@ export const extraReducersCreateIPWifi = createAsyncThunk(
   }
 );
 
+export const extraReducersUpdateIPWifi = createAsyncThunk(
+  "updateIPWifi",
+  async ({ data }: any) => {
+    const promise = api
+      .put(`/api/ip_config/update/${data._id}`, data)
+      .then((response: any) => {
+        return {
+          payload: response.payload,
+          message: response.message,
+        };
+      })
+      .catch((error) => error);
+
+    toastPromise(promise, {
+      titleLoading: "Đang thực hiện...",
+      titleSuccess: "Chỉnh sửa thành công",
+      titleError: "Chỉnh sửa thất bại",
+    });
+    return promise;
+  }
+);
+
+export const extraReducersUpdateIPWifiStatus = createAsyncThunk(
+  "updateIPWifiStatus",
+  async ({ id, is_active }: any) => {
+    const promise = api
+      .put(`/api/ip_config/update/${id}`, { is_active })
+      .then((response: any) => {
+        return {
+          payload: response.payload,
+          message: response.message,
+        };
+      })
+      .catch((error) => error);
+
+    toastPromise(promise, {
+      titleLoading: "Đang thực hiện...",
+      titleSuccess: "Chỉnh sửa thành công",
+      titleError: "Chỉnh sửa thất bại",
+    });
+    return promise;
+  }
+);
+
+export const extraReducersDeleteIPWifi = createAsyncThunk(
+  "deleteIPWifi",
+  async ({ id }: any) => {
+    const promise = api
+      .delete(`/api/ip_config/delete/${id}`)
+      .then((response: any) => {
+        return {
+          payload: response.payload,
+          message: response.message,
+        };
+      })
+      .catch((error) => error);
+
+    toastPromise(promise, {
+      titleLoading: "Đang thực hiện...",
+      titleSuccess: "Xóa thành công",
+      titleError: "Xóa thất bại",
+    });
+    return promise;
+  }
+);
+
 export const extraReducersGetListDeviceID = createAsyncThunk(
   "getListDeviceID",
   async ({ page, size }: any) => {

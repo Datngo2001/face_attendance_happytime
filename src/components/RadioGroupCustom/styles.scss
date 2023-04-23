@@ -2,16 +2,16 @@
 
 .radioGroup{
     &__wrapper{
+        > .label {
+            padding-bottom: 10px;
+            color: $text-color-3;
+            font-size: $fs-1;
+        }
+
         .control{
             display: flex;
             align-items: center;
             gap: 8px;
-
-            label {
-                pointer-events: all;
-                font-weight: $fw-1;
-                cursor: pointer;
-            }
         }
     }
 }

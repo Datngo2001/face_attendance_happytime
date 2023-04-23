@@ -10,22 +10,20 @@ import ButtonCustom from "components/ButtonCustom";
 import ModalCustom from "components/ModalCustom";
 import { WifiAddingForm } from "forms/Main/AttendancesSettings";
 import { FormAction } from "forms/formAction";
+import { useAppSelector } from "hooks/useAppSelector";
 
 const ControlPanel = () => {
-  // REACT HOOK FORM
-  const { control, watch } = useForm({});
-  // ****************************
+  const { control } = useForm({});
 
-  // HOOK STATE
   const [open, setOpen] = useState(false);
-  // ****************************
 
-  // HOOk EFFECT
+  const { lastCreateSuccess } = useAppSelector(
+    (state) => state.attendanceSettings
+  );
+
   useEffect(() => {
-    const subscription = watch((value) => console.log("data", value));
-    return () => subscription.unsubscribe();
-  }, [watch]);
-  // ****************************
+    setOpen(false)
+  }, [lastCreateSuccess]);
 
   return (
     <>

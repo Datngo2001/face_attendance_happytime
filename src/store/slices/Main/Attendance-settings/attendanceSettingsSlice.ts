@@ -5,6 +5,7 @@ import {
   extraReducersCreateIPWifi,
   extraReducersDeleteBssid,
   extraReducersDeleteGPSConfig,
+  extraReducersDeleteIPWifi,
   extraReducersGetInfoConfig,
   extraReducersGetListBssid,
   extraReducersGetListDeviceID,
@@ -12,6 +13,8 @@ import {
   extraReducersGetListIPWifi,
   extraReducersUpdateBssid,
   extraReducersUpdateGPSConfig,
+  extraReducersUpdateIPWifi,
+  extraReducersUpdateIPWifiStatus,
   extraReducersUpdateInfoConfig,
 } from "./actions/extraReducers";
 import {
@@ -48,11 +51,10 @@ export type IPWifi = {
   tenant_id?: string;
   created_by: any;
   last_updated_by: any;
-  gps_name: string;
-  address: string;
-  lat: number;
-  lon: number;
-  radius: number;
+  ip_name: string;
+  ip_name_unsigned: string;
+  ip_address: string;
+  is_active: "true" | "false";
   created_date: number;
 };
 
@@ -115,6 +117,27 @@ const attendanceSettingsSlice = createSlice({
       extraReducersUpdateInfoConfig.fulfilled,
       (state, { payload }) => {}
     );
+
+    // IPWifi
+
+    builder
+      .addCase(extraReducersGetListIPWifi.pending, (state, { payload }) => {
+        state.loading = true;
+      })
+      .addCase(
+        extraReducersGetListIPWifi.fulfilled,
+        (state, { payload: { payload, message } }) => {
+          state.loading = false;
+          if (message === "success") {
+            state.listOfIPWifi = payload.items.map((i) => ({
+              ...i,
+              is_active: i.is_active.toString(),
+            }));
+            state.totalPages = payload.total_pages;
+            state.totalIPWifi = payload.total_items;
+          }
+        }
+      );
     builder
       .addCase(extraReducersCreateIPWifi.pending, (state, { payload }) => {
         state.loading = true;
@@ -129,20 +152,50 @@ const attendanceSettingsSlice = createSlice({
         }
       );
     builder
-      .addCase(extraReducersGetListIPWifi.pending, (state, { payload }) => {
+      .addCase(extraReducersUpdateIPWifi.pending, (state, { payload }) => {
         state.loading = true;
       })
       .addCase(
-        extraReducersGetListIPWifi.fulfilled,
+        extraReducersUpdateIPWifi.fulfilled,
         (state, { payload: { payload, message } }) => {
           state.loading = false;
           if (message === "success") {
-            state.listOfIPWifi = payload.items;
-            state.totalPages = payload.total_pages;
-            state.totalIPWifi = payload.total_items;
+            state.lastUpdateSuccess = Date.now();
           }
         }
       );
+    builder
+      .addCase(
+        extraReducersUpdateIPWifiStatus.pending,
+        (state, { payload }) => {
+          state.loading = true;
+        }
+      )
+      .addCase(
+        extraReducersUpdateIPWifiStatus.fulfilled,
+        (state, { payload: { payload, message } }) => {
+          state.loading = false;
+          if (message === "success") {
+            state.lastUpdateSuccess = Date.now();
+          }
+        }
+      );
+    builder
+      .addCase(extraReducersDeleteIPWifi.pending, (state, { payload }) => {
+        state.loading = true;
+      })
+      .addCase(
+        extraReducersDeleteIPWifi.fulfilled,
+        (state, { payload: { payload, message } }) => {
+          state.loading = false;
+          if (message === "success") {
+            state.lastDeleteSuccess = Date.now();
+          }
+        }
+      );
+
+    // DeviceID
+
     builder
       .addCase(extraReducersGetListDeviceID.pending, (state, { payload }) => {
         state.loading = true;
@@ -158,6 +211,8 @@ const attendanceSettingsSlice = createSlice({
           }
         }
       );
+
+    // GPSConfig
 
     builder
       .addCase(extraReducersGetListGPSConfig.pending, (state, { payload }) => {
@@ -213,6 +268,9 @@ const attendanceSettingsSlice = createSlice({
           }
         }
       );
+
+    // Bssid
+
     builder
       .addCase(extraReducersGetListBssid.pending, (state, { payload }) => {
         state.loading = true;

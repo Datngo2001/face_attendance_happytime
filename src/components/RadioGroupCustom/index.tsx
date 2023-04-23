@@ -8,6 +8,7 @@ export type Props = {
     control: any
     items: RadioItem[]
     spacing?: number
+    label?: string
 }
 
 export type RadioItem = {
@@ -15,9 +16,18 @@ export type RadioItem = {
     value: string
 }
 
-const RadioGroupCustom: React.FC<Props> = ({ name, control, items, spacing = 2 }) => {
+const RadioGroupCustom: React.FC<Props> = ({ name, label, control, items, spacing = 2 }) => {
     return (
         <div className='radioGroup__wrapper'>
+            {label && (
+                <div
+                    className={`label`}
+                >
+                    <label htmlFor={name}>
+                        {label}
+                    </label>
+                </div>
+            )}
             <Stack spacing={spacing}>
                 {items.map((item, index) => (
                     <div className="control" key={index}>
@@ -33,7 +43,7 @@ const RadioGroupCustom: React.FC<Props> = ({ name, control, items, spacing = 2 }
                                         id={`${name}_${index}`}
                                         type="radio"
                                         name={name}
-                                        value={item.value}
+                                        value={item.value.toString()}
                                         onChange={onChange}
                                         onBlur={onBlur}
                                         ref={ref}

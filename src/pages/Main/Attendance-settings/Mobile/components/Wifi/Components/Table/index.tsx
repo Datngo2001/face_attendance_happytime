@@ -1,26 +1,28 @@
 import { Box } from "@mui/system";
 import { DataGrid } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import LoadingCustom from "../../../../../../../../components/LoadingCustom";
-import PaginationCustom from "../../../../../../../../components/PaginationCustom";
-import { extraReducersGetListIPWifi } from "../../../../../../../../store/slices/Main/Attendance-settings/actions/extraReducers";
-import { columns, CustomNoRowsOverlay } from "./components";
+import { getColumns } from "./components";
 import "./styles.scss";
+import { useAppDispatch } from "hooks/useAppDispatch";
+import { useAppSelector } from "hooks/useAppSelector";
+import { extraReducersDeleteIPWifi, extraReducersGetListIPWifi, extraReducersUpdateIPWifiStatus } from "store/slices/Main/Attendance-settings/actions/extraReducers";
+import LoadingCustom from "components/LoadingCustom";
+import PaginationCustom from "components/PaginationCustom";
+import { setCurrentIPWifi } from "store/slices/Main/Attendance-settings/attendanceSettingsSlice";
+import ModalCustom from "components/ModalCustom";
+import { WifiAddingForm } from "forms/Main/AttendancesSettings";
+import { FormAction } from "forms/formAction";
+import NoRowsOverlayCustom from "components/NoRowsOverlayCustom";
 
 const Table = () => {
-    // HOOK STATE
+    const [open, setOpen] = useState(false);
     const [page, setPage] = useState(1);
-    // ****************************
 
-    // REDUX TOOLKIT
-    const { listOfIPWifi, totalPages, totalIPWifi, loading, shouldRender } = useSelector(
+    const { listOfIPWifi, totalPages, totalIPWifi, loading, lastCreateSuccess, lastUpdateSuccess, lastDeleteSuccess } = useAppSelector(
         (state) => state.attendanceSettings
     );
-    const dispatch = useDispatch();
-    // ****************************
+    const dispatch = useAppDispatch();
 
-    // HOOK EFFECT
     useEffect(() => {
         dispatch(
             extraReducersGetListIPWifi({
@@ -28,8 +30,28 @@ const Table = () => {
                 size: process.env.REACT_APP_PAGE_SIZE,
             })
         );
-    }, [shouldRender]);
-    // ****************************
+    }, [lastCreateSuccess, lastUpdateSuccess, lastDeleteSuccess]);
+
+    useEffect(() => {
+        setOpen(false)
+    }, [lastUpdateSuccess]);
+
+    const handleUpdateClick = (id) => {
+        return () => {
+            dispatch(setCurrentIPWifi({ id }))
+            setOpen(true)
+        }
+    }
+
+    const handleUpdateStatusClick = (id, value) => {
+        dispatch(extraReducersUpdateIPWifiStatus({ id, is_active: value }))
+    }
+
+    const handleDeleteClick = (id) => {
+        return () => {
+            dispatch(extraReducersDeleteIPWifi({ id }))
+        }
+    }
 
     return (
         <>
@@ -45,15 +67,15 @@ const Table = () => {
                             headerHeight={55}
                             rowHeight={65}
                             rows={listOfIPWifi}
-                            columns={columns}
+                            columns={getColumns(handleUpdateClick, handleDeleteClick, handleUpdateStatusClick)}
                             getRowId={(row) => row._id}
                             rowsPerPageOptions={[10]}
                             disableSelectionOnClick={true}
                             hideFooter={true}
                             loading={loading}
                             components={{
-                                Pagination: false,
-                                NoRowsOverlay: CustomNoRowsOverlay,
+                                // Pagination: false,
+                                NoRowsOverlay: NoRowsOverlayCustom,
                                 LoadingOverlay: LoadingCustom,
                             }}
                         />
@@ -77,6 +99,22 @@ const Table = () => {
                     </>
                 </Box>
             </div>
+            <ModalCustom
+                titleHeader={<span
+                    style={{
+                        color: "#212f3f",
+                        fontSize: "20px",
+                        textTransform: "uppercase",
+                    }}
+                >
+                    Chỉnh sửa thông tin IP Wi-Fi
+                </span>}
+                state={open}
+                setState={setOpen}
+                footer={false}
+                callback={() => { }}                >
+                <WifiAddingForm action={FormAction.UPDATE} setOpen={setOpen} />
+            </ModalCustom>
         </>
     );
 };
