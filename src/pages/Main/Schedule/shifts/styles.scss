@@ -8,6 +8,8 @@
         padding: 10px;
         justify-content: space-between;
         gap: 10px;
+        height: min-content;
+        align-content: stretch;
 
         .select-custom__wrapper{
             flex: 1;

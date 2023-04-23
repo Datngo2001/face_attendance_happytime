@@ -2,7 +2,6 @@ import InputCustom from 'components/InputCustom';
 import SelectCustom, { SelectBoxOption } from 'components/SelectCustom';
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import React, { useEffect, useMemo, useState } from 'react'
-import { useForm } from 'react-hook-form';
 import ButtonCustom from 'components/ButtonCustom';
 import AddIcon from '@mui/icons-material/Add';
 import CreateShiftModal from '../CreateShiftModal';
@@ -68,7 +67,7 @@ const ShiftSearchPannel: React.FC<Props> = ({ control }) => {
             <InputCustom
                 name='codeOrName'
                 iconRight={<SearchRoundedIcon />}
-                className="input-item flex-basic-25"
+                className="input-item"
                 placeholder="Nhập tên ca làm việc, mã ca"
                 control={control}
             />

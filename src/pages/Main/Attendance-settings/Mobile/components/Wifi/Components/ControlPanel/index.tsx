@@ -9,6 +9,7 @@ import { listStatusActive } from "utils/ListData";
 import ButtonCustom from "components/ButtonCustom";
 import ModalCustom from "components/ModalCustom";
 import { WifiAddingForm } from "forms/Main/AttendancesSettings";
+import { FormAction } from "forms/formAction";
 
 const ControlPanel = () => {
   // REACT HOOK FORM
@@ -56,11 +57,12 @@ const ControlPanel = () => {
           </ButtonCustom>
         </div>
         <ModalCustom
+          titleHeader={"THÊM MỚI IP WI-FI"}
           idTarget="addBtn"
           footer={false}
           state={open}
           setState={setOpen} callback={undefined}>
-          <WifiAddingForm method="create" setOpen={setOpen} />
+          <WifiAddingForm action={FormAction.CREATE} setOpen={setOpen} />
         </ModalCustom>
       </div>
     </>

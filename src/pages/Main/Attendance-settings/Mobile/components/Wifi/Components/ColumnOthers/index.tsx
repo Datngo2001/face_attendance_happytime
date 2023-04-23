@@ -5,6 +5,7 @@ import { useState } from "react";
 import DropMenu from "../../../../../../../../components/DropMenu";
 import ModalCustom from "../../../../../../../../components/ModalCustom";
 import { WifiAddingForm } from "../../../../../../../../forms/Main/AttendancesSettings";
+import { FormAction } from "forms/formAction";
 
 export const ColumnOthers = ({ code }) => {
     const [open, setOpen] = useState(false);
@@ -21,23 +22,20 @@ export const ColumnOthers = ({ code }) => {
                     </DropMenu>
                 </span>
                 <ModalCustom
-                    idTarget={`index-${code}`}
-                    titleHeader={
-                        <span
-                            style={{
-                                color: "#212f3f",
-                                fontSize: "20px",
-                                textTransform: "uppercase",
-                            }}
-                        >
-                            Chỉnh sửa thông tin IP Wi-Fi
-                        </span>
-                    }
+                    titleHeader={<span
+                        style={{
+                            color: "#212f3f",
+                            fontSize: "20px",
+                            textTransform: "uppercase",
+                        }}
+                    >
+                        Chỉnh sửa thông tin IP Wi-Fi
+                    </span>}
                     state={open}
                     setState={setOpen}
                     footer={false}
-                >
-                    <WifiAddingForm method="update" setOpen={setOpen} />
+                    callback={() => { }}                >
+                    <WifiAddingForm action={FormAction.UPDATE} setOpen={setOpen} />
                 </ModalCustom>
             </div>
         </>

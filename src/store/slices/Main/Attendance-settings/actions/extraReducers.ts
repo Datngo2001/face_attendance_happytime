@@ -90,3 +90,62 @@ export const extraReducersGetListDeviceID = createAsyncThunk(
       .catch((error) => error);
   }
 );
+
+export const extraReducersGetListGPSConfig = createAsyncThunk(
+  "getListGPSConfig",
+  async ({ page, size }: any) => {
+    return api
+      .post(`/api/gps_config/search?page=${page}&size=${size}`, {})
+      .then((response: any) => {
+        return {
+          payload: response.payload,
+          message: response.message,
+        };
+      })
+      .catch((error) => error);
+  }
+);
+
+export const extraReducersCreateGPSConfig = createAsyncThunk(
+  "createGPSConfig",
+  async ({ data }: any) => {
+    const promise = api
+      .post("/api/gps_config/create", data)
+      .then((response: any) => {
+        return {
+          payload: response.payload,
+          message: response.message,
+        };
+      })
+      .catch((error) => error);
+
+    toastPromise(promise, {
+      titleLoading: "Đang thực hiện...",
+      titleSuccess: "Thêm thành công",
+      titleError: "Thêm thất bại",
+    });
+    return promise;
+  }
+);
+
+export const extraReducersUpdateGPSConfig = createAsyncThunk(
+  "updateGPSConfig",
+  async ({ data }: any) => {
+    const promise = api
+      .post("/api/gps_config/update", data)
+      .then((response: any) => {
+        return {
+          payload: response.payload,
+          message: response.message,
+        };
+      })
+      .catch((error) => error);
+
+    toastPromise(promise, {
+      titleLoading: "Đang thực hiện...",
+      titleSuccess: "Chỉnh sửa thành công",
+      titleError: "Chỉnh sửa thất bại",
+    });
+    return promise;
+  }
+);

@@ -1,7 +1,7 @@
 import { ControlPanel, Table } from "./Components";
 import "./styles.scss";
 
-const Wifi = () => {
+const Wifi: React.FC = () => {
     // ARROW FUNCTIONS
     // ****************************
     return (

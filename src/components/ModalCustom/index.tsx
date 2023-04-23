@@ -8,7 +8,7 @@ import { useEffect } from "react";
 import ButtonCustom from "../ButtonCustom";
 
 export type Props = {
-    titleHeader?: string;
+    titleHeader?: any;
     titleBtnCancel?: string;
     titleBtnAccept?: string;
     footer?: boolean;
@@ -34,6 +34,7 @@ const style = {
     borderRadius: "5px",
     boxShadow: 24,
     p: 4,
+    marginTop: "100px"
 };
 
 const ModalCustom: React.FC<Props> = ({

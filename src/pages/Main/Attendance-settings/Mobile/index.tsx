@@ -1,4 +1,4 @@
-import TabsCustom from "../../../../components/TabsCustom";
+import TabsCustom from "components/TabsCustom";
 import { listTabs } from "./listTabs";
 import "./styles.scss";
 

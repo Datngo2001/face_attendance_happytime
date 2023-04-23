@@ -3,10 +3,14 @@ import {
   extraReducersCreateIPWifi,
   extraReducersGetInfoConfig,
   extraReducersGetListDeviceID,
+  extraReducersGetListGPSConfig,
   extraReducersGetListIPWifi,
   extraReducersUpdateInfoConfig,
 } from "./actions/extraReducers";
-import { reducersUpdateStatusState } from "./actions/reducers";
+import {
+  reducersSetCurrentGPDConfig,
+  reducersUpdateStatusState,
+} from "./actions/reducers";
 
 export type InfoConfig = {
   is_enable: boolean;
@@ -18,10 +22,26 @@ export type AttendanceSettings = {
   infoConfig: InfoConfig;
   listOfIPWifi: [];
   listOfDeviceID: [];
+  GPSConfig: GPSConfig;
+  listOfGPSConfig: GPSConfig[];
   totalPages: number;
   totalIPWifi: number;
+  totalGPSConfig: number;
   render: boolean;
   shouldRender: boolean;
+};
+
+export type GPSConfig = {
+  _id?: string;
+  tenant_id?: string;
+  created_by: any;
+  last_updated_by: any;
+  gps_name: string;
+  address: string;
+  lat: number;
+  lon: number;
+  radius: number;
+  created_date: number;
 };
 
 const attendanceSettingsSlice = createSlice({
@@ -32,6 +52,7 @@ const attendanceSettingsSlice = createSlice({
     infoConfig: {},
     listOfIPWifi: [],
     listOfDeviceID: [],
+    listOfGPSConfig: [],
     totalPages: 0,
     totalIPWifi: 0,
     render: false,
@@ -39,6 +60,7 @@ const attendanceSettingsSlice = createSlice({
   } as AttendanceSettings,
   reducers: {
     updateStatusState: reducersUpdateStatusState,
+    setCurrentGPDConfig: reducersSetCurrentGPDConfig,
   },
   extraReducers: (builder) => {
     builder
@@ -86,7 +108,6 @@ const attendanceSettingsSlice = createSlice({
           }
         }
       );
-
     builder
       .addCase(extraReducersGetListDeviceID.pending, (state, { payload }) => {
         state.loading = true;
@@ -102,8 +123,25 @@ const attendanceSettingsSlice = createSlice({
           }
         }
       );
+
+    builder
+      .addCase(extraReducersGetListGPSConfig.pending, (state, { payload }) => {
+        state.loading = true;
+      })
+      .addCase(
+        extraReducersGetListGPSConfig.fulfilled,
+        (state, { payload: { payload, message } }) => {
+          state.loading = false;
+          if (message === "success") {
+            state.listOfGPSConfig = payload.items;
+            state.totalPages = payload.total_pages;
+            state.totalGPSConfig = payload.total_items;
+          }
+        }
+      );
   },
 });
 
-export const { updateStatusState } = attendanceSettingsSlice.actions;
+export const { updateStatusState, setCurrentGPDConfig } =
+  attendanceSettingsSlice.actions;
 export default attendanceSettingsSlice;

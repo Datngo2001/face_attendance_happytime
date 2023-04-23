@@ -1,14 +1,20 @@
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import "./styles.scss";
+import "../styles.scss";
 import { useAppSelector } from "hooks/useAppSelector";
 import { useAppDispatch } from "hooks/useAppDispatch";
 import { updateStatusState } from "store/slices/Authentication/authSlice";
 import { extraReducersCreateIPWifi } from "store/slices/Main/Attendance-settings/actions/extraReducers";
 import InputCustom from "components/InputCustom";
 import ButtonCustom from "components/ButtonCustom";
+import { FormAction } from "forms/formAction";
 
-const WifiAddingForm = ({ method, setOpen }) => {
+export type Props = {
+  action: FormAction
+  setOpen: any
+}
+
+const WifiAddingForm: React.FC<Props> = ({ action, setOpen }) => {
   // REACT HOOK FORM
   const { control, register, handleSubmit } = useForm({});
   // ****************************
@@ -33,8 +39,7 @@ const WifiAddingForm = ({ method, setOpen }) => {
   const handleOnSubmitCreate = (data) => {
     console.log("data", data);
     const dataSubmit = {
-      ip_name: data.wifiName,
-      ip_address: data.ipAddress,
+      ...data,
       status: parseInt(data.activeStatus),
     };
 
@@ -54,7 +59,7 @@ const WifiAddingForm = ({ method, setOpen }) => {
       <div className="wifi-adding-form__wrapper">
         <div className="field-control">
           <InputCustom
-            name="wifiName"
+            name="ip_name"
             width="470px"
             label="Tên IP Wi-Fi"
             placeholder="Nhập Tên IP Wi-Fi"
@@ -64,7 +69,7 @@ const WifiAddingForm = ({ method, setOpen }) => {
         </div>
         <div className="field-control">
           <InputCustom
-            name="ipAddress"
+            name="ip_address"
             width="470px"
             label="IP"
             placeholder="Nhập Địa chỉ IP"
@@ -108,7 +113,7 @@ const WifiAddingForm = ({ method, setOpen }) => {
           <ButtonCustom
             width="60px"
             onClick={handleSubmit(
-              method === "update" ? handleOnSubmitUpdate : handleOnSubmitCreate
+              action === FormAction.UPDATE ? handleOnSubmitUpdate : handleOnSubmitCreate
             )}
           >
             Lưu
