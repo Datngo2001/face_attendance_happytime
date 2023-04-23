@@ -2,7 +2,9 @@ import { createSlice } from "@reduxjs/toolkit";
 import {
   extraReducersCreateGPSConfig,
   extraReducersCreateIPWifi,
+  extraReducersDeleteGPSConfig,
   extraReducersGetInfoConfig,
+  extraReducersGetListBssid,
   extraReducersGetListDeviceID,
   extraReducersGetListGPSConfig,
   extraReducersGetListIPWifi,
@@ -10,6 +12,7 @@ import {
   extraReducersUpdateInfoConfig,
 } from "./actions/extraReducers";
 import {
+  reducersSetCurrentBssid,
   reducersSetCurrentGPDConfig,
   reducersUpdateStatusState,
 } from "./actions/reducers";
@@ -18,7 +21,7 @@ export type InfoConfig = {
   is_enable: boolean;
 };
 
-export type AttendanceSettings = {
+export type AttendanceSettingsState = {
   loading: boolean;
   status: string;
   infoConfig: InfoConfig;
@@ -26,9 +29,12 @@ export type AttendanceSettings = {
   listOfDeviceID: [];
   GPSConfig: GPSConfig;
   listOfGPSConfig: GPSConfig[];
+  Bssid: Bssid;
+  listOfBssid: Bssid[];
   totalPages: number;
   totalIPWifi: number;
   totalGPSConfig: number;
+  totalBssid: number;
   render: boolean;
   shouldRender: boolean;
 };
@@ -46,6 +52,17 @@ export type GPSConfig = {
   created_date: number;
 };
 
+export type Bssid = {
+  _id?: string;
+  tenant_id?: string;
+  created_by: any;
+  last_updated_by: any;
+  bssid_name: string;
+  bssid_name_unsigned: string;
+  bssid_address: string;
+  created_date: number;
+};
+
 const attendanceSettingsSlice = createSlice({
   name: "attendanceSettings",
   initialState: {
@@ -55,14 +72,16 @@ const attendanceSettingsSlice = createSlice({
     listOfIPWifi: [],
     listOfDeviceID: [],
     listOfGPSConfig: [],
+    listOfBssid: [],
     totalPages: 0,
     totalIPWifi: 0,
     render: false,
     shouldRender: false,
-  } as AttendanceSettings,
+  } as AttendanceSettingsState,
   reducers: {
     updateStatusState: reducersUpdateStatusState,
     setCurrentGPDConfig: reducersSetCurrentGPDConfig,
+    setCurrentBssid: reducersSetCurrentBssid,
   },
   extraReducers: (builder) => {
     builder
@@ -161,9 +180,34 @@ const attendanceSettingsSlice = createSlice({
           state.loading = false;
         }
       );
+    builder
+      .addCase(extraReducersDeleteGPSConfig.pending, (state, { payload }) => {
+        state.loading = true;
+      })
+      .addCase(
+        extraReducersDeleteGPSConfig.fulfilled,
+        (state, { payload: { payload, message } }) => {
+          state.loading = false;
+        }
+      );
+    builder
+      .addCase(extraReducersGetListBssid.pending, (state, { payload }) => {
+        state.loading = true;
+      })
+      .addCase(
+        extraReducersGetListBssid.fulfilled,
+        (state, { payload: { payload, message } }) => {
+          state.loading = false;
+          if (message === "success") {
+            state.listOfBssid = payload.items;
+            state.totalPages = payload.total_pages;
+            state.totalBssid = payload.total_items;
+          }
+        }
+      );
   },
 });
 
-export const { updateStatusState, setCurrentGPDConfig } =
+export const { updateStatusState, setCurrentGPDConfig, setCurrentBssid } =
   attendanceSettingsSlice.actions;
 export default attendanceSettingsSlice;

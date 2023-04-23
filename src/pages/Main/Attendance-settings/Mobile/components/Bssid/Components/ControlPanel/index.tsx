@@ -7,7 +7,7 @@ import InputCustom from "components/InputCustom";
 import ButtonCustom from "components/ButtonCustom";
 import ModalCustom from "components/ModalCustom";
 import { FormAction } from "forms/formAction";
-import GPSAddingForm from "forms/Main/AttendancesSettings/Mobile/GPS";
+import BssidAddingForm from "forms/Main/AttendancesSettings/Mobile/Bssid";
 
 const ControlPanel = () => {
   // REACT HOOK FORM
@@ -44,7 +44,7 @@ const ControlPanel = () => {
           state={open}
           setState={setOpen}
           callback={() => { }}>
-          <GPSAddingForm action={FormAction.CREATE} setOpen={setOpen} />
+          <BssidAddingForm action={FormAction.CREATE} setOpen={setOpen} />
         </ModalCustom>
       </div>
     </>

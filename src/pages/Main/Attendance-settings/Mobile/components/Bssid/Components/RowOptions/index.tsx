@@ -17,13 +17,13 @@ const RowOptions: React.FC<Props> = ({ id, handleUpdateClick }) => {
                     <span className="icon">
                         <EditIcon />
                     </span>
-                    <p className="title">Chỉnh sửa thông tin vị trí</p>
+                    <p className="title">Chỉnh sửa BSSID</p>
                 </div>
                 <div className="row-options__item">
                     <span className="icon">
                         <DeleteIcon />
                     </span>
-                    <p className="title">Xóa vị trí</p>
+                    <p className="title">Xóa BSSID</p>
                 </div>
             </div>
         </>

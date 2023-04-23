@@ -108,7 +108,7 @@ export const extraReducersGetListGPSConfig = createAsyncThunk(
 
 export const extraReducersCreateGPSConfig = createAsyncThunk(
   "createGPSConfig",
-  async ({ data, callback }: any) => {
+  async ({ data }: any) => {
     const promise = api
       .post("/api/gps_config/create", data)
       .then((response: any) => {
@@ -130,7 +130,7 @@ export const extraReducersCreateGPSConfig = createAsyncThunk(
 
 export const extraReducersUpdateGPSConfig = createAsyncThunk(
   "updateGPSConfig",
-  async ({ data, callback }: any) => {
+  async ({ data }: any) => {
     const promise = api
       .put(`/api/gps_config/update/${data._id}`, data)
       .then((response: any) => {
@@ -145,6 +145,109 @@ export const extraReducersUpdateGPSConfig = createAsyncThunk(
       titleLoading: "Đang thực hiện...",
       titleSuccess: "Chỉnh sửa thành công",
       titleError: "Chỉnh sửa thất bại",
+    });
+    return promise;
+  }
+);
+
+export const extraReducersDeleteGPSConfig = createAsyncThunk(
+  "deleteGPSConfig",
+  async ({ data }: any) => {
+    const promise = api
+      .delete(`/api/gps_config/delete/${data._id}`)
+      .then((response: any) => {
+        return {
+          payload: response.payload,
+          message: response.message,
+        };
+      })
+      .catch((error) => error);
+
+    toastPromise(promise, {
+      titleLoading: "Đang thực hiện...",
+      titleSuccess: "Xóa thành công",
+      titleError: "Xóa thất bại",
+    });
+    return promise;
+  }
+);
+
+export const extraReducersGetListBssid = createAsyncThunk(
+  "getListBssid",
+  async ({ page, size }: any) => {
+    return api
+      .post(`/api/bssid_config/search?page=${page}&size=${size}`, {})
+      .then((response: any) => {
+        return {
+          payload: response.payload,
+          message: response.message,
+        };
+      })
+      .catch((error) => error);
+  }
+);
+
+export const extraReducersCreateBssid = createAsyncThunk(
+  "createBssid",
+  async ({ data }: any) => {
+    const promise = api
+      .post("/api/bssid_config/create", data)
+      .then((response: any) => {
+        return {
+          payload: response.payload,
+          message: response.message,
+        };
+      })
+      .catch((error) => error);
+
+    toastPromise(promise, {
+      titleLoading: "Đang thực hiện...",
+      titleSuccess: "Thêm thành công",
+      titleError: "Thêm thất bại",
+    });
+    return promise;
+  }
+);
+
+export const extraReducersUpdateBssid = createAsyncThunk(
+  "updateBssid",
+  async ({ data }: any) => {
+    const promise = api
+      .put(`/api/bssid_config/update/${data._id}`, data)
+      .then((response: any) => {
+        return {
+          payload: response.payload,
+          message: response.message,
+        };
+      })
+      .catch((error) => error);
+
+    toastPromise(promise, {
+      titleLoading: "Đang thực hiện...",
+      titleSuccess: "Chỉnh sửa thành công",
+      titleError: "Chỉnh sửa thất bại",
+    });
+    return promise;
+  }
+);
+
+export const extraReducersDeleteBssid = createAsyncThunk(
+  "deleteBssid",
+  async ({ data }: any) => {
+    const promise = api
+      .delete(`/api/bssid_config/delete/${data._id}`)
+      .then((response: any) => {
+        return {
+          payload: response.payload,
+          message: response.message,
+        };
+      })
+      .catch((error) => error);
+
+    toastPromise(promise, {
+      titleLoading: "Đang thực hiện...",
+      titleSuccess: "Xóa thành công",
+      titleError: "Xóa thất bại",
     });
     return promise;
   }

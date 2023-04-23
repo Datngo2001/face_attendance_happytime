@@ -1,6 +1,6 @@
 @use "../../../../assets/styles/index.scss" as *;
 
-.wifi-adding-form, .gps-adding-form {
+.wifi-adding-form, .gps-adding-form , .bssid-adding-form{
     &__wrapper {
         text-align: left;
         .field-control {

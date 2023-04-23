@@ -5,36 +5,15 @@ import RowOptions from "../RowOptions";
 
 export const getColumns = (handleUpdateClick: Function): GridColumns => ([
     {
-        field: "gps_name",
-        headerName: "Tên vị trí",
+        field: "bssid_name",
+        headerName: "Tên BSSID",
         // width: 150,
         flex: 0.3,
         sortable: false,
     },
     {
-        field: "address",
-        headerName: "Địa chỉ",
-        // width: 150,
-        flex: 0.4,
-        sortable: false,
-    },
-    {
-        field: "lat",
-        headerName: "Vĩ độ",
-        // width: 150,
-        flex: 0.4,
-        sortable: false,
-    },
-    {
-        field: "lon",
-        headerName: "Kinh độ",
-        // width: 150,
-        flex: 0.4,
-        sortable: false,
-    },
-    {
-        field: "radius",
-        headerName: "Bán kính",
+        field: "bssid_address",
+        headerName: "BSSID",
         // width: 150,
         flex: 0.4,
         sortable: false,

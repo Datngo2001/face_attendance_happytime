@@ -7,12 +7,12 @@ import { useAppSelector } from "hooks/useAppSelector";
 import { useAppDispatch } from "hooks/useAppDispatch";
 import PaginationCustom from "components/PaginationCustom";
 import LoadingCustom from "components/LoadingCustom";
-import { extraReducersGetListGPSConfig } from "store/slices/Main/Attendance-settings/actions/extraReducers";
+import { extraReducersGetListBssid } from "store/slices/Main/Attendance-settings/actions/extraReducers";
 import NoRowsOverlayCustom from "components/NoRowsOverlayCustom";
 import ModalCustom from "components/ModalCustom";
-import { setCurrentGPDConfig } from "store/slices/Main/Attendance-settings/attendanceSettingsSlice";
-import GPSAddingForm from "forms/Main/AttendancesSettings/Mobile/GPS";
+import { setCurrentBssid } from "store/slices/Main/Attendance-settings/attendanceSettingsSlice";
 import { FormAction } from "forms/formAction";
+import BssidAddingForm from "forms/Main/AttendancesSettings/Mobile/Bssid";
 
 const Table = () => {
     // HOOK STATE
@@ -21,7 +21,7 @@ const Table = () => {
     // ****************************
 
     // REDUX TOOLKIT
-    const { listOfGPSConfig, totalPages, totalGPSConfig, loading, shouldRender } = useAppSelector(
+    const { listOfBssid, totalPages, totalBssid, loading, shouldRender } = useAppSelector(
         (state) => state.attendanceSettings
     );
     const dispatch = useAppDispatch();
@@ -30,17 +30,18 @@ const Table = () => {
     // HOOK EFFECT
     useEffect(() => {
         dispatch(
-            extraReducersGetListGPSConfig({
+            extraReducersGetListBssid({
                 page: page - 1,
                 size: process.env.REACT_APP_PAGE_SIZE,
             })
         );
     }, [shouldRender]);
+
     // ****************************
 
     const handleUpdateClick = (id) => {
         return () => {
-            dispatch(setCurrentGPDConfig({ id }))
+            dispatch(setCurrentBssid({ id }))
             setOpen(true)
         }
     }
@@ -49,7 +50,7 @@ const Table = () => {
         <>
             <div className="attendance-settings--mobile-gps__table">
                 <p className="quantity-ipAddress">
-                    Có <span className="quantity">{totalGPSConfig}</span> địa  chỉ trong
+                    Có <span className="quantity">{totalBssid}</span> BSSID trong
                     danh sách
                 </p>
                 <Box sx={{ height: 250, width: "100%" }}>
@@ -58,7 +59,7 @@ const Table = () => {
                             disableColumnMenu
                             headerHeight={55}
                             rowHeight={65}
-                            rows={listOfGPSConfig}
+                            rows={listOfBssid}
                             columns={getColumns(handleUpdateClick)}
                             getRowId={(row) => row._id}
                             rowsPerPageOptions={[10]}
@@ -71,7 +72,7 @@ const Table = () => {
                                 LoadingOverlay: LoadingCustom,
                             }}
                         />
-                        {listOfGPSConfig.length > 0 && (
+                        {listOfBssid.length > 0 && (
                             <div
                                 style={{
                                     display: "flex",
@@ -92,12 +93,12 @@ const Table = () => {
                 </Box>
             </div>
             <ModalCustom
-                titleHeader={"CHỈNH SỬA THÔNG TIN VỊ TRÍ"}
+                titleHeader={"CHỈNH SỬA BSSID"}
                 footer={false}
                 state={open}
                 setState={setOpen}
                 callback={() => { }}>
-                <GPSAddingForm action={FormAction.UPDATE} setOpen={setOpen} />
+                <BssidAddingForm action={FormAction.UPDATE} setOpen={setOpen} />
             </ModalCustom>
         </>
     );

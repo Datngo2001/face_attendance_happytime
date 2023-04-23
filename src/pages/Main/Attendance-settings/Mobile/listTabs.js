@@ -1,4 +1,4 @@
-import { Devices, Wifi, GPSs } from "./components";
+import { Devices, Wifi, Bssid, GPSs } from "./components";
 
 export const listTabs = [
     {
@@ -8,7 +8,8 @@ export const listTabs = [
     },
     {
         title: "Danh sách BSSID Wi-fi",
-        disabled: true,
+        disabled: false,
+        component: <Bssid />,
     },
     {
         title: "Danh sách vị trí",

@@ -95,7 +95,7 @@ const GPSAddingForm: React.FC<Props> = ({ action, setOpen }) => {
             max={1000} />
         </div>
 
-        <div className="wifi-adding-form__actions">
+        <div className="gps-adding-form__actions">
           <ButtonCustom width="84px" type={3} onClick={() => setOpen(false)}>
             Hủy bỏ
           </ButtonCustom>
