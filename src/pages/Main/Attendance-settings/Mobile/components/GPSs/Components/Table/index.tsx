@@ -7,7 +7,7 @@ import { useAppSelector } from "hooks/useAppSelector";
 import { useAppDispatch } from "hooks/useAppDispatch";
 import PaginationCustom from "components/PaginationCustom";
 import LoadingCustom from "components/LoadingCustom";
-import { extraReducersGetListGPSConfig } from "store/slices/Main/Attendance-settings/actions/extraReducers";
+import { extraReducersDeleteGPSConfig, extraReducersGetListGPSConfig } from "store/slices/Main/Attendance-settings/actions/extraReducers";
 import NoRowsOverlayCustom from "components/NoRowsOverlayCustom";
 import ModalCustom from "components/ModalCustom";
 import { setCurrentGPDConfig } from "store/slices/Main/Attendance-settings/attendanceSettingsSlice";
@@ -21,7 +21,7 @@ const Table = () => {
     // ****************************
 
     // REDUX TOOLKIT
-    const { listOfGPSConfig, totalPages, totalGPSConfig, loading, shouldRender } = useAppSelector(
+    const { listOfGPSConfig, totalPages, totalGPSConfig, loading, lastCreateSuccess, lastDeleteSuccess, lastUpdateSuccess } = useAppSelector(
         (state) => state.attendanceSettings
     );
     const dispatch = useAppDispatch();
@@ -35,13 +35,24 @@ const Table = () => {
                 size: process.env.REACT_APP_PAGE_SIZE,
             })
         );
-    }, [shouldRender]);
+    }, [lastCreateSuccess, lastDeleteSuccess, lastUpdateSuccess]);
+
+    useEffect(() => {
+        setOpen(false)
+    }, [lastUpdateSuccess]);
+
     // ****************************
 
     const handleUpdateClick = (id) => {
         return () => {
             dispatch(setCurrentGPDConfig({ id }))
             setOpen(true)
+        }
+    }
+
+    const handleDeleteClick = (id) => {
+        return () => {
+            dispatch(extraReducersDeleteGPSConfig({ id }))
         }
     }
 
@@ -59,7 +70,7 @@ const Table = () => {
                             headerHeight={55}
                             rowHeight={65}
                             rows={listOfGPSConfig}
-                            columns={getColumns(handleUpdateClick)}
+                            columns={getColumns(handleUpdateClick, handleDeleteClick)}
                             getRowId={(row) => row._id}
                             rowsPerPageOptions={[10]}
                             disableSelectionOnClick={true}

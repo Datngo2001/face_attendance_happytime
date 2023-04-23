@@ -152,9 +152,9 @@ export const extraReducersUpdateGPSConfig = createAsyncThunk(
 
 export const extraReducersDeleteGPSConfig = createAsyncThunk(
   "deleteGPSConfig",
-  async ({ data }: any) => {
+  async ({ id }: any) => {
     const promise = api
-      .delete(`/api/gps_config/delete/${data._id}`)
+      .delete(`/api/gps_config/delete/${id}`)
       .then((response: any) => {
         return {
           payload: response.payload,
@@ -233,9 +233,9 @@ export const extraReducersUpdateBssid = createAsyncThunk(
 
 export const extraReducersDeleteBssid = createAsyncThunk(
   "deleteBssid",
-  async ({ data }: any) => {
+  async ({ id }: any) => {
     const promise = api
-      .delete(`/api/bssid_config/delete/${data._id}`)
+      .delete(`/api/bssid_config/delete/${id}`)
       .then((response: any) => {
         return {
           payload: response.payload,

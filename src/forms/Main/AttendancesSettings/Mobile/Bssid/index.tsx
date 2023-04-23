@@ -16,7 +16,7 @@ export type Props = {
 
 const BssidAddingForm: React.FC<Props> = ({ action, setOpen }) => {
 
-  const { Bssid } = useAppSelector((state) => state.attendanceSettings);
+  const { bssid: Bssid } = useAppSelector((state) => state.attendanceSettings);
   const dispatch = useAppDispatch();
 
   const { control, handleSubmit } = useCRUDForm({

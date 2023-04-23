@@ -1,10 +1,10 @@
 import { AttendanceSettingsState } from "../attendanceSettingsSlice";
 
-export const reducersUpdateStatusState = (
+export const reducersSetCurrentIPWifi = (
   state: AttendanceSettingsState,
-  action
+  action: { payload: { id: string } }
 ) => {
-  state.status = action.payload;
+  state.iPWifi = state.listOfIPWifi.find((c) => c._id === action.payload.id);
 };
 
 export const reducersSetCurrentGPDConfig = (
@@ -20,5 +20,5 @@ export const reducersSetCurrentBssid = (
   state: AttendanceSettingsState,
   action: { payload: { id: string } }
 ) => {
-  state.Bssid = state.listOfBssid.find((c) => c._id === action.payload.id);
+  state.bssid = state.listOfBssid.find((c) => c._id === action.payload.id);
 };

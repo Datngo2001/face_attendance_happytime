@@ -3,7 +3,7 @@ import DropMenu from "components/DropMenu";
 import { OptionColumn } from "components/OptionColumn";
 import RowOptions from "../RowOptions";
 
-export const getColumns = (handleUpdateClick: Function): GridColumns => ([
+export const getColumns = (handleUpdateClick: Function, handleDeleteClick: Function): GridColumns => ([
     {
         field: "bssid_name",
         headerName: "Tên BSSID",
@@ -33,7 +33,7 @@ export const getColumns = (handleUpdateClick: Function): GridColumns => ([
                         mt="2px"
                         ml="4px"
                     >
-                        <RowOptions id={params.row._id} handleUpdateClick={handleUpdateClick} />
+                        <RowOptions id={params.row._id} handleUpdateClick={handleUpdateClick} handleDeleteClick={handleDeleteClick} />
                     </DropMenu>
                 </>
             );

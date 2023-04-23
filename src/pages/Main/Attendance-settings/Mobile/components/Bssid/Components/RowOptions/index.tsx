@@ -6,9 +6,10 @@ import DeleteIcon from '@mui/icons-material/Delete';
 export type Props = {
     id: string
     handleUpdateClick: Function
+    handleDeleteClick: Function
 }
 
-const RowOptions: React.FC<Props> = ({ id, handleUpdateClick }) => {
+const RowOptions: React.FC<Props> = ({ id, handleUpdateClick, handleDeleteClick }) => {
 
     return (
         <>
@@ -19,7 +20,7 @@ const RowOptions: React.FC<Props> = ({ id, handleUpdateClick }) => {
                     </span>
                     <p className="title">Chỉnh sửa BSSID</p>
                 </div>
-                <div className="row-options__item">
+                <div className="row-options__item" onClick={handleDeleteClick(id)}>
                     <span className="icon">
                         <DeleteIcon />
                     </span>

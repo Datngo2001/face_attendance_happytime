@@ -1,22 +1,27 @@
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import "./styles.scss";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import InputCustom from "components/InputCustom";
 import ButtonCustom from "components/ButtonCustom";
 import ModalCustom from "components/ModalCustom";
 import { FormAction } from "forms/formAction";
 import GPSAddingForm from "forms/Main/AttendancesSettings/Mobile/GPS";
+import { useAppSelector } from "hooks/useAppSelector";
 
 const ControlPanel = () => {
-  // REACT HOOK FORM
   const { control } = useForm({});
-  // ****************************
 
-  // HOOK STATE
   const [open, setOpen] = useState(false);
-  // ****************************
+
+  const { lastCreateSuccess } = useAppSelector(
+    (state) => state.attendanceSettings
+  );
+
+  useEffect(() => {
+    setOpen(false)
+  }, [lastCreateSuccess]);
 
   return (
     <>

@@ -1,20 +1,23 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
+  extraReducersCreateBssid,
   extraReducersCreateGPSConfig,
   extraReducersCreateIPWifi,
+  extraReducersDeleteBssid,
   extraReducersDeleteGPSConfig,
   extraReducersGetInfoConfig,
   extraReducersGetListBssid,
   extraReducersGetListDeviceID,
   extraReducersGetListGPSConfig,
   extraReducersGetListIPWifi,
+  extraReducersUpdateBssid,
   extraReducersUpdateGPSConfig,
   extraReducersUpdateInfoConfig,
 } from "./actions/extraReducers";
 import {
   reducersSetCurrentBssid,
   reducersSetCurrentGPDConfig,
-  reducersUpdateStatusState,
+  reducersSetCurrentIPWifi,
 } from "./actions/reducers";
 
 export type InfoConfig = {
@@ -23,20 +26,34 @@ export type InfoConfig = {
 
 export type AttendanceSettingsState = {
   loading: boolean;
-  status: string;
   infoConfig: InfoConfig;
-  listOfIPWifi: [];
+  iPWifi: IPWifi;
+  listOfIPWifi: IPWifi[];
   listOfDeviceID: [];
   GPSConfig: GPSConfig;
   listOfGPSConfig: GPSConfig[];
-  Bssid: Bssid;
+  bssid: Bssid;
   listOfBssid: Bssid[];
   totalPages: number;
   totalIPWifi: number;
   totalGPSConfig: number;
   totalBssid: number;
-  render: boolean;
-  shouldRender: boolean;
+  lastCreateSuccess: number;
+  lastUpdateSuccess: number;
+  lastDeleteSuccess: number;
+};
+
+export type IPWifi = {
+  _id?: string;
+  tenant_id?: string;
+  created_by: any;
+  last_updated_by: any;
+  gps_name: string;
+  address: string;
+  lat: number;
+  lon: number;
+  radius: number;
+  created_date: number;
 };
 
 export type GPSConfig = {
@@ -67,7 +84,6 @@ const attendanceSettingsSlice = createSlice({
   name: "attendanceSettings",
   initialState: {
     loading: false,
-    status: "fail",
     infoConfig: {},
     listOfIPWifi: [],
     listOfDeviceID: [],
@@ -75,11 +91,9 @@ const attendanceSettingsSlice = createSlice({
     listOfBssid: [],
     totalPages: 0,
     totalIPWifi: 0,
-    render: false,
-    shouldRender: false,
   } as AttendanceSettingsState,
   reducers: {
-    updateStatusState: reducersUpdateStatusState,
+    setCurrentIPWifi: reducersSetCurrentIPWifi,
     setCurrentGPDConfig: reducersSetCurrentGPDConfig,
     setCurrentBssid: reducersSetCurrentBssid,
   },
@@ -103,14 +117,14 @@ const attendanceSettingsSlice = createSlice({
     );
     builder
       .addCase(extraReducersCreateIPWifi.pending, (state, { payload }) => {
-        state.shouldRender = true;
+        state.loading = true;
       })
       .addCase(
         extraReducersCreateIPWifi.fulfilled,
         (state, { payload: { payload, message } }) => {
-          state.shouldRender = false;
+          state.loading = false;
           if (message === "success") {
-            state.status = "success";
+            state.lastCreateSuccess = Date.now();
           }
         }
       );
@@ -168,6 +182,9 @@ const attendanceSettingsSlice = createSlice({
         extraReducersCreateGPSConfig.fulfilled,
         (state, { payload: { payload, message } }) => {
           state.loading = false;
+          if (message === "success") {
+            state.lastCreateSuccess = Date.now();
+          }
         }
       );
     builder
@@ -178,6 +195,9 @@ const attendanceSettingsSlice = createSlice({
         extraReducersUpdateGPSConfig.fulfilled,
         (state, { payload: { payload, message } }) => {
           state.loading = false;
+          if (message === "success") {
+            state.lastUpdateSuccess = Date.now();
+          }
         }
       );
     builder
@@ -188,6 +208,9 @@ const attendanceSettingsSlice = createSlice({
         extraReducersDeleteGPSConfig.fulfilled,
         (state, { payload: { payload, message } }) => {
           state.loading = false;
+          if (message === "success") {
+            state.lastDeleteSuccess = Date.now();
+          }
         }
       );
     builder
@@ -205,9 +228,48 @@ const attendanceSettingsSlice = createSlice({
           }
         }
       );
+    builder
+      .addCase(extraReducersCreateBssid.pending, (state, { payload }) => {
+        state.loading = true;
+      })
+      .addCase(
+        extraReducersCreateBssid.fulfilled,
+        (state, { payload: { payload, message } }) => {
+          state.loading = false;
+          if (message === "success") {
+            state.lastCreateSuccess = Date.now();
+          }
+        }
+      );
+    builder
+      .addCase(extraReducersUpdateBssid.pending, (state, { payload }) => {
+        state.loading = true;
+      })
+      .addCase(
+        extraReducersUpdateBssid.fulfilled,
+        (state, { payload: { payload, message } }) => {
+          state.loading = false;
+          if (message === "success") {
+            state.lastUpdateSuccess = Date.now();
+          }
+        }
+      );
+    builder
+      .addCase(extraReducersDeleteBssid.pending, (state, { payload }) => {
+        state.loading = true;
+      })
+      .addCase(
+        extraReducersDeleteBssid.fulfilled,
+        (state, { payload: { payload, message } }) => {
+          state.loading = false;
+          if (message === "success") {
+            state.lastDeleteSuccess = Date.now();
+          }
+        }
+      );
   },
 });
 
-export const { updateStatusState, setCurrentGPDConfig, setCurrentBssid } =
+export const { setCurrentIPWifi, setCurrentGPDConfig, setCurrentBssid } =
   attendanceSettingsSlice.actions;
 export default attendanceSettingsSlice;

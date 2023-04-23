@@ -7,7 +7,7 @@ import { useAppSelector } from "hooks/useAppSelector";
 import { useAppDispatch } from "hooks/useAppDispatch";
 import PaginationCustom from "components/PaginationCustom";
 import LoadingCustom from "components/LoadingCustom";
-import { extraReducersGetListBssid } from "store/slices/Main/Attendance-settings/actions/extraReducers";
+import { extraReducersDeleteBssid, extraReducersGetListBssid } from "store/slices/Main/Attendance-settings/actions/extraReducers";
 import NoRowsOverlayCustom from "components/NoRowsOverlayCustom";
 import ModalCustom from "components/ModalCustom";
 import { setCurrentBssid } from "store/slices/Main/Attendance-settings/attendanceSettingsSlice";
@@ -21,7 +21,7 @@ const Table = () => {
     // ****************************
 
     // REDUX TOOLKIT
-    const { listOfBssid, totalPages, totalBssid, loading, shouldRender } = useAppSelector(
+    const { listOfBssid, totalPages, totalBssid, loading, lastCreateSuccess, lastDeleteSuccess, lastUpdateSuccess } = useAppSelector(
         (state) => state.attendanceSettings
     );
     const dispatch = useAppDispatch();
@@ -35,7 +35,11 @@ const Table = () => {
                 size: process.env.REACT_APP_PAGE_SIZE,
             })
         );
-    }, [shouldRender]);
+    }, [lastCreateSuccess, lastDeleteSuccess, lastUpdateSuccess]);
+
+    useEffect(() => {
+        setOpen(false)
+    }, [lastUpdateSuccess]);
 
     // ****************************
 
@@ -43,6 +47,12 @@ const Table = () => {
         return () => {
             dispatch(setCurrentBssid({ id }))
             setOpen(true)
+        }
+    }
+
+    const handleDeleteClick = (id) => {
+        return () => {
+            dispatch(extraReducersDeleteBssid({ id }))
         }
     }
 
@@ -60,7 +70,7 @@ const Table = () => {
                             headerHeight={55}
                             rowHeight={65}
                             rows={listOfBssid}
-                            columns={getColumns(handleUpdateClick)}
+                            columns={getColumns(handleUpdateClick, handleDeleteClick)}
                             getRowId={(row) => row._id}
                             rowsPerPageOptions={[10]}
                             disableSelectionOnClick={true}

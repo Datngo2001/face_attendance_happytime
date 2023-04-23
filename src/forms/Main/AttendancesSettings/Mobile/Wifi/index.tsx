@@ -15,40 +15,19 @@ export type Props = {
 }
 
 const WifiAddingForm: React.FC<Props> = ({ action, setOpen }) => {
-  // REACT HOOK FORM
   const { control, register, handleSubmit } = useForm({});
-  // ****************************
 
-  // REDUX TOOLKIT
-  const { status } = useAppSelector((state) => state.attendanceSettings);
+  const { } = useAppSelector((state) => state.attendanceSettings);
   const dispatch = useAppDispatch();
-  // ****************************
 
-  // HOOK EFFECT
-  useEffect((): any => {
-    if (status === "success") {
-      setOpen(false);
-    }
-
-    // Clean function
-    return () => dispatch(updateStatusState("fail"));
-  }, [status]);
-  // ****************************
-
-  // ARROW FUNCTIONS
   const handleOnSubmitCreate = (data) => {
-    console.log("data", data);
-    const dataSubmit = {
-      ...data,
-      status: parseInt(data.activeStatus),
-    };
-
     dispatch(
       extraReducersCreateIPWifi({
-        data: dataSubmit,
+        data: data,
       })
     );
   };
+
   const handleOnSubmitUpdate = (data) => {
     console.log("data", data);
   };
