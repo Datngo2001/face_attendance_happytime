@@ -1,7 +1,11 @@
 import { Tabs } from "antd";
 import "./styles.scss";
 
-const TabsCustom = ({ listChildren = [] }) => {
+export type Props = {
+    listChildren: any
+}
+
+const TabsCustom: React.FC<Props> = ({ listChildren = [] }) => {
     // @ children: title/component
     return (
         <>

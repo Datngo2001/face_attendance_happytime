@@ -1,5 +1,6 @@
 import React from 'react'
-import { ControlPanel, Table } from './Components'
+import ControlPanel from './Components/ControlPanel'
+import Table from './Components/Table'
 
 const GPSs: React.FC = () => {
     return (

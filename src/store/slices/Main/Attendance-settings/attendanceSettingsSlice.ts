@@ -1,10 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
+  extraReducersCreateGPSConfig,
   extraReducersCreateIPWifi,
   extraReducersGetInfoConfig,
   extraReducersGetListDeviceID,
   extraReducersGetListGPSConfig,
   extraReducersGetListIPWifi,
+  extraReducersUpdateGPSConfig,
   extraReducersUpdateInfoConfig,
 } from "./actions/extraReducers";
 import {
@@ -137,6 +139,26 @@ const attendanceSettingsSlice = createSlice({
             state.totalPages = payload.total_pages;
             state.totalGPSConfig = payload.total_items;
           }
+        }
+      );
+    builder
+      .addCase(extraReducersCreateGPSConfig.pending, (state, { payload }) => {
+        state.loading = true;
+      })
+      .addCase(
+        extraReducersCreateGPSConfig.fulfilled,
+        (state, { payload: { payload, message } }) => {
+          state.loading = false;
+        }
+      );
+    builder
+      .addCase(extraReducersUpdateGPSConfig.pending, (state, { payload }) => {
+        state.loading = true;
+      })
+      .addCase(
+        extraReducersUpdateGPSConfig.fulfilled,
+        (state, { payload: { payload, message } }) => {
+          state.loading = false;
         }
       );
   },

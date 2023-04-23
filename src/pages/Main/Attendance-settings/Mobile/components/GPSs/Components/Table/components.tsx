@@ -5,15 +5,6 @@ import RowOptions from "../RowOptions";
 
 export const getColumns = (handleUpdateClick: Function): GridColumns => ([
     {
-        field: "stt",
-        headerName: "STT",
-        headerAlign: "center",
-        // width: 165,
-        align: "center",
-        flex: 0.2,
-        sortable: false,
-    },
-    {
         field: "gps_name",
         headerName: "Tên vị trí",
         // width: 150,
