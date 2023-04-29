@@ -1,5 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { extraReducersGetDepartments } from "./actions/extraReducers";
+import {
+  extraReducersCreateDepartments,
+  extraReducersGetDepartments,
+} from "./actions/extraReducers";
+import { DataFormat } from "components/InputTime/default";
 
 export type DepartmentsState = {
   status: string;
@@ -7,6 +11,9 @@ export type DepartmentsState = {
   departmentTrees: Department[];
   total_department: number;
   total_position: number;
+  lastCreateSuccess: number;
+  lastUpdateSuccess: number;
+  lastDeleteSuccess: number;
 };
 
 export type Department = {
@@ -46,17 +53,37 @@ const departmentsSlice = createSlice({
         extraReducersGetDepartments.fulfilled,
         (state: DepartmentsState, { payload: { payload, message } }) => {
           state.loading = false;
-          state.total_department = payload.total_department;
-          state.total_position = payload.total_position;
+          if (message === "success") {
+            state.total_department = payload.total_department;
+            state.total_position = payload.total_position;
 
-          let departments = payload.items as Department[];
-          state.departmentTrees = [];
-          let rootDepartments = departments.filter(
-            (department) => department.department_parent_id == null
-          );
-          rootDepartments.forEach((root) =>
-            state.departmentTrees.push(createDepartmentTree(root, departments))
-          );
+            let departments = payload.items as Department[];
+            state.departmentTrees = [];
+            let rootDepartments = departments.filter(
+              (department) => department.department_parent_id == null
+            );
+            rootDepartments.forEach((root) =>
+              state.departmentTrees.push(
+                createDepartmentTree(root, departments)
+              )
+            );
+          }
+        }
+      );
+    builder
+      .addCase(
+        extraReducersCreateDepartments.pending,
+        (state: DepartmentsState) => {
+          state.loading = true;
+        }
+      )
+      .addCase(
+        extraReducersCreateDepartments.fulfilled,
+        (state: DepartmentsState, { payload: { payload, message } }) => {
+          state.loading = false;
+          if (message === "success") {
+            state.lastCreateSuccess = Date.now();
+          }
         }
       );
   },

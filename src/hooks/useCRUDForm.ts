@@ -8,7 +8,7 @@ export type Props = {
 };
 
 const useCRUDForm = ({ defaultValues, validationSchema }: Props) => {
-  const { control, handleSubmit, setError, reset } = useForm({
+  const { control, handleSubmit, setError, reset, setValue } = useForm({
     resolver: yupResolver(validationSchema),
     defaultValues: defaultValues,
   });
@@ -17,7 +17,7 @@ const useCRUDForm = ({ defaultValues, validationSchema }: Props) => {
     reset(defaultValues);
   }, [defaultValues, reset]);
 
-  return { control, handleSubmit, setError, reset };
+  return { control, handleSubmit, setError, reset, setValue };
 };
 
 export default useCRUDForm;

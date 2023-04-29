@@ -1,3 +1,3 @@
-export const DEFAULT_LEFT_INDENT = 50;
+export const DEFAULT_LEFT_INDENT = 70;
 
-export const DEFAULT_TOP_INDENT = 20;
+export const DEFAULT_TOP_INDENT = 30;

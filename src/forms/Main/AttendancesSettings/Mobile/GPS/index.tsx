@@ -9,6 +9,7 @@ import useCRUDForm from "hooks/useCRUDForm";
 import InputNumber from "components/InputNumber";
 import { defaultValues } from "./defaultValues";
 import { schema } from "./validation";
+import GetPositionButton from "components/GetPositionButton";
 
 export type Props = {
   action: FormAction
@@ -16,11 +17,10 @@ export type Props = {
 }
 
 const GPSAddingForm: React.FC<Props> = ({ action, setOpen }) => {
-
   const { GPSConfig } = useAppSelector((state) => state.attendanceSettings);
   const dispatch = useAppDispatch();
 
-  const { control, handleSubmit } = useCRUDForm({
+  const { control, handleSubmit, setValue } = useCRUDForm({
     defaultValues: action === FormAction.CREATE ? defaultValues : GPSConfig,
     validationSchema: schema
   });
@@ -40,6 +40,12 @@ const GPSAddingForm: React.FC<Props> = ({ action, setOpen }) => {
       })
     );
   };
+
+  const setPosition = (lat, lon, radius) => {
+    setValue("lat", lat)
+    setValue("lon", lon)
+    setValue("radius", radius)
+  }
 
   return (
     <>
@@ -63,6 +69,9 @@ const GPSAddingForm: React.FC<Props> = ({ action, setOpen }) => {
             control={control}
             required={true}
           />
+        </div>
+        <div className="field-control">
+          <GetPositionButton onChange={({ lat, lon, radius }) => setPosition(lat, lon, radius)}>Lấy vị trí hiện tại</GetPositionButton>
         </div>
         <div className="field-control">
           <InputNumber
@@ -94,7 +103,6 @@ const GPSAddingForm: React.FC<Props> = ({ action, setOpen }) => {
             min={0}
             max={1000} />
         </div>
-
         <div className="gps-adding-form__actions">
           <ButtonCustom width="84px" type={3} onClick={() => setOpen(false)}>
             Hủy bỏ
