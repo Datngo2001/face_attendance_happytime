@@ -8,6 +8,9 @@ import useCRUDForm from "hooks/useCRUDForm";
 import { defaultValues } from "./defaultValues";
 import { schema } from "./validation";
 import InputCustom from "components/InputCustom";
+import { Department } from "store/slices/Main/Departments/departmentsSlice";
+import TreeViewSelectBox, { SelectBoxNode } from "components/TreeViewSelectBox";
+import { createDepartmentSelectOptions } from "utils/departmentUtil";
 
 export type Props = {
   action: FormAction
@@ -15,10 +18,10 @@ export type Props = {
 }
 
 const DepartmentForm: React.FC<Props> = ({ action, setOpen }) => {
-  const { department } = useAppSelector((state) => state.departments);
+  const { department, departmentTrees } = useAppSelector((state) => state.departments);
   const dispatch = useAppDispatch();
 
-  const { control, handleSubmit } = useCRUDForm({
+  const { control, handleSubmit, setValue } = useCRUDForm({
     defaultValues: action === FormAction.CREATE ? defaultValues : department,
     validationSchema: schema
   });
@@ -49,6 +52,15 @@ const DepartmentForm: React.FC<Props> = ({ action, setOpen }) => {
           control={control}
           required={true}
         />
+      </div>
+
+      <div className="field-control">
+        <TreeViewSelectBox
+          setValue={setValue}
+          placeholder="Chọn phòng ban"
+          name="department_parent_id"
+          control={control}
+          options={departmentTrees ? createDepartmentSelectOptions(departmentTrees) : []} />
       </div>
 
       <div className="department-form__actions">

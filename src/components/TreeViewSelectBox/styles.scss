@@ -1,0 +1,148 @@
+@use "../../assets/styles/index.scss" as *;
+
+.tree-view-select {
+    &__wrapper {
+        width: 100%;
+        height: auto;
+
+        .MuiFormControl-root {
+            position: relative;
+            height: $h-1;
+            width: 100%;
+
+            .select-item {
+                border-radius: $br-1;
+                width: 100%;
+                height: 100%;
+                background-color: $primary-bg-color;
+
+                .MuiSelect-select {
+                    height: 100%;
+                    box-sizing: border-box;
+                    padding: 8px 16px 8px 32px;
+                    text-align: left;
+                    text-overflow: ellipsis;
+                    width: 190px;
+                    color: $text-color-1;
+                    font-size: $fs-1;
+                    font-family: $f-family-1;
+                    flex: 1;
+                }
+
+                .MuiOutlinedInput-notchedOutline {
+                    border: 1px solid transparent;
+                    outline: none;
+                    transition: all 0.3s;
+                }
+
+                &:hover {
+                    .MuiOutlinedInput-notchedOutline {
+                        border-color: $primary-color;
+                    }
+                }
+            }
+
+            .none-icon{
+                .MuiSelect-select{
+                    padding: 8px 16px 8px 16px;
+                }
+            }
+
+            > svg {
+                position: absolute;
+                font-size: 18px;
+                top: 20px;
+                left: 8px;
+                transform: translateY(-50%);
+                color: $text-color-2;
+                z-index: 1;
+            }
+        }
+
+        &.selected-placeholder {
+            .MuiFormControl-root {
+                .MuiInputBase-root {
+                    .MuiSelect-select {
+                        color: $text-color-2;
+                    }
+                }
+            }
+        }
+
+        &.error {
+            .MuiFormControl-root {
+                .MuiOutlinedInput-notchedOutline {
+                    border-color: $color-red-1 !important;
+                    &:focus {
+                        border-color: $color-red-1 !important;
+                    }
+                }
+                .error-message {
+                    color: $color-red-1;
+                    font-size: $fs-1;
+                    text-align: left;
+                }
+
+                > svg {
+                    color: $color-red-1;
+                }
+            }
+        }
+
+        
+    }
+
+    &__label {
+        width: "fit-content";
+        padding-bottom: 10px;
+        color: $text-color-3;
+        cursor: default;
+
+        &:hover {
+            + .MuiFormControl-root {
+                .MuiInputBase-root {
+                    .MuiOutlinedInput-notchedOutline {
+                        border-color: $primary-color;
+                    }
+                }
+            }
+        }
+
+        > span {
+            color: red;
+            display: none;
+        }
+
+        &.required {
+            > span {
+                display: contents;
+            }
+        }
+    }
+}
+
+.MuiList-root {
+    .select-box-node {
+        padding: 10px 0px;
+        color: $text-color-1;
+        font-size: $fs-1;
+        
+        .option{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            line-height: 100%;
+            .title{
+                flex-grow: 1;
+                padding: 5px;
+                border-radius: 10%;
+                &:hover{
+                    background-color: $primary-bg-color;
+                }
+            }
+            .icon,.title{
+                cursor: pointer;
+            }
+        }
+    }
+}
