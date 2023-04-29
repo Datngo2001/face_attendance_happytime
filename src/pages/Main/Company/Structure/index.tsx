@@ -16,11 +16,18 @@ const Structure: React.FC = () => {
         action: FormAction.CREATE
     })
     const dispatch = useAppDispatch();
-    const { departmentTrees, total_department, total_position } = useAppSelector(state => state.departments)
+    const { departmentTrees, total_department, total_position, lastCreateSuccess } = useAppSelector(state => state.departments)
 
     useEffect(() => {
         dispatch(extraReducersGetDepartments());
     }, [])
+
+    useEffect(() => {
+        setModalState(val => ({
+            ...val,
+            open: false,
+        }))
+    }, [lastCreateSuccess])
 
     const openCreateModal = () => {
         setModalState(val => ({

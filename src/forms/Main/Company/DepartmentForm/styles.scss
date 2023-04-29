@@ -1,0 +1,16 @@
+@use "../../../../assets/styles/index.scss" as *;
+
+.department-form{
+    &__wrapper {
+        text-align: left;
+        .field-control {
+            margin-bottom: 20px;
+        }
+    }
+
+    &__actions {
+        display: flex;
+        gap: 6px;
+        justify-content: right;
+    }
+}

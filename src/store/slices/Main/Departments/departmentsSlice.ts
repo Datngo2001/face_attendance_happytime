@@ -3,12 +3,12 @@ import {
   extraReducersCreateDepartments,
   extraReducersGetDepartments,
 } from "./actions/extraReducers";
-import { DataFormat } from "components/InputTime/default";
 
 export type DepartmentsState = {
   status: string;
   loading: boolean;
   departmentTrees: Department[];
+  department: Department;
   total_department: number;
   total_position: number;
   lastCreateSuccess: number;
