@@ -49,6 +49,9 @@
                     }
                     .node-title{
                         position: relative;
+                        display: flex;
+                        line-height: 1;
+                        align-items: center;
                         .node-name{
                             padding-left: 20px;
                         }
@@ -63,6 +66,12 @@
                             justify-content: center;
                             align-items: center;
                             transform: translate(-50%);
+                        }
+                        .node-isManager{
+                            padding-left: 10px;
+                            svg{
+                                color: $primary-color;
+                            }
                         }
                         .node-branch-line{
                             transform: translateY(-50%);

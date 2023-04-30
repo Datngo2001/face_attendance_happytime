@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import "./styles.scss";
 import { Department } from 'store/slices/Main/Departments/departmentsSlice';
 import { DEFAULT_LEFT_INDENT, DEFAULT_TOP_INDENT } from '../../default';
 import PositionNode from '../PositionNode/Index';
