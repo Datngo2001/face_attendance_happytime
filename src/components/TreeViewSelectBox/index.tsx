@@ -104,7 +104,7 @@ const TreeViewSelectBox: React.FC<Props> = ({
                             </MenuItem>
                             {placeholderItems}
                             {options.map(option => (
-                                <OptionNode handleSelect={(val) => setValue(name, val)} node={option} depth={1} leftIndent={leftIndent} topIndent={topIndent} />
+                                <OptionNode currentValue={value} handleSelect={(val) => { handleClose(); setValue(name, val); }} node={option} depth={1} leftIndent={leftIndent} topIndent={topIndent} />
                             ))}
                         </Select>
                         {error && (<p className="error-message">{error.message}</p>)}

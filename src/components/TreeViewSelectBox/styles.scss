@@ -135,10 +135,14 @@
             .title{
                 flex-grow: 1;
                 padding: 5px;
-                border-radius: 10%;
+                border-radius: 5px;
                 &:hover{
                     background-color: $primary-bg-color;
                 }
+            }
+            .title.selected{
+                background-color: $primary-color;
+                color: $color-white-1;
             }
             .icon,.title{
                 cursor: pointer;

@@ -4,6 +4,7 @@ import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 export type Props = {
+    currentValue: string | number
     node: SelectBoxNode
     depth: number
     leftIndent: number;
@@ -11,7 +12,7 @@ export type Props = {
     handleSelect: any
 }
 
-const OptionNode: React.FC<Props> = ({ node, depth, leftIndent, topIndent, handleSelect }) => {
+const OptionNode: React.FC<Props> = ({ currentValue, node, depth, leftIndent, topIndent, handleSelect }) => {
     const [open, setOpen] = useState(true);
 
     const handleArrowClick = (e) => {
@@ -27,14 +28,14 @@ const OptionNode: React.FC<Props> = ({ node, depth, leftIndent, topIndent, handl
                     onClick={handleArrowClick}>
                     {open ? (<ArrowDropDownIcon />) : (<ArrowRightIcon />)}
                 </div>
-                <div className='title' onClick={() => handleSelect(node.id)}>
+                <div className={`title ${currentValue === node.id ? 'selected' : ''}`} onClick={() => handleSelect(node.id)}>
                     <span>{node.name}</span>
                 </div>
             </div>
             <div>
                 {open && node.children.map(child => (
                     <div key={child.id}>
-                        <OptionNode handleSelect={handleSelect} node={child} depth={depth + 1} leftIndent={leftIndent} topIndent={topIndent} />
+                        <OptionNode currentValue={currentValue} handleSelect={handleSelect} node={child} depth={depth + 1} leftIndent={leftIndent} topIndent={topIndent} />
                     </div>
                 ))}
             </div>
