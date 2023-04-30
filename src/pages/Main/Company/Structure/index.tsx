@@ -27,6 +27,7 @@ const Structure: React.FC = () => {
             ...val,
             open: false,
         }))
+        dispatch(extraReducersGetDepartments());
     }, [lastCreateSuccess])
 
     const openCreateModal = () => {

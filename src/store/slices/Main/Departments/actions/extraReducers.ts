@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { api } from "config/api";
 import { toastPromise } from "utils";
+import { CreateDepartmentDto } from "../departmentsSlice";
 
 export const extraReducersGetDepartments = createAsyncThunk(
   "getDepartments",
@@ -19,7 +20,7 @@ export const extraReducersGetDepartments = createAsyncThunk(
 
 export const extraReducersCreateDepartments = createAsyncThunk(
   "createDepartments",
-  async ({ data }: any) => {
+  async (data: CreateDepartmentDto) => {
     let promise = api
       .post(`/api/department/create`, data)
       .then((response: any) => {

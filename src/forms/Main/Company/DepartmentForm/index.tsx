@@ -1,16 +1,18 @@
-import React, { useEffect } from "react";
+import React, { useMemo } from "react";
 import "./styles.scss"
 import { FormAction } from "forms/formAction";
 import ButtonCustom from "components/ButtonCustom";
 import { useAppSelector } from "hooks/useAppSelector";
 import { useAppDispatch } from "hooks/useAppDispatch";
 import useCRUDForm from "hooks/useCRUDForm";
-import { defaultValues } from "./defaultValues";
 import { schema } from "./validation";
 import InputCustom from "components/InputCustom";
-import { Department } from "store/slices/Main/Departments/departmentsSlice";
-import TreeViewSelectBox, { SelectBoxNode } from "components/TreeViewSelectBox";
+import TreeViewSelectBox from "components/TreeViewSelectBox";
 import { createDepartmentSelectOptions } from "utils/departmentUtil";
+import { extraReducersCreateDepartments } from "store/slices/Main/Departments/actions/extraReducers";
+import { CreateDepartmentDto } from "store/slices/Main/Departments/departmentsSlice";
+import PositionTable from "./components/PositionTable";
+import { defaultValues } from "./defaultValues";
 
 export type Props = {
   action: FormAction
@@ -21,31 +23,42 @@ const DepartmentForm: React.FC<Props> = ({ action, setOpen }) => {
   const { department, departmentTrees } = useAppSelector((state) => state.departments);
   const dispatch = useAppDispatch();
 
+  const defaultFormValue: CreateDepartmentDto = useMemo(() => {
+    if (action === FormAction.CREATE) {
+      return defaultValues
+    } else {
+      return {
+        name: department.department_name,
+        department_parent_id: department.department_parent_id,
+        positions: department.children_position
+      } as CreateDepartmentDto
+    }
+  }, [action])
+
   const { control, handleSubmit, setValue } = useCRUDForm({
-    defaultValues: action === FormAction.CREATE ? defaultValues : department,
+    defaultValues: defaultFormValue,
     validationSchema: schema
   });
 
-  const handleOnSubmitCreate = (data) => {
-    // dispatch(
-    //   extraReducersCreateBssid({
-    //     data: data,
-    //   })
-    // );
+  const handleOnSubmitCreate = (data: CreateDepartmentDto) => {
+    dispatch(
+      extraReducersCreateDepartments(data)
+    );
   };
 
-  const handleOnSubmitUpdate = (data) => {
+  const handleOnSubmitUpdate = (data: CreateDepartmentDto) => {
     // dispatch(
     //   extraReducersUpdateBssid({
     //     data: data,
     //   })
     // );
   };
+
   return (
     <div className="department-form__wrapper">
       <div className="field-control">
         <InputCustom
-          name="department_name"
+          name="name"
           width="470px"
           label="Phòng ban mới"
           placeholder="Tên phòng ban"
@@ -61,6 +74,10 @@ const DepartmentForm: React.FC<Props> = ({ action, setOpen }) => {
           name="department_parent_id"
           control={control}
           options={departmentTrees ? createDepartmentSelectOptions(departmentTrees) : []} />
+      </div>
+
+      <div className="field-control">
+        <PositionTable positions={defaultFormValue.positions} control={control} />
       </div>
 
       <div className="department-form__actions">

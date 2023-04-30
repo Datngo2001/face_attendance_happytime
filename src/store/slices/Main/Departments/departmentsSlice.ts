@@ -34,6 +34,12 @@ export type Position = {
   position_name: string;
 };
 
+export type CreateDepartmentDto = {
+  name: string;
+  department_parent_id: string;
+  positions: Position[];
+};
+
 const departmentsSlice = createSlice({
   name: "departments",
   initialState: {
