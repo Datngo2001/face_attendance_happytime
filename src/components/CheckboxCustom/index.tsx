@@ -6,6 +6,7 @@ export type Props = {
     className?: string;
     label: string;
     control: any;
+
     width?: string;
     height?: string;
 }

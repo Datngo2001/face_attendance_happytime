@@ -35,7 +35,7 @@ const DepartmentForm: React.FC<Props> = ({ action, setOpen }) => {
     }
   }, [action])
 
-  const { control, handleSubmit, setValue } = useCRUDForm({
+  const { control, handleSubmit, setValue, getValues, watch } = useCRUDForm({
     defaultValues: defaultFormValue,
     validationSchema: schema
   });
@@ -77,7 +77,7 @@ const DepartmentForm: React.FC<Props> = ({ action, setOpen }) => {
       </div>
 
       <div className="field-control">
-        <PositionTable positions={defaultFormValue.positions} control={control} />
+        <PositionTable control={control} setValue={setValue} getValues={getValues} watch={watch} />
       </div>
 
       <div className="department-form__actions">
