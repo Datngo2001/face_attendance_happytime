@@ -67,10 +67,18 @@
                             align-items: center;
                             transform: translate(-50%);
                         }
-                        .node-isManager{
+                        .node-isManager, .node-actions{
                             padding-left: 10px;
                             svg{
                                 color: $primary-color;
+                            }
+                        }
+                        .node-actions{
+                            display: flex;
+                            gap: 10px;
+                            .btn-custom{
+                                border-radius: 50%;
+                                padding: 3px;
                             }
                         }
                         .node-branch-line{

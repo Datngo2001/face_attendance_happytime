@@ -9,6 +9,7 @@ import ModalCustom from "components/ModalCustom";
 import { FormAction } from "forms/formAction";
 import DepartmentForm from "forms/Main/Company/DepartmentForm";
 import AddIcon from '@mui/icons-material/Add';
+import { Department, setCurrentDepartment } from "store/slices/Main/Departments/departmentsSlice";
 
 const Structure: React.FC = () => {
     const [modalState, setModalState] = useState({
@@ -38,7 +39,8 @@ const Structure: React.FC = () => {
         }))
     }
 
-    const openUpdateModal = () => {
+    const openUpdateModal = (department: Department) => {
+        dispatch(setCurrentDepartment({ department }))
         setModalState(val => ({
             ...val,
             open: true,
@@ -57,7 +59,7 @@ const Structure: React.FC = () => {
             <div className="total">Có {total_department} phòng ban và {total_position} vị trí</div>
             <div className="department-tree__wrapper">
                 {departmentTrees?.map(rootDepartment => (
-                    <DepartmentNode key={rootDepartment.id} department={rootDepartment} depth={1} />
+                    <DepartmentNode key={rootDepartment.id} handleUpdate={openUpdateModal} department={rootDepartment} depth={1} />
                 ))}
             </div>
             <ModalCustom

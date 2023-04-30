@@ -3,6 +3,7 @@ import {
   extraReducersCreateDepartments,
   extraReducersGetDepartments,
 } from "./actions/extraReducers";
+import { reducersSetCurrentDepartment } from "./actions/reducers";
 
 export type DepartmentsState = {
   status: string;
@@ -46,7 +47,9 @@ const departmentsSlice = createSlice({
     status: "fail",
     loading: false,
   } as DepartmentsState,
-  reducers: {},
+  reducers: {
+    setCurrentDepartment: reducersSetCurrentDepartment,
+  },
   extraReducers: (builder) => {
     builder
       .addCase(
@@ -113,5 +116,5 @@ function createDepartmentTree(
   return rootDepartment;
 }
 
-export const {} = departmentsSlice.actions;
+export const { setCurrentDepartment } = departmentsSlice.actions;
 export default departmentsSlice;

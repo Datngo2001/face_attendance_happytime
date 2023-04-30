@@ -28,7 +28,7 @@ const CheckboxCustom: React.FC<Props> = ({ name, className, label, control, widt
                         type="checkbox"
                         name={name}
                         onChange={onChange}
-                        value={value}
+                        checked={value}
                         onBlur={onBlur}
                         ref={ref}
                     />
