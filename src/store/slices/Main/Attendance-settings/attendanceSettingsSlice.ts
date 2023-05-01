@@ -6,7 +6,7 @@ import {
   extraReducersDeleteBssid,
   extraReducersDeleteGPSConfig,
   extraReducersDeleteIPWifi,
-  extraReducersGetInfoConfig,
+  extraReducersGetAttendanceConfig,
   extraReducersGetListBssid,
   extraReducersGetListDeviceID,
   extraReducersGetListGPSConfig,
@@ -16,7 +16,6 @@ import {
   extraReducersUpdateGPSConfig,
   extraReducersUpdateIPWifi,
   extraReducersUpdateIPWifiStatus,
-  extraReducersUpdateInfoConfig,
 } from "./actions/extraReducers";
 import {
   reducersSetCurrentBssid,
@@ -26,12 +25,12 @@ import {
 import { BaseState } from "store/slices";
 import { mapPagiantionReponse } from "utils/sliceUtil";
 
-export type InfoConfig = {
+export type AttendanceConfig = {
   is_enable: boolean;
 };
 
 export class AttendanceSettingsState extends BaseState {
-  infoConfig: InfoConfig;
+  attendanceConfig: any;
   iPWifi: IPWifi;
   listOfIPWifi: IPWifi[];
   deviceID: DeviceID;
@@ -101,7 +100,6 @@ const attendanceSettingsSlice = createSlice({
   name: "attendanceSettings",
   initialState: {
     loading: false,
-    infoConfig: {},
     listOfIPWifi: [],
     listOfDeviceID: [],
     listOfGPSConfig: [],
@@ -114,23 +112,25 @@ const attendanceSettingsSlice = createSlice({
     setCurrentBssid: reducersSetCurrentBssid,
   },
   extraReducers: (builder) => {
+    // AttendanceConfig
+
     builder
-      .addCase(extraReducersGetInfoConfig.pending, (state, { payload }) => {
-        state.loading = true;
-      })
       .addCase(
-        extraReducersGetInfoConfig.fulfilled,
+        extraReducersGetAttendanceConfig.pending,
+        (state, { payload }) => {
+          state.loading = true;
+        }
+      )
+      .addCase(
+        extraReducersGetAttendanceConfig.fulfilled,
         (state, { payload: { payload, message } }) => {
           state.loading = false;
-          if (message === "success") {
-            state.infoConfig = payload;
+          if (message === "success" && payload != null) {
+            state.attendanceConfig = payload?.items;
+            mapPagiantionReponse(state, payload);
           }
         }
       );
-    builder.addCase(
-      extraReducersUpdateInfoConfig.fulfilled,
-      (state, { payload }) => {}
-    );
 
     // IPWifi
 

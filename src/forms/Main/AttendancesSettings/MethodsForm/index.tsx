@@ -2,13 +2,15 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import ButtonCustom from "../../../../components/ButtonCustom";
-import { extraReducersGetInfoConfig } from "../../../../store/slices/Main/Attendance-settings/actions/extraReducers";
 import {
     TimekeepingByFace,
     TimekeepingByFingerprint,
     TimekeepingByPhone,
 } from "./components";
 import "./styles.scss";
+import { useAppSelector } from "hooks/useAppSelector";
+import { extraReducersGetAttendanceConfig } from "store/slices/Main/Attendance-settings/actions/extraReducers";
+import { useAppDispatch } from "hooks/useAppDispatch";
 
 const MethodsForm = () => {
     // REACT HOOK FORM
@@ -16,16 +18,15 @@ const MethodsForm = () => {
     // ****************************
 
     // HOOK REDUX TOOLKIT
-    const { loading, infoConfig } = useSelector((state) => state.attendanceSettings);
-    const dispatch = useDispatch();
+    const { attendanceConfig } = useAppSelector((state) => state.attendanceSettings);
+    const dispatch = useAppDispatch();
     // ****************************
 
     // HOOK EFFECT
     useEffect(() => {
-        dispatch(extraReducersGetInfoConfig());
+        dispatch(extraReducersGetAttendanceConfig());
     }, []);
     // ****************************
-    console.log("infoConfig", infoConfig);
 
     // ARROW FUNCTIONS
     const handleOnSubmit = (data) => {
@@ -38,13 +39,13 @@ const MethodsForm = () => {
                 <TimekeepingByPhone
                     setValue={setValue}
                     register={register}
-                    checked={infoConfig?.is_enable || true}
+                    checked={attendanceConfig?.is_enable || true}
                 />
                 <TimekeepingByFingerprint
                     setValue={setValue}
-                    checked={infoConfig?.is_enable || true}
+                    checked={attendanceConfig?.is_enable || true}
                 />
-                <TimekeepingByFace setValue={setValue} />
+                <TimekeepingByFace setValue={setValue} checked={undefined} />
                 <div className="attendances-setting--methods-form__actions divider-top">
                     <ButtonCustom
                         height="32px"

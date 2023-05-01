@@ -1,4 +1,4 @@
-import { MethodsForm } from "../../../../forms/Main/AttendancesSettings";
+import { MethodsForm } from "forms/Main/AttendancesSettings";
 import "./styles.scss";
 
 const Methods = () => {

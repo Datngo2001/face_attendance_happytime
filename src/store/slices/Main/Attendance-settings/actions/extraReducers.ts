@@ -2,11 +2,11 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { api } from "config/api";
 import { toastPromise } from "utils";
 
-export const extraReducersGetInfoConfig = createAsyncThunk(
-  "getInfoConfig",
+export const extraReducersGetAttendanceConfig = createAsyncThunk(
+  "getAttendanceConfig",
   async () => {
     return api
-      .get("/api/time_keeping/get")
+      .get(`/attendance_config/get_by_tenant`)
       .then((response: any) => {
         return {
           payload: response.payload,
@@ -14,28 +14,6 @@ export const extraReducersGetInfoConfig = createAsyncThunk(
         };
       })
       .catch((error) => error);
-  }
-);
-
-export const extraReducersUpdateInfoConfig = createAsyncThunk(
-  "updateInfoConfig",
-  async ({ dataUpdate }: any) => {
-    const promise = api
-      .get("/api/time_keeping/update", dataUpdate)
-      .then((response: any) => {
-        return {
-          payload: response.payload,
-          message: response.message,
-        };
-      })
-      .catch((error) => error);
-
-    toastPromise(promise, {
-      titleLoading: "Đang thực hiện...",
-      titleSuccess: "Chỉnh sửa thành công",
-      titleError: "Chỉnh sửa thất bại",
-    });
-    return promise;
   }
 );
 
