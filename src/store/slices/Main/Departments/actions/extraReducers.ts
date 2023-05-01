@@ -43,29 +43,23 @@ export const extraReducersCreateDepartments = createAsyncThunk(
 
 export const extraReducersDeleteDepartments = createAsyncThunk(
   "deleteDepartments",
-  async (ids: string[]) => {
-    const revertedIds = ids.reverse();
+  async (id: string) => {
+    const promise = api
+      .delete(`/api/department/delete/${id}`)
+      .then((response: any) => {
+        return {
+          payload: response.payload,
+          message: response.message,
+        };
+      })
+      .catch((error) => error);
 
-    const promises = revertedIds.map((id) =>
-      api
-        .delete(`/api/department/delete/${id}`)
-        .then((response: any) => {
-          return {
-            payload: response.payload,
-            message: response.message,
-          };
-        })
-        .catch((error) => error)
-    );
-
-    const promiseAll = Promise.all(promises);
-
-    toastPromise(promiseAll, {
+    toastPromise(promise, {
       titleLoading: "Đang thực hiện...",
       titleSuccess: "Xóa thành công",
       titleError: "Xóa thất bại",
     });
 
-    return promiseAll;
+    return promise;
   }
 );

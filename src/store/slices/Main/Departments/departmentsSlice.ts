@@ -105,7 +105,7 @@ const departmentsSlice = createSlice({
       )
       .addCase(
         extraReducersDeleteDepartments.fulfilled,
-        (state: DepartmentsState, { payload: [{ payload, message }] }) => {
+        (state: DepartmentsState, { payload: { payload, message } }) => {
           state.loading = false;
           if (message === "success") {
             state.lastDeleteSuccess = Date.now();
