@@ -17,6 +17,7 @@ import { Toaster } from "react-hot-toast";
 import * as auth from "./auth";
 import React, { Suspense } from "react";
 import LoadingCustom from "components/LoadingCustom";
+import ConfirmModal from "components/ConfirmModal";
 
 function App() {
     // ARROW FUNCTION
@@ -62,6 +63,7 @@ function App() {
                     </Routes>
                 </auth.AuthRouter>
             </Router>
+            <ConfirmModal />
         </>
     );
 }

@@ -19,7 +19,7 @@ export const globalSlice = createSlice({
     status: "fail",
     loading: false,
     userInfor: {} as UserInfor,
-  },
+  } as GlobalState,
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(

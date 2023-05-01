@@ -3,6 +3,7 @@ import {
   attendancesSlice,
   authSlice,
   companySlice,
+  confirmModalSlice,
   departmentsSlice,
   employeesSlice,
   permissionsSlice,
@@ -22,7 +23,12 @@ const store = configureStore({
     global: globalSlice.reducer,
     shifts: shiftsSlice.reducer,
     departments: departmentsSlice.reducer,
+    confirmModal: confirmModalSlice.reducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 });
 
 export default store;

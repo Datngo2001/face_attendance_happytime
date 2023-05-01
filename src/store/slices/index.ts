@@ -5,6 +5,7 @@ import attendancesSlice from "./Main/Attendances/attendancesSlice";
 import permissionsSlice from "./Main/Permission/permissionSlice";
 import shiftsSlice from "./Main/Shifts/shiftsSlice";
 import departmentsSlice from "./Main/Departments/departmentsSlice";
+import { confirmModalSlice } from "./ConfirmModal/confirmModalSlice";
 
 export {
   employeesSlice,
@@ -14,4 +15,5 @@ export {
   attendancesSlice,
   shiftsSlice,
   departmentsSlice,
+  confirmModalSlice,
 };

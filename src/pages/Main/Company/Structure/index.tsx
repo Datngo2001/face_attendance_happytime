@@ -1,51 +1,34 @@
 import { useAppDispatch } from "hooks/useAppDispatch";
 import "./styles.scss";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { extraReducersGetDepartments } from "store/slices/Main/Departments/actions/extraReducers";
 import { useAppSelector } from "hooks/useAppSelector";
 import DepartmentNode from "./components/DepartmentNode";
 import ButtonCustom from "components/ButtonCustom";
 import ModalCustom from "components/ModalCustom";
-import { FormAction } from "forms/formAction";
 import DepartmentForm from "forms/Main/Company/DepartmentForm";
 import AddIcon from '@mui/icons-material/Add';
 import { Department, setCurrentDepartment } from "store/slices/Main/Departments/departmentsSlice";
+import useCRUDModal from "hooks/useCRUDModal";
 
 const Structure: React.FC = () => {
-    const [modalState, setModalState] = useState({
-        open: false,
-        action: FormAction.CREATE
-    })
+    const { modalState, openCreateModal, openUpdateModal, closeModal, setOpenState } = useCRUDModal({ defaultOpen: false });
     const dispatch = useAppDispatch();
-    const { departmentTrees, total_department, total_position, lastCreateSuccess } = useAppSelector(state => state.departments)
+    const { departmentTrees, total_department, total_position, lastCreateSuccess, lastDeleteSuccess, lastUpdateSuccess } = useAppSelector(state => state.departments)
 
     useEffect(() => {
         dispatch(extraReducersGetDepartments());
     }, [])
 
     useEffect(() => {
-        setModalState(val => ({
-            ...val,
-            open: false,
-        }))
+        closeModal();
         dispatch(extraReducersGetDepartments());
-    }, [lastCreateSuccess])
+    }, [lastCreateSuccess, lastDeleteSuccess, lastUpdateSuccess])
 
-    const openCreateModal = () => {
-        setModalState(val => ({
-            ...val,
-            open: true,
-            action: FormAction.CREATE
-        }))
-    }
 
-    const openUpdateModal = (department: Department) => {
+    const handleOpenUpdateModal = (department: Department) => {
         dispatch(setCurrentDepartment({ department }))
-        setModalState(val => ({
-            ...val,
-            open: true,
-            action: FormAction.UPDATE
-        }))
+        openUpdateModal();
     }
 
     return (
@@ -59,16 +42,16 @@ const Structure: React.FC = () => {
             <div className="total">Có {total_department} phòng ban và {total_position} vị trí</div>
             <div className="department-tree__wrapper">
                 {departmentTrees?.map(rootDepartment => (
-                    <DepartmentNode key={rootDepartment.id} handleUpdate={openUpdateModal} department={rootDepartment} depth={1} />
+                    <DepartmentNode key={rootDepartment.id} handleUpdate={handleOpenUpdateModal} department={rootDepartment} depth={1} />
                 ))}
             </div>
             <ModalCustom
                 titleHeader={"THÊM PHÒNG BAN MỚI"}
                 footer={false}
                 state={modalState.open}
-                setState={(isOpen) => setModalState(val => ({ ...val, open: isOpen }))}
+                setState={setOpenState}
                 callback={() => { }}>
-                <DepartmentForm action={modalState.action} setOpen={(isOpen) => setModalState(val => ({ ...val, open: isOpen }))} />
+                <DepartmentForm action={modalState.action} setOpen={setOpenState} />
             </ModalCustom>
         </div>
     );

@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
   extraReducersCreateDepartments,
+  extraReducersDeleteDepartments,
   extraReducersGetDepartments,
 } from "./actions/extraReducers";
 import { reducersSetCurrentDepartment } from "./actions/reducers";
@@ -92,6 +93,22 @@ const departmentsSlice = createSlice({
           state.loading = false;
           if (message === "success") {
             state.lastCreateSuccess = Date.now();
+          }
+        }
+      );
+    builder
+      .addCase(
+        extraReducersDeleteDepartments.pending,
+        (state: DepartmentsState) => {
+          state.loading = true;
+        }
+      )
+      .addCase(
+        extraReducersDeleteDepartments.fulfilled,
+        (state: DepartmentsState, { payload: [{ payload, message }] }) => {
+          state.loading = false;
+          if (message === "success") {
+            state.lastDeleteSuccess = Date.now();
           }
         }
       );

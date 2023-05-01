@@ -6,6 +6,9 @@ import StarIcon from '@mui/icons-material/Star';
 import ButtonCustom from 'components/ButtonCustom';
 import ConstructionIcon from '@mui/icons-material/Construction';
 import DeleteIcon from '@mui/icons-material/Delete';
+import useConfirmMoldal from 'hooks/useConfirmMoldal';
+import { useAppDispatch } from 'hooks/useAppDispatch';
+import { extraReducersDeleteDepartments } from 'store/slices/Main/Departments/actions/extraReducers';
 
 export type Props = {
     department: Department
@@ -15,6 +18,15 @@ export type Props = {
 
 const DepartmentNode: React.FC<Props> = ({ department, depth, handleUpdate }) => {
     const [open, setOpen] = useState(true);
+    const { openConfirmModal } = useConfirmMoldal();
+    const dispatch = useAppDispatch();
+
+    const handleDeleteClick = (department: Department) => {
+        openConfirmModal("Xác nhận", "Bạn có muốn xóa phòng ban này không", () => {
+            dispatch(extraReducersDeleteDepartments(getIdsToDelete(department)))
+        })
+    }
+
     return (
         <div className='tree-node' style={{ marginLeft: `${DEFAULT_LEFT_INDENT}px`, marginTop: `${DEFAULT_TOP_INDENT}px` }}>
             <div className='node-line'></div>
@@ -29,7 +41,7 @@ const DepartmentNode: React.FC<Props> = ({ department, depth, handleUpdate }) =>
                 <div className='node-name'>{department.department_name}</div>
                 <div className='node-actions'>
                     <ButtonCustom type={2} onClick={() => handleUpdate(department)} icon={<ConstructionIcon />}></ButtonCustom>
-                    <ButtonCustom type={2} onClick={() => { }} icon={<DeleteIcon />}></ButtonCustom>
+                    <ButtonCustom type={2} onClick={() => handleDeleteClick(department)} icon={<DeleteIcon />}></ButtonCustom>
                 </div>
             </div>
             <div hidden={!open}>
@@ -42,6 +54,17 @@ const DepartmentNode: React.FC<Props> = ({ department, depth, handleUpdate }) =>
             </div>
         </div>
     )
+}
+
+function getIdsToDelete(department: Department): string[] {
+    let result: string[] = []
+
+    result.push(department.id)
+    department.children_department.forEach(child => {
+        result.push(...getIdsToDelete(child))
+    })
+
+    return result
 }
 
 export default DepartmentNode
