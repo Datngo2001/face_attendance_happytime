@@ -5,18 +5,16 @@ import "./styles.scss";
 import InputCustom from "components/InputCustom";
 import SelectCustom from "components/SelectCustom";
 import { listStatusActive } from "utils/ListData";
+import { useAppDispatch } from "hooks/useAppDispatch";
+import { extraReducersGetListDeviceID } from "store/slices/Main/Attendance-settings/actions/extraReducers";
 
 const ControlPanel = () => {
-  // REACT HOOK FORM
-  const { control, watch } = useForm();
-  // ****************************
+  const { control } = useForm();
+  const dispatch = useAppDispatch();
 
-  // HOOK EFFECT
   useEffect(() => {
-    const subscription = watch((value) => console.log("data", value));
-    return () => subscription.unsubscribe();
-  }, [watch]);
-  // ****************************
+    dispatch(extraReducersGetListDeviceID({ size: 10, page: 0 }))
+  }, [])
 
   return (
     <>

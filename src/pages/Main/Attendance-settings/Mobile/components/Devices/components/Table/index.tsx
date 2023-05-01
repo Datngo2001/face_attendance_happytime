@@ -1,15 +1,24 @@
 import { Box } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
-import { useSelector } from "react-redux";
-import LoadingCustom from "../../../../../../../../components/LoadingCustom";
-import PaginationCustom from "../../../../../../../../components/PaginationCustom";
-import { columns, CustomNoRowsOverlay } from "./components";
+import { CustomNoRowsOverlay, getColumns } from "./components";
 import "./styles.scss";
+import LoadingCustom from "components/LoadingCustom";
+import { useAppSelector } from "hooks/useAppSelector";
+import PaginationCustom from "components/PaginationCustom";
+import { useAppDispatch } from "hooks/useAppDispatch";
+import useConfirmMoldal from "hooks/useConfirmMoldal";
+import { extraReducersUpdateDeviceIDStatus } from "store/slices/Main/Attendance-settings/actions/extraReducers";
 
 const Table = () => {
-    // REDUX TOOLKIT
-    const { listOfDeviceID, loading } = useSelector((state) => state.attendanceSettings);
-    // ****************************
+    const dispatch = useAppDispatch();
+    const { listOfDeviceID, page_number, total_pages, loading } = useAppSelector((state) => state.attendanceSettings);
+    const { openConfirmModal } = useConfirmMoldal();
+
+    const handleUpdateStatusClick = (id, agent_id, value) => {
+        openConfirmModal("Xác nhận", "Bạn có cập nhật trạng thái cho thiết bị này không ?", () => {
+            dispatch(extraReducersUpdateDeviceIDStatus({ id, status: value, agent_id }))
+        })
+    }
 
     return (
         <>
@@ -24,14 +33,14 @@ const Table = () => {
                             headerHeight={55}
                             rowHeight={65}
                             rows={listOfDeviceID}
-                            columns={columns}
-                            getRowId={(row) => row._id}
+                            columns={getColumns(handleUpdateStatusClick)}
+                            getRowId={(row) => row.device_id}
                             rowsPerPageOptions={[5]}
                             disableSelectionOnClick={true}
                             hideFooter={true}
                             loading={loading}
                             components={{
-                                Pagination: false,
+                                Pagination: null,
                                 NoRowsOverlay: CustomNoRowsOverlay,
                                 LoadingOverlay: LoadingCustom,
                             }}
@@ -46,11 +55,7 @@ const Table = () => {
                                     borderTop: "1px solid #eeeeee",
                                 }}
                             >
-                                <PaginationCustom
-                                // page={page}
-                                // setPage={setPage}
-                                // totalPages={totalPages}
-                                />
+                                <PaginationCustom page={page_number} setPage={() => { }} totalPages={total_pages} />
                             </div>
                         )}
                     </>

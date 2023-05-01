@@ -1,9 +1,9 @@
 import dayjs from "dayjs";
 
-export const convertTimestampToString = (timestamp) => {
+export const convertTimestampToString = (timestamp, format = "DD/MM/YYYY") => {
     if (timestamp) {
         const date = new Date(timestamp);
-        return dayjs(date).format("DD/MM/YYYY");
+        return dayjs(date).format(format);
     }
     return "";
 };

@@ -12,6 +12,7 @@ import {
   extraReducersGetListGPSConfig,
   extraReducersGetListIPWifi,
   extraReducersUpdateBssid,
+  extraReducersUpdateDeviceIDStatus,
   extraReducersUpdateGPSConfig,
   extraReducersUpdateIPWifi,
   extraReducersUpdateIPWifiStatus,
@@ -22,28 +23,42 @@ import {
   reducersSetCurrentGPDConfig,
   reducersSetCurrentIPWifi,
 } from "./actions/reducers";
+import { BaseState } from "store/slices";
+import { mapPagiantionReponse } from "utils/sliceUtil";
 
 export type InfoConfig = {
   is_enable: boolean;
 };
 
-export type AttendanceSettingsState = {
-  loading: boolean;
+export class AttendanceSettingsState extends BaseState {
   infoConfig: InfoConfig;
   iPWifi: IPWifi;
   listOfIPWifi: IPWifi[];
-  listOfDeviceID: [];
+  deviceID: DeviceID;
+  listOfDeviceID: DeviceID[];
   GPSConfig: GPSConfig;
   listOfGPSConfig: GPSConfig[];
   bssid: Bssid;
   listOfBssid: Bssid[];
-  totalPages: number;
-  totalIPWifi: number;
-  totalGPSConfig: number;
-  totalBssid: number;
   lastCreateSuccess: number;
   lastUpdateSuccess: number;
   lastDeleteSuccess: number;
+}
+
+export type DeviceID = {
+  agent_id: string;
+  is_deleted: boolean;
+  device_id: string;
+  device_name: string;
+  status: boolean;
+  department: string;
+  agent_view: {
+    id: string;
+    name: string;
+    avatar: string;
+    position: string;
+  };
+  created_date: number;
 };
 
 export type IPWifi = {
@@ -91,8 +106,7 @@ const attendanceSettingsSlice = createSlice({
     listOfDeviceID: [],
     listOfGPSConfig: [],
     listOfBssid: [],
-    totalPages: 0,
-    totalIPWifi: 0,
+    total_pages: 0,
   } as AttendanceSettingsState,
   reducers: {
     setCurrentIPWifi: reducersSetCurrentIPWifi,
@@ -133,8 +147,7 @@ const attendanceSettingsSlice = createSlice({
               ...i,
               is_active: i.is_active.toString(),
             }));
-            state.totalPages = payload.total_pages;
-            state.totalIPWifi = payload.total_items;
+            mapPagiantionReponse(state, payload);
           }
         }
       );
@@ -206,8 +219,24 @@ const attendanceSettingsSlice = createSlice({
           state.loading = false;
           if (message === "success") {
             state.listOfDeviceID = payload.items;
-            state.totalPages = payload.total_pages;
-            state.totalIPWifi = payload.total_items;
+            mapPagiantionReponse(state, payload);
+          }
+        }
+      );
+
+    builder
+      .addCase(
+        extraReducersUpdateDeviceIDStatus.pending,
+        (state, { payload }) => {
+          state.loading = true;
+        }
+      )
+      .addCase(
+        extraReducersUpdateDeviceIDStatus.fulfilled,
+        (state, { payload: { payload, message } }) => {
+          state.loading = false;
+          if (message === "success") {
+            state.lastUpdateSuccess = Date.now();
           }
         }
       );
@@ -224,8 +253,7 @@ const attendanceSettingsSlice = createSlice({
           state.loading = false;
           if (message === "success") {
             state.listOfGPSConfig = payload.items;
-            state.totalPages = payload.total_pages;
-            state.totalGPSConfig = payload.total_items;
+            mapPagiantionReponse(state, payload);
           }
         }
       );
@@ -281,8 +309,7 @@ const attendanceSettingsSlice = createSlice({
           state.loading = false;
           if (message === "success") {
             state.listOfBssid = payload.items;
-            state.totalPages = payload.total_pages;
-            state.totalBssid = payload.total_items;
+            mapPagiantionReponse(state, payload);
           }
         }
       );

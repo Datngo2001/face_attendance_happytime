@@ -18,7 +18,7 @@ const Table = () => {
     const [open, setOpen] = useState(false);
     const [page, setPage] = useState(1);
 
-    const { listOfIPWifi, totalPages, totalIPWifi, loading, lastCreateSuccess, lastUpdateSuccess, lastDeleteSuccess } = useAppSelector(
+    const { listOfIPWifi, total_pages, total_items, loading, lastCreateSuccess, lastUpdateSuccess, lastDeleteSuccess } = useAppSelector(
         (state) => state.attendanceSettings
     );
     const dispatch = useAppDispatch();
@@ -57,7 +57,7 @@ const Table = () => {
         <>
             <div className="attendance-settings--mobile-wifi__table">
                 <p className="quantity-ipAddress">
-                    Có <span className="quantity">{totalIPWifi}</span> nhân viên trong
+                    Có <span className="quantity">{total_items}</span> nhân viên trong
                     danh sách
                 </p>
                 <Box sx={{ height: 250, width: "100%" }}>
@@ -92,7 +92,7 @@ const Table = () => {
                                 <PaginationCustom
                                     page={page}
                                     setPage={setPage}
-                                    totalPages={totalPages}
+                                    totalPages={total_pages}
                                 />
                             </div>
                         )}

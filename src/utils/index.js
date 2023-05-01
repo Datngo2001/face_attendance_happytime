@@ -9,6 +9,7 @@ import {
     convertDayToNameDay,
 } from "./convertFunctions";
 import renderWeekdays from "./renderWeekdays";
+import { createDepartmentSelectOptions } from "./departmentUtil";
 
 export {
     convertDayToNameDay,
@@ -20,4 +21,5 @@ export {
     convertTimestampToString,
     convertStringToTimestamp,
     renderWeekdays,
+    createDepartmentSelectOptions
 };

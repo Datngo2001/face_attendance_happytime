@@ -21,7 +21,7 @@ const Table = () => {
     // ****************************
 
     // REDUX TOOLKIT
-    const { listOfGPSConfig, totalPages, totalGPSConfig, loading, lastCreateSuccess, lastDeleteSuccess, lastUpdateSuccess } = useAppSelector(
+    const { listOfGPSConfig, total_pages, total_items, loading, lastCreateSuccess, lastDeleteSuccess, lastUpdateSuccess } = useAppSelector(
         (state) => state.attendanceSettings
     );
     const dispatch = useAppDispatch();
@@ -60,7 +60,7 @@ const Table = () => {
         <>
             <div className="attendance-settings--mobile-gps__table">
                 <p className="quantity-ipAddress">
-                    Có <span className="quantity">{totalGPSConfig}</span> địa  chỉ trong
+                    Có <span className="quantity">{total_items}</span> địa  chỉ trong
                     danh sách
                 </p>
                 <Box sx={{ height: 250, width: "100%" }}>
@@ -95,7 +95,7 @@ const Table = () => {
                                 <PaginationCustom
                                     page={page}
                                     setPage={setPage}
-                                    totalPages={totalPages}
+                                    totalPages={total_pages}
                                 />
                             </div>
                         )}
