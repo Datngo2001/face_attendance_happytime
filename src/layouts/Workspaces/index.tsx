@@ -7,7 +7,7 @@ const WorkspacesLayout = () => {
     tabTitle("Workspaces")
     return (
         <>
-            <HeaderMain />
+            <HeaderMain isActive={undefined} state={undefined} setState={undefined} />
             <div className="workspaces-layout__wrapper">
                 <div className="workspaces-layout__container">
                     <Outlet />
