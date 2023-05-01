@@ -1,5 +1,4 @@
 import Info from "./Info";
-import { View } from "./Branches";
 import Structure from "./Structure";
 
-export { Info, View, Structure };
+export { Info, Structure };

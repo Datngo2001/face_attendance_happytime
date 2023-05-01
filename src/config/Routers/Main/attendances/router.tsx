@@ -1,4 +1,4 @@
-import { Setting, Summary } from "../../../../pages/Main/Attendances";
+import { Setting, Summary } from "pages/Main/Attendances";
 
 const attendancesRouters = [
     {

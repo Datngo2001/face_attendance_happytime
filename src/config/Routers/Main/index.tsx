@@ -1,11 +1,11 @@
 import ScheduleLayout from "layouts/Main/schedule";
-import { AttendanceSettingsLayout } from "../../../layouts";
-import AttendancesLayout from "../../../layouts/Main/attendances";
-import CompanyLayout from "../../../layouts/Main/company";
-import EmployeesLayout from "../../../layouts/Main/employees";
-import ProfileLayout from "../../../layouts/Main/profile";
-import RequestsLayout from "../../../layouts/Main/requests";
-import WorkspaceSettingsLayout from "../../../layouts/Main/workspace-settings";
+import { AttendanceSettingsLayout } from "layouts";
+import AttendancesLayout from "layouts/Main/attendances";
+import CompanyLayout from "layouts/Main/company";
+import EmployeesLayout from "layouts/Main/employees";
+import ProfileLayout from "layouts/Main/profile";
+import RequestsLayout from "layouts/Main/requests";
+import WorkspaceSettingsLayout from "layouts/Main/workspace-settings";
 import attendancesSettingsRouters from "./attendance-settings/router";
 import attendancesRouters from "./attendances/router";
 import companyRouters from "./company/router";

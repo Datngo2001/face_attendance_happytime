@@ -1,4 +1,4 @@
-import { ChangePassword, Info } from "../../../../pages/Main/Profile";
+import { ChangePassword, Info } from "pages/Main/Profile";
 
 const profileRouters = [
     {

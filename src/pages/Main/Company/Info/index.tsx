@@ -12,14 +12,15 @@ import ChromeReaderModeRoundedIcon from "@mui/icons-material/ChromeReaderModeRou
 import FoundationRoundedIcon from "@mui/icons-material/FoundationRounded";
 import FormatShapesRoundedIcon from "@mui/icons-material/FormatShapesRounded";
 import { useNavigate } from "react-router-dom";
-import LoadingCustom from "../../../../components/LoadingCustom";
-import { useDispatch, useSelector } from "react-redux";
-import { extraReducersGetInfoCompany } from "../../../../store/slices/Main/Company/actions/extraReducers";
+import { useAppSelector } from "hooks/useAppSelector";
+import { useAppDispatch } from "hooks/useAppDispatch";
+import { extraReducersGetInfoCompany } from "store/slices/Main/Company/actions/extraReducers";
+import LoadingCustom from "components/LoadingCustom";
 
 const Info = () => {
   // HOOK REDUX TOOLKIT
-  const { loading, infoOfCompany } = useSelector((state) => state.company);
-  const dispatch = useDispatch();
+  const { loading, infoOfCompany } = useAppSelector((state) => state.company);
+  const dispatch = useAppDispatch();
   // ****************************
 
   // HOOK EFFECT

@@ -1,4 +1,4 @@
-import WorkspaceSettings from "../../../../pages/Main/Workspace-settings";
+import WorkspaceSettings from "pages/Main/Workspace-settings";
 
 const workspaceSettingsRouters = [
     {

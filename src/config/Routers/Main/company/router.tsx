@@ -1,5 +1,5 @@
-import { Info, Structure, View } from "../../../../pages/Main/Company";
-import ChangeInfo from "../../../../pages/Main/Company/Change-Info";
+import { Info, Structure } from "pages/Main/Company";
+import ChangeInfo from "pages/Main/Company/Change-Info";
 
 const companyRouters = [
     {
@@ -9,10 +9,6 @@ const companyRouters = [
     {
         path: "change-info",
         component: <ChangeInfo />,
-    },
-    {
-        path: "branches",
-        component: <View />,
     },
     {
         path: "structure",
