@@ -15,7 +15,7 @@ const Table = () => {
     const { openConfirmModal } = useConfirmMoldal();
 
     const handleUpdateStatusClick = (id, agent_id, value) => {
-        openConfirmModal("Xác nhận", "Bạn có cập nhật trạng thái cho thiết bị này không ?", () => {
+        openConfirmModal("Xác nhận", "Bạn có muốn cập nhật trạng thái cho thiết bị này không ?", () => {
             dispatch(extraReducersUpdateDeviceIDStatus({ id, status: value, agent_id }))
         })
     }

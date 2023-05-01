@@ -13,11 +13,13 @@ import ModalCustom from "components/ModalCustom";
 import { setCurrentBssid } from "store/slices/Main/Attendance-settings/attendanceSettingsSlice";
 import { FormAction } from "forms/formAction";
 import BssidAddingForm from "forms/Main/AttendancesSettings/Mobile/Bssid";
+import useConfirmMoldal from "hooks/useConfirmMoldal";
 
 const Table = () => {
     // HOOK STATE
     const [open, setOpen] = useState(false);
     const [page, setPage] = useState(1);
+    const { openConfirmModal } = useConfirmMoldal();
     // ****************************
 
     // REDUX TOOLKIT
@@ -50,11 +52,15 @@ const Table = () => {
         }
     }
 
+
     const handleDeleteClick = (id) => {
         return () => {
-            dispatch(extraReducersDeleteBssid({ id }))
+            openConfirmModal("Xác nhận", "Bạn có muốn xóa BSSID WIFI này không ?", () => {
+                dispatch(extraReducersDeleteBssid({ id }))
+            })
         }
     }
+
 
     return (
         <>

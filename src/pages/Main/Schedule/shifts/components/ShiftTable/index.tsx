@@ -5,6 +5,7 @@ import { useAppSelector } from 'hooks/useAppSelector';
 import React, { useEffect } from 'react'
 import { extraReducersGetListShifts, extraReducersUpdateShiftStatus } from 'store/slices/Main/Shifts/actions/extraReducers';
 import { getColumns } from './components';
+import useConfirmMoldal from 'hooks/useConfirmMoldal';
 
 export type Props = {
     page: number
@@ -12,6 +13,7 @@ export type Props = {
 }
 
 const ShiftTable: React.FC<Props> = ({ page, setPage }) => {
+    const { openConfirmModal } = useConfirmMoldal();
 
     // HOOK REACT TOOLKIT
     const { listOfShift, totalPages, loading } = useAppSelector(
@@ -30,14 +32,15 @@ const ShiftTable: React.FC<Props> = ({ page, setPage }) => {
     }, []);
 
     const updateStatus = (id, value) => {
-        dispatch(
-            extraReducersUpdateShiftStatus({
-                id: id,
-                isEnabled: value
-            })
-        );
+        openConfirmModal("Xác nhận", "Bạn có muốn cập nhật trạng thái cho ca làm việc này không ?", () => {
+            dispatch(
+                extraReducersUpdateShiftStatus({
+                    id: id,
+                    isEnabled: value
+                })
+            );
+        })
     }
-
 
     return (
         <div className="ListShifts__table">

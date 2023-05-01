@@ -13,11 +13,13 @@ import ModalCustom from "components/ModalCustom";
 import { setCurrentGPDConfig } from "store/slices/Main/Attendance-settings/attendanceSettingsSlice";
 import GPSAddingForm from "forms/Main/AttendancesSettings/Mobile/GPS";
 import { FormAction } from "forms/formAction";
+import useConfirmMoldal from "hooks/useConfirmMoldal";
 
 const Table = () => {
     // HOOK STATE
     const [open, setOpen] = useState(false);
     const [page, setPage] = useState(1);
+    const { openConfirmModal } = useConfirmMoldal();
     // ****************************
 
     // REDUX TOOLKIT
@@ -52,7 +54,9 @@ const Table = () => {
 
     const handleDeleteClick = (id) => {
         return () => {
-            dispatch(extraReducersDeleteGPSConfig({ id }))
+            openConfirmModal("Xác nhận", "Bạn có muốn xóa vị trí này không ?", () => {
+                dispatch(extraReducersDeleteGPSConfig({ id }))
+            })
         }
     }
 

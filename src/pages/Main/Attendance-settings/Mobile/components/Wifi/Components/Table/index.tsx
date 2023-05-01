@@ -13,6 +13,7 @@ import ModalCustom from "components/ModalCustom";
 import { WifiAddingForm } from "forms/Main/AttendancesSettings";
 import { FormAction } from "forms/formAction";
 import NoRowsOverlayCustom from "components/NoRowsOverlayCustom";
+import useConfirmMoldal from "hooks/useConfirmMoldal";
 
 const Table = () => {
     const [open, setOpen] = useState(false);
@@ -22,6 +23,7 @@ const Table = () => {
         (state) => state.attendanceSettings
     );
     const dispatch = useAppDispatch();
+    const { openConfirmModal } = useConfirmMoldal();
 
     useEffect(() => {
         dispatch(
@@ -44,12 +46,16 @@ const Table = () => {
     }
 
     const handleUpdateStatusClick = (id, value) => {
-        dispatch(extraReducersUpdateIPWifiStatus({ id, is_active: value }))
+        openConfirmModal("Xác nhận", "Bạn có muốn cập nhật trạng thái cho wifi này không ?", () => {
+            dispatch(extraReducersUpdateIPWifiStatus({ id, is_active: value }))
+        })
     }
 
     const handleDeleteClick = (id) => {
         return () => {
-            dispatch(extraReducersDeleteIPWifi({ id }))
+            openConfirmModal("Xác nhận", "Bạn có muốn xóa wifi này không ?", () => {
+                dispatch(extraReducersDeleteIPWifi({ id }))
+            })
         }
     }
 
