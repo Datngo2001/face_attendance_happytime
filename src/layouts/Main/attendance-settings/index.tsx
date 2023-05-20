@@ -1,7 +1,7 @@
 import { useEffect } from "react";
-import { tabTitle, titleHeaderMain } from "../../../utils";
-import ContentLayout from "../../ContentLayout";
 import { dataListButtonSideLeft } from "./dataListButtonSideLeft";
+import { tabTitle, titleHeaderMain } from "utils";
+import ContentLayout from "layouts/ContentLayout";
 
 const AttendanceSettingsLayout = () => {
     // GLOBAL FUNCTION
