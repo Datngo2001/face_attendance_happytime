@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
+  extraReducersCreateAttendanceConfig,
   extraReducersCreateBssid,
   extraReducersCreateGPSConfig,
   extraReducersCreateIPWifi,
@@ -11,6 +12,7 @@ import {
   extraReducersGetListDeviceID,
   extraReducersGetListGPSConfig,
   extraReducersGetListIPWifi,
+  extraReducersUpdateAttendanceConfig,
   extraReducersUpdateBssid,
   extraReducersUpdateDeviceIDStatus,
   extraReducersUpdateGPSConfig,
@@ -25,12 +27,8 @@ import {
 import { BaseState } from "store/slices";
 import { mapPagiantionReponse } from "utils/sliceUtil";
 
-export type AttendanceConfig = {
-  is_enable: boolean;
-};
-
 export class AttendanceSettingsState extends BaseState {
-  attendanceConfig: any;
+  attendanceConfig?: AttendanceConfig;
   iPWifi: IPWifi;
   listOfIPWifi: IPWifi[];
   deviceID: DeviceID;
@@ -43,6 +41,40 @@ export class AttendanceSettingsState extends BaseState {
   lastUpdateSuccess: number;
   lastDeleteSuccess: number;
 }
+
+export type AttendanceConfig = {
+  _id?: string;
+  tenant_id?: string;
+  is_deleted: boolean;
+  modules: [
+    {
+      is_enabled: boolean;
+      functions: [
+        {
+          name: "using_wifi";
+          is_enabled: boolean;
+        },
+        {
+          name: "using_bssid";
+          is_enabled: boolean;
+        },
+        {
+          name: "using_gps";
+          is_enabled: boolean;
+        },
+        {
+          name: "using_qr_code";
+          is_enabled: boolean;
+        },
+        {
+          name: "no_limitation";
+          is_enabled: boolean;
+        }
+      ];
+      name: "attendance_using_phone";
+    }
+  ];
+};
 
 export type DeviceID = {
   agent_id: string;
@@ -100,6 +132,7 @@ const attendanceSettingsSlice = createSlice({
   name: "attendanceSettings",
   initialState: {
     loading: false,
+    attendanceConfig: null,
     listOfIPWifi: [],
     listOfDeviceID: [],
     listOfGPSConfig: [],
@@ -113,7 +146,6 @@ const attendanceSettingsSlice = createSlice({
   },
   extraReducers: (builder) => {
     // AttendanceConfig
-
     builder
       .addCase(
         extraReducersGetAttendanceConfig.pending,
@@ -127,7 +159,38 @@ const attendanceSettingsSlice = createSlice({
           state.loading = false;
           if (message === "success" && payload != null) {
             state.attendanceConfig = payload?.items;
-            mapPagiantionReponse(state, payload);
+          }
+        }
+      );
+    builder
+      .addCase(
+        extraReducersCreateAttendanceConfig.pending,
+        (state, { payload }) => {
+          state.loading = true;
+        }
+      )
+      .addCase(
+        extraReducersCreateAttendanceConfig.fulfilled,
+        (state, { payload: { payload, message } }) => {
+          state.loading = false;
+          if (message === "success" && payload != null) {
+            state.lastCreateSuccess = Date.now();
+          }
+        }
+      );
+    builder
+      .addCase(
+        extraReducersUpdateAttendanceConfig.pending,
+        (state, { payload }) => {
+          state.loading = true;
+        }
+      )
+      .addCase(
+        extraReducersUpdateAttendanceConfig.fulfilled,
+        (state, { payload: { payload, message } }) => {
+          state.loading = false;
+          if (message === "success" && payload != null) {
+            state.lastCreateSuccess = Date.now();
           }
         }
       );

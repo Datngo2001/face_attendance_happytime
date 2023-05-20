@@ -8,17 +8,34 @@ export type Props = {
 };
 
 const useCRUDForm = ({ defaultValues, validationSchema }: Props) => {
-  const { control, handleSubmit, setError, reset, setValue, getValues, watch } =
-    useForm({
-      resolver: yupResolver(validationSchema),
-      defaultValues: defaultValues,
-    });
+  const {
+    control,
+    handleSubmit,
+    setError,
+    reset,
+    setValue,
+    getValues,
+    watch,
+    register,
+  } = useForm({
+    resolver: yupResolver(validationSchema),
+    defaultValues: defaultValues,
+  });
 
   useEffect(() => {
     reset(defaultValues);
   }, [defaultValues, reset]);
 
-  return { control, handleSubmit, setError, reset, setValue, getValues, watch };
+  return {
+    control,
+    handleSubmit,
+    setError,
+    reset,
+    setValue,
+    getValues,
+    watch,
+    register,
+  };
 };
 
 export default useCRUDForm;

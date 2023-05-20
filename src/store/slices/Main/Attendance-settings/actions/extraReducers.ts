@@ -17,6 +17,52 @@ export const extraReducersGetAttendanceConfig = createAsyncThunk(
   }
 );
 
+export const extraReducersCreateAttendanceConfig = createAsyncThunk(
+  "createAttendanceConfig",
+  async ({ data }: any) => {
+    var promise = api
+      .post(`/attendance_config/create`, data)
+      .then((response: any) => {
+        return {
+          payload: response.payload,
+          message: response.message,
+        };
+      })
+      .catch((error) => error);
+
+    toastPromise(promise, {
+      titleLoading: "Đang thực hiện...",
+      titleSuccess: "Lưu thành công",
+      titleError: "Lưu thất bại",
+    });
+
+    return promise;
+  }
+);
+
+export const extraReducersUpdateAttendanceConfig = createAsyncThunk(
+  "updateAttendanceConfig",
+  async ({ data }: any) => {
+    var promise = api
+      .post(`/attendance_config/update`, data)
+      .then((response: any) => {
+        return {
+          payload: response.payload,
+          message: response.message,
+        };
+      })
+      .catch((error) => error);
+
+    toastPromise(promise, {
+      titleLoading: "Đang thực hiện...",
+      titleSuccess: "Lưu thành công",
+      titleError: "Lưu thất bại",
+    });
+
+    return promise;
+  }
+);
+
 export const extraReducersGetListIPWifi = createAsyncThunk(
   "getListIPWifi",
   async ({ page, size }: any) => {

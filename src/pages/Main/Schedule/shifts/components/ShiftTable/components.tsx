@@ -45,12 +45,12 @@ export const getColumns = (updateStatus): GridColumns => ([
             return <div className="column-working-time">
                 {params.row.shift_type.name === ShiftTypeName.OFFICE.toString() &&
                     <span>
-                        {dayjs(params.row.morning_working_time.from, DataFormat).format(ViewFormat)} - {dayjs(params.row.afternoon_working_time.from, DataFormat).format(ViewFormat)}
+                        {dayjs(params.row.morning_working_time.from, DataFormat).format(ViewFormat)} - {dayjs(params.row.afternoon_working_time.to, DataFormat).format(ViewFormat)}
                     </span>
                 }
                 {params.row.shift_type.name === ShiftTypeName.SINGLE.toString() &&
                     <span>
-                        {dayjs(params.row.working_time.from, DataFormat).format(ViewFormat)} - {dayjs(params.row.working_time.from, DataFormat).format(ViewFormat)}
+                        {dayjs(params.row.working_time.from, DataFormat).format(ViewFormat)} - {dayjs(params.row.working_time.to, DataFormat).format(ViewFormat)}
                     </span>
                 }
             </div>;
