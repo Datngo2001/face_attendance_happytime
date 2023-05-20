@@ -44,23 +44,6 @@ const WorkInformation = ({
               placeholder="Ngày bắt đầu đi làm"
               control={control}
             />
-            {/* <CheckboxCustom
-              name="doNotRequireTimekeeping"
-              className="input-item checkbox"
-              control={control}
-              label="Không yêu cầu chấm công" /> */}
-          </div>
-          <div className="col">
-            <SelectCustom
-              name="department"
-              width="100%"
-              className="input-item"
-              required={true}
-              label="Phòng ban"
-              control={control}
-              placeholder="Phòng ban"
-              options={jobPositionList}
-            />
             <SelectCustom
               name="agent_status"
               width="100%"
@@ -74,14 +57,17 @@ const WorkInformation = ({
           </div>
           <div className="col">
             <SelectCustom
-              name="working_branch"
+              name="department"
               width="100%"
               className="input-item"
-              label="Chi nhánh làm việc"
+              required={true}
+              label="Phòng ban"
               control={control}
-              placeholder="Chi nhánh làm việc"
-              options={listStatusEmployees}
+              placeholder="Phòng ban"
+              options={jobPositionList}
             />
+          </div>
+          <div className="col">
             <SelectCustom
               name="agent_type"
               width="100%"

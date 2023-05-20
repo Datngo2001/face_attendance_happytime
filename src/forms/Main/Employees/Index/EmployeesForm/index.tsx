@@ -1,12 +1,5 @@
 import { schema } from "./handleForm";
 import "./styles.scss";
-import {
-    AnnualLeave,
-    BankInformation,
-    Note,
-    Profile,
-    WorkInformation,
-} from "./components";
 import { useNavigate } from "react-router-dom";
 import Permission from "./components/Permission";
 import { useEffect, useMemo } from "react";
@@ -21,6 +14,11 @@ import ButtonCustom from "components/ButtonCustom";
 import { FormAction } from "forms/formAction";
 import { CreateDefaultValues } from "./defaultValues";
 import useCRUDForm from "hooks/useCRUDForm";
+import Profile from "./components/Profile";
+import BankInformation from "./components/BankInformation";
+import WorkInformation from "./components/WorkInformation";
+import AnnualLeave from "./components/AnnualLeave";
+import Note from "./components/Note";
 
 export type Props = {
     action: FormAction

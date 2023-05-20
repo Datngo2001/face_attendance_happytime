@@ -158,7 +158,7 @@ const attendanceSettingsSlice = createSlice({
         (state, { payload: { payload, message } }) => {
           state.loading = false;
           if (message === "success" && payload != null) {
-            state.attendanceConfig = payload?.items;
+            state.attendanceConfig = payload;
           }
         }
       );

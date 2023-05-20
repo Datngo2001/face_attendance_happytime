@@ -36,12 +36,11 @@ const MethodsForm = () => {
 
     // ARROW FUNCTIONS
     const handleOnSubmit = (data) => {
-        console.log(JSON.stringify(data))
-        // if (formAction === FormAction.UPDATE) {
-        //     dispatch(extraReducersUpdateAttendanceConfig({ data }));
-        // } else if (formAction === FormAction.CREATE) {
-        //     dispatch(extraReducersCreateAttendanceConfig({ data }));
-        // }
+        if (formAction === FormAction.UPDATE) {
+            dispatch(extraReducersUpdateAttendanceConfig({ data }));
+        } else if (formAction === FormAction.CREATE) {
+            dispatch(extraReducersCreateAttendanceConfig({ data }));
+        }
     };
     // ****************************
     return (
