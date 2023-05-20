@@ -15,7 +15,7 @@ import { FormAction } from "forms/formAction";
 const MethodsForm = () => {
 
     // HOOK REDUX TOOLKIT
-    const { attendanceConfig } = useAppSelector((state) => state.attendanceSettings);
+    const { attendanceConfig, lastCreateSuccess, lastUpdateSuccess } = useAppSelector((state) => state.attendanceSettings);
     const dispatch = useAppDispatch();
     // ****************************
 
@@ -28,10 +28,12 @@ const MethodsForm = () => {
     })
     // ****************************
 
+    console.log(getValues())
+
     // HOOK EFFECT
     useEffect(() => {
         dispatch(extraReducersGetAttendanceConfig());
-    }, []);
+    }, [lastCreateSuccess, lastUpdateSuccess]);
     // ****************************
 
     // ARROW FUNCTIONS
