@@ -34,7 +34,7 @@ const EmployeesForm: React.FC<Props> = ({ action = FormAction.CREATE }) => {
         return infoOfEmployee;
     }, [infoOfEmployee])
 
-    const { control, handleSubmit, setError } = useCRUDForm({
+    const { control, handleSubmit, setError, setValue } = useCRUDForm({
         defaultValues: defaultValues,
         validationSchema: schema,
     });
@@ -161,7 +161,7 @@ const EmployeesForm: React.FC<Props> = ({ action = FormAction.CREATE }) => {
                 <div className="employees-form__wrapper">
                     <Profile control={control} />
                     <BankInformation control={control} />
-                    <WorkInformation action={action} control={control} />
+                    <WorkInformation action={action} control={control} setValue={setValue} />
                     <AnnualLeave control={control} />
                     <Permission control={control} />
                     <Note control={control} />

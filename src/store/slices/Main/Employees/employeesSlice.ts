@@ -62,6 +62,7 @@ export type Employee = {
   agent_position?: string;
   department: string;
   company_name?: string;
+  position_id?: string;
 };
 
 const employeesSlice = createSlice({

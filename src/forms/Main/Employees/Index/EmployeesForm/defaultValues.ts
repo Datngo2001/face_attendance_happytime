@@ -38,4 +38,5 @@ export const CreateDefaultValues: Employee = {
   agent_position: "",
   department: "",
   company_name: "",
+  position_id: null,
 };

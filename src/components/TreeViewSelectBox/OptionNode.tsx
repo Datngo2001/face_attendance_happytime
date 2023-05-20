@@ -28,7 +28,9 @@ const OptionNode: React.FC<Props> = ({ currentValue, node, depth, leftIndent, to
                     onClick={handleArrowClick}>
                     {open ? (<ArrowDropDownIcon />) : (<ArrowRightIcon />)}
                 </div>
-                <div className={`title ${currentValue === node.id ? 'selected' : ''}`} onClick={() => handleSelect(node.id)}>
+                <div className={`title ${currentValue === node.id ? 'selected' : ''}`}
+                    style={{ cursor: node.canSelect ? "pointer" : "not-allowed" }}
+                    onClick={() => node.canSelect && handleSelect(node.id)}>
                     <span>{node.name}</span>
                 </div>
             </div>

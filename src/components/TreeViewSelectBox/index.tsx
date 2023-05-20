@@ -26,6 +26,7 @@ export type Props = {
 export type SelectBoxNode = {
     id: string | number;
     name: string;
+    canSelect: boolean;
     children: SelectBoxNode[]
 }
 
@@ -104,7 +105,13 @@ const TreeViewSelectBox: React.FC<Props> = ({
                             </MenuItem>
                             {placeholderItems}
                             {options.map(option => (
-                                <OptionNode currentValue={value} handleSelect={(val) => { handleClose(); setValue(name, val); }} node={option} depth={1} leftIndent={leftIndent} topIndent={topIndent} />
+                                <OptionNode
+                                    currentValue={value}
+                                    handleSelect={(val) => { handleClose(); setValue(name, val); }}
+                                    node={option}
+                                    depth={1}
+                                    leftIndent={leftIndent}
+                                    topIndent={topIndent} />
                             ))}
                         </Select>
                         {error && (<p className="error-message">{error.message}</p>)}
@@ -120,7 +127,8 @@ function renderPlaceholerItems(options: SelectBoxNode[]): JSX.Element[] {
 
     options.forEach(option => {
         items.push((
-            <MenuItem key={`placeholer_${option.id}`} value={option.id} sx={{ display: "none" }}>
+            <MenuItem key={`placeholer_${option.id}`} value={option.id}
+                sx={{ display: "none" }}>
                 {option.name}
             </MenuItem>
         ))

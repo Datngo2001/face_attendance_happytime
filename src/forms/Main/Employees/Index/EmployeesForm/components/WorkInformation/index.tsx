@@ -2,20 +2,34 @@ import BusinessCenterRoundedIcon from "@mui/icons-material/BusinessCenterRounded
 import "./styles.scss";
 import InputCustom from "components/InputCustom";
 import InputDate from "components/InputDate";
-import CheckboxCustom from "components/CheckboxCustom";
 import SelectCustom from "components/SelectCustom";
-import { jobPositionList, listStatusEmployees, listTypeEmployees } from "utils/ListData";
+import { listStatusEmployees, listTypeEmployees } from "utils/ListData";
 import { FormAction } from "forms/formAction";
+import { useAppSelector } from "hooks/useAppSelector";
+import TreeViewSelectBox from "components/TreeViewSelectBox";
+import { createDepartmentSelectOptions, createPositionSelectOptions } from "utils/departmentUtil";
+import { useAppDispatch } from "hooks/useAppDispatch";
+import { useEffect } from "react";
+import { extraReducersGetDepartments } from "store/slices/Main/Departments/actions/extraReducers";
 
 export type Props = {
   control: any;
   action: FormAction;
+  setValue: any
 }
 
 const WorkInformation = ({
   control,
-  action
+  action,
+  setValue
 }) => {
+  const { departmentTrees } = useAppSelector((state) => state.departments);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(extraReducersGetDepartments())
+  }, [])
+
   return (
     <>
       <div className="employees-form--work-information__wrapper divider-top">
@@ -56,7 +70,7 @@ const WorkInformation = ({
             />
           </div>
           <div className="col">
-            <SelectCustom
+            {/* <SelectCustom
               name="department"
               width="100%"
               className="input-item"
@@ -65,7 +79,15 @@ const WorkInformation = ({
               control={control}
               placeholder="Phòng ban"
               options={jobPositionList}
-            />
+            /> */}
+            <TreeViewSelectBox
+              label="Phòng ban"
+              required={true}
+              placeholder="Phòng ban"
+              setValue={setValue}
+              name="position_id"
+              control={control}
+              options={departmentTrees ? createPositionSelectOptions(departmentTrees) : []} />
           </div>
           <div className="col">
             <SelectCustom
