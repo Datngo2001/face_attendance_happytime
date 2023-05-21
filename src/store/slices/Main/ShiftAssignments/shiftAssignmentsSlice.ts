@@ -117,8 +117,10 @@ const shiftAssignmentsSlice = createSlice({
           { payload: { payload, message, onSuccess } }
         ) => {
           state.loading = false;
-          state.lastCreateSuccess = Date.now();
-          onSuccess();
+          if (message === "success") {
+            state.lastCreateSuccess = Date.now();
+            onSuccess();
+          }
         }
       );
     builder
@@ -135,8 +137,10 @@ const shiftAssignmentsSlice = createSlice({
           { payload: { payload, message, onSuccess } }
         ) => {
           state.loading = false;
-          state.lastUpdateSuccess = Date.now();
-          onSuccess();
+          if (message === "success") {
+            state.lastUpdateSuccess = Date.now();
+            onSuccess();
+          }
         }
       );
     builder

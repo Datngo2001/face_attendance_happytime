@@ -3,6 +3,7 @@ import DatePickerCustom from 'components/InputDate/DatePickerCustom'
 import MultiSelect from 'components/MultiSelect'
 import RadioGroupCustom, { RadioItem } from 'components/RadioGroupCustom'
 import SelectCustom, { SelectBoxOption } from 'components/SelectCustom'
+import useCRUDForm from 'hooks/useCRUDForm'
 import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { DateApply, Shift } from 'store/slices/Main/ShiftAssignments/shiftAssignmentsSlice'
@@ -25,6 +26,8 @@ const radioItems: RadioItem[] = [
 ]
 
 const SpecificDateConfig: React.FC<Props> = ({ watch, setValue, shiftSelectOptions }) => {
+    var shifts = watch("day_applied.shifts");
+    var day_applied = watch("day_applied");
 
     const { control: subFormControl, watch: subFormWatch, setValue: subFormSetValue } = useForm({
         defaultValues: {
@@ -34,10 +37,19 @@ const SpecificDateConfig: React.FC<Props> = ({ watch, setValue, shiftSelectOptio
         }
     });
 
-    var shifts = watch("day_applied.shifts");
     var selectedDate = subFormWatch("selectedDate")
     var dateApply = subFormWatch("dateApply")
     var selectedShifts = subFormWatch("selectedShifts")
+
+    useEffect(() => {
+        if (day_applied.use_same_shift) {
+            subFormSetValue("dateApply", DateApply.use_same_shift)
+            subFormSetValue("selectedShifts", day_applied.shifts[0]?.shift_ids)
+        } else if (day_applied.use_separate_shift) {
+            subFormSetValue("dateApply", DateApply.use_separate_shift)
+        }
+
+    }, [day_applied])
 
     useEffect(() => {
         if (selectedDate) {

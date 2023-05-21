@@ -106,14 +106,13 @@ export const extraReducersUpdateShiftStatus = createAsyncThunk(
 
 export const extraReducersDeleteShiftAssignment = createAsyncThunk(
   "deleteShiftAssignment",
-  async ({ data, onSuccess }: any) => {
+  async ({ id }: any) => {
     const promise = api
-      .delete(`/api/shift_assignment/delete/${data._id}`)
+      .delete(`/api/shift_assignment/delete/${id}`)
       .then((response: any) => {
         return {
           payload: response.payload,
           message: response.message,
-          onSuccess,
         };
       })
       .catch((error) => error);

@@ -17,7 +17,8 @@ import { extraReducersGetListEmployees } from 'store/slices/Main/Employees/actio
 import { Employee } from 'store/slices/Main/Employees/employeesSlice'
 import "./styles.scss"
 import { extraReducersGetListShifts } from 'store/slices/Main/Shifts/actions/extraReducers'
-import { extraReducersCreateShiftAssignment } from 'store/slices/Main/ShiftAssignments/actions/extraReducers'
+import { extraReducersCreateShiftAssignment, extraReducersUpdateShiftAssignment } from 'store/slices/Main/ShiftAssignments/actions/extraReducers'
+import { useNavigate } from 'react-router-dom'
 
 export type Props = {
     shiftAssignment?: ShiftAssignment
@@ -40,6 +41,7 @@ const ShiftAssignmentForm: React.FC<Props> = ({ action = FormAction.CREATE, shif
     const { listOfEmployees } = useAppSelector(state => state.employees)
     const { listOfShift } = useAppSelector(state => state.shifts)
     const dispatch = useAppDispatch()
+    const navigate = useNavigate()
 
     useEffect(() => {
         dispatch(extraReducersGetDepartmentAndPositionList());
@@ -72,7 +74,11 @@ const ShiftAssignmentForm: React.FC<Props> = ({ action = FormAction.CREATE, shif
     }
 
     const handelSubmitCreate = (data) => {
-        dispatch(extraReducersCreateShiftAssignment({ data }))
+        dispatch(extraReducersCreateShiftAssignment({ data, onSuccess: () => navigate("../shift-assignments") }))
+    }
+
+    const handelSubmitUpdate = (data) => {
+        dispatch(extraReducersUpdateShiftAssignment({ data, onSuccess: () => navigate("../shift-assignments") }))
     }
 
     return (
@@ -92,7 +98,7 @@ const ShiftAssignmentForm: React.FC<Props> = ({ action = FormAction.CREATE, shif
                         watch={watch}
                         control={control}
                         setValue={setValue}
-                        handleSubmit={handleSubmit(handelSubmitCreate)}
+                        handleSubmit={handleSubmit(FormAction.CREATE ? handelSubmitCreate : handelSubmitUpdate)}
                         shiftSelectOptions={getShiftSelectOptions(listOfShift)} />),
                 ]} />
         </div>

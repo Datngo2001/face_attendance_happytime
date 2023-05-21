@@ -6,7 +6,7 @@
     height: 100%;
     padding: 20px 30px;
 
-    .ListShifts__control-panel{
+    .shift-assignments__control-panel{
         display: flex;
         flex-direction: row;
         padding: 10px;
@@ -27,8 +27,15 @@
             flex: 1;
         }
     }
-    .ListShifts__table{
+    .shift-assignments__table{
         margin-top: 20px;
+        .table-header{
+            display: flex;
+            margin-bottom: 10px;
+            span{
+                flex-grow: 1;
+            }
+        }
         .column-shift-type{
             height: 22px;
             font-size: $fs-1;
@@ -39,8 +46,4 @@
             border-radius: 12px;
         }
     }
-}
-
-.createShift__wrapper{
-    padding: 30px;
 }

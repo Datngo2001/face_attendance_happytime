@@ -4,7 +4,6 @@ import dayjs from "dayjs";
 import "./styles.scss";
 import { Controller } from "react-hook-form";
 import { DateFormat } from "./default";
-import { convertTimestampToString } from "utils";
 
 export type Props = {
   name: string,
@@ -47,6 +46,7 @@ const DatePickerCustom: React.FC<Props> = ({
               </label>
             </div>
           )}
+
           <div className="date-picker-custom__container">
             <DatePicker
               id={name}
@@ -55,7 +55,7 @@ const DatePickerCustom: React.FC<Props> = ({
               locale={locale}
               value={value ? (typeof value == "number" ? dayjs(value) : dayjs(value, DateFormat)) : null}
               format={DateFormat}
-              onChange={(date, dateString) => onChange(dateString)}
+              onChange={(date, dateString) => { onChange(dateString) }}
             />
             {error && <p className="error-message">{error.message}</p>}
           </div>
