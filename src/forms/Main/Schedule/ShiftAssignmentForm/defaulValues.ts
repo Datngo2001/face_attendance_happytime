@@ -1,8 +1,13 @@
-import { ShiftAssignment } from "store/slices/Main/ShiftAssignments/shiftAssignmentsSlice";
+import {
+  ApplyFor,
+  ShiftAssignment,
+  TimeApply,
+} from "store/slices/Main/ShiftAssignments/shiftAssignmentsSlice";
 
 export const defaulValues: ShiftAssignment = {
   name: "",
-  apply_for: null,
+  apply_for: ApplyFor.company,
+  timeApply: TimeApply.use_day_range,
   departments: [],
   positions: [],
   agents: [],

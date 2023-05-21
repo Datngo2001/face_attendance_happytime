@@ -21,15 +21,21 @@ export type ShiftAssignmentsState = {
 };
 
 export enum ApplyFor {
-  company,
-  agent,
-  position,
-  department,
+  company = "company",
+  agent = "agent",
+  position = "position",
+  department = "department",
+}
+
+export enum TimeApply {
+  use_day_range = "use_day_range",
+  use_specific_day = "use_specific_day",
 }
 
 export type ShiftAssignment = {
   _id?: string;
   name: string;
+  timeApply: TimeApply; // this feild for UI purpose only
   apply_for: ApplyFor;
   departments: string[];
   positions: string[];
@@ -161,6 +167,13 @@ const shiftAssignmentsSlice = createSlice({
         extraReducersGetShiftAssignmentById.fulfilled,
         (state: ShiftAssignmentsState, { payload: { payload, message } }) => {
           state.loading = false;
+
+          if (payload.use_day_range === true) {
+            payload.timeApply = TimeApply.use_day_range;
+          } else if (payload.use_specific_day === true) {
+            payload.timeApply = TimeApply.use_specific_day;
+          }
+
           state.shiftAssignment = payload;
         }
       );

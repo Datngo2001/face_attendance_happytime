@@ -17,7 +17,7 @@ export type EmployeesState = {
   status: string;
   loading: boolean;
   listIdInvitation: [];
-  listOfEmployees: [];
+  listOfEmployees: Employee[];
   infoOfEmployee: Employee;
   idOfSelectedStaff: string;
   totalPages: number;

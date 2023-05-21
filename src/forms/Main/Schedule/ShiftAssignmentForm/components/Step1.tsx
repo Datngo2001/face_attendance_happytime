@@ -8,6 +8,10 @@ import { ApplyFor } from 'store/slices/Main/ShiftAssignments/shiftAssignmentsSli
 export type Props = {
     nextStep: any
     control: any
+    watch: any
+    departmentOptions: SelectBoxOption[]
+    positionOptions: SelectBoxOption[]
+    employeeOptions: SelectBoxOption[]
 }
 
 const selectApplyOptions: SelectBoxOption[] = [
@@ -29,7 +33,9 @@ const selectApplyOptions: SelectBoxOption[] = [
     },
 ]
 
-const Step1: React.FC<Props> = ({ nextStep, control }) => {
+const Step1: React.FC<Props> = ({ nextStep, control, watch, departmentOptions, positionOptions, employeeOptions }) => {
+    const applyFor = watch("apply_for");
+
     return (
         <div>
             <Stack spacing={2}>
@@ -47,6 +53,39 @@ const Step1: React.FC<Props> = ({ nextStep, control }) => {
                     name='apply_for'
                     placeholder='Chọn đối tượng áp dụng'
                     options={selectApplyOptions} />
+
+                {applyFor === ApplyFor.department && (
+                    <SelectCustom
+                        isMultiple
+                        control={control}
+                        required
+                        label='Phòng ban'
+                        name='departments'
+                        placeholder='Chọn phòng ban áp dụng'
+                        options={departmentOptions} />
+                )}
+
+                {applyFor === ApplyFor.position && (
+                    <SelectCustom
+                        isMultiple
+                        control={control}
+                        required
+                        label='Vị trí'
+                        name='positions'
+                        placeholder='Chọn vị trí áp dụng'
+                        options={positionOptions} />
+                )}
+
+                {applyFor === ApplyFor.agent && (
+                    <SelectCustom
+                        isMultiple
+                        control={control}
+                        required
+                        label='Nhân viên'
+                        name='agents'
+                        placeholder='Chọn nhân viên áp dụng'
+                        options={employeeOptions} />
+                )}
 
                 <ModalActionCustom
                     btnJustifyContent='right'

@@ -18,6 +18,8 @@ export type Props = {
     label?: string;
     required?: boolean,
     disabled?: boolean,
+    isMultiple?: boolean
+    handleChange?: any
 }
 
 export type SelectBoxOption = {
@@ -37,6 +39,8 @@ const SelectCustom: React.FC<Props> = ({
     label,
     required = false,
     disabled = false,
+    isMultiple = false,
+    handleChange = () => { }
 }) => {
     // STATE
     const [open, setOpen] = useState(false);
@@ -53,7 +57,13 @@ const SelectCustom: React.FC<Props> = ({
     // ******************************
 
     const isValidValue = (value) => {
-        return options.find(x => x.id === parseInt(value)) ? true : false;
+        return options.find(option => {
+            if (isMultiple) {
+                return value?.includes(option.id)
+            } else {
+                return option.id.toString() === value?.toString();
+            }
+        }) ? true : false;
     }
 
     return (
@@ -83,6 +93,7 @@ const SelectCustom: React.FC<Props> = ({
                     <FormControl fullWidth>
                         {icon}
                         <Select
+                            multiple={isMultiple}
                             placeholder={placeholder}
                             labelId="label"
                             open={open}
@@ -90,14 +101,16 @@ const SelectCustom: React.FC<Props> = ({
                             onClose={handleClose}
                             onOpen={handleOpen}
                             name={name}
-                            value={isValidValue(value) ? value : "null"}
-                            onChange={onChange}
-                            onBlur={onBlur}
-                            inputRef={ref}
+                            value={isValidValue(value) ? value : (isMultiple ? [] : "null")}
+                            onChange={(e) => {
+                                onChange(e); handleChange(e);
+                            }}
+                            // onBlur={onBlur}
+                            // inputRef={ref}
                             inputProps={{ "aria-label": "Without label" }}
                             className={`select-item ${!icon && "none-icon"}`}
                         >
-                            <MenuItem value={"null"} disabled>
+                            <MenuItem value={isMultiple ? [] : "null"} disabled>
                                 {placeholder}
                             </MenuItem>
                             {options.map((option) => {
@@ -110,7 +123,7 @@ const SelectCustom: React.FC<Props> = ({
                         </Select>
                         {error && (<p className="error-message">{error.message}</p>)}
                     </FormControl>
-                </Box>
+                </Box >
             )}
         />
     );

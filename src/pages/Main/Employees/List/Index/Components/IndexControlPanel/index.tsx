@@ -40,11 +40,9 @@ export const IndexControlPanel = () => {
   // ARROW FUNCTION
   const handleExport = () => { };
   const handleSendInvitation = () => {
-    console.log("List id", listIdInvitation);
     toastify({ mess: "Gửi lời mời thành công", type: "success" });
   };
   const handleSearch = useThrottle((query) => {
-    console.log(query);
     dispatch(
       extraReducersGetListEmployees({
         page: 1,

@@ -18,6 +18,21 @@ export const extraReducersGetDepartments = createAsyncThunk(
   }
 );
 
+export const extraReducersGetDepartmentAndPositionList = createAsyncThunk(
+  "getDepartmentAndPositionList",
+  async () => {
+    return api
+      .get(`/api/department/get_by_tenant`, {})
+      .then((response: any) => {
+        return {
+          payload: response.payload,
+          message: response.message,
+        };
+      })
+      .catch((error) => error);
+  }
+);
+
 export const extraReducersCreateDepartments = createAsyncThunk(
   "createDepartments",
   async (data: CreateDepartmentDto) => {

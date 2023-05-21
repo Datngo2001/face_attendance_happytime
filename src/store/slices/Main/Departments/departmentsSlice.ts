@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import {
   extraReducersCreateDepartments,
   extraReducersDeleteDepartments,
+  extraReducersGetDepartmentAndPositionList,
   extraReducersGetDepartments,
 } from "./actions/extraReducers";
 import { reducersSetCurrentDepartment } from "./actions/reducers";
@@ -9,8 +10,11 @@ import { reducersSetCurrentDepartment } from "./actions/reducers";
 export type DepartmentsState = {
   status: string;
   loading: boolean;
+
   departmentTrees: Department[];
   department: Department;
+  departments: Department[];
+  positions: Position[];
   total_department: number;
   total_position: number;
   lastCreateSuccess: number;
@@ -47,6 +51,8 @@ const departmentsSlice = createSlice({
   initialState: {
     status: "fail",
     loading: false,
+    positions: [],
+    departments: [],
   } as DepartmentsState,
   reducers: {
     setCurrentDepartment: reducersSetCurrentDepartment,
@@ -80,6 +86,33 @@ const departmentsSlice = createSlice({
           }
         }
       );
+
+    builder
+      .addCase(
+        extraReducersGetDepartmentAndPositionList.pending,
+        (state: DepartmentsState) => {
+          state.loading = true;
+        }
+      )
+      .addCase(
+        extraReducersGetDepartmentAndPositionList.fulfilled,
+        (state: DepartmentsState, { payload: { payload, message } }) => {
+          state.loading = false;
+          if (message === "success") {
+            state.total_department = payload.total_department;
+            state.total_position = payload.total_position;
+
+            let departments = payload.items as Department[];
+            state.departments = departments;
+            state.positions = [];
+
+            departments.forEach((department) => {
+              state.positions.push(...department.children_position);
+            });
+          }
+        }
+      );
+
     builder
       .addCase(
         extraReducersCreateDepartments.pending,
