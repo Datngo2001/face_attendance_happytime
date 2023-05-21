@@ -6,6 +6,7 @@ import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import { useState } from "react";
 import { useEffect } from "react";
 import ButtonCustom from "../ButtonCustom";
+import ModalActionCustom from "components/ModalActionCustom";
 
 export type Props = {
     titleHeader?: any;
@@ -103,26 +104,14 @@ const ModalCustom: React.FC<Props> = ({
                         {children || "Missing chidren"}
                     </div>
                     {footer && (
-                        <div
-                            className={`modal-custom__actions ${divider && "divider-top"
-                                }`}
-                            style={{ justifyContent: btnJustifyContent || "center" }}
-                        >
-                            <ButtonCustom
-                                className="btn-cancel"
-                                width="auto"
-                                onClick={handleClose}
-                            >
-                                {titleBtnCancel || "Hủy bỏ"}
-                            </ButtonCustom>
-                            <ButtonCustom
-                                className="btn-accept"
-                                width="auto"
-                                onClick={handleOnClick}
-                            >
-                                {titleBtnAccept || "Xác nhận"}
-                            </ButtonCustom>
-                        </div>
+                        <ModalActionCustom
+                            divider={divider}
+                            btnJustifyContent={btnJustifyContent}
+                            handleClose={handleClose}
+                            handleOnClick={handleOnClick}
+                            titleBtnCancel={titleBtnCancel}
+                            titleBtnAccept={titleBtnAccept}
+                        />
                     )}
                 </Box>
             </Modal>

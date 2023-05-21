@@ -20,6 +20,10 @@ const scheduleRouters = [
         component: <ShiftAssignmentsList />,
     },
     {
+        path: "shift-assignments/:action/:id",
+        component: <ShiftAssignment />,
+    },
+    {
         path: "shift-assignments/:action",
         component: <ShiftAssignment />,
     },

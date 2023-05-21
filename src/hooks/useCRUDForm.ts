@@ -17,6 +17,7 @@ const useCRUDForm = ({ defaultValues, validationSchema }: Props) => {
     getValues,
     watch,
     register,
+    trigger,
   } = useForm({
     resolver: yupResolver(validationSchema),
     defaultValues: defaultValues,
@@ -35,6 +36,7 @@ const useCRUDForm = ({ defaultValues, validationSchema }: Props) => {
     getValues,
     watch,
     register,
+    trigger,
   };
 };
 

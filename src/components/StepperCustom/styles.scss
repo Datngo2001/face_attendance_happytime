@@ -1,0 +1,16 @@
+@use "../../assets/styles/index.scss" as *;
+
+.stepper-custom__wrapper{
+    width: 100%;
+    .stepper-custom{
+        .MuiStepLabel-root{
+            cursor: pointer;
+        }
+        .MuiStepIcon-root.Mui-active{
+            color: $primary-color;
+        } 
+    }
+    .stepper-custom-content{
+        margin-top: 30px;
+    }
+}

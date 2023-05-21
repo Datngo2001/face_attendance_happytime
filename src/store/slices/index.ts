@@ -6,6 +6,7 @@ import permissionsSlice from "./Main/Permission/permissionSlice";
 import shiftsSlice from "./Main/Shifts/shiftsSlice";
 import departmentsSlice from "./Main/Departments/departmentsSlice";
 import { confirmModalSlice } from "./ConfirmModal/confirmModalSlice";
+import shiftAssignmentsSlice from "./Main/ShiftAssignments/shiftAssignmentsSlice";
 
 export {
   employeesSlice,
@@ -16,6 +17,7 @@ export {
   shiftsSlice,
   departmentsSlice,
   confirmModalSlice,
+  shiftAssignmentsSlice,
 };
 
 export class BaseState {

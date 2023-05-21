@@ -45,22 +45,4 @@
         font-family: $f-family-1;
         font-size: $fs-1;
     }
-
-    &__actions {
-        display: flex;
-        gap: 4px;
-        padding: 10px 16px;
-
-        .btn-cancel {
-            padding: 7px 20px;
-            text-transform: inherit;
-            background-color: #eeeeee;
-            color: $text-color-3;
-        }
-
-        .btn-accept {
-            padding: 7px 20px;
-            text-transform: inherit;
-        }
-    }
 }
