@@ -2,6 +2,7 @@
 
 .radioGroup{
     &__wrapper{
+        cursor: pointer;
         > .label {
             padding-bottom: 10px;
             color: $text-color-3;

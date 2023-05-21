@@ -2,6 +2,7 @@ import StepperCustom, { StepItem } from 'components/StepperCustom'
 import { FormAction } from 'forms/formAction'
 import React, { useEffect, useState } from 'react'
 import { ShiftAssignment } from 'store/slices/Main/ShiftAssignments/shiftAssignmentsSlice'
+import { Shift as ShiftSchedule } from 'store/slices/Main/Shifts/shiftsSlice'
 import Step1 from './components/Step1'
 import Step2 from './components/Step2'
 import useCRUDForm from 'hooks/useCRUDForm'
@@ -15,6 +16,8 @@ import { Department, Position } from 'store/slices/Main/Departments/departmentsS
 import { extraReducersGetListEmployees } from 'store/slices/Main/Employees/actions/extraReducers'
 import { Employee } from 'store/slices/Main/Employees/employeesSlice'
 import "./styles.scss"
+import { extraReducersGetListShifts } from 'store/slices/Main/Shifts/actions/extraReducers'
+import { extraReducersCreateShiftAssignment } from 'store/slices/Main/ShiftAssignments/actions/extraReducers'
 
 export type Props = {
     shiftAssignment?: ShiftAssignment
@@ -32,9 +35,10 @@ const stepsDefault: StepItem[] = [
     },
 ]
 
-const ShiftAssignmentForm: React.FC<Props> = ({ action, shiftAssignment }) => {
+const ShiftAssignmentForm: React.FC<Props> = ({ action = FormAction.CREATE, shiftAssignment }) => {
     const { departments, positions } = useAppSelector(state => state.departments)
     const { listOfEmployees } = useAppSelector(state => state.employees)
+    const { listOfShift } = useAppSelector(state => state.shifts)
     const dispatch = useAppDispatch()
 
     useEffect(() => {
@@ -43,10 +47,14 @@ const ShiftAssignmentForm: React.FC<Props> = ({ action, shiftAssignment }) => {
             page: 0,
             size: process.env.REACT_APP_PAGE_SIZE,
         }));
+        dispatch(extraReducersGetListShifts({
+            page: 0,
+            size: process.env.REACT_APP_PAGE_SIZE
+        }))
     }, [])
 
     const { control, trigger, watch, handleSubmit, setValue } = useCRUDForm({
-        defaultValues: defaulValues,
+        defaultValues: action === FormAction.CREATE ? defaulValues : shiftAssignment,
         validationSchema: schema
     });
 
@@ -64,7 +72,7 @@ const ShiftAssignmentForm: React.FC<Props> = ({ action, shiftAssignment }) => {
     }
 
     const handelSubmitCreate = (data) => {
-        console.log(data)
+        dispatch(extraReducersCreateShiftAssignment({ data }))
     }
 
     return (
@@ -84,7 +92,8 @@ const ShiftAssignmentForm: React.FC<Props> = ({ action, shiftAssignment }) => {
                         watch={watch}
                         control={control}
                         setValue={setValue}
-                        handleSubmit={handleSubmit(handelSubmitCreate)} />),
+                        handleSubmit={handleSubmit(handelSubmitCreate)}
+                        shiftSelectOptions={getShiftSelectOptions(listOfShift)} />),
                 ]} />
         </div>
     )
@@ -108,6 +117,13 @@ function getEmployeeSelectOptions(employees: Employee[]): SelectBoxOption[] {
     return employees.map(employee => ({
         id: employee._id,
         name: employee.name
+    } as SelectBoxOption))
+}
+
+function getShiftSelectOptions(shifts: ShiftSchedule[]): SelectBoxOption[] {
+    return shifts.map(shift => ({
+        id: shift._id,
+        name: shift.name
     } as SelectBoxOption))
 }
 

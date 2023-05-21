@@ -3,6 +3,9 @@ import ModalActionCustom from 'components/ModalActionCustom'
 import React, { useEffect } from 'react'
 import RadioBox from './RadioBox'
 import { TimeApply } from 'store/slices/Main/ShiftAssignments/shiftAssignmentsSlice'
+import DateRangeConfig from './DateRangeConfigs'
+import SpecificDateConfig from './SpecificDateConfigs'
+import { SelectBoxOption } from 'components/SelectCustom'
 
 export type Props = {
     nextStep: any
@@ -10,9 +13,10 @@ export type Props = {
     control: any
     setValue: any
     watch: any
+    shiftSelectOptions: SelectBoxOption[]
 }
 
-const Step2: React.FC<Props> = ({ nextStep, handleSubmit, control, setValue, watch }) => {
+const Step2: React.FC<Props> = ({ nextStep, handleSubmit, control, setValue, watch, shiftSelectOptions }) => {
     const timeApply = watch("timeApply")
 
     useEffect(() => {
@@ -49,6 +53,15 @@ const Step2: React.FC<Props> = ({ nextStep, handleSubmit, control, setValue, wat
                         Chọn ngày áp dụng
                     `} />
                 </div>
+
+                {timeApply === TimeApply.use_day_range && (
+                    <DateRangeConfig control={control} />
+                )}
+
+                {timeApply === TimeApply.use_specific_day && (
+                    <SpecificDateConfig watch={watch} setValue={setValue} shiftSelectOptions={shiftSelectOptions} />
+                )}
+
                 <ModalActionCustom
                     btnJustifyContent='right'
                     titleBtnAccept='Hoàn tất'

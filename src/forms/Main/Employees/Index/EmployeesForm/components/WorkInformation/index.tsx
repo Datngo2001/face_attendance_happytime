@@ -1,7 +1,7 @@
 import BusinessCenterRoundedIcon from "@mui/icons-material/BusinessCenterRounded";
 import "./styles.scss";
 import InputCustom from "components/InputCustom";
-import InputDate from "components/InputDate";
+import DatePickerCustom from "components/InputDate/DatePickerCustom";
 import SelectCustom from "components/SelectCustom";
 import { listStatusEmployees, listTypeEmployees } from "utils/ListData";
 import { FormAction } from "forms/formAction";
@@ -50,7 +50,7 @@ const WorkInformation = ({
                 placeholder="Mã nhân viên"
               />
             )}
-            <InputDate
+            <DatePickerCustom
               name="start_working_date"
               className="input-item"
               label="Ngày bắt đầu đi làm"

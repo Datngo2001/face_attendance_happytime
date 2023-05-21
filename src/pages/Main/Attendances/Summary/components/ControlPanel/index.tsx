@@ -4,7 +4,7 @@ import "./styles.scss";
 import dayjs from "dayjs";
 import ButtonCustom from "components/ButtonCustom";
 import InputCustom from "components/InputCustom";
-import InputDate from "components/InputDate";
+import DatePickerCustom from "components/InputDate/DatePickerCustom";
 
 export type Props = {
   control: any;
@@ -37,7 +37,7 @@ const ControlPanel: React.FC<Props> = ({ control, setValue, trigger }) => {
             iconRight={<SearchRoundedIcon />}
           />
           <div style={{ width: "100%", height: "20px" }}></div>
-          <InputDate
+          <DatePickerCustom
             name="timeStart"
             width="250px"
             control={control}

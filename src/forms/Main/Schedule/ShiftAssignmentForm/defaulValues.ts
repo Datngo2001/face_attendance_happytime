@@ -14,18 +14,18 @@ export const defaulValues: ShiftAssignment = {
   use_day_range: true,
   use_specific_day: true,
   day_range: {
-    from: 0,
+    from: Date.now(),
     to: 0,
     repeat_config: {
       repeat_time: "",
       repeat_method: "",
     },
-    shifts: null,
+    shifts: [],
     use_same_shift: false,
     use_separate_shift: false,
   },
   day_applied: {
-    shifts: null,
+    shifts: [],
     use_same_shift: false,
     use_separate_shift: false,
   },

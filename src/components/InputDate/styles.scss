@@ -1,6 +1,6 @@
 @use "../../assets/styles/index.scss" as *;
 
-.input-date {
+.date-picker-custom,.date-range-picker-custom {
     &__wrapper {
         width: 100%;
         height: auto;

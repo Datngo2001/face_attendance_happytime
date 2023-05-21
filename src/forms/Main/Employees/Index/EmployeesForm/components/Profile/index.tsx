@@ -3,7 +3,7 @@ import "./styles.scss";
 import InputFile from "components/InputFile";
 import InputCustom from "components/InputCustom";
 import SelectCustom from "components/SelectCustom";
-import InputDate from "components/InputDate";
+import DatePickerCustom from "components/InputDate/DatePickerCustom";
 import { listEducation, listGender, listMarriedStatus } from "utils/ListData";
 import React from "react";
 
@@ -57,7 +57,7 @@ const Profile: React.FC<Props> = ({
               options={listEducation}
               placeholder="Học vấn"
             />
-            <InputDate
+            <DatePickerCustom
               name="graduation_date"
               className="input-item"
               label="Ngày tốt nghiệp"
@@ -136,7 +136,7 @@ const Profile: React.FC<Props> = ({
               options={listGender}
               placeholder="Giới tính"
             />
-            <InputDate
+            <DatePickerCustom
               name="date_of_birth"
               className="input-item"
               label="Ngày sinh"
@@ -152,7 +152,7 @@ const Profile: React.FC<Props> = ({
               control={control}
               placeholder="Email cá nhân"
             />
-            <InputDate
+            <DatePickerCustom
               name="issued_date"
               className="input-item"
               label="Ngày cấp"

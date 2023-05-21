@@ -4,6 +4,7 @@ import dayjs from "dayjs";
 import "./styles.scss";
 import { Controller } from "react-hook-form";
 import { DateFormat } from "./default";
+import { convertTimestampToString } from "utils";
 
 export type Props = {
   name: string,
@@ -16,7 +17,7 @@ export type Props = {
   required?: Boolean,
 };
 
-const InputDate: React.FC<Props> = ({
+const DatePickerCustom: React.FC<Props> = ({
   name,
   control,
   className,
@@ -36,7 +37,7 @@ const InputDate: React.FC<Props> = ({
         fieldState: { error }
       }) => (
         <div
-          className={`input-date__wrapper ${className ? className : ""} ${error ? "error" : ""}`}
+          className={`date-picker-custom__wrapper ${className ? className : ""} ${error ? "error" : ""}`}
         >
           {label && (
             <div className={`label ${required && "required"}`}>
@@ -46,13 +47,13 @@ const InputDate: React.FC<Props> = ({
               </label>
             </div>
           )}
-          <div className="input-date__container">
+          <div className="date-picker-custom__container">
             <DatePicker
               id={name}
               placeholder={placeholder}
               style={{ height: height, width: width }}
               locale={locale}
-              value={value ? dayjs(value) : null}
+              value={value ? (typeof value == "number" ? dayjs(value) : dayjs(value, DateFormat)) : null}
               format={DateFormat}
               onChange={(date, dateString) => onChange(dateString)}
             />
@@ -64,4 +65,4 @@ const InputDate: React.FC<Props> = ({
   );
 };
 
-export default InputDate;
+export default DatePickerCustom;

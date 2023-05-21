@@ -32,6 +32,11 @@ export enum TimeApply {
   use_specific_day = "use_specific_day",
 }
 
+export enum DateApply {
+  use_same_shift = "use_same_shift",
+  use_separate_shift = "use_separate_shift",
+}
+
 export type ShiftAssignment = {
   _id?: string;
   name: string;
@@ -40,8 +45,8 @@ export type ShiftAssignment = {
   departments: string[];
   positions: string[];
   agents: string[];
-  use_day_range: true;
-  use_specific_day: true;
+  use_day_range: boolean;
+  use_specific_day: boolean;
   day_range: {
     from: number;
     to: number;
@@ -49,27 +54,21 @@ export type ShiftAssignment = {
       repeat_time: string;
       repeat_method: string;
     };
-    shifts: [
-      {
-        day: string;
-        date: string;
-        shift_ids: string[];
-      }
-    ];
+    shifts: Shift[];
     use_same_shift: boolean;
     use_separate_shift: boolean;
   };
   day_applied: {
-    shifts: [
-      {
-        day: string;
-        date: string;
-        shift_ids: string[];
-      }
-    ];
+    shifts: Shift[];
     use_same_shift: boolean;
     use_separate_shift: boolean;
   };
+};
+
+export type Shift = {
+  day: string;
+  date: string;
+  shift_ids: string[];
 };
 
 const shiftAssignmentsSlice = createSlice({
