@@ -60,6 +60,7 @@ const Step1: React.FC<Props> = ({ nextStep, control, watch, departmentOptions, p
 
                 {applyFor === ApplyFor.department && (
                     <SelectCustom
+                        disabled={action === FormAction.UPDATE}
                         isMultiple
                         control={control}
                         required
@@ -71,6 +72,7 @@ const Step1: React.FC<Props> = ({ nextStep, control, watch, departmentOptions, p
 
                 {applyFor === ApplyFor.position && (
                     <SelectCustom
+                        disabled={action === FormAction.UPDATE}
                         isMultiple
                         control={control}
                         required
@@ -83,6 +85,7 @@ const Step1: React.FC<Props> = ({ nextStep, control, watch, departmentOptions, p
                 {applyFor === ApplyFor.agent && (
                     <SelectCustom
                         isMultiple
+                        disabled={action === FormAction.UPDATE}
                         control={control}
                         required
                         label='Nhân viên'
