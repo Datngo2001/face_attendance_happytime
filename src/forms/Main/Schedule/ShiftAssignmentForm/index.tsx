@@ -100,7 +100,7 @@ const ShiftAssignmentForm: React.FC<Props> = ({ action = FormAction.CREATE, shif
                 steps={stepsDefault}
                 onStepClick={handleStepClick}
                 stepContents={[
-                    (<Step1 nextStep={nextStep} control={control} watch={watch}
+                    (<Step1 nextStep={nextStep} control={control} watch={watch} action={action}
                         departmentOptions={getDepartmentSelectOptions(departments)}
                         positionOptions={getPositionSelectOptions(positions)}
                         employeeOptions={getEmployeeSelectOptions(listOfEmployees)}

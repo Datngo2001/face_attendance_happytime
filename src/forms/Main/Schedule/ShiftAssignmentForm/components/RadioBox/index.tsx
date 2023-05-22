@@ -14,6 +14,7 @@ export type Props = {
 
 const RadioBox: React.FC<Props> = ({ name, value, control, setValue, title, description, disabled }) => {
     const handleClick = () => {
+        if (disabled) return
         setValue(name, value)
     }
     return (

@@ -2,6 +2,7 @@ import { Stack } from '@mui/material'
 import InputCustom from 'components/InputCustom'
 import ModalActionCustom from 'components/ModalActionCustom'
 import SelectCustom, { SelectBoxOption } from 'components/SelectCustom'
+import { FormAction } from 'forms/formAction'
 import React from 'react'
 import { ApplyFor } from 'store/slices/Main/ShiftAssignments/shiftAssignmentsSlice'
 
@@ -13,6 +14,7 @@ export type Props = {
     positionOptions: SelectBoxOption[]
     employeeOptions: SelectBoxOption[]
     onCancel: any
+    action: FormAction
 }
 
 const selectApplyOptions: SelectBoxOption[] = [
@@ -34,7 +36,7 @@ const selectApplyOptions: SelectBoxOption[] = [
     },
 ]
 
-const Step1: React.FC<Props> = ({ nextStep, control, watch, departmentOptions, positionOptions, employeeOptions, onCancel }) => {
+const Step1: React.FC<Props> = ({ nextStep, control, watch, departmentOptions, positionOptions, employeeOptions, onCancel, action }) => {
     const applyFor = watch("apply_for");
 
     return (
@@ -48,6 +50,7 @@ const Step1: React.FC<Props> = ({ nextStep, control, watch, departmentOptions, p
                     control={control} />
 
                 <SelectCustom
+                    disabled={action === FormAction.UPDATE}
                     control={control}
                     required
                     label='Áp dụng'
