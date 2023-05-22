@@ -9,9 +9,10 @@ export type Props = {
     setValue: any
     title: string
     description: string
+    disabled: boolean
 }
 
-const RadioBox: React.FC<Props> = ({ name, value, control, setValue, title, description }) => {
+const RadioBox: React.FC<Props> = ({ name, value, control, setValue, title, description, disabled }) => {
     const handleClick = () => {
         setValue(name, value)
     }
@@ -25,6 +26,7 @@ const RadioBox: React.FC<Props> = ({ name, value, control, setValue, title, desc
                     fieldState: { error },
                 }) => (
                     <input type="radio"
+                        disabled={disabled}
                         checked={value === formValue}
                         value={value}
                         onChange={onChange}

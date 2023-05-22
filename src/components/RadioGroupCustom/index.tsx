@@ -9,6 +9,7 @@ export type Props = {
     items: RadioItem[]
     spacing?: number
     label?: string
+    disabled?: boolean
 }
 
 export type RadioItem = {
@@ -16,7 +17,7 @@ export type RadioItem = {
     value: string
 }
 
-const RadioGroupCustom: React.FC<Props> = ({ name, label, control, items, spacing = 2 }) => {
+const RadioGroupCustom: React.FC<Props> = ({ name, label, control, items, spacing = 2, disabled = false }) => {
     return (
         <div className='radioGroup__wrapper'>
             {label && (
@@ -47,6 +48,7 @@ const RadioGroupCustom: React.FC<Props> = ({ name, label, control, items, spacin
                                         onChange={onChange}
                                         onBlur={onBlur}
                                         ref={ref}
+                                        disabled={disabled}
                                     />
                                     <label htmlFor={`${name}_${index}`}>
                                         {item.label}

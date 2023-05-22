@@ -12,6 +12,7 @@ export type Props = {
     departmentOptions: SelectBoxOption[]
     positionOptions: SelectBoxOption[]
     employeeOptions: SelectBoxOption[]
+    onCancel: any
 }
 
 const selectApplyOptions: SelectBoxOption[] = [
@@ -33,7 +34,7 @@ const selectApplyOptions: SelectBoxOption[] = [
     },
 ]
 
-const Step1: React.FC<Props> = ({ nextStep, control, watch, departmentOptions, positionOptions, employeeOptions }) => {
+const Step1: React.FC<Props> = ({ nextStep, control, watch, departmentOptions, positionOptions, employeeOptions, onCancel }) => {
     const applyFor = watch("apply_for");
 
     return (
@@ -90,7 +91,7 @@ const Step1: React.FC<Props> = ({ nextStep, control, watch, departmentOptions, p
                 <ModalActionCustom
                     btnJustifyContent='right'
                     titleBtnAccept='Tiếp tục'
-                    handleClose={() => { }}
+                    handleClose={() => onCancel()}
                     handleOnClick={() => nextStep()} />
             </Stack>
         </div >

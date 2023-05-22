@@ -17,7 +17,8 @@ export type Props = {
   height?: string,
   width?: string,
   label?: string,
-  required?: Boolean,
+  required?: boolean,
+  disabled?: boolean
 };
 
 const { RangePicker } = DatePicker;
@@ -34,6 +35,7 @@ const DateRangePickerCustom: React.FC<Props> = ({
   width,
   label,
   required = false,
+  disabled = false,
 }) => {
 
   return (
@@ -59,6 +61,7 @@ const DateRangePickerCustom: React.FC<Props> = ({
             <RangePicker
               id={name}
               allowClear
+              disabled={disabled}
               allowEmpty={[false, true]}
               placeholder={[fromLabel, toLabel]}
               style={{ height: height, width: width }}

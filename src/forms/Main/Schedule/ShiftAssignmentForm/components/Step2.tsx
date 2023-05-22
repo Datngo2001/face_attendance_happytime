@@ -6,17 +6,20 @@ import { TimeApply } from 'store/slices/Main/ShiftAssignments/shiftAssignmentsSl
 import DateRangeConfig from './DateRangeConfigs'
 import SpecificDateConfig from './SpecificDateConfigs'
 import { SelectBoxOption } from 'components/SelectCustom'
+import { FormAction } from 'forms/formAction'
 
 export type Props = {
+    action: FormAction
     nextStep: any
     handleSubmit: any
     control: any
     setValue: any
     watch: any
     shiftSelectOptions: SelectBoxOption[]
+    onCancel: any
 }
 
-const Step2: React.FC<Props> = ({ nextStep, handleSubmit, control, setValue, watch, shiftSelectOptions }) => {
+const Step2: React.FC<Props> = ({ nextStep, handleSubmit, control, setValue, watch, shiftSelectOptions, action, onCancel }) => {
     const timeApply = watch("timeApply")
 
     useEffect(() => {
@@ -39,9 +42,8 @@ const Step2: React.FC<Props> = ({ nextStep, handleSubmit, control, setValue, wat
                         control={control}
                         setValue={setValue}
                         title="Khoảng ngày áp dụng"
-                        description={`
-                        Chọn một khoảng thời gian từ ngày bắt đầu đến ngày kết thúc, hoặc không có thời hạn kết thúc.
-                    `} />
+                        description={`Chọn một khoảng thời gian từ ngày bắt đầu đến ngày kết thúc, hoặc không có thời hạn kết thúc.`}
+                        disabled={action === FormAction.UPDATE} />
 
                     <RadioBox
                         value={TimeApply.use_specific_day}
@@ -49,23 +51,22 @@ const Step2: React.FC<Props> = ({ nextStep, handleSubmit, control, setValue, wat
                         control={control}
                         setValue={setValue}
                         title="Chọn ngày áp dụng"
-                        description={`
-                        Chọn ngày áp dụng
-                    `} />
+                        description={`Chọn ngày áp dụng`}
+                        disabled={action === FormAction.UPDATE} />
                 </div>
 
                 {timeApply === TimeApply.use_day_range && (
-                    <DateRangeConfig control={control} />
+                    <DateRangeConfig control={control} action={action} />
                 )}
 
                 {timeApply === TimeApply.use_specific_day && (
-                    <SpecificDateConfig watch={watch} setValue={setValue} shiftSelectOptions={shiftSelectOptions} />
+                    <SpecificDateConfig watch={watch} setValue={setValue} shiftSelectOptions={shiftSelectOptions} action={action} />
                 )}
 
                 <ModalActionCustom
                     btnJustifyContent='right'
                     titleBtnAccept='Hoàn tất'
-                    handleClose={() => { }}
+                    handleClose={() => onCancel()}
                     handleOnClick={handleSubmit} />
 
             </Stack>

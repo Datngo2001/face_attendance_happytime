@@ -13,7 +13,8 @@ export type Props = {
   width?: string,
   label?: string,
   placeholder?: string,
-  required?: Boolean,
+  required?: boolean,
+  disabled?: boolean
 };
 
 const DatePickerCustom: React.FC<Props> = ({
@@ -25,6 +26,7 @@ const DatePickerCustom: React.FC<Props> = ({
   label,
   placeholder,
   required = false,
+  disabled = false,
 }) => {
 
   return (
@@ -50,6 +52,7 @@ const DatePickerCustom: React.FC<Props> = ({
           <div className="date-picker-custom__container">
             <DatePicker
               id={name}
+              disabled={disabled}
               placeholder={placeholder}
               style={{ height: height, width: width }}
               locale={locale}

@@ -1,12 +1,14 @@
 import { Stack } from '@mui/system'
 import DateRangePickerCustom from 'components/InputDate/DateRangePickerCustom'
+import { FormAction } from 'forms/formAction'
 import React from 'react'
 
 export type Props = {
     control: any
+    action: FormAction
 }
 
-const DateRangeConfig: React.FC<Props> = ({ control }) => {
+const DateRangeConfig: React.FC<Props> = ({ control, action }) => {
     return (
         <Stack>
             <DateRangePickerCustom
@@ -16,7 +18,8 @@ const DateRangeConfig: React.FC<Props> = ({ control }) => {
                 toLabel='Vô thời hạn'
                 control={control}
                 label='Khoảng ngày áp dụng'
-                required />
+                required
+                disabled={action === FormAction.UPDATE} />
         </Stack>
     )
 }

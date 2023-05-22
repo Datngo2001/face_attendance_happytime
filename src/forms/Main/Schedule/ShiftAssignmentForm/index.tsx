@@ -19,6 +19,7 @@ import "./styles.scss"
 import { extraReducersGetListShifts } from 'store/slices/Main/Shifts/actions/extraReducers'
 import { extraReducersCreateShiftAssignment, extraReducersUpdateShiftAssignment } from 'store/slices/Main/ShiftAssignments/actions/extraReducers'
 import { useNavigate } from 'react-router-dom'
+import useConfirmMoldal from 'hooks/useConfirmMoldal'
 
 export type Props = {
     shiftAssignment?: ShiftAssignment
@@ -37,6 +38,7 @@ const stepsDefault: StepItem[] = [
 ]
 
 const ShiftAssignmentForm: React.FC<Props> = ({ action = FormAction.CREATE, shiftAssignment }) => {
+    const { openConfirmModal } = useConfirmMoldal();
     const { departments, positions } = useAppSelector(state => state.departments)
     const { listOfEmployees } = useAppSelector(state => state.employees)
     const { listOfShift } = useAppSelector(state => state.shifts)
@@ -81,6 +83,14 @@ const ShiftAssignmentForm: React.FC<Props> = ({ action = FormAction.CREATE, shif
         dispatch(extraReducersUpdateShiftAssignment({ data, onSuccess: () => navigate("../shift-assignments") }))
     }
 
+    const handleCancel = () => {
+        openConfirmModal(
+            "Xác nhận",
+            "Bạn có muốn hủy thao tác",
+            () => navigate("../shift-assignments")
+        )
+    }
+
     return (
         <div className='shift-assignment-form__wrapper'>
             <StepperCustom
@@ -93,13 +103,16 @@ const ShiftAssignmentForm: React.FC<Props> = ({ action = FormAction.CREATE, shif
                     (<Step1 nextStep={nextStep} control={control} watch={watch}
                         departmentOptions={getDepartmentSelectOptions(departments)}
                         positionOptions={getPositionSelectOptions(positions)}
-                        employeeOptions={getEmployeeSelectOptions(listOfEmployees)} />),
+                        employeeOptions={getEmployeeSelectOptions(listOfEmployees)}
+                        onCancel={handleCancel} />),
                     (<Step2 nextStep={nextStep}
+                        action={action}
                         watch={watch}
                         control={control}
                         setValue={setValue}
                         handleSubmit={handleSubmit(FormAction.CREATE ? handelSubmitCreate : handelSubmitUpdate)}
-                        shiftSelectOptions={getShiftSelectOptions(listOfShift)} />),
+                        shiftSelectOptions={getShiftSelectOptions(listOfShift)}
+                        onCancel={handleCancel} />),
                 ]} />
         </div>
     )
