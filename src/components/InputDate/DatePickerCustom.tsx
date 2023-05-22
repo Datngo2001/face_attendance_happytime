@@ -55,7 +55,7 @@ const DatePickerCustom: React.FC<Props> = ({
               locale={locale}
               value={value ? (typeof value == "number" ? dayjs(value) : dayjs(value, DateFormat)) : null}
               format={DateFormat}
-              onChange={(date, dateString) => { onChange(dateString) }}
+              onChange={(date, dateString) => { typeof value == "number" ? onChange(date.toDate().getTime()) : onChange(dateString) }}
             />
             {error && <p className="error-message">{error.message}</p>}
           </div>

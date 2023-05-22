@@ -7,7 +7,7 @@ import { listStatusEmployees, listTypeEmployees } from "utils/ListData";
 import { FormAction } from "forms/formAction";
 import { useAppSelector } from "hooks/useAppSelector";
 import TreeViewSelectBox from "components/TreeViewSelectBox";
-import { createDepartmentSelectOptions, createPositionSelectOptions } from "utils/departmentUtil";
+import { createPositionSelectOptions } from "utils/departmentUtil";
 import { useAppDispatch } from "hooks/useAppDispatch";
 import { useEffect } from "react";
 import { extraReducersGetDepartments } from "store/slices/Main/Departments/actions/extraReducers";

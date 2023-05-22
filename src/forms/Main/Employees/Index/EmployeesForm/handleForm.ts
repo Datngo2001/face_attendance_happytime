@@ -24,6 +24,6 @@ export const schema = yup.object({
       }
     ),
   start_working_date: yup
-    .string()
+    .number()
     .required("Trường Ngày bắt đầu đi làm không được bỏ trống"),
 });
