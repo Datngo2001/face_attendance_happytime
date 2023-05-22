@@ -4,7 +4,7 @@ export type Props = {}
 
 const ShiftAssignmentsSearchPannel: React.FC<Props> = () => {
     return (
-        <div>ShiftAssignmentsSearchPannel</div>
+        <div></div>
     )
 }
 

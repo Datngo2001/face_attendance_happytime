@@ -4,8 +4,12 @@ import { DateFormat } from "components/InputDate/default";
 import { OptionColumn } from "components/OptionColumn";
 import dayjs from "dayjs";
 import RowOptions from "../RowOptions";
+import { ApplyFor } from "store/slices/Main/ShiftAssignments/shiftAssignmentsSlice";
+import { LabelResult } from "utils/getLabelUtil";
+import { Stack } from "@mui/material";
+import { Department, Position } from "store/slices/Main/Departments/departmentsSlice";
 
-export const getColumns = (deleteClick): GridColumns => ([
+export const getColumns = (deleteClick, employeeLabels: LabelResult[], departments: Department[], positions: Position[]): GridColumns => ([
     {
         flex: 1,
         field: "name",
@@ -14,12 +18,61 @@ export const getColumns = (deleteClick): GridColumns => ([
     },
     {
         flex: 1,
+        field: "apply_for",
+        hide: true
+    },
+    {
+        flex: 1,
+        field: "agents",
+        hide: true
+    },
+    {
+        flex: 1,
         field: "1",
         headerName: "Đối tượng áp dụng",
         sortable: false,
-        renderCell: (params) => (
-            <div></div>
-        )
+        renderCell: (params) => {
+            switch (params.row.apply_for) {
+                case ApplyFor.company:
+                    return (
+                        <div className="apply_for_item company">Toàn công ty</div>
+                    )
+                case ApplyFor.agent:
+                    return (
+                        <Stack direction={"row"} flexWrap={"wrap"} gap={1} spacing={1}>
+                            {params.row.agents?.map(agent => (
+                                <div className="apply_for_item agent" key={agent}>
+                                    {employeeLabels.find(x => x.id === agent)?.label ?? ""}
+                                </div>
+                            ))}
+                        </Stack>
+                    )
+                case ApplyFor.department:
+                    return (
+                        <Stack direction={"row"} flexWrap={"wrap"} gap={1} spacing={1}>
+                            {params.row.departments?.map(department => (
+                                <div className="apply_for_item agent" key={department}>
+                                    {departments.find(x => x.id === department)?.department_name ?? ""}
+                                </div>
+                            ))}
+                        </Stack>
+                    )
+                case ApplyFor.position:
+                    return (
+                        <Stack direction={"row"} flexWrap={"wrap"} gap={1} spacing={1}>
+                            {params.row.positions?.map(position => (
+                                <div className="apply_for_item agent" key={position}>
+                                    {positions.find(x => x.id === position)?.position_name ?? ""}
+                                </div>
+                            ))}
+                        </Stack>
+                    )
+                default:
+                    return (
+                        <div></div>
+                    )
+            }
+        }
     },
     {
         flex: 1,
