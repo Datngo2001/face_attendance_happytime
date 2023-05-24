@@ -60,12 +60,13 @@
                             pointer-events: all;
                             span{
                                 padding: 5px;
-                                color: white;
+                                color: white !important;
+                                -webkit-text-fill-color: white;
                                 margin-right: 5px;
                             }
                             svg{
                                 font-size: 15px;
-                                color: white;
+                                color: white !important;
                             }
                         }
                     }
@@ -127,6 +128,7 @@
         padding-bottom: 10px;
         color: $text-color-3;
         cursor: default;
+        font-size: 14px;
 
         &:hover {
             + .MuiFormControl-root {
