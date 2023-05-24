@@ -36,7 +36,7 @@ const ShiftAssigment: React.FC = () => {
 
     return (
         <div className="shift-assignment__wrapper">
-            <div className="content-navigator" onClick={handleCancel}>
+            <div className="content-navigator" onClick={handleCancel} style={{ cursor: "pointer" }}>
                 <ArrowBackRoundedIcon />
                 Quay lại
             </div>

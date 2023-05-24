@@ -8,6 +8,7 @@ import { Controller } from "react-hook-form";
 import CheckboxCustom from "components/CheckboxCustom/CheckboxCustom";
 import { Chip } from "@mui/material";
 import CancelIcon from '@mui/icons-material/Cancel';
+import ChipCustom from "components/ChipCustom";
 
 export type Props = {
     name: string;
@@ -139,7 +140,7 @@ function renderMuiltiSelectOption(options: SelectBoxOption[], value: string[], o
     return (
         <div className="selectbox-ship-container">
             {selecteds.map(selected => (
-                <Chip clickable key={selected.id}
+                <ChipCustom clickable key={selected.id}
                     deleteIcon={<CancelIcon onMouseDown={(event) => event.stopPropagation()} />}
                     label={selected.name} onDelete={() => onDelete(selected.id)} />
             ))}

@@ -1,0 +1,19 @@
+@use "../../assets/styles/index.scss" as *;
+
+.ChipCustom__wrapper{
+    .MuiChip-root{
+        height: 20px;
+        background-color: $primary-color;
+        pointer-events: all;
+        span{
+            padding: 5px;
+            color: white !important;
+            -webkit-text-fill-color: white;
+            margin-right: 5px;
+        }
+        svg{
+            font-size: 15px;
+            color: white !important;
+        }
+    }
+}

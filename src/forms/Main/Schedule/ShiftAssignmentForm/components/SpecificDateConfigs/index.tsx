@@ -1,4 +1,5 @@
 import { Chip, Stack } from '@mui/material'
+import ChipCustom from 'components/ChipCustom'
 import DatePickerCustom from 'components/InputDate/DatePickerCustom'
 import RadioGroupCustom, { RadioItem } from 'components/RadioGroupCustom'
 import SelectCustom, { SelectBoxOption } from 'components/SelectCustom'
@@ -96,7 +97,7 @@ const SpecificDateConfig: React.FC<Props> = ({ watch, setValue, shiftSelectOptio
                 disabled={action === FormAction.UPDATE} />
             <Stack direction="row" flexWrap={"wrap"} gap={2} overflow={"auto"}>
                 {shifts && shifts.map((shift, index) => (
-                    <Chip
+                    <ChipCustom
                         key={shift.date}
                         label={shift.date}
                         onDelete={() => handleShiftDelete(shift.date)}
