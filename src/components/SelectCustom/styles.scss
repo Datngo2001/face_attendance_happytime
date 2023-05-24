@@ -42,6 +42,36 @@
                 }
             }
 
+            .select-item.isMultiple{
+                .MuiSelect-select{
+                    overflow: auto;
+                    .selectbox-ship-container{
+                        position: absolute;
+                        z-index: 1000000;
+                        display: flex;
+                        gap: 10px;
+                        align-items: center;
+                        flex-wrap: wrap;
+                        pointer-events: none;
+    
+                        .MuiChip-root{
+                            height: 20px;
+                            background-color: $primary-color;
+                            pointer-events: all;
+                            span{
+                                padding: 5px;
+                                color: white;
+                                margin-right: 5px;
+                            }
+                            svg{
+                                font-size: 15px;
+                                color: white;
+                            }
+                        }
+                    }
+                }
+            }
+
             .none-icon{
                 .MuiSelect-select{
                     padding: 8px 16px 8px 16px;
@@ -126,4 +156,8 @@
         color: $text-color-1;
         font-size: $fs-1;
     }
+}
+
+.multi-select-checkbox{
+    margin-right: 10px;
 }

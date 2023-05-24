@@ -6,12 +6,11 @@ export type Props = {
     className?: string;
     label: string;
     control: any;
-
     width?: string;
     height?: string;
 }
 
-const CheckboxCustom: React.FC<Props> = ({ name, className, label, control, width, height }) => {
+const CheckboxFormCustom: React.FC<Props> = ({ name, className, label, control, width, height }) => {
     return (
         <Controller
             control={control}
@@ -41,4 +40,4 @@ const CheckboxCustom: React.FC<Props> = ({ name, className, label, control, widt
     );
 };
 
-export default CheckboxCustom;
+export default CheckboxFormCustom;

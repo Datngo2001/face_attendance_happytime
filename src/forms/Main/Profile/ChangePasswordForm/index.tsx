@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { schema } from "./handleForm";
 import "./styles.scss";
 import InputCustom from "components/InputCustom";
-import CheckboxCustom from "components/CheckboxCustom";
+import CheckboxFormCustom from "components/CheckboxCustom/CheckboxFormCustom";
 import ButtonCustom from "components/ButtonCustom";
 
 const ChangePasswordForm = () => {
@@ -71,7 +71,7 @@ const ChangePasswordForm = () => {
             />
           </div>
           <div className="checbox-control">
-            <CheckboxCustom
+            <CheckboxFormCustom
               name="logoutFromAllOfDevices"
               label="Đăng xuất khỏi tất cả các thiết bị"
               control={control} />

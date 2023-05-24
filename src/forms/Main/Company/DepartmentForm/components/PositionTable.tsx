@@ -3,7 +3,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import AddIcon from '@mui/icons-material/Add';
 import { Position } from 'store/slices/Main/Departments/departmentsSlice';
 import InputCustom from 'components/InputCustom';
-import CheckboxCustom from 'components/CheckboxCustom';
+import CheckboxFormCustom from 'components/CheckboxCustom/CheckboxFormCustom';
 import ClearIcon from '@mui/icons-material/Clear';
 import { defaultValuesPostion } from '../defaultValues';
 
@@ -54,7 +54,7 @@ const PositionTable: React.FC<Props> = ({ control, setValue, getValues, watch })
                         <ButtonCustom type={2} icon={<ClearIcon />} onClick={() => handleRemoveClick(index)} disabled={positions.length === 1} ></ButtonCustom>
                     </div>
                     <div className='position-table-column column-is-manager'>
-                        <CheckboxCustom name={`positions.${index}.is_manager`} label={''} control={control} />
+                        <CheckboxFormCustom name={`positions.${index}.is_manager`} label={''} control={control} />
                     </div>
                 </div>
             ))}

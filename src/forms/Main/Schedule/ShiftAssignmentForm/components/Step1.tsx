@@ -62,6 +62,7 @@ const Step1: React.FC<Props> = ({ nextStep, control, watch, departmentOptions, p
                     <SelectCustom
                         disabled={action === FormAction.UPDATE}
                         isMultiple
+                        useCheckBox
                         control={control}
                         required
                         label='Phòng ban'
@@ -74,6 +75,7 @@ const Step1: React.FC<Props> = ({ nextStep, control, watch, departmentOptions, p
                     <SelectCustom
                         disabled={action === FormAction.UPDATE}
                         isMultiple
+                        useCheckBox
                         control={control}
                         required
                         label='Vị trí'
@@ -85,6 +87,7 @@ const Step1: React.FC<Props> = ({ nextStep, control, watch, departmentOptions, p
                 {applyFor === ApplyFor.agent && (
                     <SelectCustom
                         isMultiple
+                        useCheckBox
                         disabled={action === FormAction.UPDATE}
                         control={control}
                         required

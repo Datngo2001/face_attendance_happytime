@@ -5,6 +5,9 @@ import Select from "@mui/material/Select";
 import "./styles.scss";
 import { ReactElement, useState } from "react";
 import { Controller } from "react-hook-form";
+import CheckboxCustom from "components/CheckboxCustom/CheckboxCustom";
+import { Chip } from "@mui/material";
+import CancelIcon from '@mui/icons-material/Cancel';
 
 export type Props = {
     name: string;
@@ -18,7 +21,8 @@ export type Props = {
     label?: string;
     required?: boolean,
     disabled?: boolean,
-    isMultiple?: boolean
+    isMultiple?: boolean,
+    useCheckBox?: boolean,
     handleChange?: any
 }
 
@@ -40,6 +44,7 @@ const SelectCustom: React.FC<Props> = ({
     required = false,
     disabled = false,
     isMultiple = false,
+    useCheckBox = false,
     handleChange = () => { }
 }) => {
     // STATE
@@ -105,10 +110,9 @@ const SelectCustom: React.FC<Props> = ({
                             onChange={(e) => {
                                 onChange(e); handleChange(e);
                             }}
-                            // onBlur={onBlur}
-                            // inputRef={ref}
                             inputProps={{ "aria-label": "Without label" }}
-                            className={`select-item ${!icon && "none-icon"}`}
+                            className={`select-item ${!icon && "none-icon"} ${isMultiple && "isMultiple"}`}
+                            renderValue={selected => isMultiple ? renderMuiltiSelectOption(options, value, (id) => { debugger; onChange(value.filter(x => x !== id)) }) : options.find(x => x.id === value)?.name}
                         >
                             <MenuItem value={isMultiple ? [] : "null"} disabled>
                                 {placeholder}
@@ -116,6 +120,7 @@ const SelectCustom: React.FC<Props> = ({
                             {options.map((option) => {
                                 return (
                                     <MenuItem value={option.id} key={option.id}>
+                                        {useCheckBox && <CheckboxCustom className="multi-select-checkbox" checked={isMultiple ? value.includes(option.id) : (value === option.id)} />}
                                         {option.name}
                                     </MenuItem>
                                 );
@@ -128,5 +133,18 @@ const SelectCustom: React.FC<Props> = ({
         />
     );
 };
+
+function renderMuiltiSelectOption(options: SelectBoxOption[], value: string[], onDelete: any = () => { }): React.ReactNode {
+    var selecteds = options.filter(opt => value.includes(opt.id.toString()))
+    return (
+        <div className="selectbox-ship-container">
+            {selecteds.map(selected => (
+                <Chip clickable key={selected.id}
+                    deleteIcon={<CancelIcon onMouseDown={(event) => event.stopPropagation()} />}
+                    label={selected.name} onDelete={() => onDelete(selected.id)} />
+            ))}
+        </div>
+    )
+}
 
 export default SelectCustom;
