@@ -1,12 +1,14 @@
 @use "../../../../assets/styles/index.scss" as *;
 
 
-.shift-assignment-form__wrapper{
-    .time-apply-group{
+.shift-assignment-form__wrapper {
+    .time-apply-group {
         display: flex;
         gap: 10px;
-        .radio-box__wrapper{
+
+        .radio-box__wrapper {
             flex: 1;
         }
+
     }
 }

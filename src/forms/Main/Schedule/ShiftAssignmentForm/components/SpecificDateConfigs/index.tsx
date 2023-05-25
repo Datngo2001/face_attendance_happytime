@@ -56,7 +56,6 @@ const SpecificDateConfig: React.FC<Props> = ({ watch, setValue, shiftSelectOptio
         if (selectedDate) {
             if (!shifts.find(x => x.date === selectedDate)) {
                 let newShift = {
-                    day: selectedDate.toString(),
                     date: selectedDate.toString(),
                     shift_ids: []
                 } as Shift;
@@ -105,11 +104,11 @@ const SpecificDateConfig: React.FC<Props> = ({ watch, setValue, shiftSelectOptio
                 ))}
             </Stack>
 
-            <RadioGroupCustom
+            {/* <RadioGroupCustom
                 name="dateApply"
                 control={subFormControl}
                 items={radioItems}
-                disabled={action === FormAction.UPDATE} />
+                disabled={action === FormAction.UPDATE} /> */}
 
             {dateApply === DateApply.use_same_shift && (
                 <SelectCustom

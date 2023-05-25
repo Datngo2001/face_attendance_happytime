@@ -56,7 +56,7 @@ const Step2: React.FC<Props> = ({ nextStep, handleSubmit, control, setValue, wat
                 </div>
 
                 {timeApply === TimeApply.use_day_range && (
-                    <DateRangeConfig control={control} action={action} />
+                    <DateRangeConfig watch={watch} setValue={setValue} control={control} action={action} shiftSelectOptions={shiftSelectOptions} />
                 )}
 
                 {timeApply === TimeApply.use_specific_day && (

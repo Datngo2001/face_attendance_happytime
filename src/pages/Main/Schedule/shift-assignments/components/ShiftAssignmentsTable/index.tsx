@@ -54,7 +54,7 @@ const ShiftAssignmentsTable: React.FC<Props> = () => {
             <div className='table-header'>
                 <span>Có {totalShifts} Phân ca làm việc trong danh sách</span>
                 <div>
-                    <ButtonCustom onClick={() => navigate("./create")}>Create</ButtonCustom>
+                    <ButtonCustom onClick={() => navigate("./create")}>Tạo mới</ButtonCustom>
                 </div>
             </div>
             <DataGridCustom

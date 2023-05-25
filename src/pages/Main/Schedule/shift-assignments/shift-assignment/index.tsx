@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 import { FormAction } from 'forms/formAction';
 import "./styles.scss";

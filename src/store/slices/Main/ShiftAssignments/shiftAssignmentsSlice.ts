@@ -7,6 +7,7 @@ import {
   extraReducersDeleteShiftAssignment,
 } from "./actions/extraReducers";
 import { reducersSetCurrentShiftAssignment } from "./actions/reducer";
+import { SelectBoxOption } from "components/SelectCustom";
 
 export type ShiftAssignmentsState = {
   status: string;
@@ -37,6 +38,51 @@ export enum DateApply {
   use_separate_shift = "use_separate_shift",
 }
 
+export enum RepeatTime {
+  week = "week",
+  month = "month",
+}
+
+export enum RepeatMethod {
+  weekly = "weekly",
+  weekly2 = "weekly2",
+  monthly = "monthly",
+  monthly2 = "monthly2",
+}
+
+export const repeatTimeSelectOptions: SelectBoxOption[] = [
+  {
+    id: RepeatTime.week,
+    name: "Tuần",
+  },
+  {
+    id: RepeatTime.month,
+    name: "Tháng",
+  },
+];
+
+export const weekRepeatMethodSelectOptions: SelectBoxOption[] = [
+  {
+    id: RepeatMethod.weekly,
+    name: "Hằng Tuần",
+  },
+  {
+    id: RepeatMethod.weekly2,
+    name: "Cách Tuần",
+  },
+];
+
+export const monthRepeatMethodSelectOptions: SelectBoxOption[] = [
+  {
+    id: RepeatMethod.monthly,
+    name: "Hằng Tháng",
+  },
+  {
+    id: RepeatMethod.monthly2,
+    name: "Cách Tháng",
+  },
+];
+
 export type ShiftAssignment = {
   _id?: string;
   name: string;
@@ -57,6 +103,7 @@ export type ShiftAssignment = {
     shifts: Shift[];
     use_same_shift: boolean;
     use_separate_shift: boolean;
+    days: number[];
   };
   day_applied: {
     shifts: Shift[];
@@ -66,7 +113,6 @@ export type ShiftAssignment = {
 };
 
 export type Shift = {
-  day: string;
   date: string;
   shift_ids: string[];
 };
