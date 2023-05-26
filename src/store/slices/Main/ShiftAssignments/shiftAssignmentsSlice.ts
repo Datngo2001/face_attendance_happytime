@@ -96,11 +96,7 @@ export type ShiftAssignment = {
   day_range: {
     from: number;
     to: number;
-    repeat_config: {
-      repeat_time: string;
-      repeat_method: string;
-    };
-    shifts: Shift[];
+    shift_ids: string[];
     use_same_shift: boolean;
     use_separate_shift: boolean;
     days: number[];

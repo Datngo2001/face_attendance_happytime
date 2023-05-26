@@ -18,11 +18,7 @@ export const defaulValues: ShiftAssignment = {
   day_range: {
     from: Date.now(),
     to: 0,
-    repeat_config: {
-      repeat_time: repeatTimeSelectOptions[0].id.toString(),
-      repeat_method: weekRepeatMethodSelectOptions[0].id.toString(),
-    },
-    shifts: [],
+    shift_ids: [],
     use_same_shift: true,
     use_separate_shift: false,
     days: [],

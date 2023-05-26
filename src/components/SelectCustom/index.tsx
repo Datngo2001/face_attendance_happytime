@@ -113,7 +113,7 @@ const SelectCustom: React.FC<Props> = ({
                             }}
                             inputProps={{ "aria-label": "Without label" }}
                             className={`select-item ${!icon && "none-icon"} ${isMultiple && "isMultiple"}`}
-                            renderValue={selected => isMultiple ? renderMuiltiSelectOption(options, value, (id) => { debugger; onChange(value.filter(x => x !== id)) }) : options.find(x => x.id === value)?.name}
+                            renderValue={selected => isMultiple ? renderMuiltiSelectOption(disabled, options, value, (id) => { debugger; onChange(value.filter(x => x !== id)) }) : options.find(x => x.id === value)?.name}
                         >
                             <MenuItem value={isMultiple ? [] : "null"} disabled>
                                 {placeholder}
@@ -135,14 +135,14 @@ const SelectCustom: React.FC<Props> = ({
     );
 };
 
-function renderMuiltiSelectOption(options: SelectBoxOption[], value: string[], onDelete: any = () => { }): React.ReactNode {
+function renderMuiltiSelectOption(disabled: boolean, options: SelectBoxOption[], value: string[], onDelete: any = () => { }): React.ReactNode {
     var selecteds = options.filter(opt => value.includes(opt.id.toString()))
     return (
         <div className="selectbox-ship-container">
             {selecteds.map(selected => (
                 <ChipCustom clickable key={selected.id}
                     deleteIcon={<CancelIcon onMouseDown={(event) => event.stopPropagation()} />}
-                    label={selected.name} onDelete={() => onDelete(selected.id)} />
+                    label={selected.name} onDelete={disabled ? () => { } : () => onDelete(selected.id)} />
             ))}
         </div>
     )
