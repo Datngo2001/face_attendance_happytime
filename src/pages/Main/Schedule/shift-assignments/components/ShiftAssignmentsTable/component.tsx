@@ -76,12 +76,39 @@ export const getColumns = (deleteClick, employeeLabels: LabelResult[], departmen
     },
     {
         flex: 1,
+        field: "day_applied",
+        hide: true
+    },
+    {
+        flex: 1,
+        field: "day_range",
+        hide: true
+    },
+    {
+        flex: 1,
+        field: "use_day_range",
+        hide: true
+    },
+    {
+        flex: 1,
+        field: "use_specific_day",
+        hide: true
+    },
+    {
+        flex: 1,
         field: "2",
         headerName: "Thời gian áp dụng",
         sortable: false,
-        renderCell: (params) => (
-            <div></div>
-        )
+        renderCell: (params) => {
+            return (
+                <div>
+                    {params.row.use_day_range && (<div style={{ flex: 1, textAlign: "center" }}>{dayjs(params.row.day_range.from).format(DateFormat)} - {dayjs(params.row.day_range.to).format(DateFormat)}</div>)}
+                    {params.row.use_specific_day && (<Stack direction={"row"} flexWrap={"wrap"} gap={1} spacing={1}>
+                        {params.row.day_applied.dates.map(date => <div className="apply_for_item " key={date}>{date}</div>)}
+                    </Stack>)}
+                </div>
+            )
+        }
     },
     {
         flex: 1,
