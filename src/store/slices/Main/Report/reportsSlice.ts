@@ -38,6 +38,12 @@ export type CheckAttendanceResult = {
   is_check_out_soon: boolean;
 };
 
+export enum CheckAttendanceResultStatus {
+  attendanceOnTime = 1,
+  notAttendance = 3,
+  error = 6,
+}
+
 const reportsSlice = createSlice({
   name: "reports",
   initialState: {

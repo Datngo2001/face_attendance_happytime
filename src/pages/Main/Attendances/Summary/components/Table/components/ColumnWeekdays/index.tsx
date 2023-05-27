@@ -1,14 +1,23 @@
+import { CheckAttendanceResult, CheckAttendanceResultStatus } from "store/slices/Main/Report/reportsSlice";
 import "./styles.scss";
+import { useMemo } from "react";
 
 export type Props = {
-    isAttendance: boolean
-    workCount: number
+    checkAttendanceResult: CheckAttendanceResult
     morning?: number
     afternoon?: number
     isDayOff: boolean
 }
 
-const ColumnWeekdays: React.FC<Props> = ({ isAttendance = false, workCount = 0, morning = 6, afternoon = 6, isDayOff = false }) => {
+const ColumnWeekdays: React.FC<Props> = ({ checkAttendanceResult, morning = 6, afternoon = 6, isDayOff = false }) => {
+
+    const checkAttendanceResultStatus = useMemo(() => {
+        if (!checkAttendanceResult) {
+            return CheckAttendanceResultStatus.notAttendance
+        }
+        return CheckAttendanceResultStatus.attendanceOnTime
+    }, [checkAttendanceResult])
+
     return (
         <>
             <div
@@ -17,9 +26,9 @@ const ColumnWeekdays: React.FC<Props> = ({ isAttendance = false, workCount = 0, 
             >
                 {!isDayOff && (
                     <>
-                        <div className="morning">
-                            {/* <span className="label">SA</span> */}
-                            <div className={`icon type-${morning}`}></div>
+                        <div className="content">
+                            <span className="label">{checkAttendanceResult?.work_count ?? 0}</span>
+                            <div className={`icon type-${checkAttendanceResultStatus}`}></div>
                         </div>
                         {/* <div className="afternoon">
                             <span className="label">CH</span>

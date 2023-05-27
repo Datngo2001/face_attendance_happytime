@@ -36,17 +36,13 @@ function getDateColumns(startDate: Dayjs, endDate: Dayjs): GridColumns {
     const result: GridColumns = []
 
     for (let date = startDate; date <= endDate; date = date.add(1, "day")) {
-
         const isDayOff = (convertDayToNameDay({ type: 2, day: date.day(), }) === "sunday")
             || (convertDayToNameDay({ type: 2, day: date.day(), }) === "saturday")
 
         const dateString = date.format(DateFormat)
 
         result.push({
-            field: convertDayToNameDay({
-                type: 2,
-                day: date.day(),
-            }),
+            field: date.format(DateFormat),
             renderHeader: () => {
                 return <HeaderWeekdays day={date.day()} date={date.format("DD/MM")} />;
             },
@@ -57,8 +53,7 @@ function getDateColumns(startDate: Dayjs, endDate: Dayjs): GridColumns {
                 const result = params.row.check_attendance_results?.find(x => x.attendance_date === dateString)
                 return (
                     <ColumnWeekdays
-                        isAttendance={result !== null}
-                        workCount={result?.work_count ?? 0}
+                        checkAttendanceResult={result}
                         isDayOff={isDayOff}
                     />
                 );
