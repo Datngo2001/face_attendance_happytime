@@ -27,7 +27,7 @@ export const CreateDefaultValues: Employee = {
   stop_working_date: 0,
   tenant_id: "",
   graduation_date: 0,
-  gender: "",
+  gender: null,
   married_status: "",
   education_type: "",
   issued_date: 0,

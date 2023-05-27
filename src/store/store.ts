@@ -12,6 +12,7 @@ import {
 } from "./slices";
 import { globalSlice } from "./slices/Global/globalSlice";
 import attendanceSettingsSlice from "./slices/Main/Attendance-settings/attendanceSettingsSlice";
+import reportsSlice from "./slices/Main/Report/reportsSlice";
 
 const store = configureStore({
   reducer: {
@@ -26,6 +27,7 @@ const store = configureStore({
     shifts: shiftsSlice.reducer,
     departments: departmentsSlice.reducer,
     shiftAssignments: shiftAssignmentsSlice.reducer,
+    reports: reportsSlice.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

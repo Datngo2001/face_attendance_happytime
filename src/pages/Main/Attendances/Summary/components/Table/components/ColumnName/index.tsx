@@ -1,6 +1,12 @@
 import "./styles.scss";
 import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
 
+export type Props = {
+    img: string
+    name: string
+    id: string
+}
+
 const ColumnName = ({ img, name, id }) => {
     return (
         <>

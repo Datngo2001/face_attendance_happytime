@@ -5,6 +5,7 @@ import dayjs from "dayjs";
 import ButtonCustom from "components/ButtonCustom";
 import InputCustom from "components/InputCustom";
 import DatePickerCustom from "components/InputDate/DatePickerCustom";
+import DateRangePickerCustom from "components/InputDate/DateRangePickerCustom";
 
 export type Props = {
   control: any;
@@ -13,8 +14,6 @@ export type Props = {
 }
 
 const ControlPanel: React.FC<Props> = ({ control, setValue, trigger }) => {
-  // VARIABLES
-  const today = dayjs(new Date().toString()).format("DD/MM/YYYY");
   return (
     <>
       <div className="attendances--summary--control-panel__wrapper">
@@ -31,17 +30,20 @@ const ControlPanel: React.FC<Props> = ({ control, setValue, trigger }) => {
         </div>
         <div className="attendances--summary--control-panel__body">
           <InputCustom
-            name="searchData"
+            name="agent_id"
             control={control}
             placeholder="Nhập tên nhân viên, mã nhân viên"
             iconRight={<SearchRoundedIcon />}
           />
           <div style={{ width: "100%", height: "20px" }}></div>
-          <DatePickerCustom
-            name="timeStart"
-            width="250px"
+          <DateRangePickerCustom
+            name="date_range"
+            fromName={"from"}
+            toName={"to"}
+            width="500px"
             control={control}
-            placeholder="Chọn ngày bắt đầu"
+            fromLabel="Chọn ngày bắt đầu"
+            toLabel="Chọn ngày kết thúc"
           />
         </div>
         <div className="attendances--summary--control-panel__footer">

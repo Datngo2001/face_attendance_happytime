@@ -1,7 +1,12 @@
 import { convertDayToNameDay } from "../../../../../../../../utils/convertFunctions";
 import "./styles.scss";
 
-const HeaderWeekdays = ({ day, date }) => {
+export type Props = {
+    day: number
+    date: string
+}
+
+const HeaderWeekdays: React.FC<Props> = ({ day, date }) => {
     // VARIABLES
     const nameDay = convertDayToNameDay({
         day: day,
@@ -11,9 +16,8 @@ const HeaderWeekdays = ({ day, date }) => {
     return (
         <>
             <div
-                className={`attendances--summary--table--header-weekdays__wrapper ${
-                    day === 6 || day === 0 ? "opacity" : ""
-                }`}
+                className={`attendances--summary--table--header-weekdays__wrapper ${day === 6 || day === 0 ? "opacity" : ""
+                    }`}
             >
                 <p className="weekdays">{nameDay}</p>
                 <span>-</span>

@@ -1,22 +1,41 @@
-import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
-import { updateTimeStart } from "../../../../store/slices/Main/Attendances/attendancesSlice";
 import ControlPanel from "./components/ControlPanel";
-import Table from "./components/Table";
 import "./styles.scss";
+import { useEffect } from "react";
+import useThrottle from "hooks/useThrottle";
+import { useAppDispatch } from "hooks/useAppDispatch";
+import { ReportSearchParams } from "store/slices/Main/Report/reportsSlice";
+import { extraReducersGetListReport } from "store/slices/Main/Report/actions/extraReducers";
+import Table from "./components/Table";
+
+const defaultParams = {
+  agent_id: "",
+  date_range: {
+    from: Date.now(),
+    to: null,
+  },
+  page: 0,
+  size: parseInt(process.env.REACT_APP_PAGE_SIZE),
+} as ReportSearchParams
 
 const Summary = () => {
-  // REACT HOOOK FORM
-  const { control, setValue, trigger, watch } = useForm({ mode: "onChange" });
-  // ****************************
+  const { control, setValue, getValues, trigger, watch } = useForm({
+    defaultValues: defaultParams
+  });
+  const dispatch = useAppDispatch();
+  const searchParams = watch();
 
-  // HOOK EFFECT
+  const handleSearch = useThrottle(() => {
+    dispatch(extraReducersGetListReport(getValues()))
+  }, 500)
+
   useEffect(() => {
-    const subscription = watch((value) => console.log("data", value));
-    return () => subscription.unsubscribe();
-  }, [watch]);
-  // ****************************
+    handleSearch();
+  }, [searchParams])
+
+  useEffect(() => {
+    dispatch(extraReducersGetListReport(getValues()))
+  }, [])
 
   return (
     <>
@@ -26,6 +45,7 @@ const Summary = () => {
           setValue={setValue}
           trigger={trigger}
         />
+        <Table watch={watch} control={control} />
       </div>
     </>
   );

@@ -50,7 +50,7 @@ export type Employee = {
   stop_working_date?: number;
   tenant_id?: string;
   graduation_date?: number;
-  gender?: string;
+  gender?: Gender;
   married_status?: string;
   education_type?: string;
   issued_date?: number;
@@ -63,6 +63,11 @@ export type Employee = {
   company_name?: string;
   position_id?: string;
 };
+
+export enum Gender {
+  Female = "1",
+  Male = "2",
+}
 
 const employeesSlice = createSlice({
   name: "employees",
