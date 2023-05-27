@@ -20,6 +20,7 @@ import { extraReducersGetListShifts } from 'store/slices/Main/Shifts/actions/ext
 import { extraReducersCreateShiftAssignment, extraReducersUpdateShiftAssignment } from 'store/slices/Main/ShiftAssignments/actions/extraReducers'
 import { useNavigate } from 'react-router-dom'
 import useConfirmMoldal from 'hooks/useConfirmMoldal'
+import { getWorkingTime } from 'utils/shiftScheduleUtil'
 
 export type Props = {
     shiftAssignment?: ShiftAssignment
@@ -57,7 +58,7 @@ const ShiftAssignmentForm: React.FC<Props> = ({ action = FormAction.CREATE, shif
         }))
     }, [])
 
-    const { control, trigger, watch, handleSubmit, setValue } = useCRUDForm({
+    const { control, trigger, watch, handleSubmit, setValue, setError, clearErrors, formState } = useCRUDForm({
         defaultValues: action === FormAction.CREATE ? defaulValues : shiftAssignment,
         validationSchema: schema
     });
@@ -76,6 +77,7 @@ const ShiftAssignmentForm: React.FC<Props> = ({ action = FormAction.CREATE, shif
     }
 
     const handelSubmitCreate = (data) => {
+        debugger
         dispatch(extraReducersCreateShiftAssignment({ data, onSuccess: () => navigate("../shift-assignments") }))
     }
 
@@ -108,6 +110,8 @@ const ShiftAssignmentForm: React.FC<Props> = ({ action = FormAction.CREATE, shif
                     (<Step2 nextStep={nextStep}
                         action={action}
                         watch={watch}
+                        setError={setError}
+                        clearErrors={clearErrors}
                         control={control}
                         setValue={setValue}
                         handleSubmit={handleSubmit(FormAction.CREATE ? handelSubmitCreate : handelSubmitUpdate)}
@@ -142,7 +146,8 @@ function getEmployeeSelectOptions(employees: Employee[]): SelectBoxOption[] {
 function getShiftSelectOptions(shifts: ShiftSchedule[]): SelectBoxOption[] {
     return shifts.map(shift => ({
         id: shift._id,
-        name: shift.name
+        name: shift.name,
+        subLabel: getWorkingTime(shift)
     } as SelectBoxOption))
 }
 

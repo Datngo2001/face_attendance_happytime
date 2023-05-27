@@ -6,6 +6,7 @@ import { ShiftTypeName } from "store/slices/Main/Shifts/shiftsSlice";
 import RowOptions from "../RowOptions";
 import dayjs from "dayjs";
 import { DataFormat, ViewFormat } from "components/InputTime/default";
+import { getWorkingTime } from "utils/shiftScheduleUtil";
 
 export const getColumns = (updateStatus): GridColumns => ([
     {
@@ -43,16 +44,7 @@ export const getColumns = (updateStatus): GridColumns => ([
         sortable: false,
         renderCell: (params) => {
             return <div className="column-working-time">
-                {params.row.shift_type.name === ShiftTypeName.OFFICE.toString() &&
-                    <span>
-                        {dayjs(params.row.morning_working_time.from, DataFormat).format(ViewFormat)} - {dayjs(params.row.afternoon_working_time.to, DataFormat).format(ViewFormat)}
-                    </span>
-                }
-                {params.row.shift_type.name === ShiftTypeName.SINGLE.toString() &&
-                    <span>
-                        {dayjs(params.row.working_time.from, DataFormat).format(ViewFormat)} - {dayjs(params.row.working_time.to, DataFormat).format(ViewFormat)}
-                    </span>
-                }
+                <span>{getWorkingTime(params.row)}</span>
             </div>;
         },
     },

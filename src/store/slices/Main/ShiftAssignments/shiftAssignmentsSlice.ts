@@ -102,7 +102,8 @@ export type ShiftAssignment = {
     days: number[];
   };
   day_applied: {
-    shifts: Shift[];
+    shift_ids: string[];
+    dates: string[];
     use_same_shift: boolean;
     use_separate_shift: boolean;
   };

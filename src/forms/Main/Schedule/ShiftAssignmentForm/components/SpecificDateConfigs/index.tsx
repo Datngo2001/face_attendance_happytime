@@ -4,15 +4,20 @@ import DatePickerCustom from 'components/InputDate/DatePickerCustom'
 import RadioGroupCustom, { RadioItem } from 'components/RadioGroupCustom'
 import SelectCustom, { SelectBoxOption } from 'components/SelectCustom'
 import { FormAction } from 'forms/formAction'
+import useThrottle from 'hooks/useThrottle'
 import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { DateApply, Shift } from 'store/slices/Main/ShiftAssignments/shiftAssignmentsSlice'
+import { validateShift_ids } from 'utils/shiftScheduleUtil'
 
 export type Props = {
     watch: any
     setValue: any
     shiftSelectOptions: SelectBoxOption[]
     action: FormAction
+    setError: any
+    clearErrors: any
+    control: any
 }
 
 const radioItems: RadioItem[] = [
@@ -26,66 +31,28 @@ const radioItems: RadioItem[] = [
     }
 ]
 
-const SpecificDateConfig: React.FC<Props> = ({ watch, setValue, shiftSelectOptions, action }) => {
-    var shifts = watch("day_applied.shifts");
+const SpecificDateConfig: React.FC<Props> = ({ watch, setValue, shiftSelectOptions, setError, clearErrors, action, control }) => {
     var day_applied = watch("day_applied");
 
     const { control: subFormControl, watch: subFormWatch, setValue: subFormSetValue } = useForm({
         defaultValues: {
             selectedDate: "",
-            dateApply: DateApply.use_same_shift,
-            selectedShifts: []
         }
     });
 
     var selectedDate = subFormWatch("selectedDate")
-    var dateApply = subFormWatch("dateApply")
-    var selectedShifts = subFormWatch("selectedShifts")
-
-    useEffect(() => {
-        if (day_applied.use_same_shift) {
-            subFormSetValue("dateApply", DateApply.use_same_shift)
-            subFormSetValue("selectedShifts", day_applied.shifts[0]?.shift_ids)
-        } else if (day_applied.use_separate_shift) {
-            subFormSetValue("dateApply", DateApply.use_separate_shift)
-        }
-
-    }, [day_applied])
 
     useEffect(() => {
         if (selectedDate) {
-            if (!shifts.find(x => x.date === selectedDate)) {
-                let newShift = {
-                    date: selectedDate.toString(),
-                    shift_ids: []
-                } as Shift;
-                setValue("day_applied.shifts", [...shifts, newShift])
+            if (!day_applied.dates.find(x => x.date === selectedDate)) {
+                setValue("day_applied.dates", [...day_applied.dates, selectedDate])
             }
             subFormSetValue("selectedDate", null)
         }
     }, [selectedDate])
 
-    useEffect(() => {
-        if (dateApply === DateApply.use_same_shift) {
-            setValue("day_applied.use_same_shift", true)
-            setValue("day_applied.use_separate_shift", false)
-        } else if (dateApply === DateApply.use_separate_shift) {
-            setValue("day_applied.use_same_shift", false)
-            setValue("day_applied.use_separate_shift", true)
-        }
-    }, [dateApply])
-
-    useEffect(() => {
-        if (dateApply === DateApply.use_same_shift) {
-            setValue("day_applied.shifts", shifts.map(shift => ({
-                ...shift,
-                shift_ids: selectedShifts
-            })))
-        }
-    }, [selectedShifts])
-
-    const handleShiftDelete = (date) => {
-        setValue("day_applied.shifts", shifts.filter(x => x.date !== date))
+    const handleDateDelete = (date) => {
+        setValue("day_applied.dates", day_applied.dates.filter(x => x !== date))
     }
 
     return (
@@ -95,11 +62,11 @@ const SpecificDateConfig: React.FC<Props> = ({ watch, setValue, shiftSelectOptio
                 control={subFormControl}
                 disabled={action === FormAction.UPDATE} />
             <Stack direction="row" flexWrap={"wrap"} gap={2} overflow={"auto"}>
-                {shifts && shifts.map((shift, index) => (
+                {day_applied.dates.map((date, index) => (
                     <ChipCustom
-                        key={shift.date}
-                        label={shift.date}
-                        onDelete={() => handleShiftDelete(shift.date)}
+                        key={date}
+                        label={date}
+                        onDelete={() => handleDateDelete(date)}
                         disabled={action === FormAction.UPDATE} />
                 ))}
             </Stack>
@@ -110,17 +77,16 @@ const SpecificDateConfig: React.FC<Props> = ({ watch, setValue, shiftSelectOptio
                 items={radioItems}
                 disabled={action === FormAction.UPDATE} /> */}
 
-            {dateApply === DateApply.use_same_shift && (
-                <SelectCustom
-                    isMultiple
-                    required
-                    control={subFormControl}
-                    label='Chọn ca làm việc'
-                    placeholder='Chọn ca làm việc'
-                    name={'selectedShifts'}
-                    options={shiftSelectOptions}
-                    disabled={action === FormAction.UPDATE} />
-            )}
+            <SelectCustom
+                isMultiple
+                required
+                useCheckBox
+                control={control}
+                label='Chọn ca làm việc'
+                placeholder='Chọn ca làm việc'
+                name='day_applied.shift_ids'
+                options={shiftSelectOptions}
+                disabled={action === FormAction.UPDATE} />
         </Stack>
     )
 }

@@ -30,6 +30,7 @@ export type Props = {
 export type SelectBoxOption = {
     id: string | number;
     name: string;
+    subLabel?: string;
 }
 
 const SelectCustom: React.FC<Props> = ({
@@ -123,6 +124,7 @@ const SelectCustom: React.FC<Props> = ({
                                     <MenuItem value={option.id} key={option.id}>
                                         {useCheckBox && <CheckboxCustom className="multi-select-checkbox" checked={isMultiple ? value.includes(option.id) : (value === option.id)} />}
                                         {option.name}
+                                        {option.subLabel && `   (${option.subLabel})`}
                                     </MenuItem>
                                 );
                             })}

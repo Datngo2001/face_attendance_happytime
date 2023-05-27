@@ -1,10 +1,12 @@
 import { Stack } from '@mui/system'
 import DateRangePickerCustom from 'components/InputDate/DateRangePickerCustom'
 import { FormAction } from 'forms/formAction'
-import React from 'react'
+import React, { useEffect } from 'react'
 import "./styles.scss"
 import CheckboxCustom from 'components/CheckboxCustom/CheckboxCustom'
 import SelectCustom, { SelectBoxOption } from 'components/SelectCustom'
+import useThrottle from 'hooks/useThrottle'
+import { validateShift_ids } from 'utils/shiftScheduleUtil'
 
 export type Props = {
     control: any
@@ -12,9 +14,11 @@ export type Props = {
     watch: any
     setValue: any
     shiftSelectOptions: SelectBoxOption[]
+    setError: any
+    clearErrors: any
 }
 
-const DateRangeConfig: React.FC<Props> = ({ control, action, watch, setValue, shiftSelectOptions }) => {
+const DateRangeConfig: React.FC<Props> = ({ control, action, watch, setError, clearErrors, setValue, shiftSelectOptions }) => {
     const days = watch("day_range.days");
 
     const handleDaysChange = (day) => {
@@ -61,6 +65,7 @@ const DateRangeConfig: React.FC<Props> = ({ control, action, watch, setValue, sh
             <SelectCustom
                 isMultiple
                 required
+                useCheckBox
                 control={control}
                 label='Chọn ca làm việc'
                 placeholder='Chọn ca làm việc'

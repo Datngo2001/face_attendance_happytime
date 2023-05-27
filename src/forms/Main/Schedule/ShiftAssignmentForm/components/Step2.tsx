@@ -17,9 +17,11 @@ export type Props = {
     watch: any
     shiftSelectOptions: SelectBoxOption[]
     onCancel: any
+    setError: any
+    clearErrors: any
 }
 
-const Step2: React.FC<Props> = ({ nextStep, handleSubmit, control, setValue, watch, shiftSelectOptions, action, onCancel }) => {
+const Step2: React.FC<Props> = ({ nextStep, handleSubmit, control, setValue, watch, setError, clearErrors, shiftSelectOptions, action, onCancel }) => {
     const timeApply = watch("timeApply")
 
     useEffect(() => {
@@ -56,11 +58,13 @@ const Step2: React.FC<Props> = ({ nextStep, handleSubmit, control, setValue, wat
                 </div>
 
                 {timeApply === TimeApply.use_day_range && (
-                    <DateRangeConfig watch={watch} setValue={setValue} control={control} action={action} shiftSelectOptions={shiftSelectOptions} />
+                    <DateRangeConfig watch={watch} setValue={setValue} control={control} action={action} setError={setError} clearErrors={clearErrors}
+                        shiftSelectOptions={shiftSelectOptions} />
                 )}
 
                 {timeApply === TimeApply.use_specific_day && (
-                    <SpecificDateConfig watch={watch} setValue={setValue} shiftSelectOptions={shiftSelectOptions} action={action} />
+                    <SpecificDateConfig control={control} watch={watch} setValue={setValue} setError={setError} clearErrors={clearErrors}
+                        shiftSelectOptions={shiftSelectOptions} action={action} />
                 )}
 
                 <ModalActionCustom

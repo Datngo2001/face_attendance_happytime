@@ -24,7 +24,8 @@ export const defaulValues: ShiftAssignment = {
     days: [],
   },
   day_applied: {
-    shifts: [],
+    shift_ids: [],
+    dates: [],
     use_same_shift: true,
     use_separate_shift: false,
   },
