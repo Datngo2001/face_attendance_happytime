@@ -8,21 +8,7 @@ import CreateShiftModal from '../CreateShiftModal';
 import { useAppSelector } from 'hooks/useAppSelector';
 import { useAppDispatch } from 'hooks/useAppDispatch';
 import { extraReducersGetListShiftTypes } from 'store/slices/Main/Shifts/actions/extraReducers';
-
-const shiftStatusOptions: SelectBoxOption[] = [
-    {
-        id: "ALL",
-        name: "Tất cả"
-    },
-    {
-        id: "true",
-        name: "Đang hoạt động"
-    },
-    {
-        id: "false",
-        name: "Không hoạt động"
-    }
-]
+import { statusActiveOptions } from 'utils/selectBoxOptions';
 
 export type Props = {
     control: any
@@ -55,7 +41,7 @@ const ShiftSearchPannel: React.FC<Props> = ({ control }) => {
                 className="input-item"
                 control={control}
                 placeholder="Trạng thái hoạt động"
-                options={shiftStatusOptions}
+                options={statusActiveOptions}
             />
             <SelectCustom
                 name="shiftType"
@@ -65,7 +51,7 @@ const ShiftSearchPannel: React.FC<Props> = ({ control }) => {
                 options={shiftTypeOptions}
             />
             <InputCustom
-                name='codeOrName'
+                name='keyword'
                 iconRight={<SearchRoundedIcon />}
                 className="input-item"
                 placeholder="Nhập tên ca làm việc, mã ca"

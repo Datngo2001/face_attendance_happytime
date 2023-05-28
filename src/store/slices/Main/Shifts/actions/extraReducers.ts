@@ -1,13 +1,17 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { api } from "config/api";
 import { toastPromise } from "utils";
+import { ShiftSeachParams } from "../shiftsSlice";
 
 export const extraReducersGetListShifts = createAsyncThunk(
   "getListShifts",
-  async ({ page, size, params }: any) => {
+  async (params: ShiftSeachParams) => {
     console.log(params);
     return api
-      .post(`/api/shift_schedule/search?page=${page}&size=${size}`, {})
+      .post(
+        `/api/shift_schedule/search?page=${params.page}&size=${params.size}`,
+        params
+      )
       .then((response: any) => {
         return {
           payload: response.payload,

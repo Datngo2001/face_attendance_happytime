@@ -6,13 +6,13 @@ import React, { useEffect } from 'react'
 import { extraReducersGetListShifts, extraReducersUpdateShiftStatus } from 'store/slices/Main/Shifts/actions/extraReducers';
 import { getColumns } from './components';
 import useConfirmMoldal from 'hooks/useConfirmMoldal';
+import { FormPaginationCustom } from 'components/PaginationCustom/FormPaginationCustom';
 
 export type Props = {
-    page: number
-    setPage: any
+    control: any
 }
 
-const ShiftTable: React.FC<Props> = ({ page, setPage }) => {
+const ShiftTable: React.FC<Props> = ({ control }) => {
     const { openConfirmModal } = useConfirmMoldal();
 
     // HOOK REACT TOOLKIT
@@ -22,14 +22,6 @@ const ShiftTable: React.FC<Props> = ({ page, setPage }) => {
     const dispatch = useAppDispatch();
     // ******************************
 
-    useEffect(() => {
-        dispatch(
-            extraReducersGetListShifts({
-                page: page,
-                size: process.env.REACT_APP_PAGE_SIZE,
-            })
-        );
-    }, []);
 
     const updateStatus = (id, value) => {
         openConfirmModal("Xác nhận", "Bạn có muốn cập nhật trạng thái cho ca làm việc này không ?", () => {
@@ -63,11 +55,7 @@ const ShiftTable: React.FC<Props> = ({ page, setPage }) => {
                         borderTop: "1px solid #eeeeee",
                     }}
                 >
-                    <PaginationCustom
-                        page={page}
-                        setPage={setPage}
-                        totalPages={totalPages}
-                    />
+                    <FormPaginationCustom control={control} name={'page'} totalPages={totalPages} />
                 </div>
             )}
         </div >

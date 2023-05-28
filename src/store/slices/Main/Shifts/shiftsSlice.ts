@@ -25,6 +25,14 @@ export enum ShiftTypeName {
   UNKNOW = "UNKNOW",
 }
 
+export type ShiftSeachParams = {
+  is_enabled: string;
+  shift_type: { id: string };
+  keyword: string;
+  page: number;
+  size: number;
+};
+
 export type Shift = {
   _id?: string;
   name: string;

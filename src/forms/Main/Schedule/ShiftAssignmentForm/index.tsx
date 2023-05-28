@@ -2,7 +2,7 @@ import StepperCustom, { StepItem } from 'components/StepperCustom'
 import { FormAction } from 'forms/formAction'
 import React, { useEffect, useState } from 'react'
 import { ShiftAssignment } from 'store/slices/Main/ShiftAssignments/shiftAssignmentsSlice'
-import { Shift as ShiftSchedule } from 'store/slices/Main/Shifts/shiftsSlice'
+import { Shift as ShiftSchedule, ShiftSeachParams } from 'store/slices/Main/Shifts/shiftsSlice'
 import Step1 from './components/Step1'
 import Step2 from './components/Step2'
 import useCRUDForm from 'hooks/useCRUDForm'
@@ -54,11 +54,11 @@ const ShiftAssignmentForm: React.FC<Props> = ({ action = FormAction.CREATE, shif
         } as EmployeeSearchParams));
         dispatch(extraReducersGetListShifts({
             page: 0,
-            size: process.env.REACT_APP_PAGE_SIZE
-        }))
+            size: parseInt(process.env.REACT_APP_PAGE_SIZE)
+        } as ShiftSeachParams))
     }, [])
 
-    const { control, trigger, watch, handleSubmit, setValue, setError, clearErrors, formState } = useCRUDForm({
+    const { control, trigger, watch, handleSubmit, setValue, setError, clearErrors } = useCRUDForm({
         defaultValues: action === FormAction.CREATE ? defaulValues : shiftAssignment,
         validationSchema: schema
     });

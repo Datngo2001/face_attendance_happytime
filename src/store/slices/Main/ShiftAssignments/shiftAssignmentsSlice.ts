@@ -83,6 +83,11 @@ export const monthRepeatMethodSelectOptions: SelectBoxOption[] = [
   },
 ];
 
+export type ShiftAssignmentSearchParam = {
+  page: number;
+  size: number;
+};
+
 export type ShiftAssignment = {
   _id?: string;
   name: string;

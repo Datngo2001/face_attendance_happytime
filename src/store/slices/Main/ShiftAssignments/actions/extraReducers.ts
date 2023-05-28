@@ -1,13 +1,16 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { api } from "config/api";
 import { toastPromise } from "utils";
+import { ShiftAssignmentSearchParam } from "../shiftAssignmentsSlice";
 
 export const extraReducersGetListShiftAssignments = createAsyncThunk(
   "getListShiftAssignments",
-  async ({ page, size, params }: any) => {
-    console.log(params);
+  async (params: ShiftAssignmentSearchParam) => {
     return api
-      .post(`/api/shift_assignment/search?page=${page}&size=${size}`, {})
+      .post(
+        `/api/shift_assignment/search?page=${params.page}&size=${params.size}`,
+        {}
+      )
       .then((response: any) => {
         return {
           payload: response.payload,

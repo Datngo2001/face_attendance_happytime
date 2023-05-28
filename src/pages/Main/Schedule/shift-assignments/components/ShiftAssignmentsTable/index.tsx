@@ -1,19 +1,22 @@
 import ButtonCustom from 'components/ButtonCustom'
 import DataGridCustom from 'components/DataGridCustom'
-import PaginationCustom from 'components/PaginationCustom'
 import { useAppDispatch } from 'hooks/useAppDispatch'
 import { useAppSelector } from 'hooks/useAppSelector'
 import useConfirmMoldal from 'hooks/useConfirmMoldal'
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { extraReducersDeleteShiftAssignment, extraReducersGetListShiftAssignments } from 'store/slices/Main/ShiftAssignments/actions/extraReducers'
+import { extraReducersDeleteShiftAssignment } from 'store/slices/Main/ShiftAssignments/actions/extraReducers'
 import { getColumns } from './component'
 import { LabelResult, getEmployeeNames } from 'utils/getLabelUtil'
 import { extraReducersGetDepartmentAndPositionList } from 'store/slices/Main/Departments/actions/extraReducers'
+import { FormPaginationCustom } from 'components/PaginationCustom/FormPaginationCustom'
 
-export type Props = {}
+export type Props = {
+    control: any
+    handleSearch: any
+}
 
-const ShiftAssignmentsTable: React.FC<Props> = () => {
+const ShiftAssignmentsTable: React.FC<Props> = ({ control, handleSearch }) => {
     const navigate = useNavigate();
     const { openConfirmModal } = useConfirmMoldal();
     const [employeeLabels, setEmployeeLabels] = useState<LabelResult[]>([])
@@ -25,14 +28,8 @@ const ShiftAssignmentsTable: React.FC<Props> = () => {
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        dispatch(
-            extraReducersGetListShiftAssignments({
-                page: 0,
-                size: process.env.REACT_APP_PAGE_SIZE,
-            })
-        );
-
-    }, [lastDeleteSuccess]);
+        handleSearch()
+    }, [lastDeleteSuccess])
 
     useEffect(() => {
         dispatch(extraReducersGetDepartmentAndPositionList());
@@ -76,11 +73,7 @@ const ShiftAssignmentsTable: React.FC<Props> = () => {
                         borderTop: "1px solid #eeeeee",
                     }}
                 >
-                    <PaginationCustom
-                        page={1}
-                        setPage={() => { }}
-                        totalPages={totalPages}
-                    />
+                    <FormPaginationCustom control={control} totalPages={totalPages} name={'page'} />
                 </div>
             )}
         </div>

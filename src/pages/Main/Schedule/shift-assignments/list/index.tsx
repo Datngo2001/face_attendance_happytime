@@ -1,16 +1,40 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import "./styles.scss"
 import ShiftAssignmentsSearchPannel from '../components/ShiftAssignmentsSearchPannel';
 import ShiftAssignmentsTable from '../components/ShiftAssignmentsTable';
+import { useAppDispatch } from 'hooks/useAppDispatch';
+import { useForm } from 'react-hook-form';
+import { ShiftAssignmentSearchParam } from 'store/slices/Main/ShiftAssignments/shiftAssignmentsSlice';
+import useThrottle from 'hooks/useThrottle';
+import { extraReducersGetListShiftAssignments } from 'store/slices/Main/ShiftAssignments/actions/extraReducers';
+
+const defaultParams = {
+    page: 0,
+    size: parseInt(process.env.REACT_APP_PAGE_SIZE),
+} as ShiftAssignmentSearchParam
 
 const ShiftAssignmentsList: React.FC = () => {
+    const { control, getValues, watch, } = useForm({
+        defaultValues: defaultParams
+    });
+
+    const dispatch = useAppDispatch();
+    const searchParams = watch();
+
+    const handleSearch = useThrottle(() => {
+        dispatch(extraReducersGetListShiftAssignments(getValues()))
+    }, 500)
+
+    useEffect(() => {
+        handleSearch();
+    }, [searchParams])
 
     return (
         <>
             <div className="shift-assignments__wrapper">
                 <div className="content-title">Phân ca</div>
-                <ShiftAssignmentsSearchPannel />
-                <ShiftAssignmentsTable />
+                <ShiftAssignmentsSearchPannel control={control} />
+                <ShiftAssignmentsTable control={control} handleSearch={handleSearch} />
             </div>
         </>
     );

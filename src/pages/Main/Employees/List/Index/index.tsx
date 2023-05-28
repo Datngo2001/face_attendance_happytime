@@ -35,7 +35,6 @@ const Index = () => {
     const searchParams = watch();
 
     const handleSearch = useThrottle(() => {
-        console.log(getValues())
         dispatch(extraReducersGetListEmployees(getValues()))
     }, 500)
 
@@ -44,7 +43,6 @@ const Index = () => {
     }, [searchParams])
 
     useEffect(() => {
-        dispatch(extraReducersGetListEmployees(getValues()))
         dispatch(extraReducersGetDepartments())
     }, [])
 

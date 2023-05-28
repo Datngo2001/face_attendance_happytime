@@ -1,8 +1,10 @@
 import React from 'react'
 
-export type Props = {}
+export type Props = {
+    control: any
+}
 
-const ShiftAssignmentsSearchPannel: React.FC<Props> = () => {
+const ShiftAssignmentsSearchPannel: React.FC<Props> = ({ control }) => {
     return (
         <div></div>
     )
