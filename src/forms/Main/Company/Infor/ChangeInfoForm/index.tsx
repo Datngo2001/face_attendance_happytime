@@ -15,7 +15,7 @@ import LoadingCustom from "components/LoadingCustom";
 import InputFile from "components/InputFile";
 import InputCustom from "components/InputCustom";
 import SelectCustom from "components/SelectCustom";
-import { listScales } from "utils/ListData";
+import { listScales } from "utils/selectBoxOptions";
 import InputNote from "components/InputNote";
 import ButtonCustom from "components/ButtonCustom";
 

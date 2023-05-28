@@ -4,8 +4,8 @@ import InputFile from "components/InputFile";
 import InputCustom from "components/InputCustom";
 import SelectCustom from "components/SelectCustom";
 import DatePickerCustom from "components/InputDate/DatePickerCustom";
-import { listEducation, listGender, listMarriedStatus } from "utils/ListData";
 import React from "react";
+import { educationOptions, genderOptions, marriedStatusOptions } from "store/slices/Main/Employees/employeesSlice";
 
 export type Props = {
   control: any,
@@ -54,7 +54,7 @@ const Profile: React.FC<Props> = ({
               width="100%"
               className="input-item"
               label="Học vấn"
-              options={listEducation}
+              options={educationOptions}
               placeholder="Học vấn"
             />
             <DatePickerCustom
@@ -122,7 +122,7 @@ const Profile: React.FC<Props> = ({
               className="input-item"
               label="Tình trạng hôn nhân"
               control={control}
-              options={listMarriedStatus}
+              options={marriedStatusOptions}
               placeholder="Tình trạng hôn nhân"
             />
           </div>
@@ -133,7 +133,7 @@ const Profile: React.FC<Props> = ({
               className="input-item"
               label="Giới tính"
               control={control}
-              options={listGender}
+              options={genderOptions}
               placeholder="Giới tính"
             />
             <DatePickerCustom

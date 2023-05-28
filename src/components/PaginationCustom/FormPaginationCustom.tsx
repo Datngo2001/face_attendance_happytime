@@ -4,9 +4,10 @@ import PaginationCustom from "."
 export type Props = {
     control: any
     name: string
+    totalPages?: number
 }
 
-export const FormPaginationCustom: React.FC<Props> = ({ control, name }) => {
+export const FormPaginationCustom: React.FC<Props> = ({ control, name, totalPages = 1 }) => {
     return (
         <Controller
             name={name}
@@ -24,9 +25,9 @@ export const FormPaginationCustom: React.FC<Props> = ({ control, name }) => {
                     }}
                 >
                     <PaginationCustom
-                        page={value}
-                        setPage={(page) => onChange(page)}
-                        totalPages={1}
+                        page={value + 1}
+                        setPage={(page) => onChange(page - 1)}
+                        totalPages={totalPages}
                     />
                 </div>
             )} />

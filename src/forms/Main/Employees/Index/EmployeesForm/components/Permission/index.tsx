@@ -1,7 +1,7 @@
 import SettingsRoundedIcon from "@mui/icons-material/SettingsRounded";
 import "./styles.scss";
 import SelectCustom from "components/SelectCustom";
-import { listRoles } from "utils/ListData";
+import { roleOptions } from "store/slices/Main/Employees/employeesSlice";
 
 export type Props = {
   control: any,
@@ -25,7 +25,7 @@ const Permission: React.FC<Props> = ({
               required={true}
               className="input-item"
               label="Quyền thao tác"
-              options={listRoles}
+              options={roleOptions}
               control={control}
               placeholder="Quyền thao tác"
             />

@@ -3,7 +3,6 @@ import "./styles.scss";
 import InputCustom from "components/InputCustom";
 import DatePickerCustom from "components/InputDate/DatePickerCustom";
 import SelectCustom from "components/SelectCustom";
-import { listStatusEmployees, listTypeEmployees } from "utils/ListData";
 import { FormAction } from "forms/formAction";
 import { useAppSelector } from "hooks/useAppSelector";
 import TreeViewSelectBox from "components/TreeViewSelectBox";
@@ -11,6 +10,7 @@ import { createPositionSelectOptions } from "utils/departmentUtil";
 import { useAppDispatch } from "hooks/useAppDispatch";
 import { useEffect } from "react";
 import { extraReducersGetDepartments } from "store/slices/Main/Departments/actions/extraReducers";
+import { statusEmployeesOption, typeEmployeesOptions } from "store/slices/Main/Employees/employeesSlice";
 
 export type Props = {
   control: any;
@@ -66,7 +66,7 @@ const WorkInformation = ({
               label="Trạng thái nhân sự"
               control={control}
               placeholder="Trạng thái nhân sự"
-              options={listStatusEmployees}
+              options={statusEmployeesOption}
             />
           </div>
           <div className="col">
@@ -98,7 +98,7 @@ const WorkInformation = ({
               required={true}
               control={control}
               placeholder="Loại hình nhân sự"
-              options={listTypeEmployees}
+              options={typeEmployeesOptions}
             />
           </div>
         </div>

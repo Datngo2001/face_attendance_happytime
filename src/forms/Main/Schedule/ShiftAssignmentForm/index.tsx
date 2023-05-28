@@ -14,7 +14,7 @@ import { extraReducersGetDepartmentAndPositionList } from 'store/slices/Main/Dep
 import { SelectBoxOption } from 'components/SelectCustom'
 import { Department, Position } from 'store/slices/Main/Departments/departmentsSlice'
 import { extraReducersGetListEmployees } from 'store/slices/Main/Employees/actions/extraReducers'
-import { Employee } from 'store/slices/Main/Employees/employeesSlice'
+import { Employee, EmployeeSearchParams } from 'store/slices/Main/Employees/employeesSlice'
 import "./styles.scss"
 import { extraReducersGetListShifts } from 'store/slices/Main/Shifts/actions/extraReducers'
 import { extraReducersCreateShiftAssignment, extraReducersUpdateShiftAssignment } from 'store/slices/Main/ShiftAssignments/actions/extraReducers'
@@ -50,8 +50,8 @@ const ShiftAssignmentForm: React.FC<Props> = ({ action = FormAction.CREATE, shif
         dispatch(extraReducersGetDepartmentAndPositionList());
         dispatch(extraReducersGetListEmployees({
             page: 0,
-            size: process.env.REACT_APP_PAGE_SIZE,
-        }));
+            size: parseInt(process.env.REACT_APP_PAGE_SIZE),
+        } as EmployeeSearchParams));
         dispatch(extraReducersGetListShifts({
             page: 0,
             size: process.env.REACT_APP_PAGE_SIZE

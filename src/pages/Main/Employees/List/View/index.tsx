@@ -16,7 +16,7 @@ import { useAppDispatch } from "hooks/useAppDispatch";
 import { extraReducersGetInfoEmployeeById } from "store/slices/Main/Employees/actions/extraReducers";
 import LoadingCustom from "components/LoadingCustom";
 import { convertIdToName, convertTimestampToString } from "utils/convertFunctions";
-import { listEducation, listGender, listMarriedStatus, listRoles, listStatusEmployees, listTypeEmployees } from "utils/ListData";
+import { educationOptions, genderOptions, marriedStatusOptions, roleOptions, statusEmployeesOption, typeEmployeesOptions } from "store/slices/Main/Employees/employeesSlice";
 
 const View = () => {
     const { loading, infoOfEmployee } = useAppSelector((state) => state.employees);
@@ -54,7 +54,7 @@ const View = () => {
                             department={infoOfEmployee.agent_position}
                             statusEmployee={convertIdToName({
                                 id: infoOfEmployee.agent_status,
-                                list: listStatusEmployees,
+                                list: statusEmployeesOption,
                             })}
                             statusUsingHappyTime={infoOfEmployee.is_used_happy_time}
                             startWorkingDate={convertTimestampToString(
@@ -62,7 +62,7 @@ const View = () => {
                             )}
                             typeEmployee={convertIdToName({
                                 id: infoOfEmployee.agent_type,
-                                list: listTypeEmployees,
+                                list: typeEmployeesOptions,
                             })} isRequiredTimekeeping={undefined} workBranch={undefined} />
                         <Profile
                             phoneNumber={infoOfEmployee.phone_number}
@@ -70,7 +70,7 @@ const View = () => {
                             emailCompany={infoOfEmployee.company_mail}
                             gender={convertIdToName({
                                 id: infoOfEmployee.gender,
-                                list: listGender,
+                                list: genderOptions,
                             })}
                             birthDate={convertTimestampToString(
                                 infoOfEmployee.date_of_birth
@@ -78,7 +78,7 @@ const View = () => {
                             temporaryAddress={infoOfEmployee.staying_address}
                             marriedStatus={convertIdToName({
                                 id: infoOfEmployee.married_status,
-                                list: listMarriedStatus,
+                                list: marriedStatusOptions,
                             })}
                             personalTaxCode={infoOfEmployee.personal_tax_id}
                             citizenId={infoOfEmployee.identify_id}
@@ -89,7 +89,7 @@ const View = () => {
                             )}
                             education={convertIdToName({
                                 id: infoOfEmployee.education_type,
-                                list: listEducation,
+                                list: educationOptions,
                             })}
                             school={infoOfEmployee.school_name}
                             major={infoOfEmployee.major}
@@ -105,7 +105,7 @@ const View = () => {
                         <Permission
                             role={convertIdToName({
                                 id: infoOfEmployee.role,
-                                list: listRoles,
+                                list: roleOptions,
                             })}
                         />
                         <Note

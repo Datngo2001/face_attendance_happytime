@@ -61,18 +61,6 @@ const ControlPanel: React.FC<Props> = ({ control, setValue, trigger }) => {
             <span className="description-item__icon gray"></span>
             <p className="description-item__title">Không chấm công</p>
           </div>
-          <div className="description-item">
-            <span className="description-item__icon blue-1"></span>
-            <p className="description-item__title">Có đơn từ</p>
-          </div>
-          <div className="description-item">
-            <span className="description-item__icon blue-2"></span>
-            <p className="description-item__title">Nghỉ lễ</p>
-          </div>
-          <div className="description-item">
-            <span className="description-item__icon red"></span>
-            <p className="description-item__title">Có lỗi</p>
-          </div>
         </div>
       </div>
     </>

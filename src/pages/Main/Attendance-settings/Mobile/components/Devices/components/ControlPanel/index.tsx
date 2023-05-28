@@ -4,9 +4,9 @@ import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import "./styles.scss";
 import InputCustom from "components/InputCustom";
 import SelectCustom from "components/SelectCustom";
-import { listStatusActive } from "utils/ListData";
 import { useAppDispatch } from "hooks/useAppDispatch";
 import { extraReducersGetListDeviceID } from "store/slices/Main/Attendance-settings/actions/extraReducers";
+import { statusActiveOptions } from "utils/selectBoxOptions";
 
 const ControlPanel = () => {
   const { control } = useForm();
@@ -31,7 +31,7 @@ const ControlPanel = () => {
           name="activeStatus"
           width="300px"
           control={control}
-          options={listStatusActive}
+          options={statusActiveOptions}
           placeholder="Trạng thái hoạt động"
         />
       </div>

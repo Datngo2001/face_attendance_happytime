@@ -7,12 +7,13 @@ import { useAppDispatch } from "hooks/useAppDispatch";
 import { ReportSearchParams } from "store/slices/Main/Report/reportsSlice";
 import { extraReducersGetListReport } from "store/slices/Main/Report/actions/extraReducers";
 import Table from "./components/Table";
+import dayjs from "dayjs";
 
 const defaultParams = {
   agent_id: "",
   date_range: {
-    from: Date.now(),
-    to: null,
+    from: dayjs().set("date", 1).toDate().getTime(),
+    to: dayjs().add(1, "month").set("date", 1).add(-1, "day").toDate().getTime(),
   },
   page: 0,
   size: parseInt(process.env.REACT_APP_PAGE_SIZE),

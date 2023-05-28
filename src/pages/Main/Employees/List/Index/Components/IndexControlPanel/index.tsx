@@ -1,56 +1,31 @@
 import "./styles.scss";
-import { useEffect } from "react";
-import { useForm } from "react-hook-form";
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
-import HandymanRoundedIcon from "@mui/icons-material/HandymanRounded";
 import DriveFileMoveRoundedIcon from "@mui/icons-material/DriveFileMoveRounded";
 import { InnerButtonAdd } from "../InnerButtonAdd";
 import { Tooltip } from "@mui/material";
-import { InnerButtonManipulation } from "./components";
-import useThrottle from "hooks/useThrottle";
 import { toastify } from "utils";
-import { extraReducersGetListEmployees } from "store/slices/Main/Employees/actions/extraReducers";
-import { useAppDispatch } from "hooks/useAppDispatch";
 import { useAppSelector } from "hooks/useAppSelector";
 import DropMenu from "components/DropMenu";
 import ButtonCustom from "components/ButtonCustom";
 import SelectCustom from "components/SelectCustom";
-import { listRoles, listStatusActive, listStatusEmployees, listStatusUsingHappyTime, listTypeEmployees } from "utils/ListData";
 import InputCustom from "components/InputCustom";
+import { createPositionSelectOptions } from "utils/departmentUtil";
+import TreeViewSelectBox from "components/TreeViewSelectBox";
+import { roleOptions, statusEmployeesOption, statusUsingHappyTimeOptions } from "store/slices/Main/Employees/employeesSlice";
 
-export const IndexControlPanel = () => {
-  // STATE
-  const { control, watch } = useForm({
-    defaultValues: {
-      statusActive: 1
-    }
-  });
-  const { listIdInvitation } = useAppSelector((state) => state.employees);
-  const dispatch = useAppDispatch();
-  // ******************************
+export type Props = {
+  control: any
+  setValue: any
+}
 
-  // HOOK EFFECT
-  useEffect(() => {
-    const subscription = watch((value) => handleSearch(value));
-    return () => subscription.unsubscribe();
-  }, [watch]);
-  // ******************************
+export const IndexControlPanel: React.FC<Props> = ({ control, setValue }) => {
+  const { departmentTrees } = useAppSelector((state) => state.departments);
 
-  // ARROW FUNCTION
   const handleExport = () => { };
   const handleSendInvitation = () => {
     toastify({ mess: "Gửi lời mời thành công", type: "success" });
   };
-  const handleSearch = useThrottle((query) => {
-    dispatch(
-      extraReducersGetListEmployees({
-        page: 1,
-        size: process.env.REACT_APP_PAGE_SIZE,
-      })
-    );
-  }, 500);
-  // ******************************
 
   return (
     <>
@@ -93,55 +68,94 @@ export const IndexControlPanel = () => {
           </div>
         </div>
         <form className="index__actions">
-          <SelectCustom
-            name="statusActive"
+          {/* <SelectCustom
+            name=""
             className="input-item"
             control={control}
             options={listStatusActive}
+          /> */}
+
+          <InputCustom
+            name="name"
+            iconRight={<SearchRoundedIcon />}
+            className="input-item flex-basic-25"
+            placeholder="Tên nhân viên"
+            control={control}
           />
+          <InputCustom
+            name="agent_code"
+            iconRight={<SearchRoundedIcon />}
+            className="input-item flex-basic-25"
+            placeholder="Mã nhân viên"
+            control={control}
+          />
+
+          <InputCustom
+            name="personal_mail"
+            iconRight={<SearchRoundedIcon />}
+            className="input-item flex-basic-25"
+            placeholder="Email nhân viên"
+            control={control}
+          />
+
+          <InputCustom
+            name="phone_number"
+            iconRight={<SearchRoundedIcon />}
+            className="input-item flex-basic-25"
+            placeholder="Số điện thoại nhân viên"
+            control={control}
+          />
+
           <SelectCustom
-            name="statusEmployee"
+            name="agent_status"
             className="input-item"
             control={control}
             placeholder="Trạng thái nhân sự"
-            options={listStatusEmployees}
+            options={statusEmployeesOption}
           />
-          <InputCustom
-            name="searchData"
-            iconRight={<SearchRoundedIcon />}
-            className="input-item flex-basic-25"
-            placeholder="Tên, email, số điện thoại, mã nhân viên"
-            control={control}
-          />
+
           <SelectCustom
             name="role"
             className="input-item"
             control={control}
             placeholder="Vai trò"
-            options={listRoles}
+            options={roleOptions}
           />
-          <SelectCustom
-            name="jobPositionDepartment"
+
+          {/* <SelectCustom
+            name="agent_position"
             className="input-item"
             control={control}
             placeholder="Phòng ban vị trí công việc"
             options={listRoles}
-          />
-          <SelectCustom
+          /> */}
+
+          <TreeViewSelectBox
+            className="input-item"
+            required={true}
+            placeholder="Phòng ban vị trí công việc"
+            setValue={setValue}
+            name="agent_position"
+            control={control}
+            options={departmentTrees ? createPositionSelectOptions(departmentTrees) : []} />
+
+          {/* <SelectCustom
             name="typeEmployee"
             className="input-item"
             control={control}
             placeholder="Loại hình nhân sự"
             options={listTypeEmployees}
-          />
+          /> */}
+
           <SelectCustom
-            name="statusUsingHappyTime"
+            name="is_used_happy_time"
             className="input-item flex-basic-25"
             control={control}
             placeholder="Trạng thái sử dụng HappyTime"
-            options={listStatusUsingHappyTime}
+            options={statusUsingHappyTimeOptions}
           />
-          {listIdInvitation.length > 0 && (
+
+          {/* {listIdInvitation.length > 0 && (
             <DropMenu
               parent={
                 <ButtonCustom
@@ -158,7 +172,7 @@ export const IndexControlPanel = () => {
             >
               <InnerButtonManipulation onClick={handleSendInvitation} />
             </DropMenu>
-          )}
+          )} */}
         </form>
       </div>
     </>

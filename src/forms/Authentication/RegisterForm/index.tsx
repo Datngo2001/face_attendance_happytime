@@ -22,7 +22,7 @@ import { updateStatusState } from "store/slices/Authentication/authSlice";
 import { checkExist } from "auth";
 import { extraReducersRequestOtp } from "store/slices/Authentication/Register/registerActions";
 import SelectCustom from "components/SelectCustom";
-import { listPositions, listScales } from "utils/ListData";
+import { listPositions, listScales } from "utils/selectBoxOptions";
 
 const RegisterForm = () => {
   // VARIABLES

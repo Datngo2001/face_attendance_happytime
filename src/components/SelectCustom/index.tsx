@@ -82,8 +82,11 @@ const SelectCustom: React.FC<Props> = ({
                 fieldState: { error },
             }) => (
                 <Box
-                    className={`select-custom__wrapper 
-                        ${isValidValue(value) ? "" : "selected-placeholder"} 
+                    // className={`select-custom__wrapper 
+                    //     ${isValidValue(value) ? "" : "selected-placeholder"} 
+                    //     ${error ? "error" : ""} 
+                    //     ${className}`}
+                    className={`select-custom__wrapper selected-placeholder
                         ${error ? "error" : ""} 
                         ${className}`}
                     sx={{ height: height, width: width }}
@@ -101,7 +104,6 @@ const SelectCustom: React.FC<Props> = ({
                         {icon}
                         <Select
                             multiple={isMultiple}
-                            placeholder={placeholder}
                             labelId="label"
                             open={open}
                             disabled={disabled}
@@ -114,7 +116,7 @@ const SelectCustom: React.FC<Props> = ({
                             }}
                             inputProps={{ "aria-label": "Without label" }}
                             className={`select-item ${!icon && "none-icon"} ${isMultiple && "isMultiple"}`}
-                            renderValue={selected => isMultiple ? renderMuiltiSelectOption(disabled, options, value, (id) => { debugger; onChange(value.filter(x => x !== id)) }) : options.find(x => x.id === value)?.name}
+                            renderValue={selected => isMultiple ? renderMuiltiSelectOption(disabled, options, value, (id) => onChange(value.filter(x => x !== id)), placeholder) : options.find(x => x.id === value)?.name ?? placeholder}
                         >
                             <MenuItem value={isMultiple ? [] : "null"} disabled>
                                 {placeholder}
@@ -137,15 +139,16 @@ const SelectCustom: React.FC<Props> = ({
     );
 };
 
-function renderMuiltiSelectOption(disabled: boolean, options: SelectBoxOption[], value: string[], onDelete: any = () => { }): React.ReactNode {
+function renderMuiltiSelectOption(disabled: boolean, options: SelectBoxOption[], value: string[], onDelete: any = () => { }, placeholder: string): React.ReactNode {
     var selecteds = options.filter(opt => value.includes(opt.id.toString()))
     return (
         <div className="selectbox-ship-container">
-            {selecteds.map(selected => (
+            {selecteds.length > 0 && selecteds.map(selected => (
                 <ChipCustom clickable key={selected.id}
                     deleteIcon={<CancelIcon onMouseDown={(event) => event.stopPropagation()} />}
                     label={selected.name} onDelete={disabled ? () => { } : () => onDelete(selected.id)} />
             ))}
+            {selecteds.length === 0 && (<>{placeholder}</>)}
         </div>
     )
 }

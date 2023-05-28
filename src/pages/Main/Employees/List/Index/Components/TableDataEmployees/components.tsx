@@ -4,11 +4,11 @@ import { ColumnName } from "../ColumnName";
 import ColumnRole from "../ColumnRole";
 import "./styles.scss";
 import { convertIdToName } from "utils/convertFunctions";
-import { listRoles, listStatusEmployees } from "utils/ListData";
 import DropMenu from "components/DropMenu";
 import { OptionColumn } from "components/OptionColumn";
 import { RowOptions } from "../RowOptions";
 import { GridColumns } from "@mui/x-data-grid";
+import { roleOptions, statusEmployeesOption } from "store/slices/Main/Employees/employeesSlice";
 
 export const StatusEmployee = ({ status }) => {
   // ARROW FUNCTION
@@ -99,7 +99,7 @@ export const columns: GridColumns = [
         <StatusEmployee
           status={convertIdToName({
             id: params.row.agent_status,
-            list: listStatusEmployees,
+            list: statusEmployeesOption,
           })}
         />
       );
@@ -126,7 +126,7 @@ export const columns: GridColumns = [
         <ColumnRole
           role={convertIdToName({
             id: params.row.role,
-            list: listRoles,
+            list: roleOptions,
           })}
         />
       );

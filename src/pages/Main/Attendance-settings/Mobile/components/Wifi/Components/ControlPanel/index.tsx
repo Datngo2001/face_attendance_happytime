@@ -5,12 +5,12 @@ import { useEffect, useState } from "react";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import InputCustom from "components/InputCustom";
 import SelectCustom from "components/SelectCustom";
-import { listStatusActive } from "utils/ListData";
 import ButtonCustom from "components/ButtonCustom";
 import ModalCustom from "components/ModalCustom";
 import { WifiAddingForm } from "forms/Main/AttendancesSettings";
 import { FormAction } from "forms/formAction";
 import { useAppSelector } from "hooks/useAppSelector";
+import { statusActiveOptions } from "utils/selectBoxOptions";
 
 const ControlPanel = () => {
   const { control } = useForm({});
@@ -42,7 +42,7 @@ const ControlPanel = () => {
             control={control}
             width="35%"
             placeholder="Trạng thái hoạt động"
-            options={listStatusActive}
+            options={statusActiveOptions}
           />
           <ButtonCustom
             id="addBtn"

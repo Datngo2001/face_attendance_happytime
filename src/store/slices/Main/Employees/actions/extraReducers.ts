@@ -1,12 +1,13 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { api } from "config/api";
 import { toastPromise } from "utils/toastPromise";
+import { EmployeeSearchParams } from "../employeesSlice";
 
 export const extraReducersGetListEmployees = createAsyncThunk(
   "getListEmployees",
-  async ({ page, size }: any) => {
+  async (params: EmployeeSearchParams) => {
     return api
-      .post(`/api/agent/search?page=${page}&size=${size}`, {})
+      .post(`/api/agent/search?page=${params.page}&size=${params.size}`, {})
       .then((response: any) => {
         return {
           payload: response.payload,

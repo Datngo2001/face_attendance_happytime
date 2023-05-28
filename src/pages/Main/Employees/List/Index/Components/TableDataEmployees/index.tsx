@@ -1,50 +1,28 @@
 import "./styles.scss";
 import { columns } from "./components";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import PaginationCustom from "../../../../../../../components/PaginationCustom";
 import { extraReducersGetListEmployees } from "../../../../../../../store/slices/Main/Employees/actions/extraReducers";
 import { useNavigate } from "react-router-dom";
 import DataGridCustom from "components/DataGridCustom";
+import { useAppSelector } from "hooks/useAppSelector";
+import { FormPaginationCustom } from "components/PaginationCustom/FormPaginationCustom";
 
-// ARROW FUNCTIONS
-// ******************************
+export type Props = {
+  control: any
+}
 
-// VARIABLES
-// ********************************************************
-
-export default function TableDataEmployees() {
-  // STATE
-  const [page, setPage] = useState(1);
-  // ****************************************************
-
-  // HOOK ROUTER DOM
+export const TableDataEmployees: React.FC<Props> = ({ control }) => {
   const navigate = useNavigate();
-  // ******************************
 
-  // HOOK REACT TOOLKIT
-  const { listOfEmployees, totalPages, totalEmployees, loading } = useSelector(
+  const { listOfEmployees, totalPages, totalEmployees, loading } = useAppSelector(
     (state) => state.employees
   );
-  const dispatch = useDispatch();
-  // ******************************
 
-  // HOOK EFFECT
-  useEffect(() => {
-    dispatch(
-      extraReducersGetListEmployees({
-        page: page - 1,
-        size: process.env.REACT_APP_PAGE_SIZE,
-      })
-    );
-  }, []);
-  // ******************************
-
-  // ARROW FUNCTIONS
   const hanldeOnRowClick = (rowData) => {
     navigate(`../list/view/${rowData.row._id}`);
   };
-  // ****************************************************
 
   return (
     <>
@@ -74,11 +52,7 @@ export default function TableDataEmployees() {
             borderTop: "1px solid #eeeeee",
           }}
         >
-          <PaginationCustom
-            page={page}
-            setPage={setPage}
-            totalPages={totalPages}
-          />
+          <FormPaginationCustom control={control} name={"page"} totalPages={totalPages} />
         </div>
       )}
     </>
