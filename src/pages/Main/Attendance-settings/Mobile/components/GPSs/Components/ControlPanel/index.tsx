@@ -41,12 +41,12 @@ const ControlPanel: React.FC<Props> = ({ control, handleSearch }) => {
           height="32px"
           type={2}
           icon={<AddRoundedIcon />}
+          onClick={() => setOpen(true)}
         >
           Thêm
         </ButtonCustom>
         <ModalCustom
           titleHeader={"THÊM MỚI VỊ TRÍ"}
-          idTarget="addGPSBtn"
           footer={false}
           state={open}
           setState={setOpen}

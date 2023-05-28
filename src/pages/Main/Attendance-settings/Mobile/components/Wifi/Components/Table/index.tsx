@@ -89,15 +89,7 @@ const Table: React.FC<Props> = ({ control, handleSearch }) => {
                 </Box>
             </div>
             <ModalCustom
-                titleHeader={<span
-                    style={{
-                        color: "#212f3f",
-                        fontSize: "20px",
-                        textTransform: "uppercase",
-                    }}
-                >
-                    Chỉnh sửa thông tin IP Wi-Fi
-                </span>}
+                titleHeader={"CHỈNH SỬA THÔNG TIN WIFI"}
                 state={open}
                 setState={setOpen}
                 footer={false}
