@@ -12,9 +12,12 @@ import { FormAction } from "forms/formAction";
 import { useAppSelector } from "hooks/useAppSelector";
 import { statusActiveOptions } from "utils/selectBoxOptions";
 
-const ControlPanel = () => {
-  const { control } = useForm({});
+export type Props = {
+  control: any
+  handleSearch: any
+}
 
+const ControlPanel: React.FC<Props> = ({ control, handleSearch }) => {
   const [open, setOpen] = useState(false);
 
   const { lastCreateSuccess } = useAppSelector(

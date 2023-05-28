@@ -1,6 +1,5 @@
 import { Box } from "@mui/system";
-import { DataGrid } from "@mui/x-data-grid";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { getColumns } from "./components";
 import "./styles.scss";
 import { useAppSelector } from "hooks/useAppSelector";
@@ -14,11 +13,17 @@ import { setCurrentGPDConfig } from "store/slices/Main/Attendance-settings/atten
 import GPSAddingForm from "forms/Main/AttendancesSettings/Mobile/GPS";
 import { FormAction } from "forms/formAction";
 import useConfirmMoldal from "hooks/useConfirmMoldal";
+import DataGridCustom from "components/DataGridCustom";
+import { FormPaginationCustom } from "components/PaginationCustom/FormPaginationCustom";
 
-const Table = () => {
+export type Props = {
+    control: any
+    handleSearch: any
+}
+
+const Table: React.FC<Props> = ({ control, handleSearch }) => {
     // HOOK STATE
     const [open, setOpen] = useState(false);
-    const [page, setPage] = useState(1);
     const { openConfirmModal } = useConfirmMoldal();
     // ****************************
 
@@ -31,12 +36,7 @@ const Table = () => {
 
     // HOOK EFFECT
     useEffect(() => {
-        dispatch(
-            extraReducersGetListGPSConfig({
-                page: page - 1,
-                size: process.env.REACT_APP_PAGE_SIZE,
-            })
-        );
+        handleSearch()
     }, [lastCreateSuccess, lastDeleteSuccess, lastUpdateSuccess]);
 
     useEffect(() => {
@@ -69,7 +69,7 @@ const Table = () => {
                 </p>
                 <Box sx={{ height: 250, width: "100%" }}>
                     <>
-                        <DataGrid
+                        <DataGridCustom
                             disableColumnMenu
                             headerHeight={55}
                             rowHeight={65}
@@ -86,23 +86,7 @@ const Table = () => {
                                 LoadingOverlay: LoadingCustom,
                             }}
                         />
-                        {listOfGPSConfig.length > 0 && (
-                            <div
-                                style={{
-                                    display: "flex",
-                                    justifyContent: "right",
-                                    padding: "16px 24px",
-                                    backgroundColor: "#ffffff",
-                                    borderTop: "1px solid #eeeeee",
-                                }}
-                            >
-                                <PaginationCustom
-                                    page={page}
-                                    setPage={setPage}
-                                    totalPages={total_pages}
-                                />
-                            </div>
-                        )}
+                        <FormPaginationCustom control={control} name={"page"} totalPages={total_pages} />
                     </>
                 </Box>
             </div>

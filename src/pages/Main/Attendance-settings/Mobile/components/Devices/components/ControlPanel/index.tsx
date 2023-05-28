@@ -1,20 +1,15 @@
-import { useEffect } from "react";
-import { useForm } from "react-hook-form";
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import "./styles.scss";
 import InputCustom from "components/InputCustom";
 import SelectCustom from "components/SelectCustom";
-import { useAppDispatch } from "hooks/useAppDispatch";
-import { extraReducersGetListDeviceID } from "store/slices/Main/Attendance-settings/actions/extraReducers";
 import { statusActiveOptions } from "utils/selectBoxOptions";
 
-const ControlPanel = () => {
-  const { control } = useForm();
-  const dispatch = useAppDispatch();
+export type Props = {
+  control: any
+  handleSearch: any
+}
 
-  useEffect(() => {
-    dispatch(extraReducersGetListDeviceID({ size: 10, page: 0 }))
-  }, [])
+const ControlPanel: React.FC<Props> = ({ control, handleSearch }) => {
 
   return (
     <>

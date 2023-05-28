@@ -1,17 +1,22 @@
 import { Box } from "@mui/material";
-import { DataGrid } from "@mui/x-data-grid";
 import { CustomNoRowsOverlay, getColumns } from "./components";
 import "./styles.scss";
 import LoadingCustom from "components/LoadingCustom";
 import { useAppSelector } from "hooks/useAppSelector";
-import PaginationCustom from "components/PaginationCustom";
 import { useAppDispatch } from "hooks/useAppDispatch";
 import useConfirmMoldal from "hooks/useConfirmMoldal";
 import { extraReducersUpdateDeviceIDStatus } from "store/slices/Main/Attendance-settings/actions/extraReducers";
+import DataGridCustom from "components/DataGridCustom";
+import { FormPaginationCustom } from "components/PaginationCustom/FormPaginationCustom";
 
-const Table = () => {
+export type Props = {
+    control: any
+    handleSearch: any
+}
+
+const Table: React.FC<Props> = ({ control, handleSearch }) => {
     const dispatch = useAppDispatch();
-    const { listOfDeviceID, page_number, total_pages, loading } = useAppSelector((state) => state.attendanceSettings);
+    const { listOfDeviceID, total_pages, loading } = useAppSelector((state) => state.attendanceSettings);
     const { openConfirmModal } = useConfirmMoldal();
 
     const handleUpdateStatusClick = (id, agent_id, value) => {
@@ -28,7 +33,7 @@ const Table = () => {
                 </p>
                 <Box sx={{ height: 250, width: "100%" }}>
                     <>
-                        <DataGrid
+                        <DataGridCustom
                             disableColumnMenu
                             headerHeight={55}
                             rowHeight={65}
@@ -45,19 +50,7 @@ const Table = () => {
                                 LoadingOverlay: LoadingCustom,
                             }}
                         />
-                        {listOfDeviceID.length > 0 && (
-                            <div
-                                style={{
-                                    display: "flex",
-                                    justifyContent: "right",
-                                    padding: "16px 24px",
-                                    backgroundColor: "#ffffff",
-                                    borderTop: "1px solid #eeeeee",
-                                }}
-                            >
-                                <PaginationCustom page={page_number} setPage={() => { }} totalPages={total_pages} />
-                            </div>
-                        )}
+                        <FormPaginationCustom control={control} name={"page"} totalPages={total_pages} />
                     </>
                 </Box>
             </div>

@@ -1,6 +1,5 @@
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import "./styles.scss";
-import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import InputCustom from "components/InputCustom";
@@ -10,9 +9,12 @@ import { FormAction } from "forms/formAction";
 import BssidAddingForm from "forms/Main/AttendancesSettings/Mobile/Bssid";
 import { useAppSelector } from "hooks/useAppSelector";
 
-const ControlPanel = () => {
-  const { control } = useForm({});
+export type Props = {
+  control: any
+  handleSearch: any
+}
 
+const ControlPanel: React.FC<Props> = ({ control, handleSearch }) => {
   const [open, setOpen] = useState(false);
 
   const { lastCreateSuccess } = useAppSelector(

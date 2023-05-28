@@ -1,6 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { api } from "config/api";
 import { toastPromise } from "utils";
+import {
+  BssidSearchParams,
+  DeviceSearchParams,
+  GPSSearchParams,
+  WifiSearchParams,
+} from "../attendanceSettingsSlice";
 
 export const extraReducersGetAttendanceConfig = createAsyncThunk(
   "getAttendanceConfig",
@@ -65,9 +71,12 @@ export const extraReducersUpdateAttendanceConfig = createAsyncThunk(
 
 export const extraReducersGetListIPWifi = createAsyncThunk(
   "getListIPWifi",
-  async ({ page, size }: any) => {
+  async (params: WifiSearchParams) => {
     return api
-      .post(`/api/ip_config/search?page=${page}&size=${size}`, {})
+      .post(
+        `/api/ip_config/search?page=${params.page}&size=${params.size}`,
+        params
+      )
       .then((response: any) => {
         return {
           payload: response.payload,
@@ -170,9 +179,12 @@ export const extraReducersDeleteIPWifi = createAsyncThunk(
 
 export const extraReducersGetListGPSConfig = createAsyncThunk(
   "getListGPSConfig",
-  async ({ page, size }: any) => {
+  async (params: GPSSearchParams) => {
     return api
-      .post(`/api/gps_config/search?page=${page}&size=${size}`, {})
+      .post(
+        `/api/gps_config/search?page=${params.page}&size=${params.size}`,
+        params
+      )
       .then((response: any) => {
         return {
           payload: response.payload,
@@ -251,9 +263,12 @@ export const extraReducersDeleteGPSConfig = createAsyncThunk(
 
 export const extraReducersGetListBssid = createAsyncThunk(
   "getListBssid",
-  async ({ page, size }: any) => {
+  async (params: BssidSearchParams) => {
     return api
-      .post(`/api/bssid_config/search?page=${page}&size=${size}`, {})
+      .post(
+        `/api/bssid_config/search?page=${params.page}&size=${params.size}`,
+        params
+      )
       .then((response: any) => {
         return {
           payload: response.payload,
@@ -332,9 +347,12 @@ export const extraReducersDeleteBssid = createAsyncThunk(
 
 export const extraReducersGetListDeviceID = createAsyncThunk(
   "getListDeviceID",
-  async (params: { page: number; size: number }) => {
+  async (params: DeviceSearchParams) => {
     return api
-      .post(`/api/device/search?page=${params.page}&size=${params.size}`, {})
+      .post(
+        `/api/device/search?page=${params.page}&size=${params.size}`,
+        params
+      )
       .then((response: any) => {
         return {
           payload: response.payload,

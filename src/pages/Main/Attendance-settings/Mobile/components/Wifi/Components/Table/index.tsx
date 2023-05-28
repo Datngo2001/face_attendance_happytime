@@ -1,23 +1,27 @@
 import { Box } from "@mui/system";
-import { DataGrid } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
 import { getColumns } from "./components";
 import "./styles.scss";
 import { useAppDispatch } from "hooks/useAppDispatch";
 import { useAppSelector } from "hooks/useAppSelector";
-import { extraReducersDeleteIPWifi, extraReducersGetListIPWifi, extraReducersUpdateIPWifiStatus } from "store/slices/Main/Attendance-settings/actions/extraReducers";
+import { extraReducersDeleteIPWifi, extraReducersUpdateIPWifiStatus } from "store/slices/Main/Attendance-settings/actions/extraReducers";
 import LoadingCustom from "components/LoadingCustom";
-import PaginationCustom from "components/PaginationCustom";
 import { setCurrentIPWifi } from "store/slices/Main/Attendance-settings/attendanceSettingsSlice";
 import ModalCustom from "components/ModalCustom";
 import { WifiAddingForm } from "forms/Main/AttendancesSettings";
 import { FormAction } from "forms/formAction";
 import NoRowsOverlayCustom from "components/NoRowsOverlayCustom";
 import useConfirmMoldal from "hooks/useConfirmMoldal";
+import { FormPaginationCustom } from "components/PaginationCustom/FormPaginationCustom";
+import DataGridCustom from "components/DataGridCustom";
 
-const Table = () => {
-    const [open, setOpen] = useState(false);
-    const [page, setPage] = useState(1);
+export type Props = {
+    control: any
+    handleSearch: any
+}
+
+const Table: React.FC<Props> = ({ control, handleSearch }) => {
+    const [open, setOpen] = useState(false)
 
     const { listOfIPWifi, total_pages, total_items, loading, lastCreateSuccess, lastUpdateSuccess, lastDeleteSuccess } = useAppSelector(
         (state) => state.attendanceSettings
@@ -26,12 +30,7 @@ const Table = () => {
     const { openConfirmModal } = useConfirmMoldal();
 
     useEffect(() => {
-        dispatch(
-            extraReducersGetListIPWifi({
-                page: page - 1,
-                size: process.env.REACT_APP_PAGE_SIZE,
-            })
-        );
+        handleSearch()
     }, [lastCreateSuccess, lastUpdateSuccess, lastDeleteSuccess]);
 
     useEffect(() => {
@@ -63,12 +62,12 @@ const Table = () => {
         <>
             <div className="attendance-settings--mobile-wifi__table">
                 <p className="quantity-ipAddress">
-                    Có <span className="quantity">{total_items}</span> nhân viên trong
+                    Có <span className="quantity">{total_items}</span> wifi trong
                     danh sách
                 </p>
                 <Box sx={{ height: 250, width: "100%" }}>
                     <>
-                        <DataGrid
+                        <DataGridCustom
                             disableColumnMenu
                             headerHeight={55}
                             rowHeight={65}
@@ -85,23 +84,7 @@ const Table = () => {
                                 LoadingOverlay: LoadingCustom,
                             }}
                         />
-                        {listOfIPWifi.length > 0 && (
-                            <div
-                                style={{
-                                    display: "flex",
-                                    justifyContent: "right",
-                                    padding: "16px 24px",
-                                    backgroundColor: "#ffffff",
-                                    borderTop: "1px solid #eeeeee",
-                                }}
-                            >
-                                <PaginationCustom
-                                    page={page}
-                                    setPage={setPage}
-                                    totalPages={total_pages}
-                                />
-                            </div>
-                        )}
+                        <FormPaginationCustom control={control} name={"page"} totalPages={total_pages} />
                     </>
                 </Box>
             </div>

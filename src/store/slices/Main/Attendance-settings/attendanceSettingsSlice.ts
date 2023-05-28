@@ -128,6 +128,26 @@ export type Bssid = {
   created_date: number;
 };
 
+export type WifiSearchParams = {
+  page: number;
+  size: number;
+};
+
+export type DeviceSearchParams = {
+  page: number;
+  size: number;
+};
+
+export type GPSSearchParams = {
+  page: number;
+  size: number;
+};
+
+export type BssidSearchParams = {
+  page: number;
+  size: number;
+};
+
 const attendanceSettingsSlice = createSlice({
   name: "attendanceSettings",
   initialState: {
