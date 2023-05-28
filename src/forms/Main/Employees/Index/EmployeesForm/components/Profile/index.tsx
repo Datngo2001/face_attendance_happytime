@@ -54,6 +54,7 @@ const Profile: React.FC<Props> = ({
               width="100%"
               className="input-item"
               label="Học vấn"
+              required
               options={educationOptions}
               placeholder="Học vấn"
             />
@@ -121,6 +122,7 @@ const Profile: React.FC<Props> = ({
               width="100%"
               className="input-item"
               label="Tình trạng hôn nhân"
+              required
               control={control}
               options={marriedStatusOptions}
               placeholder="Tình trạng hôn nhân"

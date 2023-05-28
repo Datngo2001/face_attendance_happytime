@@ -26,4 +26,12 @@ export const schema = yup.object({
   start_working_date: yup
     .number()
     .required("Trường Ngày bắt đầu đi làm không được bỏ trống"),
+  education_type: yup.string().required("Trường Học vấn không được bỏ trống"),
+  married_status: yup
+    .string()
+    .required("Trường Tình trạng hôn nhân không được bỏ trống"),
+  position_id: yup.string().required("Trường Phòng ban không được bỏ trống"),
+  agent_status: yup
+    .string()
+    .required("Trường Trạng thái nhân sự không được bỏ trống"),
 });
