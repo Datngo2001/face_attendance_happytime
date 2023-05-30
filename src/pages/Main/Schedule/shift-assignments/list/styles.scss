@@ -9,21 +9,17 @@
     .shift-assignments__control-panel{
         display: flex;
         flex-direction: row;
-        padding: 10px;
+        padding: 10px 0px;
         justify-content: space-between;
         gap: 10px;
         height: min-content;
         align-content: stretch;
 
-        .select-custom__wrapper{
-            flex: 1;
-        }
-
-        .input-custom__wrapper{
+        .keyword_input{
             flex: 2;
         }
 
-        .btn-custom{
+        .position_input{
             flex: 1;
         }
     }
@@ -42,6 +38,11 @@
             margin-bottom: 10px;
             span{
                 flex-grow: 1;
+            }
+            .action{
+                display: flex;
+                gap: 10px;
+                flex-basis: 400px;
             }
         }
         .column-shift-type{

@@ -10,6 +10,7 @@ import { getColumns } from './component'
 import { LabelResult, getEmployeeNames } from 'utils/getLabelUtil'
 import { extraReducersGetDepartmentAndPositionList } from 'store/slices/Main/Departments/actions/extraReducers'
 import { FormPaginationCustom } from 'components/PaginationCustom/FormPaginationCustom'
+import ReplayIcon from '@mui/icons-material/Replay';
 
 export type Props = {
     control: any
@@ -50,7 +51,8 @@ const ShiftAssignmentsTable: React.FC<Props> = ({ control, handleSearch }) => {
         <div className='shift-assignments__table'>
             <div className='table-header'>
                 <span>Có {totalShifts} Phân ca làm việc trong danh sách</span>
-                <div>
+                <div className='action'>
+                    <ButtonCustom type={2} onClick={() => handleSearch()} icon={<ReplayIcon />}>Cập nhật kết quả</ButtonCustom>
                     <ButtonCustom onClick={() => navigate("./create")}>Tạo mới</ButtonCustom>
                 </div>
             </div>

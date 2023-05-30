@@ -7,6 +7,7 @@ import { useForm } from 'react-hook-form';
 import { ShiftAssignmentSearchParam } from 'store/slices/Main/ShiftAssignments/shiftAssignmentsSlice';
 import useThrottle from 'hooks/useThrottle';
 import { extraReducersGetListShiftAssignments } from 'store/slices/Main/ShiftAssignments/actions/extraReducers';
+import { extraReducersGetDepartments } from 'store/slices/Main/Departments/actions/extraReducers';
 
 const defaultParams = {
     page: 0,
@@ -14,7 +15,7 @@ const defaultParams = {
 } as ShiftAssignmentSearchParam
 
 const ShiftAssignmentsList: React.FC = () => {
-    const { control, getValues, watch, } = useForm({
+    const { control, getValues, watch, setValue } = useForm({
         defaultValues: defaultParams
     });
 
@@ -29,11 +30,15 @@ const ShiftAssignmentsList: React.FC = () => {
         handleSearch();
     }, [searchParams])
 
+    useEffect(() => {
+        dispatch(extraReducersGetDepartments())
+    }, [])
+
     return (
         <>
             <div className="shift-assignments__wrapper">
                 <div className="content-title">Phân ca</div>
-                <ShiftAssignmentsSearchPannel control={control} />
+                <ShiftAssignmentsSearchPannel control={control} setValue={setValue} />
                 <ShiftAssignmentsTable control={control} handleSearch={handleSearch} />
             </div>
         </>
