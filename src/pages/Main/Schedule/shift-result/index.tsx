@@ -2,17 +2,21 @@ import React, { useEffect } from 'react'
 import "./styles.scss"
 import { useAppDispatch } from 'hooks/useAppDispatch';
 import { useForm } from 'react-hook-form';
-import { ShiftAssignmentSearchParam } from 'store/slices/Main/ShiftAssignments/shiftAssignmentsSlice';
 import useThrottle from 'hooks/useThrottle';
-import { extraReducersGetListShiftAssignments } from 'store/slices/Main/ShiftAssignments/actions/extraReducers';
-import { extraReducersGetDepartments } from 'store/slices/Main/Departments/actions/extraReducers';
 import ShiftAssignmentsResultTable from './components/ShiftAssignmentsResultTable';
 import ShiftAssignmentsResultSearchPannel from './components/ShiftAssignmentsResultSearchPannel';
+import { extraReducersGetListShiftAssignmentsResult } from 'store/slices/Main/ShiftAssignmentsResult/actions/extraReducers';
+import { ShiftAssignmentResultSearchParam } from 'store/slices/Main/ShiftAssignmentsResult/shiftAssignmentsResultSlice';
+import dayjs from 'dayjs';
 
 const defaultParams = {
     page: 0,
     size: parseInt(process.env.REACT_APP_PAGE_SIZE),
-} as ShiftAssignmentSearchParam
+    date_range: {
+        from: dayjs().set("day", 1).toDate().getTime(),
+        to: dayjs().set("day", 7).toDate().getTime(),
+    }
+} as ShiftAssignmentResultSearchParam
 
 const ShiftResult: React.FC = () => {
     const { control, getValues, watch, setValue } = useForm({
@@ -23,16 +27,12 @@ const ShiftResult: React.FC = () => {
     const searchParams = watch();
 
     const handleSearch = useThrottle(() => {
-        dispatch(extraReducersGetListShiftAssignments(getValues()))
+        dispatch(extraReducersGetListShiftAssignmentsResult(getValues()))
     }, 500)
 
     useEffect(() => {
         handleSearch();
     }, [searchParams])
-
-    useEffect(() => {
-        dispatch(extraReducersGetDepartments())
-    }, [])
 
     return (
         <>

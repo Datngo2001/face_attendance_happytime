@@ -120,7 +120,7 @@ export type Shift = {
 };
 
 const shiftAssignmentsSlice = createSlice({
-  name: "shifts",
+  name: "shiftAssignments",
   initialState: {
     status: "fail",
     loading: false,
