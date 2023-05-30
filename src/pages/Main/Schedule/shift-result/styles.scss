@@ -1,30 +1,49 @@
 @use "../../../../assets/styles/index.scss" as *;
 
+.shift-assignments-result__wrapper{
+    width: 100%;
+    height: 100%;
+    padding: 20px 30px;
 
-.shifts__wrapper{
-    .ListShifts__control-panel{
+    .shift-assignments-result__control-panel{
         display: flex;
         flex-direction: row;
-        padding: 10px;
+        padding: 10px 0px;
         justify-content: space-between;
         gap: 10px;
         height: min-content;
         align-content: stretch;
 
-        .select-custom__wrapper{
-            flex: 1;
-        }
-
-        .input-custom__wrapper{
+        .keyword_input{
             flex: 2;
         }
 
-        .btn-custom{
+        .position_input{
             flex: 1;
         }
     }
-    .ListShifts__table{
+    .shift-assignments-result__table{
         margin-top: 20px;
+
+        .apply_for_item{
+            color: $primary-color;
+            background-color: rgba(255, 228, 196, 0.613);
+            border-radius: 3px;
+            padding: 0px 5px;
+        }
+
+        .table-header{
+            display: flex;
+            margin-bottom: 10px;
+            span{
+                flex-grow: 1;
+            }
+            .action{
+                display: flex;
+                gap: 10px;
+                flex-basis: 400px;
+            }
+        }
         .column-shift-type{
             height: 22px;
             font-size: $fs-1;
@@ -35,8 +54,4 @@
             border-radius: 12px;
         }
     }
-}
-
-.createShift__wrapper{
-    padding: 30px;
 }
