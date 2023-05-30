@@ -3,7 +3,7 @@ import DataGridCustom from 'components/DataGridCustom'
 import { useAppDispatch } from 'hooks/useAppDispatch'
 import { useAppSelector } from 'hooks/useAppSelector'
 import useConfirmMoldal from 'hooks/useConfirmMoldal'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { extraReducersDeleteShiftAssignment } from 'store/slices/Main/ShiftAssignments/actions/extraReducers'
 import { getColumns } from './component'
@@ -15,37 +15,20 @@ import ReplayIcon from '@mui/icons-material/Replay';
 export type Props = {
     control: any
     handleSearch: any
+    watch: any
 }
 
-const ShiftAssignmentsResultTable: React.FC<Props> = ({ control, handleSearch }) => {
+const ShiftAssignmentsResultTable: React.FC<Props> = ({ control, handleSearch, watch }) => {
+    const tempId = useRef(0)
     const navigate = useNavigate();
-    const { openConfirmModal } = useConfirmMoldal();
-    const [employeeLabels, setEmployeeLabels] = useState<LabelResult[]>([])
 
-    const { listOfShiftAssignment, totalPages, totalShifts, loading, lastDeleteSuccess } = useAppSelector(
-        (state) => state.shiftAssignments
+    const { listOfShiftAssignmentResult, totalPages, loading } = useAppSelector(
+        (state) => state.shiftAssignmentsResult
     );
-    const { departments, positions } = useAppSelector(state => state.departments)
-    const dispatch = useAppDispatch();
 
-    useEffect(() => {
-        handleSearch()
-    }, [lastDeleteSuccess])
+    const date_range = watch("date_range")
 
-    useEffect(() => {
-        dispatch(extraReducersGetDepartmentAndPositionList());
-        getEmployeeNames(listOfShiftAssignment.map(shiftAssignment => shiftAssignment.agents).flat())
-            .then(res => setEmployeeLabels(res))
-            .catch(err => console.log(err))
-    }, [listOfShiftAssignment])
-
-    const deleteClick = (id) => {
-        openConfirmModal("Xác nhận", "Bạn có muốn xóa phân ca này không ?", () => {
-            dispatch(
-                extraReducersDeleteShiftAssignment({ id })
-            );
-        })
-    }
+    const columns = useMemo(() => getColumns(date_range.from, date_range.to), [date_range.from, date_range.to])
 
     return (
         <div className='shift-assignments-result__table'>
@@ -59,25 +42,13 @@ const ShiftAssignmentsResultTable: React.FC<Props> = ({ control, handleSearch })
             <DataGridCustom
                 headerHeight={60}
                 rowHeight={60}
-                rows={listOfShiftAssignment}
-                columns={getColumns(deleteClick, employeeLabels, departments, positions)}
-                getRowId={(row) => row._id}
+                rows={[]}
+                columns={columns}
+                getRowId={(row) => tempId.current += 1}
                 rowsPerPageOptions={[5]}
                 loading={loading}
             />
-            {listOfShiftAssignment.length > 0 && (
-                <div
-                    style={{
-                        display: "flex",
-                        justifyContent: "right",
-                        padding: "16px 24px",
-                        backgroundColor: "#ffffff",
-                        borderTop: "1px solid #eeeeee",
-                    }}
-                >
-                    <FormPaginationCustom control={control} totalPages={totalPages} name={'page'} />
-                </div>
-            )}
+            <FormPaginationCustom control={control} totalPages={totalPages} name={'page'} />
         </div>
     )
 }

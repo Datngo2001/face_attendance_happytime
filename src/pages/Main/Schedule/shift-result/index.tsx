@@ -39,7 +39,7 @@ const ShiftResult: React.FC = () => {
             <div className="shift-assignments-result__wrapper">
                 <div className="content-title">Kết quả phân ca</div>
                 <ShiftAssignmentsResultSearchPannel control={control} setValue={setValue} />
-                <ShiftAssignmentsResultTable control={control} handleSearch={handleSearch} />
+                <ShiftAssignmentsResultTable control={control} handleSearch={handleSearch} watch={watch} />
             </div>
         </>
     )

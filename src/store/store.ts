@@ -7,6 +7,7 @@ import {
   departmentsSlice,
   employeesSlice,
   permissionsSlice,
+  shiftAssignmentsResultSlice,
   shiftAssignmentsSlice,
   shiftsSlice,
 } from "./slices";
@@ -27,6 +28,7 @@ const store = configureStore({
     shifts: shiftsSlice.reducer,
     departments: departmentsSlice.reducer,
     shiftAssignments: shiftAssignmentsSlice.reducer,
+    shiftAssignmentsResult: shiftAssignmentsResultSlice.reducer,
     reports: reportsSlice.reducer,
   },
   middleware: (getDefaultMiddleware) =>
