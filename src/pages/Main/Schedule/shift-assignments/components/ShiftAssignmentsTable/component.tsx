@@ -102,7 +102,7 @@ export const getColumns = (deleteClick, employeeLabels: LabelResult[], departmen
         renderCell: (params) => {
             return (
                 <div>
-                    {params.row.use_day_range && (<div style={{ flex: 1, textAlign: "center" }}>{dayjs(params.row.day_range.from).format(DateFormat)} - {dayjs(params.row.day_range.to).format(DateFormat)}</div>)}
+                    {params.row.use_day_range && (<div style={{ flex: 1, textAlign: "center" }}>{dayjs(params.row.day_range.from).format(DateFormat)} - {params.row.day_range.to ? dayjs(params.row.day_range.to).format(DateFormat) : "Vô thời hạn"}</div>)}
                     {params.row.use_specific_day && (<Stack direction={"row"} flexWrap={"wrap"} gap={1} spacing={1}>
                         {params.row.day_applied.dates.map(date => <div className="apply_for_item " key={date}>{date}</div>)}
                     </Stack>)}
