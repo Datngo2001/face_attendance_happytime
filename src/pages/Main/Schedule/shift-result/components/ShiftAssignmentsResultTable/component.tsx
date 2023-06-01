@@ -22,7 +22,7 @@ export const getColumns = (startDateStamp: number, endDateStamp: number): GridCo
                     <ColumnName
                         img={params.row.avatar}
                         name={params.row.agent_name}
-                        id={params.row.idEmployee}
+                        id={params.row.agent_id}
                     />
                 );
             },

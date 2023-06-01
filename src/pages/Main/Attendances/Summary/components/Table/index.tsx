@@ -42,6 +42,7 @@ const Table: React.FC<Props> = ({ control, watch }) => {
                         components={{
                             Pagination: null,
                             LoadingOverlay: LoadingCustom,
+                            NoRowsOverlay: NoRowsOverlayCustom
                         }}
                     />
                     <FormPaginationCustom name="page" control={control} />

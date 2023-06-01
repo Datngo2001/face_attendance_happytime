@@ -19,7 +19,6 @@ export type Props = {
 }
 
 const ShiftAssignmentsResultTable: React.FC<Props> = ({ control, handleSearch, watch }) => {
-    const tempId = useRef(0)
     const navigate = useNavigate();
 
     const { listOfShiftAssignmentResult, totalPages, loading } = useAppSelector(
@@ -42,9 +41,9 @@ const ShiftAssignmentsResultTable: React.FC<Props> = ({ control, handleSearch, w
             <DataGridCustom
                 headerHeight={60}
                 rowHeight={60}
-                rows={[]}
+                rows={listOfShiftAssignmentResult}
                 columns={columns}
-                getRowId={(row) => tempId.current += 1}
+                getRowId={row => row.agent_id}
                 rowsPerPageOptions={[5]}
                 loading={loading}
             />

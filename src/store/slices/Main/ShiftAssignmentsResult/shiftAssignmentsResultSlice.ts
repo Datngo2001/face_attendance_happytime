@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { extraReducersGetListShiftAssignmentsResult } from "./actions/extraReducers";
+import { ShiftType } from "../Shifts/shiftsSlice";
 
 export type ShiftAssignmentsResultState = {
   status: string;
@@ -19,8 +20,22 @@ export type ShiftAssignmentResultSearchParam = {
 };
 
 export type ShiftAssignmentResult = {
-  _id?: string;
+  agent_id: string;
+  agent_name: string;
+  avatar: string;
+  position: string;
+  shifts_by_date: ShiftsByDate[];
 };
+
+export type ShiftsByDate = {
+  date: string;
+  end: string;
+  start: string;
+  shift_code: string;
+  shift_name: string;
+  shift_schedule_id: string;
+  shift_type: ShiftType;
+}
 
 const shiftAssignmentsResultSlice = createSlice({
   name: "shiftAssignmentsResult",
@@ -50,12 +65,12 @@ const shiftAssignmentsResultSlice = createSlice({
           if (message === "success") {
             state.totalPages = payload.total_pages;
             state.totalPages = payload.total_items;
-            state.listOfShiftAssignmentResult = payload.items;
+            state.listOfShiftAssignmentResult = payload;
           }
         }
       );
   },
 });
 
-export const {} = shiftAssignmentsResultSlice.actions;
+export const { } = shiftAssignmentsResultSlice.actions;
 export default shiftAssignmentsResultSlice;

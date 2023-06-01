@@ -2,8 +2,6 @@ import {
   ApplyFor,
   ShiftAssignment,
   TimeApply,
-  repeatTimeSelectOptions,
-  weekRepeatMethodSelectOptions,
 } from "store/slices/Main/ShiftAssignments/shiftAssignmentsSlice";
 
 export const defaulValues: ShiftAssignment = {
@@ -17,7 +15,7 @@ export const defaulValues: ShiftAssignment = {
   use_specific_day: true,
   day_range: {
     from: Date.now(),
-    to: 0,
+    to: null,
     shift_ids: [],
     use_same_shift: true,
     use_separate_shift: false,
