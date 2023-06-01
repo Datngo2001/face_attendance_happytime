@@ -22,7 +22,7 @@ export const getColumns = (startDateStamp: number, endDateStamp: number): GridCo
                     <ColumnName
                         img={params.row.avatar}
                         name={params.row.agent_name}
-                        id={params.row.agent_id}
+                        position={params.row.position}
                     />
                 );
             },
@@ -44,7 +44,7 @@ function getDateColumns(startDate: Dayjs, endDate: Dayjs): GridColumns {
             sortable: false,
             headerAlign: "center",
             renderCell: (params) => (
-                <ResultCell />
+                <ResultCell shifts_by_date={params.row.shifts_by_date} date={date.format("DD/MM/YYYY")} />
             ),
         });
     }

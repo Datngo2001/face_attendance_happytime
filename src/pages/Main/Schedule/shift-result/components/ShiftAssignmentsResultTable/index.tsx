@@ -40,7 +40,7 @@ const ShiftAssignmentsResultTable: React.FC<Props> = ({ control, handleSearch, w
             </div>
             <DataGridCustom
                 headerHeight={60}
-                rowHeight={60}
+                rowHeight={100}
                 rows={listOfShiftAssignmentResult}
                 columns={columns}
                 getRowId={row => row.agent_id}

@@ -10,18 +10,18 @@ export type Props = {
     className?: string
     deleteIcon?: any
     clickable?: boolean
+    type?: 1 | 2 | 3
 }
 
-const ChipCustom: React.FC<Props> = ({ key, label, onDelete = () => { }, disabled = false, className, deleteIcon, clickable = false }) => {
+const ChipCustom: React.FC<Props> = ({ key, label, onDelete, disabled = false, className, deleteIcon, clickable = false, type = 1 }) => {
     return (
-        <div className='ChipCustom__wrapper'>
+        <div className={`ChipCustom__wrapper ${className} type-${type}`}>
             <Chip
                 clickable={clickable}
-                className={className}
                 key={key}
                 label={label}
                 onDelete={onDelete}
-                deleteIcon={deleteIcon}
+                deleteIcon={onDelete ? deleteIcon : null}
                 disabled={disabled} />
         </div>
     )

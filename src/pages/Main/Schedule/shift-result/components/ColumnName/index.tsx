@@ -4,10 +4,10 @@ import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
 export type Props = {
     img: string
     name: string
-    id: string
+    position: string
 }
 
-const ColumnName = ({ img, name, id }) => {
+const ColumnName: React.FC<Props> = ({ img, name, position }) => {
     return (
         <>
             <div className="column-name__wrapper">
@@ -22,7 +22,7 @@ const ColumnName = ({ img, name, id }) => {
                 </div>
                 <div className="name-id">
                     <p className="name">{name}</p>
-                    <p className="id">{id}</p>
+                    <p className="position">{position}</p>
                 </div>
             </div>
         </>
