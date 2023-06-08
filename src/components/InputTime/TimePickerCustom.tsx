@@ -5,7 +5,7 @@ import { Controller } from 'react-hook-form'
 import dayjs from 'dayjs'
 import { DataFormat, ViewFormat } from './default'
 
-export type Props = {
+type Props = {
     name: string,
     placeholder?: string,
     width?: string,

@@ -20,7 +20,7 @@ import WorkInformation from "./components/WorkInformation";
 import AnnualLeave from "./components/AnnualLeave";
 import Note from "./components/Note";
 
-export type Props = {
+type Props = {
     action: FormAction
 }
 

@@ -3,7 +3,7 @@ import ErrorOutlineRoundedIcon from "@mui/icons-material/ErrorOutlineRounded";
 import BorderColorRoundedIcon from "@mui/icons-material/BorderColorRounded";
 import { Link } from "react-router-dom";
 
-export type Props = {
+type Props = {
     id: string;
 }
 

@@ -5,7 +5,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { FormAction } from 'forms/formAction';
 import EditIcon from '@mui/icons-material/Edit';
 
-export type Props = {
+type Props = {
     id: string
     handleDelete: any
 }

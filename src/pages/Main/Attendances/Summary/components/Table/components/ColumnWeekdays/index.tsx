@@ -2,7 +2,7 @@ import { CheckAttendanceResult, CheckAttendanceResultStatus } from "store/slices
 import "./styles.scss";
 import { useMemo } from "react";
 
-export type Props = {
+type Props = {
     checkAttendanceResult: CheckAttendanceResult
     morning?: number
     afternoon?: number

@@ -5,7 +5,7 @@ import InputCustom from "components/InputCustom";
 import SelectCustom from "components/SelectCustom";
 import React from "react";
 
-export type Props = {
+type Props = {
   control: any
 }
 

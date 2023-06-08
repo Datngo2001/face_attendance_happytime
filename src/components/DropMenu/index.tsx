@@ -3,7 +3,7 @@ import Menu from "@mui/material/Menu";
 import React, { useState } from "react";
 import "./styles.scss";
 
-export type Props = {
+type Props = {
     parent?: any;
     children?: any;
     mt?: any;

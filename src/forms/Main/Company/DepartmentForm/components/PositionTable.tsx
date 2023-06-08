@@ -7,7 +7,7 @@ import CheckboxFormCustom from 'components/CheckboxCustom/CheckboxFormCustom';
 import ClearIcon from '@mui/icons-material/Clear';
 import { defaultValuesPostion } from '../defaultValues';
 
-export type Props = {
+type Props = {
     control: any
     setValue: any
     getValues: any

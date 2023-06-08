@@ -12,7 +12,7 @@ import { useEffect } from "react";
 import { extraReducersGetDepartments } from "store/slices/Main/Departments/actions/extraReducers";
 import { statusEmployeesOption, typeEmployeesOptions } from "store/slices/Main/Employees/employeesSlice";
 
-export type Props = {
+type Props = {
   control: any;
   action: FormAction;
   setValue: any

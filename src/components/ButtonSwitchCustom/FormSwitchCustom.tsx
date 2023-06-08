@@ -2,7 +2,7 @@ import Switch, { SwitchProps } from '@mui/material/Switch'
 import React from 'react'
 import { Controller } from 'react-hook-form'
 
-export type Props = {
+type Props = {
     size: "small" | "medium"
     name: string
     label?: string

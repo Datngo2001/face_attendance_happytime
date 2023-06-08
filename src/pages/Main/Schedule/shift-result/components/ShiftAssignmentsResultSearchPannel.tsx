@@ -1,7 +1,7 @@
 import React from 'react'
 import DateRangePickerCustom from 'components/InputDate/DateRangePickerCustom'
 
-export type Props = {
+type Props = {
     control: any
     setValue: any
 }

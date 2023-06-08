@@ -2,7 +2,7 @@ import ButtonCustom from 'components/ButtonCustom';
 import React, { ReactElement } from 'react'
 import { useGeolocated } from "react-geolocated";
 
-export type Props = {
+type Props = {
     icon?: ReactElement,
     onChange?: any,
     children?: any,

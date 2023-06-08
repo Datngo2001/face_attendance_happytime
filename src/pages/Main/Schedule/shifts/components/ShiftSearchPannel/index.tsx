@@ -10,7 +10,7 @@ import { useAppDispatch } from 'hooks/useAppDispatch';
 import { extraReducersGetListShiftTypes } from 'store/slices/Main/Shifts/actions/extraReducers';
 import { statusActiveOptions } from 'utils/selectBoxOptions';
 
-export type Props = {
+type Props = {
     control: any
 }
 

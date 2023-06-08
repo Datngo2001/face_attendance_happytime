@@ -2,7 +2,7 @@ import { Switch } from "@mui/material";
 import { useEffect, useState } from "react";
 import "./styles.scss";
 
-export type Props = {
+type Props = {
     id: string
     checked: boolean
     defaultChecked?: boolean

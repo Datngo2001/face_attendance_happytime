@@ -8,7 +8,7 @@ import SelectCustom, { SelectBoxOption } from 'components/SelectCustom'
 import useThrottle from 'hooks/useThrottle'
 import { validateShift_ids } from 'utils/shiftScheduleUtil'
 
-export type Props = {
+type Props = {
     control: any
     action: FormAction
     watch: any

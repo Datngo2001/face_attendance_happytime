@@ -1,7 +1,7 @@
 import "./styles.scss";
 import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
 
-export type Props = {
+type Props = {
     img: string
     name: string
     id: string

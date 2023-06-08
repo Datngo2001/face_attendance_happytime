@@ -12,7 +12,7 @@ import { FormAction } from "forms/formAction";
 import { useAppSelector } from "hooks/useAppSelector";
 import { statusActiveOptions } from "utils/selectBoxOptions";
 
-export type Props = {
+type Props = {
   control: any
   handleSearch: any
 }

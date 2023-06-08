@@ -7,7 +7,7 @@ import { useMemo, useState } from "react";
 import { Controller } from "react-hook-form";
 import OptionNode from "./OptionNode";
 
-export type Props = {
+type Props = {
     name: string;
     control: any;
     setValue: any;

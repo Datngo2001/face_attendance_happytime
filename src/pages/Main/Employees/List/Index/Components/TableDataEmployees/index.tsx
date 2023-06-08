@@ -9,7 +9,7 @@ import DataGridCustom from "components/DataGridCustom";
 import { useAppSelector } from "hooks/useAppSelector";
 import { FormPaginationCustom } from "components/PaginationCustom/FormPaginationCustom";
 
-export type Props = {
+type Props = {
   control: any
 }
 

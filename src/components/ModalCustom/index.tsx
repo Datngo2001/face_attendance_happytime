@@ -8,7 +8,7 @@ import { useEffect } from "react";
 import ButtonCustom from "../ButtonCustom";
 import ModalActionCustom from "components/ModalActionCustom";
 
-export type Props = {
+type Props = {
     titleHeader?: any;
     titleBtnCancel?: string;
     titleBtnAccept?: string;

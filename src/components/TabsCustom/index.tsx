@@ -1,7 +1,7 @@
 import { Tabs } from "antd";
 import "./styles.scss";
 
-export type Props = {
+type Props = {
     listChildren: any
 }
 

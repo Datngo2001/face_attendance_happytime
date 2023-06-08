@@ -6,7 +6,7 @@ import { Controller } from "react-hook-form";
 import { DateFormat, DateRangeViewFormat } from "./default";
 import { convertStringToTimestamp, convertTimestampToString } from "utils";
 
-export type Props = {
+type Props = {
   name: string,
   fromName: string,
   toName: string,

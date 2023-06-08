@@ -1,7 +1,7 @@
 import { Controller } from "react-hook-form"
 import PaginationCustom from "."
 
-export type Props = {
+type Props = {
     control: any
     name: string
     totalPages?: number

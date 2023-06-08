@@ -5,7 +5,7 @@ import "./styles.scss";
 import { Controller } from "react-hook-form";
 import { DateFormat } from "./default";
 
-export type Props = {
+type Props = {
   name: string,
   control: any,
   className?: string,

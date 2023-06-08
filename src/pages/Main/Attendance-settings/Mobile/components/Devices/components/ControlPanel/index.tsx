@@ -4,7 +4,7 @@ import InputCustom from "components/InputCustom";
 import SelectCustom from "components/SelectCustom";
 import { statusActiveOptions } from "utils/selectBoxOptions";
 
-export type Props = {
+type Props = {
   control: any
   handleSearch: any
 }

@@ -9,7 +9,7 @@ import { FormAction } from "forms/formAction";
 import GPSAddingForm from "forms/Main/AttendancesSettings/Mobile/GPS";
 import { useAppSelector } from "hooks/useAppSelector";
 
-export type Props = {
+type Props = {
   control: any
   handleSearch: any
 }

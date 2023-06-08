@@ -1,7 +1,7 @@
 import "./styles.scss";
 import { Controller } from "react-hook-form";
 
-export type Props = {
+type Props = {
     name: string,
     control: any,
     width: string,

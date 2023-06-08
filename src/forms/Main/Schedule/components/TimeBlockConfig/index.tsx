@@ -2,7 +2,7 @@ import InputCustom from 'components/InputCustom'
 import React, { useEffect, useMemo } from 'react'
 import { useForm } from 'react-hook-form';
 
-export type Props = {
+type Props = {
     onChange: any
     value: any
     radioName: string

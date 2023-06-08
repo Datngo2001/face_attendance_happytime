@@ -3,7 +3,7 @@ import { SelectBoxNode } from '.'
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
-export type Props = {
+type Props = {
     currentValue: string | number
     node: SelectBoxNode
     depth: number

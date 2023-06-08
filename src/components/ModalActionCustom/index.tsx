@@ -2,7 +2,7 @@ import ButtonCustom from 'components/ButtonCustom'
 import React from 'react'
 import './styles.scss'
 
-export type Props = {
+type Props = {
     divider?: boolean
     btnJustifyContent?: string
     titleBtnCancel?: string

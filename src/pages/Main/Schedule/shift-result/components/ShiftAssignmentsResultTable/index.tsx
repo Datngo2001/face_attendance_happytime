@@ -12,7 +12,7 @@ import { extraReducersGetDepartmentAndPositionList } from 'store/slices/Main/Dep
 import { FormPaginationCustom } from 'components/PaginationCustom/FormPaginationCustom'
 import ReplayIcon from '@mui/icons-material/Replay';
 
-export type Props = {
+type Props = {
     control: any
     handleSearch: any
     watch: any

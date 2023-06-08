@@ -14,7 +14,7 @@ import { CreateDepartmentDto } from "store/slices/Main/Departments/departmentsSl
 import PositionTable from "./components/PositionTable";
 import { defaultValues } from "./defaultValues";
 
-export type Props = {
+type Props = {
   action: FormAction
   setOpen: any
 }

@@ -6,7 +6,7 @@ import { FormAction } from 'forms/formAction'
 import React from 'react'
 import { ApplyFor } from 'store/slices/Main/ShiftAssignments/shiftAssignmentsSlice'
 
-export type Props = {
+type Props = {
     nextStep: any
     control: any
     watch: any

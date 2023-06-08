@@ -7,7 +7,7 @@ import InputCustom from "components/InputCustom";
 import DatePickerCustom from "components/InputDate/DatePickerCustom";
 import DateRangePickerCustom from "components/InputDate/DateRangePickerCustom";
 
-export type Props = {
+type Props = {
   control: any;
   setValue: any;
   trigger: any;

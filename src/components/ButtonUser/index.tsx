@@ -4,7 +4,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import PersonIcon from "@mui/icons-material/Person";
 import { Link } from "react-router-dom";
 
-export type Props = {
+type Props = {
     type: number;
     avatar?: string;
     name: string;

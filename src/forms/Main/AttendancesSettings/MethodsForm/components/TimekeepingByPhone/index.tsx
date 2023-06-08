@@ -3,7 +3,7 @@ import "./styles.scss";
 import FormSwitchCustom from "components/ButtonSwitchCustom/FormSwitchCustom";
 import { useState } from "react";
 
-export type Props = {
+type Props = {
     setValue: any
     control: any
     getValues: any

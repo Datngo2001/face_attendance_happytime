@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { Box } from "@mui/system";
 import { Controller } from "react-hook-form";
 
-export type Props = {
+type Props = {
     name: string,
     control: any,
     options: any,

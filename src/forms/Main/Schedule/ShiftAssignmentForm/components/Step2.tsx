@@ -8,7 +8,7 @@ import SpecificDateConfig from './SpecificDateConfigs'
 import { SelectBoxOption } from 'components/SelectCustom'
 import { FormAction } from 'forms/formAction'
 
-export type Props = {
+type Props = {
     action: FormAction
     nextStep: any
     handleSubmit: any

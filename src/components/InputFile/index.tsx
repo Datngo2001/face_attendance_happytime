@@ -5,7 +5,7 @@ import PersonIcon from "@mui/icons-material/Person";
 import { useEffect, useState } from "react";
 import { Controller } from "react-hook-form";
 
-export type Props = {
+type Props = {
   control: any;
   name: string;
   className?: string;

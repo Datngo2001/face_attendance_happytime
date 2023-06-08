@@ -2,7 +2,7 @@ import React from 'react'
 import "./styles.scss"
 import TimeRangeCustom from 'components/InputTime/TimeRangeCustom'
 
-export type Props = {
+type Props = {
     control: any
 }
 

@@ -4,7 +4,7 @@ import { useAppSelector } from 'hooks/useAppSelector'
 import React from 'react'
 import { createPositionSelectOptions } from 'utils/departmentUtil'
 
-export type Props = {
+type Props = {
     control: any
     setValue: any
 }

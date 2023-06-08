@@ -2,7 +2,7 @@ import { Step, StepLabel, Stepper } from '@mui/material';
 import React, { ReactNode } from 'react'
 import "./styles.scss"
 
-export type Props = {
+type Props = {
     activeStep: number
     steps: StepItem[]
     stepContents: ReactNode[];

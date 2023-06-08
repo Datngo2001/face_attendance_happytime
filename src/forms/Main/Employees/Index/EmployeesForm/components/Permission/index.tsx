@@ -3,7 +3,7 @@ import "./styles.scss";
 import SelectCustom from "components/SelectCustom";
 import { roleOptions } from "store/slices/Main/Employees/employeesSlice";
 
-export type Props = {
+type Props = {
   control: any,
 }
 

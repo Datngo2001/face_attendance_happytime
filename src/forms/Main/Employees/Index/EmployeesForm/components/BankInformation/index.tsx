@@ -2,7 +2,7 @@ import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 import "./styles.scss";
 import InputCustom from "components/InputCustom";
 
-export type Props = {
+type Props = {
   control: any
 }
 

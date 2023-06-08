@@ -5,7 +5,7 @@ import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import InfoIcon from '@mui/icons-material/Info';
 import { FormAction } from 'forms/formAction';
 
-export type Props = {
+type Props = {
     id: string
     typeId: string
 }

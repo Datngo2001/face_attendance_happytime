@@ -2,7 +2,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 
-export type Props = {
+type Props = {
   defaultValues?: any;
   validationSchema?: any;
 };

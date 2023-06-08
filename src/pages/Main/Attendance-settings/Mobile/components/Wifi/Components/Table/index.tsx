@@ -15,7 +15,7 @@ import useConfirmMoldal from "hooks/useConfirmMoldal";
 import { FormPaginationCustom } from "components/PaginationCustom/FormPaginationCustom";
 import DataGridCustom from "components/DataGridCustom";
 
-export type Props = {
+type Props = {
     control: any
     handleSearch: any
 }

@@ -10,7 +10,7 @@ import { defaultValues } from "./defaultValues";
 import { schema } from "./validation";
 import RadioGroupCustom, { RadioItem } from "components/RadioGroupCustom";
 
-export type Props = {
+type Props = {
   action: FormAction
   setOpen: any
 }

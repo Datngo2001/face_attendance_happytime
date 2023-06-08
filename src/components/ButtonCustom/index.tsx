@@ -1,7 +1,7 @@
 import { ReactElement } from "react";
 import "./styles.scss";
 
-export type Props = {
+type Props = {
     id?: string,
     icon?: ReactElement,
     type?: 1 | 2 | 3,

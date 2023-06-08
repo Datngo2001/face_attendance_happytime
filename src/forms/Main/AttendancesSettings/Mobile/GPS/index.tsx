@@ -11,7 +11,7 @@ import { defaultValues } from "./defaultValues";
 import { schema } from "./validation";
 import GetPositionButton from "components/GetPositionButton";
 
-export type Props = {
+type Props = {
   action: FormAction
   setOpen: any
 }

@@ -14,7 +14,7 @@ import { createPositionSelectOptions } from "utils/departmentUtil";
 import TreeViewSelectBox from "components/TreeViewSelectBox";
 import { roleOptions, statusEmployeesOption, statusUsingHappyTimeOptions } from "store/slices/Main/Employees/employeesSlice";
 
-export type Props = {
+type Props = {
   control: any
   setValue: any
 }

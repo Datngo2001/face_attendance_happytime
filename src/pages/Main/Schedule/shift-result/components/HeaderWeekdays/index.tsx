@@ -1,7 +1,7 @@
 import { convertDayToNameDay } from "utils";
 import "./styles.scss";
 
-export type Props = {
+type Props = {
     day: number
     date: string
 }

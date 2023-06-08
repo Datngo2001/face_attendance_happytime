@@ -5,7 +5,7 @@ import DataGridCustom from 'components/DataGridCustom'
 import { GridRowHeightParams } from '@mui/x-data-grid'
 import { PermissionFormContext } from '../../context'
 
-export type Props = {
+type Props = {
     featureGroups: FeatureGroup[]
     control: any
 }

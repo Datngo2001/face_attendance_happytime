@@ -7,7 +7,7 @@ import DatePickerCustom from "components/InputDate/DatePickerCustom";
 import React from "react";
 import { educationOptions, genderOptions, marriedStatusOptions } from "store/slices/Main/Employees/employeesSlice";
 
-export type Props = {
+type Props = {
   control: any,
 }
 

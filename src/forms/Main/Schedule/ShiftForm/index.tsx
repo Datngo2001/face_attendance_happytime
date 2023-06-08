@@ -20,7 +20,7 @@ import { extraReducersCreateShift, extraReducersUpdateShift } from 'store/slices
 import InputNumber from 'components/InputNumber'
 import useCRUDForm from 'hooks/useCRUDForm'
 
-export type Props = {
+type Props = {
     shift?: Shift
     shiftType: ShiftType
     action?: FormAction

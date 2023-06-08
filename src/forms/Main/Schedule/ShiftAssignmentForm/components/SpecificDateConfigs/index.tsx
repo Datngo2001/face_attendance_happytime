@@ -10,7 +10,7 @@ import { useForm } from 'react-hook-form'
 import { DateApply, Shift } from 'store/slices/Main/ShiftAssignments/shiftAssignmentsSlice'
 import { validateShift_ids } from 'utils/shiftScheduleUtil'
 
-export type Props = {
+type Props = {
     watch: any
     setValue: any
     shiftSelectOptions: SelectBoxOption[]

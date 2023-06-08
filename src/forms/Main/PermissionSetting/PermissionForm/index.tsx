@@ -10,7 +10,7 @@ import { PermissionFormContext } from "./context"
 import PermissionVisual from './components/PermissionVisual'
 import InputNote from 'components/InputNote'
 
-export type Props = {
+type Props = {
     method: FormMethod
 }
 

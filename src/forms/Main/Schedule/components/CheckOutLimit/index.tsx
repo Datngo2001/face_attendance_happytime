@@ -1,7 +1,7 @@
 import FormSwitchCustom from 'components/ButtonSwitchCustom/FormSwitchCustom'
 import React from 'react'
 
-export type Props = {
+type Props = {
     control: any
 }
 

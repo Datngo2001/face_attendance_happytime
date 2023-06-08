@@ -9,7 +9,7 @@ import useCRUDForm from "hooks/useCRUDForm";
 import { defaultValues } from "./defaultValues";
 import { schema } from "./validation";
 
-export type Props = {
+type Props = {
   action: FormAction
   setOpen: any
 }

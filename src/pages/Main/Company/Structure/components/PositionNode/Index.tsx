@@ -4,7 +4,7 @@ import { DEFAULT_LEFT_INDENT, DEFAULT_TOP_INDENT } from '../../default'
 import PersonIcon from '@mui/icons-material/Person';
 import StarIcon from '@mui/icons-material/Star';
 
-export type Props = {
+type Props = {
     position: Position
     depth: number
 }

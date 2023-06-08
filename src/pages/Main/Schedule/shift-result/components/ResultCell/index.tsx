@@ -5,7 +5,7 @@ import { useMemo } from "react"
 import { ShiftsByDate } from "store/slices/Main/ShiftAssignmentsResult/shiftAssignmentsResultSlice"
 import './styles.scss'
 
-export type Props = {
+type Props = {
     shifts_by_date: ShiftsByDate[]
     date: string
 }

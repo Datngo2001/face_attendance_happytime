@@ -5,7 +5,7 @@ import Stack from '@mui/material/Stack'
 import TimePickerCustom from 'components/InputTime/TimePickerCustom'
 import { ShiftTypeName } from 'store/slices/Main/Shifts/shiftsSlice'
 
-export type Props = {
+type Props = {
     typeName: ShiftTypeName
     control: any
 }

@@ -8,7 +8,7 @@ import LoadingCustom from "components/LoadingCustom";
 import NoRowsOverlayCustom from "components/NoRowsOverlayCustom";
 import { useMemo, useRef } from "react";
 
-export type Props = {
+type Props = {
     control: any,
     watch: any
 }

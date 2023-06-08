@@ -3,7 +3,7 @@ import "./styles.scss"
 import { Stack } from '@mui/material'
 import { Controller } from 'react-hook-form'
 
-export type Props = {
+type Props = {
     name: string
     control: any
     items: RadioItem[]

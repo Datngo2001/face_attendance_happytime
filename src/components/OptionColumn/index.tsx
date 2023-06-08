@@ -1,7 +1,7 @@
 import "./styles.scss";
 import MoreHorizRoundedIcon from "@mui/icons-material/MoreHorizRounded";
 
-export type Props = {
+type Props = {
     id: string;
 }
 

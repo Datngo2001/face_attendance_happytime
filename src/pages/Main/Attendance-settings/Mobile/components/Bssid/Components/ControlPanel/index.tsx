@@ -9,7 +9,7 @@ import { FormAction } from "forms/formAction";
 import BssidAddingForm from "forms/Main/AttendancesSettings/Mobile/Bssid";
 import { useAppSelector } from "hooks/useAppSelector";
 
-export type Props = {
+type Props = {
   control: any
   handleSearch: any
 }

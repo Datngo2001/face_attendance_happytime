@@ -3,7 +3,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import ButtonCustom from "components/ButtonCustom";
 
-export type Props = {
+type Props = {
     isOpen: boolean
     features: string[]
     onFeatureGroupClick?: any

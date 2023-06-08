@@ -1,6 +1,6 @@
 import "./styles.scss";
 
-export type Props = {
+type Props = {
     name?: string;
     className?: string;
     label?: string;

@@ -10,7 +10,7 @@ import useConfirmMoldal from 'hooks/useConfirmMoldal';
 import { useAppDispatch } from 'hooks/useAppDispatch';
 import { extraReducersDeleteDepartments } from 'store/slices/Main/Departments/actions/extraReducers';
 
-export type Props = {
+type Props = {
     department: Department
     depth: number
     handleUpdate: any

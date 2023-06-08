@@ -22,7 +22,7 @@ import { useNavigate } from 'react-router-dom'
 import useConfirmMoldal from 'hooks/useConfirmMoldal'
 import { getWorkingTime } from 'utils/shiftScheduleUtil'
 
-export type Props = {
+type Props = {
     shiftAssignment?: ShiftAssignment
     action?: FormAction
 }

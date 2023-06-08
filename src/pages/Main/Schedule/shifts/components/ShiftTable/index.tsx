@@ -8,7 +8,7 @@ import { getColumns } from './components';
 import useConfirmMoldal from 'hooks/useConfirmMoldal';
 import { FormPaginationCustom } from 'components/PaginationCustom/FormPaginationCustom';
 
-export type Props = {
+type Props = {
     control: any
 }
 

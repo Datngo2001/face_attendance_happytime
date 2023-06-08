@@ -10,7 +10,7 @@ import { Chip } from "@mui/material";
 import CancelIcon from '@mui/icons-material/Cancel';
 import ChipCustom from "components/ChipCustom";
 
-export type Props = {
+type Props = {
     name: string;
     control?: any;
     options: SelectBoxOption[];

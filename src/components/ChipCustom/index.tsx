@@ -2,7 +2,7 @@ import { Chip } from '@mui/material'
 import React from 'react'
 import "./styles.scss"
 
-export type Props = {
+type Props = {
     key?: any
     label?: string
     onDelete?: any

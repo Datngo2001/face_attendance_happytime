@@ -2,7 +2,7 @@ import SelectCustom, { SelectBoxOption } from "components/SelectCustom";
 import React, { useMemo } from "react";
 import { AccessEnum } from "store/slices/Main/Permission/permissionSlice";
 
-export type Props = {
+type Props = {
     isOpen: boolean
     accesses: string[]
     onFeatureAccessSelect: any
