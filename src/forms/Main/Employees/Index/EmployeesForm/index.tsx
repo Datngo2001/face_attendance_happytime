@@ -32,7 +32,7 @@ const EmployeesForm: React.FC<Props> = ({ action = FormAction.CREATE }) => {
             return CreateDefaultValues
         }
         return infoOfEmployee;
-    }, [infoOfEmployee])
+    }, [infoOfEmployee?._id])
 
     const { control, handleSubmit, setError, setValue } = useCRUDForm({
         defaultValues: defaultValues,

@@ -13,6 +13,8 @@ import empoyeesRouters from "./employees/router";
 import profileRouters from "./profiles/router";
 import workspaceSettingsRouters from "./workspace-settings/router";
 import scheduleRouters from "./schedule/router";
+import NewsLayout from "layouts/Main/news";
+import newsRouters from "./news/router";
 
 const mainRouters = [
   {
@@ -59,6 +61,11 @@ const mainRouters = [
     path: "schedule",
     component: <ScheduleLayout />,
     listChildrenRoutes: scheduleRouters,
+  },
+  {
+    path: "news",
+    component: <NewsLayout />,
+    listChildrenRoutes: newsRouters,
   },
 ];
 

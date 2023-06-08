@@ -1,0 +1,13 @@
+@use "../../../../assets/styles/index.scss" as *;
+
+.news-categories-form {
+    .category_name {
+        margin-bottom: 20px;
+    }
+
+    .submit {
+        max-width: 40%;
+        text-align: -webkit-right;
+        text-align: right;
+    }
+}

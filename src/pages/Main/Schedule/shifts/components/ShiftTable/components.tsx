@@ -2,11 +2,8 @@ import { GridColumns } from "@mui/x-data-grid";
 import ButtonSwitchCustom from "components/ButtonSwitchCustom";
 import DropMenu from "components/DropMenu";
 import { OptionColumn } from "components/OptionColumn";
-import { ShiftTypeName } from "store/slices/Main/Shifts/shiftsSlice";
-import RowOptions from "../RowOptions";
-import dayjs from "dayjs";
-import { DataFormat, ViewFormat } from "components/InputTime/default";
 import { getWorkingTime } from "utils/shiftScheduleUtil";
+import RowOptions from "../RowOptions";
 
 export const getColumns = (updateStatus): GridColumns => ([
     {
