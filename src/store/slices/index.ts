@@ -9,6 +9,7 @@ import { confirmModalSlice } from "./ConfirmModal/confirmModalSlice";
 import shiftAssignmentsSlice from "./Main/ShiftAssignments/shiftAssignmentsSlice";
 import shiftAssignmentsResultSlice from "./Main/ShiftAssignmentsResult/shiftAssignmentsResultSlice";
 import newsCategoriesSlice from "./Main/NewsCategories/newsCategoriesSlice";
+import newsSlice from "./Main/News/newsSlice";
 
 export {
   employeesSlice,
@@ -21,7 +22,8 @@ export {
   confirmModalSlice,
   shiftAssignmentsSlice,
   shiftAssignmentsResultSlice,
-  newsCategoriesSlice
+  newsCategoriesSlice,
+  newsSlice
 };
 
 export class BaseState {

@@ -1,13 +1,13 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { api } from "config/api";
-import { NewsCategory, NewsCategorySearchParams } from "../newsCategoriesSlice";
 import { toastPromise } from "utils";
+import { News, NewsSearchParams } from "../newsSlice";
 
-export const extraReducersCreateNewsCategory = createAsyncThunk(
-    "createNewsCategory",
-    async (data: NewsCategory) => {
+export const extraReducersCreateNews = createAsyncThunk(
+    "createNews",
+    async (data: News) => {
         let promise = api
-            .post(`/api/news/category/create`, data)
+            .post(`/api/news/new/create`, data)
             .then((response: any) => {
                 return {
                     payload: response.payload,
@@ -26,11 +26,11 @@ export const extraReducersCreateNewsCategory = createAsyncThunk(
     }
 );
 
-export const extraReducersSearchNewsCategory = createAsyncThunk(
-    "searchNewsCategory",
-    async (params: NewsCategorySearchParams) => {
+export const extraReducersSearchNews = createAsyncThunk(
+    "searchNews",
+    async (params: NewsSearchParams) => {
         return api
-            .post(`/api/news/category/search?page=${params.page}&size=${params.size}`, params)
+            .post(`/api/news/new/search?page=${params.page}&size=${params.size}`, params)
             .then((response: any) => {
                 return {
                     payload: response.payload,
@@ -41,11 +41,11 @@ export const extraReducersSearchNewsCategory = createAsyncThunk(
     }
 );
 
-export const extraReducersUpdateNewsCategory = createAsyncThunk(
+export const extraReducersUpdateNews = createAsyncThunk(
     "updateNewsCategory",
-    async (data: NewsCategory) => {
+    async (data: News) => {
         let promise = api
-            .put(`/api/news/category/update/${data._id}`, data)
+            .put(`/api/news/new/update/${data._id}`, data)
             .then((response: any) => {
                 return {
                     payload: response.payload,
@@ -64,11 +64,11 @@ export const extraReducersUpdateNewsCategory = createAsyncThunk(
     }
 );
 
-export const extraReducersDeleteNewsCategory = createAsyncThunk(
-    "deleteNewsCategory",
+export const extraReducersDeleteNews = createAsyncThunk(
+    "deleteNews",
     async (id: number) => {
         let promise = api
-            .delete(`/api/news/category/delete/${id}`)
+            .delete(`/api/news/new/delete/${id}`)
             .then((response: any) => {
                 return {
                     payload: response.payload,

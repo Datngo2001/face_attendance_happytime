@@ -1,0 +1,12 @@
+@use "../../../../../../assets/styles/index.scss" as *;
+
+.news-list-table {
+    .quantity-news {
+        margin: 30px 30px 15px 30px;
+        color: $text-color-1;
+
+        .quantity {
+            font-weight: $fw-1;
+        }
+    }
+}

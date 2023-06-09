@@ -1,0 +1,17 @@
+@use "../../../../../../assets/styles/index.scss" as *;
+
+.news-list-control-panel {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 30px;
+    padding: 20px;
+
+    .search-box {
+        flex: 5;
+    }
+
+    .add-btn {
+        flex: 1;
+    }
+}

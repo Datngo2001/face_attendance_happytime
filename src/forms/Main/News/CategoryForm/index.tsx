@@ -7,7 +7,7 @@ import { FormAction } from "forms/formAction";
 import ButtonCustom from "components/ButtonCustom";
 import { useAppDispatch } from "hooks/useAppDispatch";
 import { extraReducersCreateNewsCategory, extraReducersUpdateNewsCategory } from "store/slices/Main/NewsCategories/actions/extraReducers";
-import { useEffect, useMemo } from "react";
+import { useMemo } from "react";
 import { useAppSelector } from "hooks/useAppSelector";
 
 const schema = yup.object({
@@ -65,7 +65,7 @@ export const CategoryForm: React.FC<Props> = ({ action, setOpen = () => { } }) =
                     action === FormAction.UPDATE
                         ? handleSubmitUpdate
                         : handleSubmitCreate
-                )}>Thêm Danh Mục</ButtonCustom>
+                )}>{FormAction.CREATE ? "Thêm Danh Mục" : "Chỉnh Sửa Danh Mục"}</ButtonCustom>
             </div>
         </div>
     )

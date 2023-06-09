@@ -92,7 +92,7 @@ export const Categories: React.FC = () => {
                 </div>
             </div>
             <ModalCustom
-                titleHeader={"CHỈNH SỬA THÔNG TIN WIFI"}
+                titleHeader={"CHỈNH SỬA DANH MỤC"}
                 state={open}
                 setState={setOpen}
                 footer={false}
