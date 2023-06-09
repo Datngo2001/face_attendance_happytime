@@ -6,13 +6,13 @@ export const RowOptions = ({ id, handleUpdateClick, handleDeleteClick }) => {
     return (
         <>
             <div className="row-options__wrapper">
-                <div className="row-options__item" onClick={handleUpdateClick(id)} >
+                <div className="row-options__item" onClick={() => handleUpdateClick(id)} >
                     <span className="icon">
                         <BorderColorRoundedIcon />
                     </span>
                     <p className="title">Chỉnh sửa thông tin bài viết</p>
                 </div>
-                <div className="row-options__item" onClick={handleDeleteClick(id)}>
+                <div className="row-options__item" onClick={() => handleDeleteClick(id)}>
                     <span className="icon">
                         <DeleteIcon />
                     </span>

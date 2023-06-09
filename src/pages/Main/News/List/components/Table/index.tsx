@@ -9,8 +9,9 @@ import NoRowsOverlayCustom from "components/NoRowsOverlayCustom";
 import useConfirmMoldal from "hooks/useConfirmMoldal";
 import { FormPaginationCustom } from "components/PaginationCustom/FormPaginationCustom";
 import DataGridCustom from "components/DataGridCustom";
-import { setCurrentNews } from "store/slices/Main/News/newsSlice";
 import { extraReducersDeleteNews } from "store/slices/Main/News/actions/extraReducers";
+import { useNavigate } from "react-router-dom";
+import { FormAction } from "forms/formAction";
 
 type Props = {
     control: any
@@ -18,7 +19,7 @@ type Props = {
 }
 
 const Table: React.FC<Props> = ({ control, handleSearch }) => {
-
+    const navigate = useNavigate();
     const { listOfNews, totalPages, totalNews, loading, lastCreateSuccess, lastUpdateSuccess, lastDeleteSuccess } = useAppSelector(
         (state) => state.news
     );
@@ -33,18 +34,15 @@ const Table: React.FC<Props> = ({ control, handleSearch }) => {
     }, [lastUpdateSuccess]);
 
     const handleUpdateClick = (id) => {
-        return () => {
-            dispatch(setCurrentNews({ id }))
-        }
+        navigate(`../news-detail/${FormAction.UPDATE}/${id}`)
     }
 
     const handleDeleteClick = (id) => {
-        return () => {
-            openConfirmModal("Xác nhận", "Bạn có muốn xóa bài viết này không ?", () => {
-                dispatch(extraReducersDeleteNews(id))
-            })
-        }
+        openConfirmModal("Xác nhận", "Bạn có muốn xóa bài viết này không ?", () => {
+            dispatch(extraReducersDeleteNews(id))
+        })
     }
+
     return (
         <>
             <div className="news-list-table">

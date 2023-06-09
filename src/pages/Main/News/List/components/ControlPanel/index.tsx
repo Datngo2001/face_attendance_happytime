@@ -1,10 +1,10 @@
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import "./styles.scss";
-import { useEffect, useState } from "react";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import InputCustom from "components/InputCustom";
 import ButtonCustom from "components/ButtonCustom";
-import { useAppSelector } from "hooks/useAppSelector";
+import { useNavigate } from "react-router-dom";
+import { FormAction } from "forms/formAction";
 
 type Props = {
   control: any
@@ -12,6 +12,7 @@ type Props = {
 }
 
 const ControlPanel: React.FC<Props> = ({ control }) => {
+  const navigate = useNavigate();
 
   return (
     <>
@@ -30,6 +31,7 @@ const ControlPanel: React.FC<Props> = ({ control }) => {
           height="32px"
           type={1}
           icon={<AddRoundedIcon />}
+          onClick={() => navigate(`../news-detail/${FormAction.CREATE}`)}
         >
           Tạo mới bào viết
         </ButtonCustom>

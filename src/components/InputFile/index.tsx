@@ -3,7 +3,8 @@ import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import ApartmentIcon from "@mui/icons-material/Apartment";
 import PersonIcon from "@mui/icons-material/Person";
 import { useEffect, useState } from "react";
-import { Controller } from "react-hook-form";
+import { Controller, useController } from "react-hook-form";
+import ImageIcon from '@mui/icons-material/Image';
 
 type Props = {
   control: any;
@@ -25,7 +26,8 @@ const InputFile: React.FC<Props> = ({
   defaultValue,
 }) => {
   // STATE
-  const [imgSrc, setImgSrc] = useState<any>(defaultValue || "");
+  const { field: { value, onChange, ref } } = useController({ name, control })
+  const [imgSrc, setImgSrc] = useState<any>(defaultValue || value || "");
   // ******************************
 
   // VARIABLES
@@ -47,49 +49,40 @@ const InputFile: React.FC<Props> = ({
   // ****************************
 
   return (
-    <Controller
-      name={name}
-      control={control}
-      render={({
-        field: { onChange, value, name, ref },
-        fieldState: { error },
-      }) => (<div className={`input-file__wrapper ${className ? className : ""}`}>
-        <div
-          className="input-file__image"
-          style={{
-            minHeight: sizePreImg,
-            width: sizePreImg,
-            height: sizePreImg,
-          }}
-        >
-          {imgSrc ? (
-            <img src={imgSrc} alt="" className="input-file__image-preview" />
-          ) : type === 1 ? (
-            <ApartmentIcon />
-          ) : (
-            <PersonIcon />
-          )}
-        </div>
-        {type === 1 ? (
-          <label htmlFor={name} className="icon">
-            <CameraAltIcon />
-          </label>
-        ) : (
-          <label htmlFor={name} className="btn">
-            {title}
-          </label>
-        )}
-        <input
-          id={name}
-          ref={ref}
-          onChange={e => onChange(handlePreviewFile(e))}
-          value={value?.startsWith("http") ? "" : value}
-          type="file"
-          accept={accept}
-        />
-      </div>)}
-    />
-  );
+    <div className={`input-file__wrapper ${className ? className : ""}`}>
+      <div
+        className="input-file__image"
+        style={{
+          minHeight: sizePreImg,
+          width: sizePreImg,
+          height: sizePreImg,
+        }}
+      >
+        {imgSrc && (<img src={imgSrc} alt="" className="input-file__image-preview" />)}
+        {!imgSrc && type === 1 && (<ApartmentIcon />)}
+        {!imgSrc && type === 2 && (<ImageIcon />)}
+        {!imgSrc && type == null && (<PersonIcon />)}
+      </div>
+      {type === 1 && (
+        <label htmlFor={name} className="icon">
+          <CameraAltIcon />
+        </label>
+      )}
+      {type !== 1 && (
+        <label htmlFor={name} className="btn">
+          {title}
+        </label>
+      )}
+      <input
+        id={name}
+        ref={ref}
+        onChange={e => onChange(handlePreviewFile(e))}
+        value={value?.startsWith("http") ? "" : value}
+        type="file"
+        accept={accept}
+      />
+    </div>
+  )
 };
 
 export default InputFile;

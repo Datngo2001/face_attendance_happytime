@@ -40,7 +40,7 @@ const RadioGroupCustom: React.FC<Props> = ({ name, label, control, items, spacin
                             }) => (
                                 <>
                                     <input
-                                        defaultChecked={item.value === value}
+                                        checked={item.value === value}
                                         id={`${name}_${index}`}
                                         type="radio"
                                         name={name}

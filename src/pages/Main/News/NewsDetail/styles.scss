@@ -1,0 +1,9 @@
+@use "../../../../assets/styles/index.scss" as *;
+
+.news-detail {
+    padding: 30px;
+
+    .content-navigator {
+        cursor: pointer;
+    }
+}

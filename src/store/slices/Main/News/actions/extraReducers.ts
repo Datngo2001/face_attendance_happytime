@@ -5,13 +5,14 @@ import { News, NewsSearchParams } from "../newsSlice";
 
 export const extraReducersCreateNews = createAsyncThunk(
     "createNews",
-    async (data: News) => {
+    async ({ data, onSuccess }: { data: News, onSuccess: any }) => {
         let promise = api
             .post(`/api/news/new/create`, data)
             .then((response: any) => {
                 return {
                     payload: response.payload,
                     message: response.message,
+                    onSuccess: onSuccess
                 };
             })
             .catch((error) => error);
@@ -41,15 +42,31 @@ export const extraReducersSearchNews = createAsyncThunk(
     }
 );
 
+export const extraReducersGetNewsById = createAsyncThunk(
+    "getNewsById",
+    async (id: string) => {
+        return api
+            .get(`/api/news/new/get/${id}`)
+            .then((response: any) => {
+                return {
+                    payload: response.payload,
+                    message: response.message,
+                };
+            })
+            .catch((error) => error);
+    }
+);
+
 export const extraReducersUpdateNews = createAsyncThunk(
     "updateNewsCategory",
-    async (data: News) => {
+    async ({ data, onSuccess }: { data: News, onSuccess: any }) => {
         let promise = api
             .put(`/api/news/new/update/${data._id}`, data)
             .then((response: any) => {
                 return {
                     payload: response.payload,
                     message: response.message,
+                    onSuccess: onSuccess
                 };
             })
             .catch((error) => error);

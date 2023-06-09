@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { extraReducersCreateNews, extraReducersDeleteNews, extraReducersSearchNews, extraReducersUpdateNews } from "./actions/extraReducers";
+import { extraReducersCreateNews, extraReducersDeleteNews, extraReducersGetNewsById, extraReducersSearchNews, extraReducersUpdateNews } from "./actions/extraReducers";
 import { reducersSetCurrentNews } from "./actions/reducers";
 
 export type NewsState = {
@@ -45,6 +45,12 @@ export type News = {
         name: string
         updated_at: number
     }
+    ref: {
+        action: string
+        agent_id: string
+        name: string
+        updated_at: number
+    },
 }
 
 const newsSlice = createSlice({
@@ -75,6 +81,21 @@ const newsSlice = createSlice({
                         state.totalPages = payload.total_pages;
                         state.totalNews = payload.total_items;
                         state.listOfNews = payload.items;
+                        state.news = null
+                    }
+                }
+            );
+
+        builder
+            .addCase(extraReducersGetNewsById.pending, (state: NewsState) => {
+                state.loading = true;
+            })
+            .addCase(
+                extraReducersGetNewsById.fulfilled,
+                (state: NewsState, { payload: { payload, message } }) => {
+                    state.loading = false;
+                    if (message === "success") {
+                        state.news = payload
                     }
                 }
             );
@@ -85,10 +106,11 @@ const newsSlice = createSlice({
             })
             .addCase(
                 extraReducersCreateNews.fulfilled,
-                (state: NewsState, { payload: { payload, message } }) => {
+                (state: NewsState, { payload: { payload, message, onSuccess } }) => {
                     state.loading = false;
                     if (message === "success") {
                         state.lastCreateSuccess = Date.now();
+                        onSuccess();
                     }
                 }
             );
@@ -99,10 +121,11 @@ const newsSlice = createSlice({
             })
             .addCase(
                 extraReducersUpdateNews.fulfilled,
-                (state: NewsState, { payload: { payload, message } }) => {
+                (state: NewsState, { payload: { payload, message, onSuccess } }) => {
                     state.loading = false;
                     if (message === "success") {
                         state.lastUpdateSuccess = Date.now();
+                        onSuccess();
                     }
                 }
             );
