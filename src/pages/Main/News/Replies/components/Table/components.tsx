@@ -1,5 +1,6 @@
 import { GridColumns } from "@mui/x-data-grid";
 import dayjs from "dayjs";
+import { ColumnName } from "../ColumnName";
 
 export const getColumns = (): GridColumns => ([
     {
@@ -9,8 +10,8 @@ export const getColumns = (): GridColumns => ([
         flex: 0.4,
         sortable: false,
         renderCell: (params) => {
-            return (<>{params.row.create_by.name}</>)
-        }
+            return <ColumnName img={params.row.agent_view.avatar} name={params.row.agent_view.name} />;
+        },
     },
     {
         field: "new_title",
