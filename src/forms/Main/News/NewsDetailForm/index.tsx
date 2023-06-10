@@ -32,7 +32,7 @@ type Props = {
 const defaultCreateValues: News = {
     title: "",
     category_id: null,
-    status: NewsStatus.draft,
+    status: NewsStatus.posted,
     banner: "",
     content: "",
     category_name: "",
@@ -95,29 +95,15 @@ export const NewsDetailForm: React.FC<Props> = ({ action, news }) => {
     } as SelectBoxOption)), [listOfNewsCategory])
 
     const handleCreateSubmit = async () => {
-        const data = getValues()
-
-        const bannerUrl = await uploadImgToFirebase({
-            id: data._id,
-            imageUpload: data.banner,
-        });
-
         dispatch(extraReducersCreateNews({
-            data: { ...data, banner: bannerUrl },
+            data: getValues(),
             onSuccess: () => navigate("../list")
         }))
     }
 
     const handleUpdateSubmit = async () => {
-        const data = getValues()
-
-        const bannerUrl = news.banner !== data.banner ? await uploadImgToFirebase({
-            id: data._id,
-            imageUpload: data.banner,
-        }) : news.banner;
-
         dispatch(extraReducersUpdateNews({
-            data: { ...data, banner: bannerUrl },
+            data: getValues(),
             onSuccess: () => navigate("../list")
         }))
     }

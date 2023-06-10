@@ -2,8 +2,8 @@ import "./styles.scss";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import ApartmentIcon from "@mui/icons-material/Apartment";
 import PersonIcon from "@mui/icons-material/Person";
-import { useEffect, useState } from "react";
-import { Controller, useController } from "react-hook-form";
+import { useState } from "react";
+import { useController } from "react-hook-form";
 import ImageIcon from '@mui/icons-material/Image';
 
 type Props = {
@@ -16,6 +16,8 @@ type Props = {
   defaultValue?: string;
 }
 
+const accept = ".png, .jpg, .jpeg, .gif, .bmp";
+
 const InputFile: React.FC<Props> = ({
   name,
   control,
@@ -26,16 +28,12 @@ const InputFile: React.FC<Props> = ({
   defaultValue,
 }) => {
   // STATE
-  const { field: { value, onChange, ref } } = useController({ name, control })
+  const { field: { value, onChange } } = useController({ name, control })
   const [imgSrc, setImgSrc] = useState<any>(defaultValue || value || "");
   // ******************************
 
-  // VARIABLES
-  const accept = ".png, .jpg, .jpeg, .gif, .bmp";
-  // ******************************
-
   // ARROW FUNCTION
-  const handlePreviewFile = (e) => {
+  const handleImgChange = (e) => {
     if (e.target.files && e.target.files[0]) {
       let imgFile = e.target.files[0];
       const reader = new FileReader();
@@ -43,7 +41,7 @@ const InputFile: React.FC<Props> = ({
         setImgSrc(x.target.result);
       };
       reader.readAsDataURL(imgFile);
-      return imgFile.filename;
+      onChange(imgFile);
     }
   };
   // ****************************
@@ -76,7 +74,7 @@ const InputFile: React.FC<Props> = ({
       <input
         id={name}
         // ref={ref}
-        onChange={e => onChange(handlePreviewFile(e))}
+        onChange={handleImgChange}
         type="file"
         accept={accept}
       />

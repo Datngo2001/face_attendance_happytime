@@ -2,20 +2,26 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { api } from "config/api";
 import { toastPromise } from "utils";
 import { News, NewsSearchParams } from "../newsSlice";
+import { uploadImgToFirebase } from "utils/uploadImgToFirebase";
 
 export const extraReducersCreateNews = createAsyncThunk(
     "createNews",
     async ({ data, onSuccess }: { data: News, onSuccess: any }) => {
-        let promise = api
-            .post(`/api/news/new/create`, data)
-            .then((response: any) => {
-                return {
-                    payload: response.payload,
-                    message: response.message,
-                    onSuccess: onSuccess
-                };
+        let promise = new Promise((resolve, reject) => {
+            uploadImgToFirebase({
+                id: data.banner.name,
+                imageUpload: data.banner,
             })
-            .catch((error) => error);
+                .then(url => resolve(url))
+                .catch(err => reject(err))
+        })
+            .then(bannerUrl => api.post(`/api/news/new/create`, { ...data, banner: bannerUrl }))
+            .then((response: any) => ({
+                payload: response.payload,
+                message: response.message,
+                onSuccess: onSuccess
+            }))
+            .catch((error) => error)
 
         toastPromise(promise, {
             titleLoading: "Đang thực hiện...",
@@ -60,16 +66,25 @@ export const extraReducersGetNewsById = createAsyncThunk(
 export const extraReducersUpdateNews = createAsyncThunk(
     "updateNewsCategory",
     async ({ data, onSuccess }: { data: News, onSuccess: any }) => {
-        let promise = api
-            .put(`/api/news/new/update/${data._id}`, data)
-            .then((response: any) => {
-                return {
-                    payload: response.payload,
-                    message: response.message,
-                    onSuccess: onSuccess
-                };
-            })
-            .catch((error) => error);
+        let promise = new Promise((resolve, reject) => {
+            if (typeof (data.banner) !== "string") {
+                uploadImgToFirebase({
+                    id: data.banner.name,
+                    imageUpload: data.banner,
+                })
+                    .then(url => resolve(url))
+                    .catch(err => reject(err))
+            } else {
+                resolve(data.banner)
+            }
+        })
+            .then(bannerUrl => api.put(`/api/news/new/update/${data._id}`, { ...data, banner: bannerUrl }))
+            .then((response: any) => ({
+                payload: response.payload,
+                message: response.message,
+                onSuccess: onSuccess
+            }))
+            .catch((error) => error)
 
         toastPromise(promise, {
             titleLoading: "Đang thực hiện...",

@@ -32,7 +32,7 @@ export type News = {
     category_id: string,
     category_name: string,
     status: NewsStatus,
-    banner: string,
+    banner: any,
     content: string,
     total_views: number,
     total_likes: number,
