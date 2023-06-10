@@ -46,7 +46,7 @@ export type Employee = {
   _id?: string;
   name: string;
   username?: string;
-  avatar?: string;
+  avatar?: any;
   identify_id?: string;
   staying_address?: string;
   phone_number: string;

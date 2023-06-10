@@ -8,7 +8,6 @@ import { useAppDispatch } from "hooks/useAppDispatch";
 import { extraReducersCreateInfoEmployee, extraReducersUpdateInfoEmployee } from "store/slices/Main/Employees/actions/extraReducers";
 import { updateStatusState } from "store/slices/Authentication/authSlice";
 import { checkExist } from "auth";
-import { uploadImgToFirebase } from "utils/uploadImgToFirebase";
 import LoadingCustom from "components/LoadingCustom";
 import ButtonCustom from "components/ButtonCustom";
 import { FormAction } from "forms/formAction";
@@ -100,18 +99,10 @@ const EmployeesForm: React.FC<Props> = ({ action = FormAction.CREATE }) => {
         }
 
         if (checkPhone && checkPersonalEmail) {
-            let imgUrl;
-            if (data.avatar !== infoOfEmployee.avatar) {
-                imgUrl = await uploadImgToFirebase({
-                    id: data.phone_number,
-                    imageUpload: data.avatar,
-                });
-            }
-
             dispatch(
                 extraReducersUpdateInfoEmployee({
                     id: infoOfEmployee._id,
-                    dataUpdate: { ...data, avatar: imgUrl },
+                    dataUpdate: data,
                 })
             );
         }
@@ -137,13 +128,9 @@ const EmployeesForm: React.FC<Props> = ({ action = FormAction.CREATE }) => {
             });
         }
         if (!isExistPersonalEmail.payload && !isExistPhone.payload) {
-            const imgUrl = await uploadImgToFirebase({
-                id: data.id,
-                imageUpload: data.avatar,
-            });
             dispatch(
                 extraReducersCreateInfoEmployee({
-                    dataCreate: { ...data, avatar: imgUrl },
+                    dataCreate: data,
                 })
             );
         }

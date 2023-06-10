@@ -1,3 +1,3 @@
 export const checkSelectNull = (value) => {
-    return value === "null" ? false : true;
+    return value === "null" || value === null ? false : true;
 };

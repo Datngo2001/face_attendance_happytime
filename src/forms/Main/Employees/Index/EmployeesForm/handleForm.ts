@@ -16,6 +16,7 @@ export const schema = yup.object({
     .matches(REGEX_PHONE_NUMBER, "Thông tin sai định dạng"),
   agent_type: yup
     .string()
+    .nullable()
     .test(
       "Check Select",
       "Trường Loại hình nhân sự không được bỏ trống",
@@ -26,12 +27,45 @@ export const schema = yup.object({
   start_working_date: yup
     .number()
     .required("Trường Ngày bắt đầu đi làm không được bỏ trống"),
-  education_type: yup.string().required("Trường Học vấn không được bỏ trống"),
+  education_type: yup
+    .string()
+    .nullable()
+    .test(
+      "Check Select",
+      "Trường Học vấn không được bỏ trống",
+      (value) => {
+        return checkSelectNull(value);
+      }
+    ),
   married_status: yup
     .string()
-    .required("Trường Tình trạng hôn nhân không được bỏ trống"),
-  position_id: yup.string().required("Trường Phòng ban không được bỏ trống"),
+    .nullable()
+    .test(
+      "Check Select",
+      "Trường Tình trạng hôn nhân không được bỏ trống",
+      (value) => {
+        return checkSelectNull(value);
+      }
+    ),
+
+  position_id: yup
+    .string()
+    .nullable()
+    .test(
+      "Check Select",
+      "Trường Phòng ban không được bỏ trống",
+      (value) => {
+        return checkSelectNull(value);
+      }
+    ),
   agent_status: yup
     .string()
-    .required("Trường Trạng thái nhân sự không được bỏ trống"),
+    .nullable()
+    .test(
+      "Check Select",
+      "Trường Trạng thái nhân sự không được bỏ trống",
+      (value) => {
+        return checkSelectNull(value);
+      }
+    ),
 });

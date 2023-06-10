@@ -2,6 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { api } from "config/api";
 import { toastPromise } from "utils/toastPromise";
 import { EmployeeSearchParams } from "../employeesSlice";
+import { uploadImgToFirebase } from "utils/uploadImgToFirebase";
 
 export const extraReducersGetListEmployees = createAsyncThunk(
   "getListEmployees",
@@ -36,15 +37,24 @@ export const extraReducersGetInfoEmployeeById = createAsyncThunk(
 export const extraReducersUpdateInfoEmployee = createAsyncThunk(
   "updateInfoEmployee",
   async ({ id, dataUpdate }: any) => {
-    const promise = api
-      .put(`/api/agent/update/${id}`, dataUpdate)
-      .then((response: any) => {
-        return {
-          payload: response.payload,
-          message: response.message,
-        };
-      })
-      .catch((error) => error);
+    let promise = new Promise((resolve, reject) => {
+      if (typeof (dataUpdate.avatar) !== "string") {
+        uploadImgToFirebase({
+          id: dataUpdate.avatar.name,
+          imageUpload: dataUpdate.avatar,
+        })
+          .then(url => resolve(url))
+          .catch(err => reject(err))
+      } else {
+        resolve(dataUpdate.banner)
+      }
+    })
+      .then(avatarUrl => api.put(`/api/agent/update/${id}`, { ...dataUpdate, avatar: avatarUrl }))
+      .then((response: any) => ({
+        payload: response.payload,
+        message: response.message,
+      }))
+      .catch((error) => error)
 
     toastPromise(promise, {
       titleLoading: "Đang thực hiện...",
@@ -60,15 +70,24 @@ export const extraReducersCreateInfoEmployee = createAsyncThunk(
   async ({ dataCreate }: any) => {
     dataCreate._id = undefined;
 
-    const promise = api
-      .post(`/api/agent/create`, dataCreate)
-      .then((response: any) => {
-        return {
-          payload: response.payload,
-          message: response.message,
-        };
-      })
-      .catch((error) => error);
+    let promise = new Promise((resolve, reject) => {
+      if (typeof (dataCreate.avatar) !== "string") {
+        uploadImgToFirebase({
+          id: dataCreate.avatar.name,
+          imageUpload: dataCreate.avatar,
+        })
+          .then(url => resolve(url))
+          .catch(err => reject(err))
+      } else {
+        resolve(dataCreate.banner)
+      }
+    })
+      .then(avatarUrl => api.post(`/api/agent/create`, { ...dataCreate, avatar: avatarUrl }))
+      .then((response: any) => ({
+        payload: response.payload,
+        message: response.message,
+      }))
+      .catch((error) => error)
 
     toastPromise(promise, {
       titleLoading: "Đang thực hiện",
