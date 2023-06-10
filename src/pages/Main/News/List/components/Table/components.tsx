@@ -69,7 +69,7 @@ export const getColumns = (handleUpdateClick: Function, handleDeleteClick: Funct
                 case NewsStatus.on_scheduled:
                     return (<>Đã lên lịch</>);
                 case NewsStatus.posted:
-                    return (<>Đã lên lịch</>)
+                    return (<>Đã Đăng</>)
                 default:
                     break;
             }
