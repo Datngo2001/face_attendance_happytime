@@ -10,6 +10,7 @@ import shiftAssignmentsSlice from "./Main/ShiftAssignments/shiftAssignmentsSlice
 import shiftAssignmentsResultSlice from "./Main/ShiftAssignmentsResult/shiftAssignmentsResultSlice";
 import newsCategoriesSlice from "./Main/NewsCategories/newsCategoriesSlice";
 import newsSlice from "./Main/News/newsSlice";
+import newsRepliesSlice from "./Main/NewsReplies/newsRepliesSlice";
 
 export {
   employeesSlice,
@@ -23,7 +24,8 @@ export {
   shiftAssignmentsSlice,
   shiftAssignmentsResultSlice,
   newsCategoriesSlice,
-  newsSlice
+  newsSlice,
+  newsRepliesSlice
 };
 
 export class BaseState {

@@ -4,6 +4,9 @@ import DropMenu from "components/DropMenu";
 import { OptionColumn } from "components/OptionColumn";
 import dayjs from "dayjs";
 import { NewsStatus } from "store/slices/Main/News/newsSlice";
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
+import CommentIcon from '@mui/icons-material/Comment';
 
 export const getColumns = (handleUpdateClick: Function, handleDeleteClick: Function): GridColumns => ([
     {
@@ -12,6 +15,19 @@ export const getColumns = (handleUpdateClick: Function, handleDeleteClick: Funct
         // width: 150,
         flex: 0.3,
         sortable: false,
+        renderCell: (params) => (
+            <div className="news-title-cell">
+                <div className="news-title">{params.row.title}</div>
+                <div className="news-index">
+                    <VisibilityIcon />
+                    {params.row.total_views}
+                    <ThumbUpAltIcon />
+                    {params.row.total_likes}
+                    <CommentIcon />
+                    {params.row.total_replies}
+                </div>
+            </div>
+        )
     },
     {
         field: "post_date",
@@ -34,7 +50,7 @@ export const getColumns = (handleUpdateClick: Function, handleDeleteClick: Funct
         }
     },
     {
-        field: "category_id",
+        field: "category_name",
         headerName: "Danh mục",
         // width: 150,
         flex: 0.4,

@@ -98,7 +98,7 @@ export const NewsDetailForm: React.FC<Props> = ({ action, news }) => {
         const data = getValues()
 
         const bannerUrl = await uploadImgToFirebase({
-            id: undefined,
+            id: data._id,
             imageUpload: data.banner,
         });
 
@@ -112,7 +112,7 @@ export const NewsDetailForm: React.FC<Props> = ({ action, news }) => {
         const data = getValues()
 
         const bannerUrl = news.banner !== data.banner ? await uploadImgToFirebase({
-            id: undefined,
+            id: data._id,
             imageUpload: data.banner,
         }) : news.banner;
 

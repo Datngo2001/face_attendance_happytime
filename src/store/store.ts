@@ -7,6 +7,7 @@ import {
   departmentsSlice,
   employeesSlice,
   newsCategoriesSlice,
+  newsRepliesSlice,
   newsSlice,
   permissionsSlice,
   shiftAssignmentsResultSlice,
@@ -33,7 +34,8 @@ const store = configureStore({
     shiftAssignmentsResult: shiftAssignmentsResultSlice.reducer,
     reports: reportsSlice.reducer,
     newsCategories: newsCategoriesSlice.reducer,
-    news: newsSlice.reducer
+    news: newsSlice.reducer,
+    newsReplies: newsRepliesSlice.reducer
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

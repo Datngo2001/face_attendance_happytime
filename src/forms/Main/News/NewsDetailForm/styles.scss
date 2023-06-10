@@ -43,7 +43,9 @@
             }
 
             .input-banner {
-                border-radius: 0;
+                .input-file__image {
+                    border-radius: 0;
+                }
 
                 .input-file__image-preview {
                     border-radius: 0;

@@ -106,6 +106,7 @@ const TreeViewSelectBox: React.FC<Props> = ({
                             {placeholderItems}
                             {options.map(option => (
                                 <OptionNode
+                                    key={option.id}
                                     currentValue={value}
                                     handleSelect={(val) => { handleClose(); setValue(name, val); }}
                                     node={option}

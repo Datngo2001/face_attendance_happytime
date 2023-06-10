@@ -75,9 +75,8 @@ const InputFile: React.FC<Props> = ({
       )}
       <input
         id={name}
-        ref={ref}
+        // ref={ref}
         onChange={e => onChange(handlePreviewFile(e))}
-        value={value?.startsWith("http") ? "" : value}
         type="file"
         accept={accept}
       />
