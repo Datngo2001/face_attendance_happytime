@@ -1,1 +1,12 @@
 @use "../../assets/styles/index.scss" as *;
+
+.rich-text-input {
+    display: block;
+
+    .label {
+        display: block;
+        margin-bottom: 10px;
+        color: $text-color-3;
+        font-size: $fs-1;
+    }
+}

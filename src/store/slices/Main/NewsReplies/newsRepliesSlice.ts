@@ -1,28 +1,32 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { extraReducersSearchNewsReplies } from "./actions/extraReducers";
+import { extraReducersGetNewsComments, extraReducersGetNewsLikes } from "./actions/extraReducers";
 
 export type NewsRepliesState = {
     status: string;
     loading: boolean;
-    listOfNewsReplies: NewsReplies[];
-    totalPages: number;
-    totalNews: number;
-    lastCreateSuccess: number;
-    lastUpdateSuccess: number;
-    lastDeleteSuccess: number;
+    likes: {
+        page: number
+        listOfLike: NewsReplies[]
+        totalPage: number
+        totalLike: number
+    }
+    comments: {
+        page: number
+        listOfComment: NewsReplies[]
+        totalPage: number
+        totalComment: number
+    }
 };
 
 export type NewsRepliesSearchParams = {
     page: number,
     size: number,
-    reply_content: string,
-    type: NewsRepliesType,
+    news_id: string
 }
 
 export enum NewsRepliesType {
-    draft = "draft",
-    on_scheduled = "on_scheduled",
-    posted = "posted"
+    like = "like",
+    comment = "comment",
 }
 
 export type NewsReplies = {
@@ -30,11 +34,17 @@ export type NewsReplies = {
     type: string,
     reply_content: string,
     new_id: string,
+    created_date: number,
     create_by: {
         action: string
         agent_id: string
         name: string
         updated_at: number
+    }
+    agent_view: {
+        avatar: string
+        id: string
+        name: string
     }
 }
 
@@ -42,28 +52,56 @@ const newsRepliesSlice = createSlice({
     name: "newsRepliesSlice",
     initialState: {
         loading: false,
-        listOfNewsReplies: [],
-        totalPages: 0,
-        totalNews: 0,
-        lastCreateSuccess: 0,
-        lastUpdateSuccess: 0,
-        lastDeleteSuccess: 0,
+        likes: {
+            listOfLike: [],
+            totalPage: 0,
+            totalLike: 0,
+        },
+        comments: {
+            listOfComment: [],
+            totalPage: 0,
+            totalComment: 0,
+        },
     } as NewsRepliesState,
     reducers: {
     },
     extraReducers: (builder) => {
         builder
-            .addCase(extraReducersSearchNewsReplies.pending, (state: NewsRepliesState) => {
+            .addCase(extraReducersGetNewsLikes.pending, (state: NewsRepliesState) => {
                 state.loading = true;
             })
             .addCase(
-                extraReducersSearchNewsReplies.fulfilled,
-                (state: NewsRepliesState, { payload: { payload, message } }) => {
+                extraReducersGetNewsLikes.fulfilled,
+                (state: NewsRepliesState, { payload: { payload, message, onSuccess } }) => {
                     state.loading = false;
                     if (message === "success") {
-                        state.totalPages = payload.total_pages;
-                        state.totalNews = payload.total_items;
-                        state.listOfNewsReplies = payload.items;
+                        state.likes = {
+                            page: payload.page,
+                            listOfLike: payload.items,
+                            totalLike: payload.total_items,
+                            totalPage: payload.total_pages
+                        }
+                        onSuccess()
+                    }
+                }
+            );
+
+        builder
+            .addCase(extraReducersGetNewsComments.pending, (state: NewsRepliesState) => {
+                state.loading = true;
+            })
+            .addCase(
+                extraReducersGetNewsComments.fulfilled,
+                (state: NewsRepliesState, { payload: { payload, message, onSuccess } }) => {
+                    state.loading = false;
+                    if (message === "success") {
+                        state.comments = {
+                            page: payload.page,
+                            listOfComment: payload.items,
+                            totalComment: payload.total_items,
+                            totalPage: payload.total_pages
+                        }
+                        onSuccess()
                     }
                 }
             );

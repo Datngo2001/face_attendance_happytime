@@ -18,7 +18,7 @@ type Props = {
     readOnly?: boolean
 }
 
-export const RichTextInput: React.FC<Props> = ({ control, name }) => {
+export const RichTextInput: React.FC<Props> = ({ control, name, label }) => {
     const { field: { value, onChange } } = useController({ name, control })
 
     const blocksFromHTML = convertFromHTML(value ?? "");
@@ -43,11 +43,16 @@ export const RichTextInput: React.FC<Props> = ({ control, name }) => {
     }, [editorState]);
 
     return (
-        <Paper elevation={1} sx={{ p: 1, minHeight: 500 }}>
-            <Editor
-                editorState={editorState}
-                onEditorStateChange={setEditorState}
-            />
-        </Paper>
+        <div className="rich-text-input">
+            <label className="label">
+                {label}
+            </label>
+            < Paper elevation={1} sx={{ p: 1, minHeight: 500 }}>
+                <Editor
+                    editorState={editorState}
+                    onEditorStateChange={setEditorState}
+                />
+            </Paper >
+        </div>
     );
 }

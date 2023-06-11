@@ -1,7 +1,7 @@
 import { List } from "pages/Main/News/List";
 import { Categories } from "pages/Main/News/Categories";
-import { Replies } from "pages/Main/News/Replies";
 import { NewsDetail } from "pages/Main/News/NewsDetail";
+import { ViewDetail } from "pages/Main/News/ViewDetail";
 
 const newsRouters = [
     {
@@ -13,16 +13,16 @@ const newsRouters = [
         component: <Categories />,
     },
     {
-        path: "replies",
-        component: <Replies />,
-    },
-    {
         path: "news-detail/:action/:id",
         component: <NewsDetail />,
     },
     {
         path: "news-detail/:action",
         component: <NewsDetail />,
+    },
+    {
+        path: "view-detail/:id",
+        component: <ViewDetail />,
     },
 ];
 

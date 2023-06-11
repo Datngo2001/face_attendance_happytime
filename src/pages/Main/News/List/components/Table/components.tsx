@@ -8,7 +8,7 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
 import CommentIcon from '@mui/icons-material/Comment';
 
-export const getColumns = (handleUpdateClick: Function, handleDeleteClick: Function): GridColumns => ([
+export const getColumns = (handleUpdateClick: Function, handleDeleteClick: Function, handleViewClick: Function): GridColumns => ([
     {
         field: "title",
         headerName: "Tiêu đề",
@@ -90,7 +90,7 @@ export const getColumns = (handleUpdateClick: Function, handleDeleteClick: Funct
                         mt="2px"
                         ml="4px"
                     >
-                        <RowOptions id={params.row._id} handleUpdateClick={handleUpdateClick} handleDeleteClick={handleDeleteClick} />
+                        <RowOptions id={params.row._id} handleUpdateClick={handleUpdateClick} handleDeleteClick={handleDeleteClick} handleViewClick={handleViewClick} />
                     </DropMenu>
                 </>
             );

@@ -127,12 +127,16 @@ export const NewsDetailForm: React.FC<Props> = ({ action, news }) => {
                         name={"title"}
                         placeholder="Nhập tiêu đề bài viết"
                         control={control} />
-                    <RichTextInput name={"content"} control={control} />
+                    <RichTextInput
+                        label="Nội dung"
+                        name={"content"}
+                        control={control} />
                 </div>
                 <div className="right-side">
                     <div className="create-date">
                         <span>Ngày tạo</span>
-                        <span>{dayjs(Date.now()).format(DateFormat)}</span>
+                        {action === FormAction.CREATE && <span>{dayjs(Date.now()).format(DateFormat)}</span>}
+                        {action === FormAction.UPDATE && <span>{dayjs(getValues("post_date")).format(DateFormat)}</span>}
                     </div>
                     <Divider light sx={{ marginBottom: "20px", marginTop: "20px" }} />
                     <RadioGroupCustom

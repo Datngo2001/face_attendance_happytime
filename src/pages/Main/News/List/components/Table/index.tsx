@@ -43,6 +43,10 @@ const Table: React.FC<Props> = ({ control, handleSearch }) => {
         })
     }
 
+    const handleViewClick = (id) => {
+        navigate(`../view-detail/${id}`)
+    }
+
     return (
         <>
             <div className="news-list-table">
@@ -57,7 +61,7 @@ const Table: React.FC<Props> = ({ control, handleSearch }) => {
                             headerHeight={55}
                             rowHeight={65}
                             rows={listOfNews}
-                            columns={getColumns(handleUpdateClick, handleDeleteClick)}
+                            columns={getColumns(handleUpdateClick, handleDeleteClick, handleViewClick)}
                             getRowId={(row) => row._id}
                             rowsPerPageOptions={[10]}
                             disableSelectionOnClick={true}
