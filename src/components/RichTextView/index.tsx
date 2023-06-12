@@ -1,6 +1,5 @@
 import "./styles.scss"
 import React, { useState } from "react";
-import { Paper } from "@mui/material";
 import { ContentState, convertFromHTML, EditorState, Editor } from "draft-js";
 
 type Props = {
@@ -20,11 +19,11 @@ export const RichTextView: React.FC<Props> = ({ htmlValue = "" }) => {
     );
 
     return (
-        <Paper elevation={1} sx={{ p: 1, minHeight: 500 }}>
+        <div className="rich-text-view">
             <Editor
                 readOnly
                 editorState={editorState}
             />
-        </Paper>
+        </div>
     )
 }

@@ -1,1 +1,8 @@
 @use "../../assets/styles/index.scss" as *;
+
+.rich-text-view {
+    min-height: 500px;
+    border: $bt-1;
+    padding: 10px;
+    border-radius: 10px;
+}
