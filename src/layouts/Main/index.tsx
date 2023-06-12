@@ -29,7 +29,7 @@ const MainLayout = () => {
                     </div>
                     <div className="main-layout__content">
                         <Outlet />
-                        <p
+                        {/* <p
                             style={{
                                 fontSize: "13px",
                                 opacity: 0.5,
@@ -39,7 +39,7 @@ const MainLayout = () => {
                             }}
                         >
                             Clone bởi Sinh viên Đại học Sư phạm kĩ thuật TP.Hồ Chí Minh
-                        </p>
+                        </p> */}
                     </div>
                 </div>
             </div>

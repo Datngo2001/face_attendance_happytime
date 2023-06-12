@@ -1,7 +1,7 @@
 import { ReactNode, useEffect, useRef, useState } from "react"
 import "./styles.scss"
 import LoadingCustom from "components/LoadingCustom"
-import { Divider, List, ListItem } from "@mui/material"
+import { List, ListItem } from "@mui/material"
 import useThrottle from "hooks/useThrottle"
 
 type Props = {
@@ -10,7 +10,7 @@ type Props = {
     handleLoadMore: (page: number, setPage: Function, setListItem: Function, setLoading: Function, setIsHaveMore: Function) => void
 }
 
-export const InfiniteScrollList: React.FC<Props> = ({ renderItem, handleLoadMore, height = "300px" }) => {
+export const InfiniteScrollList: React.FC<Props> = ({ renderItem, handleLoadMore, height = "200px" }) => {
     const itemListElementRef = useRef<HTMLDivElement>()
     const [loading, setLoading] = useState(false)
     const [listItem, setListItem] = useState([])
@@ -22,7 +22,7 @@ export const InfiniteScrollList: React.FC<Props> = ({ renderItem, handleLoadMore
             return;
         }
         handleLoadMore(page, setPage, setListItem, setLoading, setIsHaveMore);
-    }, 500);
+    }, 250);
 
     useEffect(() => {
         handleLoadMore(page, setPage, setListItem, setLoading, setIsHaveMore);

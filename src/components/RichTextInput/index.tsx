@@ -47,12 +47,12 @@ export const RichTextInput: React.FC<Props> = ({ control, name, label }) => {
             <label className="label">
                 {label}
             </label>
-            < Paper elevation={1} sx={{ p: 1, minHeight: 500 }}>
+            <div className="editor">
                 <Editor
                     editorState={editorState}
                     onEditorStateChange={setEditorState}
                 />
-            </Paper >
+            </div >
         </div>
     );
 }

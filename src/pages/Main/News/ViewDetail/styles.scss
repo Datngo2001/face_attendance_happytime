@@ -72,6 +72,13 @@
                     display: flex;
                     justify-content: space-between;
                 }
+
+                .likes,
+                .comments {
+                    border: $bt-1;
+                    padding: 10px;
+                    border-radius: 10px;
+                }
             }
         }
     }

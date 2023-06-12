@@ -16,7 +16,7 @@ export const getColumns = (handleUpdateClick: Function, handleDeleteClick: Funct
         flex: 0.3,
         sortable: false,
         renderCell: (params) => (
-            <div className="news-title-cell">
+            <div className="news-title-cell" style={{ opacity: params.row.status === NewsStatus.draft ? 0.5 : 1 }}>
                 <div className="news-title">{params.row.title}</div>
                 <div className="news-index">
                     <VisibilityIcon />
@@ -35,9 +35,11 @@ export const getColumns = (handleUpdateClick: Function, handleDeleteClick: Funct
         // width: 150,
         flex: 0.4,
         sortable: false,
-        renderCell: (params) => {
-            return (<>{params.row.post_date && dayjs(params.row.post_date).format("HH:mm DD/MM/YYYY")}</>)
-        }
+        renderCell: (params) => (
+            <div style={{ opacity: params.row.status === NewsStatus.draft ? 0.5 : 1 }}>
+                {params.row.post_date && dayjs(params.row.post_date).format("HH:mm DD/MM/YYYY")}
+            </div>
+        )
     },
     {
         field: "create_by.name",
@@ -45,9 +47,12 @@ export const getColumns = (handleUpdateClick: Function, handleDeleteClick: Funct
         // width: 150,
         flex: 0.4,
         sortable: false,
-        renderCell: (params) => {
-            return (<>{params.row.create_by.name}</>)
-        }
+        renderCell: (params) => (
+            <div style={{ opacity: params.row.status === NewsStatus.draft ? 0.5 : 1 }}>
+                {params.row.create_by.name}
+            </div>
+        )
+
     },
     {
         field: "category_name",
@@ -55,6 +60,11 @@ export const getColumns = (handleUpdateClick: Function, handleDeleteClick: Funct
         // width: 150,
         flex: 0.4,
         sortable: false,
+        renderCell: (params) => (
+            <div style={{ opacity: params.row.status === NewsStatus.draft ? 0.5 : 1 }}>
+                {params.row.category_name}
+            </div>
+        )
     },
     {
         field: "status",
@@ -63,13 +73,14 @@ export const getColumns = (handleUpdateClick: Function, handleDeleteClick: Funct
         flex: 0.4,
         sortable: false,
         renderCell: (params) => {
+            const opacity = params.row.status === NewsStatus.draft ? 0.5 : 1;
             switch (params.row.status) {
                 case NewsStatus.draft:
-                    return (<>Bản nháp</>);
+                    return (<div style={{ opacity: opacity }}>Bản nháp</div>);
                 case NewsStatus.on_scheduled:
-                    return (<>Đã lên lịch</>);
+                    return (<div style={{ opacity: opacity }}>Đã lên lịch</div>);
                 case NewsStatus.posted:
-                    return (<>Đã Đăng</>)
+                    return (<div style={{ opacity: opacity }}>Đã Đăng</div>)
                 default:
                     break;
             }
@@ -84,7 +95,7 @@ export const getColumns = (handleUpdateClick: Function, handleDeleteClick: Funct
         align: "center",
         renderCell: (params) => {
             return (
-                <>
+                <div style={{ opacity: params.row.status === NewsStatus.draft ? 0.5 : 1 }}>
                     <DropMenu
                         parent={<OptionColumn id={params.row._id} />}
                         mt="2px"
@@ -92,7 +103,7 @@ export const getColumns = (handleUpdateClick: Function, handleDeleteClick: Funct
                     >
                         <RowOptions id={params.row._id} handleUpdateClick={handleUpdateClick} handleDeleteClick={handleDeleteClick} handleViewClick={handleViewClick} />
                     </DropMenu>
-                </>
+                </div>
             );
         },
     },

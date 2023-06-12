@@ -9,4 +9,11 @@
         color: $text-color-3;
         font-size: $fs-1;
     }
+
+    .editor {
+        min-height: 500px;
+        border: $bt-1;
+        padding: 10px;
+        border-radius: 10px;
+    }
 }

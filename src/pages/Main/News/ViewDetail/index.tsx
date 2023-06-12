@@ -31,7 +31,7 @@ export const ViewDetail: React.FC = () => {
 
     const handleLoadMoreLike = (page, setPage, setListItem, setLoading, setIsHaveMore) => {
         setLoading(true)
-        api.post(`/api/news/reply/search?page=${page + 1}&size=5`, { news_id: id, type: NewsRepliesType.like })
+        api.post(`/api/news/reply/search?page=${page + 1}&size=3`, { news_id: id, type: NewsRepliesType.like })
             .then((response: any) => {
                 if (response.payload.items && response.payload.items?.length > 0) {
                     setListItem(items => [...items, ...response.payload.items])
@@ -49,7 +49,7 @@ export const ViewDetail: React.FC = () => {
 
     const handleLoadMoreComment = (page, setPage, setListItem, setLoading, setIsHaveMore) => {
         setLoading(true)
-        api.post(`/api/news/reply/search?page=${page + 1}&size=5`, { news_id: id, type: NewsRepliesType.comment })
+        api.post(`/api/news/reply/search?page=${page + 1}&size=3`, { news_id: id, type: NewsRepliesType.comment })
             .then((response: any) => {
                 if (response.payload.items && response.payload.items?.length > 0) {
                     setListItem(items => [...items, ...response.payload.items])
@@ -103,7 +103,7 @@ export const ViewDetail: React.FC = () => {
                             </div>
                             <Divider light sx={{ marginBottom: "20px", marginTop: "20px" }} />
                             <div className="likes">
-                                <span>Likes</span>
+                                <span>Đã tương tác</span>
                                 <InfiniteScrollList
                                     renderItem={(item: NewsReplies) => (
                                         <>
@@ -120,7 +120,7 @@ export const ViewDetail: React.FC = () => {
                             </div>
                             <Divider light sx={{ marginBottom: "20px", marginTop: "20px" }} />
                             <div className="comments">
-                                <span>Comments</span>
+                                <span>Đã phản hồi</span>
                                 <InfiniteScrollList
                                     renderItem={(item: NewsReplies) => (
                                         <>
