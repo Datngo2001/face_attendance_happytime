@@ -7,6 +7,7 @@ import { NewsStatus } from "store/slices/Main/News/newsSlice";
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
 import CommentIcon from '@mui/icons-material/Comment';
+import { Tooltip } from "@mui/material";
 
 export const getColumns = (handleUpdateClick: Function, handleDeleteClick: Function, handleViewClick: Function): GridColumns => ([
     {
@@ -17,7 +18,9 @@ export const getColumns = (handleUpdateClick: Function, handleDeleteClick: Funct
         sortable: false,
         renderCell: (params) => (
             <div className="news-title-cell" style={{ opacity: params.row.status === NewsStatus.draft ? 0.5 : 1 }}>
-                <div className="news-title">{params.row.title}</div>
+                <Tooltip title={params.row.title ?? ""}>
+                    <p className="news-title">{params.row.title}</p>
+                </Tooltip>
                 <div className="news-index">
                     <VisibilityIcon />
                     {params.row.total_views}

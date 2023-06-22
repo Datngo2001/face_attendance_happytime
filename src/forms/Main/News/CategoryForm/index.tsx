@@ -65,7 +65,7 @@ export const CategoryForm: React.FC<Props> = ({ action, setOpen = () => { } }) =
                     action === FormAction.UPDATE
                         ? handleSubmitUpdate
                         : handleSubmitCreate
-                )}>{FormAction.CREATE ? "Thêm Danh Mục" : "Chỉnh Sửa Danh Mục"}</ButtonCustom>
+                )}>{action === FormAction.CREATE ? "Thêm Danh Mục" : "Chỉnh Sửa Danh Mục"}</ButtonCustom>
             </div>
         </div>
     )

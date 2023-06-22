@@ -21,7 +21,7 @@ export type NewsRepliesState = {
 export type NewsRepliesSearchParams = {
     page: number,
     size: number,
-    news_id: string
+    new_id: string
 }
 
 export enum NewsRepliesType {

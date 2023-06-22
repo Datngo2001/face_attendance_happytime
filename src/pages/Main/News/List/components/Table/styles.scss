@@ -2,8 +2,12 @@
 
 .news-list-table {
     .news-title-cell {
+        width: 100%;
+
         .news-title {
             margin-bottom: 10px;
+            text-overflow: ellipsis;
+            overflow: hidden;
         }
 
         .news-index {
