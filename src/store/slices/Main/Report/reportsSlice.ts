@@ -40,6 +40,7 @@ export type CheckAttendanceResult = {
 
 export enum CheckAttendanceResultStatus {
   attendanceOnTime = 1,
+  attendanceWrongTime = 2,
   notAttendance = 3,
   error = 6,
 }
@@ -72,5 +73,5 @@ const reportsSlice = createSlice({
   },
 });
 
-export const {} = reportsSlice.actions;
+export const { } = reportsSlice.actions;
 export default reportsSlice;

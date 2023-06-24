@@ -8,7 +8,7 @@ export const extraReducersGetListEmployees = createAsyncThunk(
   "getListEmployees",
   async (params: EmployeeSearchParams) => {
     return api
-      .post(`/api/agent/search?page=${params.page}&size=${params.size}`, {})
+      .post(`/api/agent/search?page=${params.page}&size=${params.size}`, params)
       .then((response: any) => {
         return {
           payload: response.payload,

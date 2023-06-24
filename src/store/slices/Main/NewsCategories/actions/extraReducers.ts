@@ -45,7 +45,7 @@ export const extraReducersUpdateNewsCategory = createAsyncThunk(
     "updateNewsCategory",
     async (data: NewsCategory) => {
         let promise = api
-            .put(`/api/news/category/update/${data._id}`, data)
+            .put(`/api/news/category/update/${data._id}`, { name: data.category_name })
             .then((response: any) => {
                 return {
                     payload: response.payload,

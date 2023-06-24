@@ -1,3 +1,4 @@
+import { Tooltip } from "@mui/material";
 import { GridColumns } from "@mui/x-data-grid";
 import ButtonSwitchCustom from "components/ButtonSwitchCustom";
 import NoRowsOverlayCustom from "components/NoRowsOverlayCustom";
@@ -28,9 +29,10 @@ export const getColumns = (handleUpdateStatusClick): GridColumns => ([
         flex: 0.2,
         sortable: false,
         renderCell: (params) => (
-            <>
+            <div style={{ overflow: "hidden", textOverflow: "ellipsis" }}>
+                {/* <Tooltip title={params.row.agent_view.id ?? ""}>{params.row.agent_view.id}</Tooltip> */}
                 {params.row.agent_view.id}
-            </>
+            </div>
         )
     },
     {

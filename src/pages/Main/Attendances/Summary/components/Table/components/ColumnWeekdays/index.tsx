@@ -14,6 +14,8 @@ const ColumnWeekdays: React.FC<Props> = ({ checkAttendanceResult, morning = 6, a
     const checkAttendanceResultStatus = useMemo(() => {
         if (!checkAttendanceResult) {
             return CheckAttendanceResultStatus.notAttendance
+        } else if (checkAttendanceResult.is_check_out_soon) {
+            return CheckAttendanceResultStatus.attendanceWrongTime
         }
         return CheckAttendanceResultStatus.attendanceOnTime
     }, [checkAttendanceResult])

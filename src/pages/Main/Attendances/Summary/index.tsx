@@ -34,10 +34,6 @@ const Summary = () => {
     handleSearch();
   }, [searchParams])
 
-  useEffect(() => {
-    dispatch(extraReducersGetListReport(getValues()))
-  }, [])
-
   return (
     <>
       <div className="attendances--summary__wrapper">

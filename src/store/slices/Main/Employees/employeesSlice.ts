@@ -25,19 +25,19 @@ export type EmployeesState = {
 };
 
 export type EmployeeSearchParams = {
-  agent_id: string;
-  agent_status: string;
-  name: string;
-  phone_number: string;
-  role: number;
-  agent_position: string;
-  is_used_happy_time: boolean;
-  personal_mail: string;
-  company_mail: string;
-  agent_code: string;
-  start_working_date: number;
-  stop_working_date: number;
-  official_working_date: number;
+  agent_id?: string;
+  agent_status?: string;
+  name?: string;
+  phone_number?: string;
+  role?: number;
+  agent_position?: string;
+  is_used_happy_time?: boolean;
+  personal_mail?: string;
+  company_mail?: string;
+  agent_code?: string;
+  start_working_date?: number;
+  stop_working_date?: number;
+  official_working_date?: number;
   page: number;
   size: number;
 };

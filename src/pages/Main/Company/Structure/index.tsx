@@ -17,10 +17,6 @@ const Structure: React.FC = () => {
     const { departmentTrees, total_department, total_position, lastCreateSuccess, lastDeleteSuccess, lastUpdateSuccess } = useAppSelector(state => state.departments)
 
     useEffect(() => {
-        dispatch(extraReducersGetDepartments());
-    }, [])
-
-    useEffect(() => {
         closeModal();
         dispatch(extraReducersGetDepartments());
     }, [lastCreateSuccess, lastDeleteSuccess, lastUpdateSuccess])
