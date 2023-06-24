@@ -103,6 +103,11 @@ const TreeViewSelectBox: React.FC<Props> = ({
                             <MenuItem value={"null"} sx={{ display: "none" }}>
                                 {placeholder}
                             </MenuItem>
+
+                            <MenuItem value={""} onClick={() => { handleClose(); setValue(name, undefined) }}>
+                                None
+                            </MenuItem>
+
                             {placeholderItems}
                             {options.map(option => (
                                 <OptionNode
@@ -133,7 +138,6 @@ function renderPlaceholerItems(options: SelectBoxNode[]): JSX.Element[] {
                 {option.name}
             </MenuItem>
         ))
-
         items.push(...renderPlaceholerItems(option.children))
     })
 

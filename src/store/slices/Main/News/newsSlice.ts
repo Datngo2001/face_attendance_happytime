@@ -51,6 +51,7 @@ export type News = {
         name: string
         updated_at: number
     },
+    created_date?: number
 }
 
 const newsSlice = createSlice({

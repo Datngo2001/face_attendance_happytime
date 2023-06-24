@@ -3,14 +3,16 @@ import "./styles.scss"
 import LoadingCustom from "components/LoadingCustom"
 import { List, ListItem } from "@mui/material"
 import useThrottle from "hooks/useThrottle"
+import NoRowsOverlayCustom from "components/NoRowsOverlayCustom"
 
 type Props = {
+    placeholder?: string
     height?: string
     renderItem: (item: any) => ReactNode
     handleLoadMore: (page: number, setPage: Function, setListItem: Function, setLoading: Function, setIsHaveMore: Function) => void
 }
 
-export const InfiniteScrollList: React.FC<Props> = ({ renderItem, handleLoadMore, height = "200px" }) => {
+export const InfiniteScrollList: React.FC<Props> = ({ renderItem, handleLoadMore, height = "200px", placeholder }) => {
     const itemListElementRef = useRef<HTMLDivElement>()
     const [loading, setLoading] = useState(false)
     const [listItem, setListItem] = useState([])
@@ -45,6 +47,11 @@ export const InfiniteScrollList: React.FC<Props> = ({ renderItem, handleLoadMore
                     {loading && <LoadingCustom />}
                 </div>
             </List>
+            {listItem.length === 0 && !loading && (
+                <div style={{ width: "100%", marginTop: "13%" }}>
+                    <NoRowsOverlayCustom title={placeholder ?? ""} />
+                </div>
+            )}
         </div>
     )
 }

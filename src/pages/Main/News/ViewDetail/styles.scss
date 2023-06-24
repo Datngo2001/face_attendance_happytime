@@ -68,9 +68,11 @@
             .right-side {
                 flex: 1;
 
-                .create-date {
+                .create-date,
+                .post-date {
                     display: flex;
                     justify-content: space-between;
+                    margin-bottom: 10px;
                 }
 
                 .likes,

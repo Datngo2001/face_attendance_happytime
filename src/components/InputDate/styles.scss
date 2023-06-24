@@ -1,6 +1,8 @@
 @use "../../assets/styles/index.scss" as *;
 
-.date-picker-custom,.date-range-picker-custom {
+.date-picker-custom,
+.date-time-picker-custom,
+.date-range-picker-custom {
     &__wrapper {
         width: 100%;
         height: auto;
@@ -11,21 +13,21 @@
             padding-bottom: 10px;
 
             &:hover {
-                & + .ant-picker {
+                &+.ant-picker {
                     border-color: $primary-color;
                 }
             }
 
-            > label {
-                > span {
+            >label {
+                >span {
                     color: $color-red-1;
                     display: none;
                 }
             }
 
             &.required {
-                > label {
-                    > span {
+                >label {
+                    >span {
                         display: unset;
                     }
                 }
@@ -40,6 +42,7 @@
                     border-color: $color-red-1;
                 }
             }
+
             .error-message {
                 color: $color-red-1;
                 font-size: $fs-1;
@@ -68,7 +71,7 @@
             }
 
             .ant-picker-input {
-                > input {
+                >input {
                     font-family: $f-family-1;
 
                     &::placeholder {
@@ -77,8 +80,7 @@
                 }
 
                 .ant-picker-suffix {
-                    .anticon {
-                    }
+                    .anticon {}
                 }
             }
 

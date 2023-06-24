@@ -16,9 +16,9 @@ import { extraReducersSearchNewsCategory } from "store/slices/Main/NewsCategorie
 import * as yup from "yup";
 import "./styles.scss"
 import { Divider } from "@mui/material";
-import { uploadImgToFirebase } from "utils/uploadImgToFirebase";
 import { extraReducersCreateNews, extraReducersUpdateNews } from "store/slices/Main/News/actions/extraReducers";
 import { useNavigate, useParams } from "react-router-dom";
+import DateTimePickerCustom from "components/InputDate/DateTimePickerCustom";
 
 const schema = yup.object({
     title: yup.string().required("Tiêu đề không được bỏ trống"),
@@ -75,10 +75,12 @@ export const NewsDetailForm: React.FC<Props> = ({ action, news }) => {
     const dispatch = useAppDispatch();
     const { listOfNewsCategory } = useAppSelector(state => state.newsCategories)
 
-    const { control, getValues } = useCRUDForm({
+    const { control, getValues, watch } = useCRUDForm({
         defaultValues: action === FormAction.CREATE ? defaultCreateValues : news,
         validationSchema: schema
     });
+
+    const status = watch("status")
 
     useEffect(() => {
         dispatch(extraReducersSearchNewsCategory({
@@ -86,7 +88,6 @@ export const NewsDetailForm: React.FC<Props> = ({ action, news }) => {
             size: 100,
             keyword: ""
         }))
-
     }, [])
 
     let categoryOptions = useMemo(() => listOfNewsCategory.map(category => ({
@@ -136,7 +137,7 @@ export const NewsDetailForm: React.FC<Props> = ({ action, news }) => {
                     <div className="create-date">
                         <span>Ngày tạo</span>
                         {action === FormAction.CREATE && <span>{dayjs(Date.now()).format(DateFormat)}</span>}
-                        {action === FormAction.UPDATE && <span>{dayjs(getValues("post_date")).format(DateFormat)}</span>}
+                        {action === FormAction.UPDATE && <span>{dayjs(getValues("created_date")).format(DateFormat)}</span>}
                     </div>
                     <Divider light sx={{ marginBottom: "20px", marginTop: "20px" }} />
                     <RadioGroupCustom
@@ -145,6 +146,12 @@ export const NewsDetailForm: React.FC<Props> = ({ action, news }) => {
                         control={control}
                         items={statusRadioItems} />
                     <Divider light sx={{ marginBottom: "20px", marginTop: "20px" }} />
+                    {status === NewsStatus.on_scheduled && (
+                        <>
+                            <DateTimePickerCustom name={"post_date"} label="Ngày đăng" control={control} />
+                            <Divider light sx={{ marginBottom: "20px", marginTop: "20px" }} />
+                        </>
+                    )}
                     <SelectCustom
                         placeholder="Chọn danh mục"
                         label="Danh mục"
@@ -155,7 +162,7 @@ export const NewsDetailForm: React.FC<Props> = ({ action, news }) => {
                     <InputFile
                         className="input-banner"
                         type={2}
-                        sizePreImg="500px"
+                        sizePreImg="100%"
                         title="Chọn banner từ thư mục"
                         control={control}
                         name={"banner"} />

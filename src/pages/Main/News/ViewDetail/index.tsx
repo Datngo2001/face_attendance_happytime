@@ -7,7 +7,7 @@ import { extraReducersGetNewsById } from "store/slices/Main/News/actions/extraRe
 import "./styles.scss"
 import { Avatar, Divider, ListItemAvatar, ListItemText, Typography } from "@mui/material";
 import dayjs from "dayjs";
-import { DateFormat } from "components/InputDate/default";
+import { DateFormat, DateTimeViewFormat } from "components/InputDate/default";
 import { RichTextView } from "components/RichTextView";
 import ButtonCustom from "components/ButtonCustom";
 import { FormAction } from "forms/formAction";
@@ -17,6 +17,7 @@ import CommentIcon from '@mui/icons-material/Comment';
 import { InfiniteScrollList } from "components/InfiniteScrollList";
 import { NewsReplies, NewsRepliesType } from "store/slices/Main/NewsReplies/newsRepliesSlice";
 import { api } from "config/api";
+import { NewsStatus } from "store/slices/Main/News/newsSlice";
 
 export const ViewDetail: React.FC = () => {
     const { id } = useParams();
@@ -31,7 +32,7 @@ export const ViewDetail: React.FC = () => {
 
     const handleLoadMoreLike = (page, setPage, setListItem, setLoading, setIsHaveMore) => {
         setLoading(true)
-        api.post(`/api/news/reply/search?page=${page + 1}&size=3`, { news_id: id, type: NewsRepliesType.like })
+        api.post(`/api/news/reply/search?page=${page + 1}&size=3`, { new_id: id, type: NewsRepliesType.like })
             .then((response: any) => {
                 if (response.payload.items && response.payload.items?.length > 0) {
                     setListItem(items => [...items, ...response.payload.items])
@@ -49,7 +50,7 @@ export const ViewDetail: React.FC = () => {
 
     const handleLoadMoreComment = (page, setPage, setListItem, setLoading, setIsHaveMore) => {
         setLoading(true)
-        api.post(`/api/news/reply/search?page=${page + 1}&size=3`, { news_id: id, type: NewsRepliesType.comment })
+        api.post(`/api/news/reply/search?page=${page + 1}&size=3`, { new_id: id, type: NewsRepliesType.comment })
             .then((response: any) => {
                 if (response.payload.items && response.payload.items?.length > 0) {
                     setListItem(items => [...items, ...response.payload.items])
@@ -99,12 +100,21 @@ export const ViewDetail: React.FC = () => {
                         <div className="right-side">
                             <div className="create-date">
                                 <span>Ngày tạo</span>
-                                <span>{dayjs(news.post_date).format(DateFormat)}</span>
+                                <span>{dayjs(news.created_date).format(DateFormat)}</span>
                             </div>
+
+                            {news.status === NewsStatus.on_scheduled && (
+                                <div className="post-date">
+                                    <span>Ngày Đăng</span>
+                                    <span>{dayjs(news.post_date).format(DateTimeViewFormat)}</span>
+                                </div>
+                            )}
+
                             <Divider light sx={{ marginBottom: "20px", marginTop: "20px" }} />
                             <div className="likes">
                                 <span>Đã tương tác</span>
                                 <InfiniteScrollList
+                                    placeholder="Chưa có lượt tương tác"
                                     renderItem={(item: NewsReplies) => (
                                         <>
                                             <ListItemAvatar>
@@ -122,6 +132,7 @@ export const ViewDetail: React.FC = () => {
                             <div className="comments">
                                 <span>Đã phản hồi</span>
                                 <InfiniteScrollList
+                                    placeholder="Chưa có lượt phản hồi"
                                     renderItem={(item: NewsReplies) => (
                                         <>
                                             <ListItemAvatar>
