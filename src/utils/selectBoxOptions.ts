@@ -56,3 +56,9 @@ export const statusActiveOptions: SelectBoxOption[] = [
   { id: 1, name: "Đang hoạt động" },
   { id: 2, name: "Không hoạt động" },
 ];
+
+export enum StatusActive {
+  All = 0,
+  Active = 1,
+  InActive = 2
+}

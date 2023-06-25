@@ -32,7 +32,7 @@ const ControlPanel: React.FC<Props> = ({ control, handleSearch }) => {
     <>
       <div className="attendance-settings--mobile-wifi__control-panel">
         <InputCustom
-          name="dataSearch"
+          name="keyword"
           width="100%"
           control={control}
           placeholder="Tên IP Wi-Fi bạn muốn tìm"
@@ -40,7 +40,7 @@ const ControlPanel: React.FC<Props> = ({ control, handleSearch }) => {
         />
         <div className="footer">
           <SelectCustom
-            name="activeStatus"
+            name="is_active"
             className="select-item"
             control={control}
             width="35%"

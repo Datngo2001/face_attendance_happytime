@@ -11,6 +11,7 @@ import { extraReducersGetListDeviceID } from "store/slices/Main/Attendance-setti
 const defaultParams = {
     page: 0,
     size: parseInt(process.env.REACT_APP_PAGE_SIZE),
+    status: undefined
 } as DeviceSearchParams
 
 const Devices: React.FC = () => {

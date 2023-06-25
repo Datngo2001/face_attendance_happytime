@@ -10,6 +10,8 @@ import { useEffect } from "react";
 const defaultParams = {
     page: 0,
     size: parseInt(process.env.REACT_APP_PAGE_SIZE),
+    is_active: undefined,
+    keyword: undefined
 } as WifiSearchParams
 
 const Wifi: React.FC = () => {

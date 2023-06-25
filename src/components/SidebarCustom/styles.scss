@@ -11,7 +11,7 @@
 
     .navigator-item {
         &__wrapper {
-            > .title {
+            >.title {
                 opacity: 0.3;
             }
 
@@ -52,6 +52,7 @@
                     &:hover {
                         background-color: #eeeeee;
                     }
+
                     .title {
                         display: inherit;
                     }
@@ -82,11 +83,11 @@
                 color: $primary-color;
             }
 
-            > .title {
+            >.title {
                 display: none;
             }
 
-            > svg {
+            >svg {
                 font-size: 20px;
             }
         }
@@ -116,7 +117,7 @@
                     display: none;
                 }
 
-                > svg {
+                >svg {
                     font-size: 16px;
                     opacity: 1 !important;
                 }
@@ -130,20 +131,21 @@
                 gap: 10px;
                 display: none;
 
-                .title {
-                }
+                .title {}
 
-                > div {
+                >div {
                     display: flex;
                     justify-content: space-between;
                     cursor: pointer;
 
                     .code {
+                        overflow: hidden;
+                        text-overflow: ellipsis;
                         color: $text-color-1;
                         font-weight: $fw-1;
                     }
 
-                    > svg {
+                    >svg {
                         font-size: 16px;
                     }
                 }
@@ -153,6 +155,5 @@
 }
 
 .logout-modal-content__wrapper {
-    .title {
-    }
+    .title {}
 }

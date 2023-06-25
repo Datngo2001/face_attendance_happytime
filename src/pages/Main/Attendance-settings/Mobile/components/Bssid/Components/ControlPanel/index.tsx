@@ -29,7 +29,7 @@ const ControlPanel: React.FC<Props> = ({ control, handleSearch }) => {
     <>
       <div className="attendance-settings--mobile-gps__control-panel">
         <InputCustom
-          name="dataSearch"
+          name="keyword"
           width="100%"
           control={control}
           placeholder="Tên, địa chỉ vị trí bạn muốn tìm"

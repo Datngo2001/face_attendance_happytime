@@ -16,7 +16,7 @@ type Props = {
 
 const Table: React.FC<Props> = ({ control, handleSearch }) => {
     const dispatch = useAppDispatch();
-    const { listOfDeviceID, total_pages, loading } = useAppSelector((state) => state.attendanceSettings);
+    const { listOfDeviceID, total_pages, total_items, loading } = useAppSelector((state) => state.attendanceSettings);
     const { openConfirmModal } = useConfirmMoldal();
 
     const handleUpdateStatusClick = (id, agent_id, value) => {
@@ -29,7 +29,7 @@ const Table: React.FC<Props> = ({ control, handleSearch }) => {
         <>
             <div className="attendance-settings--mobile-devices--table">
                 <p className="quantity-ipAddress">
-                    Có <span className="quantity">{0}</span> nhân viên trong danh sách
+                    Có <span className="quantity">{total_items}</span> thiết bị trong danh sách
                 </p>
                 <Box sx={{ height: 250, width: "100%" }}>
                     <>

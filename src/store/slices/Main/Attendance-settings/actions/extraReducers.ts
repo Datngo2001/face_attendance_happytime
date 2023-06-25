@@ -7,6 +7,7 @@ import {
   GPSSearchParams,
   WifiSearchParams,
 } from "../attendanceSettingsSlice";
+import { StatusActive } from "utils/selectBoxOptions";
 
 export const extraReducersGetAttendanceConfig = createAsyncThunk(
   "getAttendanceConfig",
@@ -72,10 +73,20 @@ export const extraReducersUpdateAttendanceConfig = createAsyncThunk(
 export const extraReducersGetListIPWifi = createAsyncThunk(
   "getListIPWifi",
   async (params: WifiSearchParams) => {
+
+    let is_active = undefined;
+
+    if (params.is_active === StatusActive.Active) {
+      is_active = true
+    }
+    else if (params.is_active === StatusActive.InActive) {
+      is_active = false
+    }
+
     return api
       .post(
         `/api/ip_config/search?page=${params.page}&size=${params.size}`,
-        params
+        { ...params, is_active }
       )
       .then((response: any) => {
         return {
@@ -348,10 +359,20 @@ export const extraReducersDeleteBssid = createAsyncThunk(
 export const extraReducersGetListDeviceID = createAsyncThunk(
   "getListDeviceID",
   async (params: DeviceSearchParams) => {
+
+    let status = undefined;
+
+    if (params.status === StatusActive.Active) {
+      status = true
+    }
+    else if (params.status === StatusActive.InActive) {
+      status = false
+    }
+
     return api
       .post(
         `/api/device/search?page=${params.page}&size=${params.size}`,
-        params
+        { ...params, status }
       )
       .then((response: any) => {
         return {

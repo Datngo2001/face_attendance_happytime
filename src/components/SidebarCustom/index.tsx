@@ -5,6 +5,8 @@ import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 import "./styles.scss";
 import ModalCustom from "../ModalCustom";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useAppSelector } from "hooks/useAppSelector";
+import { Tooltip } from "@mui/material";
 
 const SidebarCustom = ({ state }) => {
     // VARIABLES
@@ -12,6 +14,7 @@ const SidebarCustom = ({ state }) => {
     // ******************************
 
     // STATE
+    const { infoOfCompany } = useAppSelector(state => state.company)
     // ********************************
 
     // HOOK ROUTER DOM
@@ -48,9 +51,9 @@ const SidebarCustom = ({ state }) => {
                     </span>
                     <div className="identifier-code">
                         <p className="title">Mã định danh doanh nghiệp</p>
-                        <div>
-                            <p className="code">16609880218015</p>
-                            <ContentCopyRoundedIcon />
+                        <div onClick={() => navigator.clipboard.writeText(infoOfCompany._id)}>
+                            <p className="code">{infoOfCompany._id}</p>
+                            <Tooltip title="Copy to clipboard   "><ContentCopyRoundedIcon /></Tooltip>
                         </div>
                     </div>
                 </div>
@@ -60,7 +63,7 @@ const SidebarCustom = ({ state }) => {
                 idTarget="btnLogout"
                 titleHeader="Đăng xuất"
                 callback={handleLogOut}
-            >
+                state={false} setState={undefined}>
                 <LogoutModalContent />
             </ModalCustom>
         </>

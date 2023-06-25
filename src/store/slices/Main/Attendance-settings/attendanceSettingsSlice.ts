@@ -26,6 +26,7 @@ import {
 } from "./actions/reducers";
 import { BaseState } from "store/slices";
 import { mapPagiantionReponse } from "utils/sliceUtil";
+import { StatusActive } from "utils/selectBoxOptions";
 
 export class AttendanceSettingsState extends BaseState {
   attendanceConfig?: AttendanceConfig;
@@ -131,21 +132,26 @@ export type Bssid = {
 export type WifiSearchParams = {
   page: number;
   size: number;
+  keyword?: string;
+  is_active?: StatusActive;
 };
 
 export type DeviceSearchParams = {
   page: number;
   size: number;
+  status?: StatusActive;
 };
 
 export type GPSSearchParams = {
   page: number;
   size: number;
+  keyword?: string;
 };
 
 export type BssidSearchParams = {
   page: number;
   size: number;
+  keyword?: string;
 };
 
 const attendanceSettingsSlice = createSlice({

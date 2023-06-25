@@ -20,14 +20,14 @@ const ShiftAssignmentsSearchPannel: React.FC<Props> = ({ control, setValue }) =>
                 name={'keyword'}
                 placeholder='Tên mã nhân viên'
                 control={control} />
-            <TreeViewSelectBox
+            {/* <TreeViewSelectBox
                 className="position_input"
                 required={true}
                 placeholder="Phòng ban vị trí công việc"
                 setValue={setValue}
                 name="agent_position"
                 control={control}
-                options={departmentTrees ? createPositionSelectOptions(departmentTrees) : []} />
+                options={departmentTrees ? createPositionSelectOptions(departmentTrees) : []} /> */}
         </div>
     )
 }

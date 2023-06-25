@@ -12,6 +12,7 @@ import { extraReducersGetDepartments } from 'store/slices/Main/Departments/actio
 const defaultParams = {
     page: 0,
     size: parseInt(process.env.REACT_APP_PAGE_SIZE),
+    keyword: undefined
 } as ShiftAssignmentSearchParam
 
 const ShiftAssignmentsList: React.FC = () => {

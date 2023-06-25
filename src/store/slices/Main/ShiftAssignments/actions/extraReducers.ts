@@ -9,7 +9,7 @@ export const extraReducersGetListShiftAssignments = createAsyncThunk(
     return api
       .post(
         `/api/shift_assignment/search?page=${params.page}&size=${params.size}`,
-        {}
+        params
       )
       .then((response: any) => {
         return {
