@@ -33,7 +33,7 @@ const ControlPanel: React.FC<Props> = ({ control }) => {
           icon={<AddRoundedIcon />}
           onClick={() => navigate(`../news-detail/${FormAction.CREATE}`)}
         >
-          Tạo mới bào viết
+          Tạo mới bài viết
         </ButtonCustom>
       </div>
     </>

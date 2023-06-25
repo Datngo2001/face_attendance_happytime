@@ -46,7 +46,7 @@ export const getColumns = (handleUpdateClick: Function, handleDeleteClick: Funct
     },
     {
         field: "create_by.name",
-        headerName: "Người phản hồi",
+        headerName: "Người tạo",
         // width: 150,
         flex: 0.4,
         sortable: false,
