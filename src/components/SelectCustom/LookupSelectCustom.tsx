@@ -6,7 +6,7 @@ import "./styles.scss";
 import { ReactElement, useState } from "react";
 import { Controller } from "react-hook-form";
 import CheckboxCustom from "components/CheckboxCustom/CheckboxCustom";
-import { Chip, OutlinedInput } from "@mui/material";
+import { Chip } from "@mui/material";
 import CancelIcon from '@mui/icons-material/Cancel';
 import ChipCustom from "components/ChipCustom";
 
@@ -33,7 +33,7 @@ export type SelectBoxOption = {
     subLabel?: string;
 }
 
-const SelectCustom: React.FC<Props> = ({
+const LookupSelectCustom: React.FC<Props> = ({
     name,
     control,
     icon,
@@ -82,11 +82,7 @@ const SelectCustom: React.FC<Props> = ({
                 fieldState: { error },
             }) => (
                 <Box
-                    // className={`select-custom__wrapper 
-                    //     ${isValidValue(value) ? "" : "selected-placeholder"} 
-                    //     ${error ? "error" : ""} 
-                    //     ${className}`}
-                    className={`select-custom__wrapper selected-placeholder
+                    className={`lookup-select-custom__wrapper selected-placeholder
                         ${error ? "error" : ""} 
                         ${className}`}
                     sx={{ height: height, width: width }}
@@ -153,4 +149,4 @@ function renderMuiltiSelectOption(disabled: boolean, options: SelectBoxOption[],
     )
 }
 
-export default SelectCustom;
+export default LookupSelectCustom;

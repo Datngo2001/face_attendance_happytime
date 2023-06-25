@@ -1,13 +1,13 @@
 @use "../../assets/styles/index.scss" as *;
 
-.select-custom {
+.select-custom,
+.lookup-select-custom {
     &__wrapper {
         width: 100%;
         height: auto;
 
         .MuiFormControl-root {
             position: relative;
-            height: $h-1;
             width: 100%;
 
             .select-item {
@@ -42,10 +42,9 @@
                 }
             }
 
-            .select-item.isMultiple{
-                .MuiSelect-select{
-                    overflow: auto;
-                    .selectbox-ship-container{
+            .select-item.isMultiple {
+                .MuiSelect-select {
+                    .selectbox-ship-container {
                         display: flex;
                         gap: 10px;
                         align-items: center;
@@ -55,13 +54,13 @@
                 }
             }
 
-            .none-icon{
-                .MuiSelect-select{
+            .none-icon {
+                .MuiSelect-select {
                     padding: 8px 16px 8px 16px;
                 }
             }
 
-            > svg {
+            >svg {
                 position: absolute;
                 font-size: 18px;
                 top: 20px;
@@ -86,23 +85,25 @@
             .MuiFormControl-root {
                 .MuiOutlinedInput-notchedOutline {
                     border-color: $color-red-1 !important;
+
                     &:focus {
                         border-color: $color-red-1 !important;
                     }
                 }
+
                 .error-message {
                     color: $color-red-1;
                     font-size: $fs-1;
                     text-align: left;
                 }
 
-                > svg {
+                >svg {
                     color: $color-red-1;
                 }
             }
         }
 
-        
+
     }
 
     &__label {
@@ -113,7 +114,7 @@
         font-size: 14px;
 
         &:hover {
-            + .MuiFormControl-root {
+            +.MuiFormControl-root {
                 .MuiInputBase-root {
                     .MuiOutlinedInput-notchedOutline {
                         border-color: $primary-color;
@@ -122,13 +123,13 @@
             }
         }
 
-        > span {
+        >span {
             color: red;
             display: none;
         }
 
         &.required {
-            > span {
+            >span {
                 display: contents;
             }
         }
@@ -142,6 +143,6 @@
     }
 }
 
-.multi-select-checkbox{
+.multi-select-checkbox {
     margin-right: 10px;
 }

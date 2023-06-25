@@ -18,12 +18,6 @@ export const listNavigatorOptions = [
         pathActive: "attendances",
     },
     {
-        icon: <DescriptionRoundedIcon />,
-        linkTo: "requests",
-        title: "Đơn từ",
-        pathActive: "requests",
-    },
-    {
         icon: <GroupRoundedIcon />,
         linkTo: "employees/list/index",
         title: "Quản lý nhân sự",
@@ -52,23 +46,5 @@ export const listNavigatorOptions = [
         linkTo: "news/categories",
         title: "Tin tức",
         pathActive: "news",
-    },
-    {
-        icon: <EventNoteRoundedIcon />,
-        linkTo: "popup/event",
-        title: "Popup",
-        pathActive: "popup",
-    },
-    {
-        icon: <LocalActivityRoundedIcon />,
-        linkTo: "event/personal",
-        title: "Sự kiện",
-        pathActive: "event",
-    },
-    {
-        icon: <InfoRoundedIcon />,
-        linkTo: "others/integration",
-        title: "Quản lý khác",
-        pathActive: "others",
     },
 ];

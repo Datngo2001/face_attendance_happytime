@@ -50,11 +50,11 @@ const ShiftAssignmentForm: React.FC<Props> = ({ action = FormAction.CREATE, shif
         dispatch(extraReducersGetDepartmentAndPositionList());
         dispatch(extraReducersGetListEmployees({
             page: 0,
-            size: parseInt(process.env.REACT_APP_PAGE_SIZE),
+            size: 100,
         } as EmployeeSearchParams));
         dispatch(extraReducersGetListShifts({
             page: 0,
-            size: parseInt(process.env.REACT_APP_PAGE_SIZE)
+            size: 100
         } as ShiftSeachParams))
     }, [])
 
