@@ -4,6 +4,7 @@
     &__wrapper {
         width: 100%;
         height: auto;
+        margin-bottom: 20px;
 
         .MuiFormControl-root {
             position: relative;
@@ -42,13 +43,13 @@
                 }
             }
 
-            .none-icon{
-                .MuiSelect-select{
+            .none-icon {
+                .MuiSelect-select {
                     padding: 8px 16px 8px 16px;
                 }
             }
 
-            > svg {
+            >svg {
                 position: absolute;
                 font-size: 18px;
                 top: 20px;
@@ -73,23 +74,25 @@
             .MuiFormControl-root {
                 .MuiOutlinedInput-notchedOutline {
                     border-color: $color-red-1 !important;
+
                     &:focus {
                         border-color: $color-red-1 !important;
                     }
                 }
+
                 .error-message {
                     color: $color-red-1;
                     font-size: $fs-1;
                     text-align: left;
                 }
 
-                > svg {
+                >svg {
                     color: $color-red-1;
                 }
             }
         }
 
-        
+
     }
 
     &__label {
@@ -99,7 +102,7 @@
         cursor: default;
 
         &:hover {
-            + .MuiFormControl-root {
+            +.MuiFormControl-root {
                 .MuiInputBase-root {
                     .MuiOutlinedInput-notchedOutline {
                         border-color: $primary-color;
@@ -108,13 +111,13 @@
             }
         }
 
-        > span {
+        >span {
             color: red;
             display: none;
         }
 
         &.required {
-            > span {
+            >span {
                 display: contents;
             }
         }
@@ -126,25 +129,30 @@
         // padding: 10px 0px;
         color: $text-color-1;
         font-size: $fs-1;
-        
-        .option{
+
+        .option {
             display: flex;
             flex-direction: row;
             align-items: center;
             line-height: 100%;
-            .title{
+
+            .title {
                 flex-grow: 1;
                 padding: 5px;
                 border-radius: 5px;
-                &:hover{
+
+                &:hover {
                     background-color: $primary-bg-color;
                 }
             }
-            .title.selected{
+
+            .title.selected {
                 background-color: $primary-color;
                 color: $color-white-1;
             }
-            .icon,.title{
+
+            .icon,
+            .title {
                 cursor: pointer;
             }
         }

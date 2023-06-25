@@ -30,14 +30,6 @@ export function createPositionSelectOptions(
   let result: SelectBoxNode[] = [];
 
   departmentTrees.forEach((department) => {
-    department.children_position.forEach((position) => {
-      result.push({
-        id: position.id,
-        name: position.position_name,
-        children: [],
-        canSelect: true,
-      });
-    });
 
     let node: SelectBoxNode = {
       id: department.id,
@@ -45,6 +37,15 @@ export function createPositionSelectOptions(
       children: [],
       canSelect: false,
     };
+
+    department.children_position.forEach((position) => {
+      node.children.push({
+        id: position.id,
+        name: position.position_name,
+        children: [],
+        canSelect: true,
+      });
+    });
 
     result.push(node);
 

@@ -17,7 +17,8 @@ export type NewsState = {
 export type NewsSearchParams = {
     page: number,
     size: number,
-    title: string
+    title: string,
+    status?: NewsStatus
 }
 
 export enum NewsStatus {

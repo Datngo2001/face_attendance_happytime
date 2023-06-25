@@ -71,7 +71,7 @@ export const columns: GridColumns = [
   },
   {
     flex: 1,
-    field: "username",
+    field: "department_name",
     headerName: "Phòng ban",
     sortable: false,
   },

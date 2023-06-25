@@ -4,7 +4,6 @@ import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import DriveFileMoveRoundedIcon from "@mui/icons-material/DriveFileMoveRounded";
 import { InnerButtonAdd } from "../InnerButtonAdd";
 import { Tooltip } from "@mui/material";
-import { toastify } from "utils";
 import { useAppSelector } from "hooks/useAppSelector";
 import DropMenu from "components/DropMenu";
 import ButtonCustom from "components/ButtonCustom";
@@ -13,6 +12,7 @@ import InputCustom from "components/InputCustom";
 import { createPositionSelectOptions } from "utils/departmentUtil";
 import TreeViewSelectBox from "components/TreeViewSelectBox";
 import { roleOptions, statusEmployeesOption, statusUsingHappyTimeOptions } from "store/slices/Main/Employees/employeesSlice";
+import { useMemo } from "react";
 
 type Props = {
   control: any
@@ -23,9 +23,11 @@ export const IndexControlPanel: React.FC<Props> = ({ control, setValue }) => {
   const { departmentTrees } = useAppSelector((state) => state.departments);
 
   const handleExport = () => { };
-  const handleSendInvitation = () => {
-    toastify({ mess: "Gửi lời mời thành công", type: "success" });
-  };
+
+  console.log(departmentTrees)
+  const departmentOptions = useMemo(() =>
+    departmentTrees ? createPositionSelectOptions(departmentTrees) : [],
+    [departmentTrees])
 
   return (
     <>
@@ -137,7 +139,7 @@ export const IndexControlPanel: React.FC<Props> = ({ control, setValue }) => {
             setValue={setValue}
             name="agent_position"
             control={control}
-            options={departmentTrees ? createPositionSelectOptions(departmentTrees) : []} />
+            options={departmentOptions} />
 
           {/* <SelectCustom
             name="typeEmployee"

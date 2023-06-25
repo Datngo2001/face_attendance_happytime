@@ -60,7 +60,7 @@ const DepartmentForm: React.FC<Props> = ({ action, setOpen }) => {
         <InputCustom
           name="name"
           width="470px"
-          label="Phòng ban mới"
+          label={action === FormAction.CREATE ? "Phòng ban mới" : "Tên phòng ban"}
           placeholder="Tên phòng ban"
           control={control}
           required={true}

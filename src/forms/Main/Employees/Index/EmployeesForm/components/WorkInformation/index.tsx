@@ -21,14 +21,25 @@ type Props = {
 const WorkInformation = ({
   control,
   action,
-  setValue
+  setValue,
+  watch
 }) => {
-  const { departmentTrees } = useAppSelector((state) => state.departments);
+  const { departmentTrees, departments } = useAppSelector((state) => state.departments);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(extraReducersGetDepartments())
   }, [])
+
+  const position_id = watch("position_id")
+
+  useEffect(() => {
+    if (position_id) {
+      let department = departments.find(x => x.position_ids.includes(position_id))
+      setValue("department_name", department?.department_name)
+      setValue("department_id", department?.id)
+    }
+  }, [position_id])
 
   return (
     <>
@@ -70,26 +81,14 @@ const WorkInformation = ({
             />
           </div>
           <div className="col">
-            {/* <SelectCustom
-              name="department"
-              width="100%"
-              className="input-item"
-              required={true}
-              label="Phòng ban"
-              control={control}
-              placeholder="Phòng ban"
-              options={jobPositionList}
-            /> */}
             <TreeViewSelectBox
-              label="Phòng ban"
+              label="Vị trí"
               required={true}
-              placeholder="Phòng ban"
+              placeholder="Vị trí"
               setValue={setValue}
               name="position_id"
               control={control}
               options={departmentTrees ? createPositionSelectOptions(departmentTrees) : []} />
-          </div>
-          <div className="col">
             <SelectCustom
               name="agent_type"
               width="100%"
@@ -99,6 +98,18 @@ const WorkInformation = ({
               control={control}
               placeholder="Loại hình nhân sự"
               options={typeEmployeesOptions}
+            />
+          </div>
+          <div className="col">
+            <InputCustom
+              name="department_name"
+              width="100%"
+              className="input-item"
+              label="Phòng ban"
+              required={true}
+              control={control}
+              placeholder="Phòng ban"
+              disabled
             />
           </div>
         </div>

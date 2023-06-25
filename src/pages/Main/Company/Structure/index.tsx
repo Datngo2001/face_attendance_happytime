@@ -10,6 +10,7 @@ import DepartmentForm from "forms/Main/Company/DepartmentForm";
 import AddIcon from '@mui/icons-material/Add';
 import { Department, setCurrentDepartment } from "store/slices/Main/Departments/departmentsSlice";
 import useCRUDModal from "hooks/useCRUDModal";
+import { FormAction } from "forms/formAction";
 
 const Structure: React.FC = () => {
     const { modalState, openCreateModal, openUpdateModal, closeModal, setOpenState } = useCRUDModal({ defaultOpen: false });
@@ -42,7 +43,7 @@ const Structure: React.FC = () => {
                 ))}
             </div>
             <ModalCustom
-                titleHeader={"THÊM PHÒNG BAN MỚI"}
+                titleHeader={modalState.action === FormAction.CREATE ? "THÊM PHÒNG BAN MỚI" : "CHỈNH SỬA PHÒNG BAN"}
                 footer={false}
                 state={modalState.open}
                 setState={setOpenState}

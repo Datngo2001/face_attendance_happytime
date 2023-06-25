@@ -31,7 +31,7 @@ export type EmployeeSearchParams = {
   phone_number?: string;
   role?: number;
   agent_position?: string;
-  is_used_happy_time?: boolean;
+  is_used_happy_time?: StatusUsingHappyTime;
   personal_mail?: string;
   company_mail?: string;
   agent_code?: string;
@@ -65,7 +65,7 @@ export type Employee = {
   agent_code?: string;
   date_of_birth?: number;
   device_id: string;
-  is_used_happy_time: boolean;
+  is_used_happy_time?: boolean;
   stop_working_date?: number;
   tenant_id?: string;
   graduation_date?: number;
@@ -81,6 +81,9 @@ export type Employee = {
   department: string;
   company_name?: string;
   position_id?: string;
+  department_id?: string;
+  department_name?: string;
+  position_name?: string;
 };
 
 export enum Gender {
@@ -109,6 +112,12 @@ export const statusUsingHappyTimeOptions: SelectBoxOption[] = [
   { id: 1, name: "Đã sử dụng" },
   { id: 2, name: "Chưa sử dụng" },
 ];
+
+export enum StatusUsingHappyTime {
+  All = 0,
+  Used = 1,
+  NotUsed = 2
+}
 
 export const educationOptions: SelectBoxOption[] = [
   {

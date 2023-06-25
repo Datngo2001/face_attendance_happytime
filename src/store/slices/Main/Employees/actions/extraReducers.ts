@@ -1,14 +1,24 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { api } from "config/api";
 import { toastPromise } from "utils/toastPromise";
-import { EmployeeSearchParams } from "../employeesSlice";
+import { EmployeeSearchParams, StatusUsingHappyTime } from "../employeesSlice";
 import { uploadImgToFirebase } from "utils/uploadImgToFirebase";
 
 export const extraReducersGetListEmployees = createAsyncThunk(
   "getListEmployees",
   async (params: EmployeeSearchParams) => {
+
+    let is_used_happy_time = undefined;
+
+    if (params.is_used_happy_time === StatusUsingHappyTime.Used) {
+      is_used_happy_time = true
+    }
+    else if (params.is_used_happy_time === StatusUsingHappyTime.NotUsed) {
+      is_used_happy_time = false
+    }
+
     return api
-      .post(`/api/agent/search?page=${params.page}&size=${params.size}`, params)
+      .post(`/api/agent/search?page=${params.page}&size=${params.size}`, { ...params, is_used_happy_time })
       .then((response: any) => {
         return {
           payload: response.payload,

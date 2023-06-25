@@ -5,6 +5,23 @@ import InputCustom from "components/InputCustom";
 import ButtonCustom from "components/ButtonCustom";
 import { useNavigate } from "react-router-dom";
 import { FormAction } from "forms/formAction";
+import SelectCustom, { SelectBoxOption } from "components/SelectCustom";
+import { NewsStatus } from "store/slices/Main/News/newsSlice";
+
+const statusOption: SelectBoxOption[] = [
+  {
+    name: "Đã đăng",
+    id: NewsStatus.posted,
+  },
+  {
+    name: "Lưu nháp",
+    id: NewsStatus.draft,
+  },
+  {
+    name: "Đặt lịch",
+    id: NewsStatus.on_scheduled,
+  }
+]
 
 type Props = {
   control: any
@@ -25,6 +42,13 @@ const ControlPanel: React.FC<Props> = ({ control }) => {
           placeholder="Tên bài viết"
           iconRight={<SearchRoundedIcon />}
         />
+        <SelectCustom
+          className="search-box"
+          name="status"
+          width="100%"
+          control={control}
+          placeholder="Trạng thái"
+          options={statusOption} />
         <ButtonCustom
           className="add-btn"
           width="90px"

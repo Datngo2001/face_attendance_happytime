@@ -10,7 +10,6 @@ import { reducersSetCurrentDepartment } from "./actions/reducers";
 export type DepartmentsState = {
   status: string;
   loading: boolean;
-
   departmentTrees: Department[];
   department: Department;
   departments: Department[];
@@ -72,6 +71,7 @@ const departmentsSlice = createSlice({
           if (message === "success") {
             state.total_department = payload.total_department;
             state.total_position = payload.total_position;
+            state.departments = payload.items;
 
             let departments = payload.items as Department[];
             state.departmentTrees = [];

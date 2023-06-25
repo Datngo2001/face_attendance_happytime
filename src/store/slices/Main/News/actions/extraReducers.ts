@@ -36,6 +36,7 @@ export const extraReducersCreateNews = createAsyncThunk(
 export const extraReducersSearchNews = createAsyncThunk(
     "searchNews",
     async (params: NewsSearchParams) => {
+
         return api
             .post(`/api/news/new/search?page=${params.page}&size=${params.size}`, params)
             .then((response: any) => {

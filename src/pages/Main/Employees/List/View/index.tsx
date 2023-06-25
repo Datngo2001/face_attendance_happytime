@@ -50,8 +50,8 @@ const View = () => {
                             id={infoOfEmployee._id}
                         />
                         <WorkInformation
-                            jobPosition={infoOfEmployee.agent_position}
-                            department={infoOfEmployee.agent_position}
+                            jobPosition={infoOfEmployee.position_name}
+                            department={infoOfEmployee.department_name}
                             statusEmployee={convertIdToName({
                                 id: infoOfEmployee.agent_status,
                                 list: statusEmployeesOption,
