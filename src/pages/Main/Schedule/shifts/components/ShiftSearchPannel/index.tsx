@@ -22,7 +22,7 @@ const ShiftSearchPannel: React.FC<Props> = ({ control }) => {
 
     const shiftTypeOptions = useMemo(
         () => listOfShiftType.map<SelectBoxOption>(type => ({
-            id: type._id, name: type.schedule_name
+            id: type.schedule_name, name: type.schedule_name
         })),
         [listOfShiftType])
 
@@ -37,14 +37,14 @@ const ShiftSearchPannel: React.FC<Props> = ({ control }) => {
     return (
         <div className="ListShifts__control-panel">
             <SelectCustom
-                name="shiftStatus"
+                name="is_enabled"
                 className="input-item"
                 control={control}
                 placeholder="Trạng thái hoạt động"
                 options={statusActiveOptions}
             />
             <SelectCustom
-                name="shiftType"
+                name="shift_type_name"
                 className="input-item"
                 control={control}
                 placeholder="Loại ca làm việc"

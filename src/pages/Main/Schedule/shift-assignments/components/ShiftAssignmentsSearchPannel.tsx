@@ -18,7 +18,7 @@ const ShiftAssignmentsSearchPannel: React.FC<Props> = ({ control, setValue }) =>
             <InputCustom
                 className="keyword_input"
                 name={'keyword'}
-                placeholder='Tên mã nhân viên'
+                placeholder='Tiêu đề'
                 control={control} />
             {/* <TreeViewSelectBox
                 className="position_input"

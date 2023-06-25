@@ -8,6 +8,7 @@ import {
   extraReducersUpdateShiftStatus,
 } from "./actions/extraReducers";
 import { reducersResetShift } from "./actions/reducer";
+import { StatusActive } from "utils/selectBoxOptions";
 
 export type ShiftsState = {
   status: string;
@@ -26,8 +27,8 @@ export enum ShiftTypeName {
 }
 
 export type ShiftSeachParams = {
-  is_enabled: string;
-  shift_type: { id: string };
+  is_enabled?: StatusActive;
+  shift_type_name?: string;
   keyword: string;
   page: number;
   size: number;

@@ -2,15 +2,25 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { api } from "config/api";
 import { toastPromise } from "utils";
 import { ShiftSeachParams } from "../shiftsSlice";
+import { StatusActive } from "utils/selectBoxOptions";
 
 export const extraReducersGetListShifts = createAsyncThunk(
   "getListShifts",
   async (params: ShiftSeachParams) => {
-    console.log(params);
+
+    let is_enabled = undefined;
+
+    if (params.is_enabled === StatusActive.Active) {
+      is_enabled = true
+    }
+    else if (params.is_enabled === StatusActive.InActive) {
+      is_enabled = false
+    }
+
     return api
       .post(
         `/api/shift_schedule/search?page=${params.page}&size=${params.size}`,
-        params
+        { ...params, is_enabled }
       )
       .then((response: any) => {
         return {

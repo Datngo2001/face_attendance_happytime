@@ -9,6 +9,8 @@ import { ShiftSeachParams } from "store/slices/Main/Shifts/shiftsSlice";
 
 const defaultParams = {
   keyword: "",
+  is_enabled: undefined,
+  shift_type_name: undefined,
   page: 0,
   size: parseInt(process.env.REACT_APP_PAGE_SIZE),
 } as ShiftSeachParams
