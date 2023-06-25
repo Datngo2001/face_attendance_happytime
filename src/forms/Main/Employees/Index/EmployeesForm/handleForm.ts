@@ -14,10 +14,6 @@ export const schema = yup.object({
     .required("Số điện thoại không được bỏ trống")
     .matches(REGEX_ONLY_NUMBER, "Thông tin sai định dạng")
     .matches(REGEX_PHONE_NUMBER, "Thông tin sai định dạng"),
-  identify_id: yup
-    .string()
-    .nullable()
-    .matches(REGEX_ONLY_NUMBER, "Thông tin sai định dạng"),
   agent_type: yup
     .string()
     .nullable()
