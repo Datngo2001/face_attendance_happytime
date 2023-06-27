@@ -50,19 +50,19 @@ const WorkInformation = ({
                                 <p className={`${!typeEmployee && "not-yet-update"}`}>
                                     {typeEmployee || "Chưa cập nhật"}
                                 </p>
-                                <span className="btn" onClick={handleViewHistory}>
+                                {/* <span className="btn" onClick={handleViewHistory}>
                                     <HistoryRoundedIcon />
                                     Lịch sử chuyển đổi
-                                </span>
+                                </span> */}
                             </div>
                             <div className="h-52">
                                 <p className={`${!statusEmployee && "not-yet-update"}`}>
                                     {statusEmployee || "Chưa cập nhật"}
                                 </p>
-                                <span className="btn" onClick={handleViewHistory}>
+                                {/* <span className="btn" onClick={handleViewHistory}>
                                     <HistoryRoundedIcon />
                                     Lịch sử chuyển đổi
-                                </span>
+                                </span> */}
                             </div>
                             <p className={`data ${!workBranch && "not-yet-update"}`}>
                                 {workBranch || "Chưa cập nhật"}

@@ -99,6 +99,7 @@ const EmployeesForm: React.FC<Props> = ({ action = FormAction.CREATE }) => {
         }
 
         if (checkPhone && checkPersonalEmail) {
+
             dispatch(
                 extraReducersUpdateInfoEmployee({
                     id: infoOfEmployee._id,

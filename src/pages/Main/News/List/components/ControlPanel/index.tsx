@@ -7,6 +7,10 @@ import { useNavigate } from "react-router-dom";
 import { FormAction } from "forms/formAction";
 import SelectCustom, { SelectBoxOption } from "components/SelectCustom";
 import { NewsStatus } from "store/slices/Main/News/newsSlice";
+import { useAppDispatch } from "hooks/useAppDispatch";
+import { useAppSelector } from "hooks/useAppSelector";
+import { useEffect, useMemo } from "react";
+import { extraReducersSearchNewsCategory } from "store/slices/Main/NewsCategories/actions/extraReducers";
 
 const statusOption: SelectBoxOption[] = [
   {
@@ -30,6 +34,21 @@ type Props = {
 
 const ControlPanel: React.FC<Props> = ({ control }) => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch()
+  const { listOfNewsCategory } = useAppSelector(state => state.newsCategories);
+
+  useEffect(() => {
+    dispatch(extraReducersSearchNewsCategory({
+      keyword: "",
+      page: 0,
+      size: 1000
+    }))
+  }, [])
+
+  const categoryOptions = useMemo(() => listOfNewsCategory.map(c => ({
+    name: c.category_name,
+    id: c._id,
+  } as SelectBoxOption)), [listOfNewsCategory])
 
   return (
     <>
@@ -43,12 +62,19 @@ const ControlPanel: React.FC<Props> = ({ control }) => {
           iconRight={<SearchRoundedIcon />}
         />
         <SelectCustom
-          className="search-box"
+          className="status-box"
           name="status"
           width="100%"
           control={control}
           placeholder="Trạng thái"
           options={statusOption} />
+        <SelectCustom
+          className="category-box"
+          name="category_id"
+          width="100%"
+          control={control}
+          placeholder="Danh mục"
+          options={categoryOptions} />
         <ButtonCustom
           className="add-btn"
           width="90px"

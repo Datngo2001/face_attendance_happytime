@@ -48,7 +48,7 @@ export const extraReducersUpdateInfoEmployee = createAsyncThunk(
   "updateInfoEmployee",
   async ({ id, dataUpdate }: any) => {
     let promise = new Promise((resolve, reject) => {
-      if (typeof (dataUpdate.avatar) !== "string") {
+      if (typeof (dataUpdate.avatar) !== "string" && dataUpdate.avatar.name) {
         uploadImgToFirebase({
           id: dataUpdate.avatar.name,
           imageUpload: dataUpdate.avatar,
@@ -64,7 +64,10 @@ export const extraReducersUpdateInfoEmployee = createAsyncThunk(
         payload: response.payload,
         message: response.message,
       }))
-      .catch((error) => error)
+      .catch((error) => {
+        console.log(error)
+        return error
+      })
 
     toastPromise(promise, {
       titleLoading: "Đang thực hiện...",

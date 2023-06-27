@@ -15,16 +15,16 @@ const empoyeesRouters = [
         component: <Index />,
     },
     {
-        path: "list/view/:id",
-        component: <View />,
-    },
-    {
         path: "list/create",
         component: <Create />,
     },
     {
         path: "list/update/:id",
         component: <Update />,
+    },
+    {
+        path: "list/view/:id",
+        component: <View />,
     },
     {
         path: "leave-management",

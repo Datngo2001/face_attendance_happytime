@@ -2,7 +2,7 @@ import "./styles.scss";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import ApartmentIcon from "@mui/icons-material/Apartment";
 import PersonIcon from "@mui/icons-material/Person";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useController } from "react-hook-form";
 import ImageIcon from '@mui/icons-material/Image';
 
@@ -29,7 +29,7 @@ const InputFile: React.FC<Props> = ({
 }) => {
   // STATE
   const { field: { value, onChange } } = useController({ name, control })
-  const [imgSrc, setImgSrc] = useState<any>(defaultValue || value || "");
+  const [imgSrc, setImgSrc] = useState<any>(value || "");
   // ******************************
 
   // ARROW FUNCTION
@@ -45,6 +45,10 @@ const InputFile: React.FC<Props> = ({
     }
   };
   // ****************************
+
+  useEffect(() => {
+    setImgSrc(value)
+  }, [value])
 
   return (
     <div className={`input-file__wrapper ${className ? className : ""}`}>

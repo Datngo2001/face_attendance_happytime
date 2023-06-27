@@ -8,7 +8,12 @@
     padding: 20px;
 
     .search-box {
-        flex: 5;
+        flex: 3;
+    }
+
+    .status-box,
+    .category-box {
+        flex: 2;
     }
 
     .add-btn {
