@@ -5,7 +5,6 @@ import {
     homeRouters,
     mainRouters,
     NoMatchRouter,
-    workspacesRouters,
 } from "./config/Routers";
 import {
     AuthenticationLayout,
@@ -50,10 +49,6 @@ function App() {
                         {/* AUTHENTICATION */}
                         <Route path="/auth" element={<AuthenticationLayout />}>
                             {renderRoute(authenticationRouters)}
-                        </Route>
-                        {/* WORKSPACES */}
-                        <Route path="/workspaces" element={<WorkspacesLayout />}>
-                            {renderRoute(workspacesRouters)}
                         </Route>
                         {/* MAIN */}
                         <Route path="/app" element={<MainLayout />}>

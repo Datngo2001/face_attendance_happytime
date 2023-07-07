@@ -12,26 +12,6 @@ const Home = () => {
     return (
         <>
             <section className="home-section-1__wrapper">
-                <div className="home-section-1__text">
-                    <h1 className="title">
-                        Nền tảng <span>Quản lý & gia tăng trải nghiệm</span> nhân sự
-                    </h1>
-                    <p className="description">
-                        Giải pháp giúp doanh nghiệp quản lý, lưu trữ dữ liệu chấm công và
-                        đơn từ
-                    </p>
-                </div>
-                <ButtonCustom className="btn-experience" onClick={handleOnClick}>
-                    TRẢI NGHIỆM MIỄN PHÍ NGAY
-                </ButtonCustom>
-                <p>
-                    Nếu bạn đã có tài khoản?
-                    <Link to="auth/login">
-                        Đăng nhập ngay
-                        <ChevronRightIcon />
-                    </Link>
-                </p>
-                <img src={imgHomeSection1} alt="" className="home-section-1__img" />
             </section>
         </>
     );

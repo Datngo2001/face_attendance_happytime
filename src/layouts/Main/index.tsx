@@ -25,7 +25,7 @@ const MainLayout = () => {
                 />
                 <div className="main-layout__container">
                     <div className="main-layout__sidebar">
-                        <SidebarCustom state={isCollapsed} />
+                        {/* <SidebarCustom state={isCollapsed} /> */}
                     </div>
                     <div className="main-layout__content">
                         <Outlet />

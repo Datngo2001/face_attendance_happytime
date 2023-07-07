@@ -1,10 +1,6 @@
-import { Setting, Summary } from "pages/Main/Attendances";
+import { Setting } from "pages/Main/Attendances";
 
 const attendancesRouters = [
-    {
-        path: "summary",
-        component: <Summary />,
-    },
     {
         path: "setting",
         component: <Setting />,
