@@ -15,7 +15,7 @@ export const Footer2 = () => {
     return (
         <>
         <footer className="footer-2__wrapper">
-            &copy;2022 HappyTime. Một sản phẩm clone của nhóm sinh viên ĐH SPKT TP.HCM
+            &copy;2022 HappyTime.
         </footer>
         </>
     )

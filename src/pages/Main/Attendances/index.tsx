@@ -1,3 +1,3 @@
-import Setting from "./Setting";
+import FaceAttendance from "./FaceAttendance";
 
-export { Setting };
+export { FaceAttendance };

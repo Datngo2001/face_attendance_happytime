@@ -19,6 +19,7 @@
     "@types/react-dom": "^18.0.10",
     "antd": "^5.0.0",
     "axios": "^1.2.0",
+    "clarifai": "^2.9.1",
     "dayjs": "^1.11.6",
     "draft-js": "^0.11.7",
     "draftjs-to-html": "^0.9.1",
@@ -32,6 +33,7 @@
     "react-redux": "^8.0.2",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
+    "react-webcam": "^7.1.1",
     "typescript": "^4.9.4",
     "web-vitals": "^2.1.4",
     "yup": "^0.32.11"

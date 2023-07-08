@@ -1,9 +1,9 @@
-import { Setting } from "pages/Main/Attendances";
+import { FaceAttendance } from "pages/Main/Attendances";
 
 const attendancesRouters = [
     {
-        path: "setting",
-        component: <Setting />,
+        path: "face-attendance",
+        component: <FaceAttendance />,
     },
 ];
 

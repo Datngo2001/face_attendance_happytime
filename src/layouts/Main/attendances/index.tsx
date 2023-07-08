@@ -1,8 +1,7 @@
 import { useEffect } from "react";
 import { tabTitle, titleHeaderMain } from "../../../utils";
-import ContentLayout from "../../ContentLayout";
-import { dataListButtonSideLeft } from "./dataListButtonSideLeft";
 import "./styles.scss";
+import CameraLayout from "layouts/CameraLayout";
 
 const AttendancesLayout = () => {
     // GLOBAL FUNCTION
@@ -14,12 +13,12 @@ const AttendancesLayout = () => {
 
     // HOOK EFFECT
     useEffect(() => {
-        titleHeaderMain("Bảng công");
+        titleHeaderMain("Chấm Công bằng khuôn mặt");
     }, []);
     // ******************************
     return (
         <>
-            <ContentLayout listDataButton={dataListButtonSideLeft} />
+            <CameraLayout />
         </>
     );
 };

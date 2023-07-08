@@ -16,7 +16,7 @@ const AuthenticationLayout = () => {
     // HOOK EFFECT
     useEffect(() => {
         if (auth.authAccount()) {
-            navigate("../app/employees/list/index");
+            navigate("../app/attendances/face-attendance");
         }
     }, []);
     // ****************************
