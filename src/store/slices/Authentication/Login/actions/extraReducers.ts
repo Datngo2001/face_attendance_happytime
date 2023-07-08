@@ -6,7 +6,7 @@ export const extraReducersLogin = createAsyncThunk(
   "login",
   async (data: any) => {
     const promise = api
-      .post("/auth/login", data)
+      .post("/auth/login/face_tracking", data)
       .then((response: any) => {
         return {
           payload: response.payload,

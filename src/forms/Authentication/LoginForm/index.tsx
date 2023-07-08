@@ -8,7 +8,6 @@ import { schema } from "./handleForm";
 import { useEffect } from "react";
 import { useAppSelector } from "hooks/useAppSelector";
 import { useAppDispatch } from "hooks/useAppDispatch";
-import { focusToElement } from "utils";
 import { updateStatusState } from "store/slices/Authentication/authSlice";
 import InputCustom from "components/InputCustom";
 import ButtonCustom from "components/ButtonCustom";
@@ -37,48 +36,22 @@ const LoginForm = () => {
   };
   // ******************************
 
-  // HOOK REF
-  // ****************************
-
-  // HOOK EFFECT
   useEffect(() => {
-    const formLogin = document.querySelector(".login-form__wrapper");
-    formLogin.addEventListener("keypress", (e: any) => {
-      if (e.key === "Enter") {
-        // document.querySelector(".btn-login").click();
-      }
-    });
-
-    focusToElement("phone");
-
-    // CLEAN FUNCTION
-    return () => {
-      formLogin.removeEventListener("keypress", (e: any) => {
-        if (e.key === "Enter") {
-          // document.querySelector(".btn-login").click();
-        }
-      });
-    };
-  }, []);
-
-  useEffect(() => {
-    if (status) navigate("/app/employees/list/index");
+    if (status) navigate("/app/attendances/face-attendance");
     // Clean function
     return () => {
       dispatch(updateStatusState(false));
     };
   }, [status]);
-  // ****************************
 
   return (
     <>
       <div className="login-form__wrapper">
         <h2 className="login-form__title">Đăng nhập</h2>
         <InputCustom
-          name="phone"
+          name="username"
           className="input-phone"
-          type="tel"
-          placeholder="Nhập số điện thoại *"
+          placeholder="Tên đăng nhập *"
           control={control}
           iconLeft={<LocalPhoneRoundedIcon />}
         />

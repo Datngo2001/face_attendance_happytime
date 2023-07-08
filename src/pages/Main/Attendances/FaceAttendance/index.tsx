@@ -2,7 +2,8 @@ import { useCallback, useRef, useState } from "react";
 import { SettingForm } from "../../../../forms/Main/Attendances";
 import "./styles.scss";
 import Webcam from "react-webcam";
-import Clarifai from "clarifai";
+import { useAppDispatch } from "hooks/useAppDispatch";
+import { extraReducersFaceTracking } from "store/slices/Main/Attendances/actions/extraReducers";
 
 const videoConstraints = {
     width: 1280,
@@ -12,18 +13,22 @@ const videoConstraints = {
 
 
 const FaceAttendance = () => {
-    const [imgSrc, setImgSrc] = useState(null);
-    const [box, setBox] = useState(null)
     const webcamRef = useRef(null);
+    const dispatch = useAppDispatch()
+
+    const checkAttendance = (imageSrc) => {
+        dispatch(extraReducersFaceTracking({
+            image: imageSrc
+        }))
+    }
 
     const capture = useCallback(
         () => {
             const imageSrc = webcamRef.current.getScreenshot();
-            setImgSrc(imageSrc);
+            checkAttendance(imageSrc);
         },
         [webcamRef]
     );
-
 
     return (
         <>
@@ -34,15 +39,12 @@ const FaceAttendance = () => {
                         audio={false}
                         height={720}
                         ref={webcamRef}
-                        screenshotFormat="image/jpeg"
+                        screenshotFormat="image/png"
                         width={1280}
                         videoConstraints={videoConstraints} />
                     <div className="capture-frame"></div>
                 </div>
                 <button onClick={capture}>Capture photo</button>
-
-                {imgSrc && (<img src={imgSrc} alt="" />)}
-
             </div>
         </>
     );
