@@ -6,6 +6,8 @@
         max-width: 1280px;
         height: 100%;
         margin: auto;
+        overflow: hidden;
+        position: relative;
 
         .content-title {
             text-align: center;
@@ -32,6 +34,15 @@
                 position: absolute;
                 border: 5px solid $primary-color;
             }
+        }
+
+        .check-button {
+            position: absolute;
+            bottom: 4%;
+            width: 20%;
+            height: 60px;
+            left: 50%;
+            transform: translateX(-50%);
         }
     }
 }

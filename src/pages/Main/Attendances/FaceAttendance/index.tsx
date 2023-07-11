@@ -6,6 +6,7 @@ import { useAppDispatch } from "hooks/useAppDispatch";
 import { extraReducersFaceTracking } from "store/slices/Main/Attendances/actions/extraReducers";
 import useConfirmMoldal from "hooks/useConfirmMoldal";
 import dayjs from "dayjs";
+import ButtonCustom from "components/ButtonCustom";
 
 const videoConstraints = {
     width: 1280,
@@ -55,7 +56,7 @@ const FaceAttendance = () => {
                         videoConstraints={videoConstraints} />
                     <div className="capture-frame"></div>
                 </div>
-                <button onClick={capture}>Capture photo</button>
+                <ButtonCustom className="check-button" onClick={capture}>Chấm công</ButtonCustom>
             </div>
         </>
     );
