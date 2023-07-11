@@ -4,6 +4,8 @@ import "./styles.scss";
 import Webcam from "react-webcam";
 import { useAppDispatch } from "hooks/useAppDispatch";
 import { extraReducersFaceTracking } from "store/slices/Main/Attendances/actions/extraReducers";
+import useConfirmMoldal from "hooks/useConfirmMoldal";
+import dayjs from "dayjs";
 
 const videoConstraints = {
     width: 1280,
@@ -11,14 +13,23 @@ const videoConstraints = {
     facingMode: "user"
 };
 
-
 const FaceAttendance = () => {
     const webcamRef = useRef(null);
     const dispatch = useAppDispatch()
+    const { openConfirmModal } = useConfirmMoldal();
+
+    const handleResponse = (res) => {
+        openConfirmModal(
+            res.status > 0 ? "Chấm công thành công" : "Chấm công thất bại",
+            res.status > 0 ? redenderMessage(res.payload) : res.payload,
+            () => { }
+        )
+    }
 
     const checkAttendance = (imageSrc) => {
         dispatch(extraReducersFaceTracking({
-            image: imageSrc
+            image: imageSrc,
+            callBack: (res) => handleResponse(res)
         }))
     }
 
@@ -49,5 +60,9 @@ const FaceAttendance = () => {
         </>
     );
 };
+
+function redenderMessage(result: any) {
+    return `${result.agent_name} - ${result.department_name} đã ${result.type} vào lúc ${dayjs(result.attendance_time).format('HH:mm:ss')}`
+}
 
 export default FaceAttendance;

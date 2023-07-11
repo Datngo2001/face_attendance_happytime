@@ -5,7 +5,7 @@ import { uploadImgBase64ToFirebase } from "utils/uploadImgToFirebase";
 
 export const extraReducersFaceTracking = createAsyncThunk(
     "faceTracking",
-    async ({ image }: any) => {
+    async ({ image, callBack }: any) => {
         let promise = new Promise((resolve, reject) => {
             uploadImgBase64ToFirebase({
                 id: Date.now(),
@@ -15,6 +15,10 @@ export const extraReducersFaceTracking = createAsyncThunk(
                 .catch(err => reject(err))
         })
             .then(imgUrl => api.post("/api/attendance/check_attendance/face_tracking", { image: imgUrl }))
+            .then((response: any) => {
+                callBack(response)
+                return response;
+            })
             .then((response: any) => ({
                 payload: response.payload,
                 message: response.message,
